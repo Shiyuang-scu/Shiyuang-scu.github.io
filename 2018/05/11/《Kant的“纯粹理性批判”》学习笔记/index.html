@@ -6,22 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>什么是梯度（期中考试复习思考） | Shi Yuang&#39;s Blog</title>
+  <title>《Kant的“纯粹理性批判”》学习笔记 | Shi Yuang&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="期中考试就要到了，今天复习了高数，对梯度这一概念产生了疑惑，因为平常上课爱打瞌睡，对很多概念自然很不到位，查了一些资料，才明白大体的意思。 什么是梯度？ 梯度的计算结果会是”在每个位置都算出一个向量,而这个向量的方向会是在任何一点上从其周围标量值最小处指向周围标量值最大处.而这个向量的大小会是上面所说的那个最小与最大的差距程度”  简单地说，梯度指向的就是在函数某一点变化最大的反方向。梯度就是这">
-<meta name="keywords" content="数学">
+  <meta name="description" content="一直想学习康德哲学，今日总算上了牛津大学Dan Robinson教授的纯粹理性批判。课程知识联系十分紧密，以至于我无法分出小标题来圈定教授所讲内容属于哪个框架。教授非常幽默风趣，却又不失严谨，话语间透露着渊博学识，说来惭愧，这是我第一次见到高山仰止的老师。 以下是我不完全的拙劣的笔记，并没有打算对他人有什么帮助，目的无非在于记录学习，让相关知识和内容在我的生活中留下印迹。  物理学界过去三十年来，">
+<meta name="keywords" content="读书">
 <meta property="og:type" content="article">
-<meta property="og:title" content="什么是梯度（期中考试复习思考）">
-<meta property="og:url" content="http://yoursite.com/2018/04/30/什么叫梯度（期中考试复习思考）/index.html">
+<meta property="og:title" content="《Kant的“纯粹理性批判”》学习笔记">
+<meta property="og:url" content="http://yoursite.com/2018/05/11/《Kant的“纯粹理性批判”》学习笔记/index.html">
 <meta property="og:site_name" content="Shi Yuang&#39;s Blog">
-<meta property="og:description" content="期中考试就要到了，今天复习了高数，对梯度这一概念产生了疑惑，因为平常上课爱打瞌睡，对很多概念自然很不到位，查了一些资料，才明白大体的意思。 什么是梯度？ 梯度的计算结果会是”在每个位置都算出一个向量,而这个向量的方向会是在任何一点上从其周围标量值最小处指向周围标量值最大处.而这个向量的大小会是上面所说的那个最小与最大的差距程度”  简单地说，梯度指向的就是在函数某一点变化最大的反方向。梯度就是这">
+<meta property="og:description" content="一直想学习康德哲学，今日总算上了牛津大学Dan Robinson教授的纯粹理性批判。课程知识联系十分紧密，以至于我无法分出小标题来圈定教授所讲内容属于哪个框架。教授非常幽默风趣，却又不失严谨，话语间透露着渊博学识，说来惭愧，这是我第一次见到高山仰止的老师。 以下是我不完全的拙劣的笔记，并没有打算对他人有什么帮助，目的无非在于记录学习，让相关知识和内容在我的生活中留下印迹。  物理学界过去三十年来，">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://p7jklu86w.bkt.clouddn.com/gradient.jpg">
-<meta property="og:updated_time" content="2018-04-30T16:54:54.082Z">
+<meta property="og:updated_time" content="2018-05-11T10:14:38.685Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="什么是梯度（期中考试复习思考）">
-<meta name="twitter:description" content="期中考试就要到了，今天复习了高数，对梯度这一概念产生了疑惑，因为平常上课爱打瞌睡，对很多概念自然很不到位，查了一些资料，才明白大体的意思。 什么是梯度？ 梯度的计算结果会是”在每个位置都算出一个向量,而这个向量的方向会是在任何一点上从其周围标量值最小处指向周围标量值最大处.而这个向量的大小会是上面所说的那个最小与最大的差距程度”  简单地说，梯度指向的就是在函数某一点变化最大的反方向。梯度就是这">
-<meta name="twitter:image" content="http://p7jklu86w.bkt.clouddn.com/gradient.jpg">
+<meta name="twitter:title" content="《Kant的“纯粹理性批判”》学习笔记">
+<meta name="twitter:description" content="一直想学习康德哲学，今日总算上了牛津大学Dan Robinson教授的纯粹理性批判。课程知识联系十分紧密，以至于我无法分出小标题来圈定教授所讲内容属于哪个框架。教授非常幽默风趣，却又不失严谨，话语间透露着渊博学识，说来惭愧，这是我第一次见到高山仰止的老师。 以下是我不完全的拙劣的笔记，并没有打算对他人有什么帮助，目的无非在于记录学习，让相关知识和内容在我的生活中留下印迹。  物理学界过去三十年来，">
   
     <link rel="alternative" href="/atom.xml" title="Shi Yuang&#39;s Blog" type="application/atom+xml">
   
@@ -155,63 +153,60 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-什么叫梯度（期中考试复习思考）" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-《Kant的“纯粹理性批判”》学习笔记" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      什么是梯度（期中考试复习思考）
+      《Kant的“纯粹理性批判”》学习笔记
     </h1>
   
 
 
         
-        <a href="/2018/04/30/什么叫梯度（期中考试复习思考）/" class="archive-article-date">
-  	<time datetime="2018-04-29T16:54:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-30</time>
+        <a href="/2018/05/11/《Kant的“纯粹理性批判”》学习笔记/" class="archive-article-date">
+  	<time datetime="2018-05-11T10:12:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-11</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><img src="http://p7jklu86w.bkt.clouddn.com/gradient.jpg" alt="math_gradient"></p>
-<p>期中考试就要到了，今天复习了高数，对<strong>梯度</strong>这一概念产生了疑惑，因为平常上课爱打瞌睡，对很多概念自然很不到位，查了一些资料，才明白大体的意思。</p>
-<h1 id="什么是梯度？"><a href="#什么是梯度？" class="headerlink" title="什么是梯度？"></a>什么是梯度？</h1><p> 梯度的计算结果会是”在每个位置都算出一个向量,而这个向量的方向会是在任何一点上从其周围标量值最小处指向周围标量值最大处.而这个向量的大小会是上面所说的那个最小与最大的差距程度”</p>
-<p> 简单地说，梯度指向的就是在函数某一点变化最大的反方向。梯度就是这样定义的，所以别问为什么梯度就是函数在某一点处最大变化反方向。我们给“函数在某一点处最大变化反方向”取个外号，就叫“梯度”。<br><a id="more"></a></p>
-<p> 来举一个已经用烂了的栗子：</p>
-<p> 假如你在一座山上，怎样用最短的距离到达山谷中最低点的湖泊？</p>
-<p> 这时，梯度就开始发挥了作用。</p>
-<p> 我们只需要照着等高线，朝着梯度最大的方向，一直沿着梯度相反的方向就可以到达谷底（原理和弹珠从高处滚落最后会滚进最低处一样）。</p>
-<h1 id="为什么梯度反方向就是函数在某一点处最大变化方向？"><a href="#为什么梯度反方向就是函数在某一点处最大变化方向？" class="headerlink" title="为什么梯度反方向就是函数在某一点处最大变化方向？"></a>为什么梯度反方向就是函数在某一点处最大变化方向？</h1><p><strong>梯度与方向导数密不可分</strong></p>
-<p>设 $u = f(x,y,z)$，有一点$P(x,y,z)$</p>
-<p>对于一个特定的方向l，$\frac{\partial u}{\partial l}$就是点P在方向l上的方向导数。</p>
-<p>$\frac{\partial u}{\partial l} = \frac{\partial u}{\partial x}·cosα +\frac{\partial u}{\partial y}·cosβ +\frac{\partial u}{\partial z}·cosγ$</p>
-<p>其中，α、β、γ是l的方向余弦。</p>
-<p>我们把这个式子向量化，有</p>
-<p>$\frac{\partial u}{\partial l} = (\frac{\partial u}{\partial x},\frac{\partial u}{\partial y},\frac{\partial u}{\partial z})·(cosα,cosβ,cosγ)$</p>
-<p>使</p>
-<p>$A = (\frac{\partial u}{\partial x},\frac{\partial u}{\partial y},\frac{\partial u}{\partial z})$ </p>
-<p>$B = (cosα,cosβ,cosγ)$</p>
-<p>则</p>
-<p>$\frac{\partial u}{\partial l} = A · B$</p>
-<p>所以</p>
-<p>$|\frac{\partial u}{\partial l}| = |A||B|cosφ$</p>
-<p>我们都知道，$\frac{\partial u}{\partial l}$表示的是点P在l方向上的变化率</p>
-<p><strong>变化率要想最大，就一定要使$cosα=1$。</strong></p>
-<p><strong>巧合地，当$cosα=1$，A的反方向恰好就是最大的变化方向。</strong></p>
-<p><strong>好了，现在我们已经找到函数值下降最快的方向了，这个方向就是和向量相同的方向.那么此时我把A向量命名为梯度（当一个点确定后，梯度方向是确定的），也就是说明了为什么梯度反方向是函数变化率最大的方向了。</strong></p>
-<h1 id="联想"><a href="#联想" class="headerlink" title="联想"></a>联想</h1><p>上个学期在学习机器学习的线性回归的时候，接触到了梯度下降算法，当时不明白是什么意思，也没有深究，如今才逐渐明了。</p>
-<p>在线性回归中，我们假设了一个函数，称其为假设函数(hypothesis function)，使用某些很厉害的步骤来训练假设函数。</p>
-<p>在监督学习中，为了评估模型拟合的好坏，通常用损失函数来度量拟合的程度。损失函数极小化，意味着拟合程度最好，对应的模型参数即为最优参数。在线性回归中，损失函数通常为样本输出和假设函数的差取平方。比如对于m个样本（xi,yi）(i=1,2,…m)<br>（xi,yi）(i=1,…),采用线性回归，损失函数为：</p>
-<p>$J(θ0,θ1)=\sum_1^m{(hθ(xi)−yi)^2}$</p>
-<p>而使用梯度下降(Gradient Descent)，就可以求得最优解（实际上有可能不是最优= =）</p>
-<p>梯度下降：</p>
-<p>update = learning_rate * gradient_of_parameters</p>
-<p>parameters = parameters - update<br>(懒得打公式了= =)</p>
-<p>其实线性回归也好，逻辑回归也好，其本质就是拟合，梯度下降算法将其CostFunction减到最小，就像从山顶爬到山谷一样（见文首的图），但直观上看，山谷又不只有一个，如果有好几个山谷，山谷有深也有浅，我们可没有办法选择是到哪一个山谷，这个时候就出问题了。</p>
-<p>然后又出现很多弥补这个缺点算法啦，比如说 随机梯度下降(Stochastic gradient descent)、小批量梯度下降(Mini-batch gradient descent)之类的，还有牛顿法、涅斯捷罗夫梯度加速(Nesterov accelerated gradient)balabala的，我也不懂，就不说了。</p>
+        <p>一直想学习康德哲学，今日总算上了牛津大学Dan Robinson教授的纯粹理性批判。课程知识联系十分紧密，以至于我无法分出小标题来圈定教授所讲内容属于哪个框架。教授非常幽默风趣，却又不失严谨，话语间透露着渊博学识，说来惭愧，这是我第一次见到高山仰止的老师。</p>
+<p>以下是我不完全的拙劣的笔记，并没有打算对他人有什么帮助，目的无非在于记录学习，让相关知识和内容在我的生活中留下印迹。</p>
+<blockquote>
+<p>物理学界过去三十年来，怎样继续对物体的认知已经变得十分清楚。令人惊奇的是，物理学用以认识物体的方法，本质上就是Kant创建的概念框架。</p>
+</blockquote>
+<h1 id="Kant-的第一批判目的为何"><a href="#Kant-的第一批判目的为何" class="headerlink" title="Kant 的第一批判目的为何"></a>Kant 的第一批判目的为何</h1><p>10年前，Herts与Kant的信中，kant就说他在酝酿一本暂且名为《论感性与理性的局限》的书。</p>
+<p>人们评判一个东西，多大程度依赖理性、多大程度依赖感性？人们评判这个评判使用的也是理性。如果存在一个衡量论据成立的标准，那么这个黄金标准是什么？你是怎样判断温度计是好的？当它对自己进行评判的时候，它的性质会变成怎么样？理性与感性都有局限，但到底是什么？</p>
+<p>Kant写第一批判的目的在某学者看来有四个选择：</p>
+<p>1.创建系统化的形而上学来驳斥怀疑论</p>
+<p>经验主义如何进入怀疑论怪圈的？</p>
+<p>我们没有直接接触实物，而是间接的，通过感官器官。但器官对外界事物的信号传递忠实吗？</p>
+<p>2.建立系统化的形而上学为科学的客观性提供依据，让科学能够客观地解释其所有研究基于的根本原理，避免其陷入休谟式的怀疑论。</p>
+<p>3.本体论</p>
+<p>什么是本体论：what is there？</p>
+<p>对事物本质形而上学的争论是无效的，因为我们本身就没有能力认知。</p>
+<p>而我们真正认知事物所根据的，是我们对他们的使用：存在这个物质，我们用他，所以给他名字、给他定义。但其本质我们无能为力。物质组成时有物诶里构成的，而我们无法看到，这和意识的形成很像。</p>
+<p>本体论就是，我们给物体赋予名字，但他究竟是是什么？</p>
+<p>4.先验观点</p>
+<p>当理性学会如何使用经验内容，它对经验本身有什么影响？我们需要对理性的运作进行批判性评估：它限制了什么？它有什么界限？</p>
+<p>Kant在《未来形而上学导论》中说的话，很好地能够把我们引入课题：</p>
+<p>自然如何可能？how is nature possible</p>
+<p>我们认为我们现在靠着的这块桌子是硬的，但其实不是硬的，或者说，相对来说是硬的，但其实不是硬的； 我们的听力系统可以接收到布朗运动级别的纷扰；我们的世界系统能够收到一个量子碰撞的刺激并产生反应……我们认知的世界是在无数多个纷繁冗杂的系统碰撞间形成的，但在这些纷繁之外，树、音乐、法律、尘土，又是什么？我们是如何理解有法则支配的科学世界，鉴于轻率而传播性极高的感官经验？</p>
+<p>经验主义无法解决，甚至连理解都没有达到。是什么让其成为可能？我们实际拥有的知识，是理性与认知法则基础上形成的，</p>
+<p>或者说，其目的为：如何使科学摆脱令人生厌的主观性形象。</p>
+<p>Kant在《未来形而上学导论》批判了里德等英格兰常识学派学者，为什么？</p>
+<p>Kant在当时时代参与了所谓的哲学纷争，哲学家们争论如何改造哲学使其得到发展：一派为，将哲学变成一门系统科学（学院哲学）；另一派为，将哲学变成一种让普通人理解的，事实上就是与宗教结合的学问（常识哲学）。而Kant则是学院哲学学派的。</p>
+<p>托马斯里德是常识学派的学者，他认为，怀疑论哲学会把哲学本身毁掉。怀疑论怀疑的都是生活中理所当然的东西，而它根本没有涉及到生命的积极面。</p>
+<p>休谟解释其因果关系主张，举了一个例子：桌上有两个球，第一个球运动，击中第二个球，第二个球运动。他看不到任何联系，看不到因果关系。不过是，第一个球动，第一个球撞击到第二个球，第二个球动，仅此而已。休谟想强调的是，因果关系只是一种思维习惯，是有经验累积形成的，我们看到两个事物连续发生，便会假设这之间有因果关系。所以本质上说，任何事情都有可能与任何事情有因果关系，而以此为基础，我们可以用截然不同的方式构建新的世界。</p>
+<p>休谟持怀疑论，但在生活中又不过是普通人。里德开玩笑说，怀疑论只是休谟的玩具小马，当他困倦的时候，就骑上来耍一耍。里德想要说的是，所有思想都有其存在的基本原则，我们所说的常识，就是这个基本原则。我们做出的最重要的决定，都是没有经过深思熟虑的，吃东西、上厕所、在危急时刻逃生。当我们看到汽车发动不起来的时候，我们不会说：“天哪！他们取消了内燃机工作的基本原理！”我们会说，“也许是没油了，也可能是出故障了，得有人维修”。这个想法并不是勉强达成的，它是生活的一部分，是理所当然的想法。</p>
+<p>你不能证明规律，因为每一种证明方式都建立在假定其有效性的基础上。这和Kant的先验理论相似。</p>
+<p>Kant试图用先验逻辑而不是形式逻辑来证明某一事物，他对构成某个事物的条件进行反复追溯：哪里缺少了一个必要条件，这个必要条件又有哪些条件构成。在一定程度上说，Kant的论证就是一个论证谱系，犹如一个诉讼案件的摘要。</p>
+<h1 id="为什么要研究Kant"><a href="#为什么要研究Kant" class="headerlink" title="为什么要研究Kant"></a>为什么要研究Kant</h1><p>如今还有更重要的哲学课题吗？那种尊重我们施加于每种知识主张的认知资源，同时不会沦为心理学的哲学课题，这种形而上学的分析，尊重人类所有的认知而不会陷入主观性。这一课题将解释本体论的科学，使得科学家按照我们认识现实的方式取得某些必然的成功。</p>
+<p>举个例子，你和蜜蜂在同一朵花前流连，常人视觉系统的最高光谱感光度是550好微米，称之为黄色，而蜜蜂则为自我先，所以蜜蜂看不到黄色，哦看不到紫外线，我们都是某种幻觉的受害者吗？不是，当我们学习Kant，我们就会发现我们施加于各种情况的独特认知原则可以保持我们在该场合下知识的客观。</p>
 
       
 
@@ -256,7 +251,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">数学</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">读书</a>
         		</li>
       		
 		</ul>
@@ -312,7 +307,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/04/30/什么叫梯度（期中考试复习思考）/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/05/11/《Kant的“纯粹理性批判”》学习笔记/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -326,18 +321,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2018/05/11/《Kant的“纯粹理性批判”》学习笔记/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          《Kant的“纯粹理性批判”》学习笔记
-        
-      </div>
-    </a>
   
-  
-    <a href="/2018/04/22/《自控力》读书笔记/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">《自控力》读书笔记</div>
+    <a href="/2018/04/30/什么叫梯度（期中考试复习思考）/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">什么是梯度（期中考试复习思考）</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -364,7 +350,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#什么是梯度？"><span class="toc-number">1.</span> <span class="toc-text">什么是梯度？</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#为什么梯度反方向就是函数在某一点处最大变化方向？"><span class="toc-number">2.</span> <span class="toc-text">为什么梯度反方向就是函数在某一点处最大变化方向？</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#联想"><span class="toc-number">3.</span> <span class="toc-text">联想</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Kant-的第一批判目的为何"><span class="toc-number">1.</span> <span class="toc-text">Kant 的第一批判目的为何</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#为什么要研究Kant"><span class="toc-number">2.</span> <span class="toc-text">为什么要研究Kant</span></a></li></ol>
                     </div>
                 </span>
             </div>
