@@ -6,15 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Tag: 读书 | Shi Yuang&#39;s Blog</title>
+  <title>BP算法 | Shi Yuang&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Shi Yuang&#39;s Blog">
-<meta property="og:url" content="http://yoursite.com/tags/读书/index.html">
+  <meta name="description" content="断断续续零零碎碎地学机器学习半年了，不会实践，不会运用，只是粗略地学了理论基础，因为涉及很多数学公式，markdown的数学公式语法又挺麻烦的，所以一直没有写过机器学习算法的文章。最近恰逢创新班、双特生面试，因为我是以机器学习为特点介绍我自己的，所以看了些算法的具体理论和优缺点。今天下午看了2个小时的BP算法，心想不如在近纲课上写一篇BP算法的文章。 #一般思想 首先，依然是梯度下降法，为了更新$">
+<meta name="keywords" content="机器学习">
+<meta property="og:type" content="article">
+<meta property="og:title" content="BP算法">
+<meta property="og:url" content="http://yoursite.com/2018/05/26/BP算法/index.html">
 <meta property="og:site_name" content="Shi Yuang&#39;s Blog">
+<meta property="og:description" content="断断续续零零碎碎地学机器学习半年了，不会实践，不会运用，只是粗略地学了理论基础，因为涉及很多数学公式，markdown的数学公式语法又挺麻烦的，所以一直没有写过机器学习算法的文章。最近恰逢创新班、双特生面试，因为我是以机器学习为特点介绍我自己的，所以看了些算法的具体理论和优缺点。今天下午看了2个小时的BP算法，心想不如在近纲课上写一篇BP算法的文章。 #一般思想 首先，依然是梯度下降法，为了更新$">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-05-30T09:39:43.412Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Shi Yuang&#39;s Blog">
+<meta name="twitter:title" content="BP算法">
+<meta name="twitter:description" content="断断续续零零碎碎地学机器学习半年了，不会实践，不会运用，只是粗略地学了理论基础，因为涉及很多数学公式，markdown的数学公式语法又挺麻烦的，所以一直没有写过机器学习算法的文章。最近恰逢创新班、双特生面试，因为我是以机器学习为特点介绍我自己的，所以看了些算法的具体理论和优缺点。今天下午看了2个小时的BP算法，心想不如在近纲课上写一篇BP算法的文章。 #一般思想 首先，依然是梯度下降法，为了更新$">
   
     <link rel="alternative" href="/atom.xml" title="Shi Yuang&#39;s Blog" type="application/atom+xml">
   
@@ -148,178 +153,240 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-BP算法" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      BP算法
+    </h1>
+  
+
+
+        
+        <a href="/2018/05/26/BP算法/" class="archive-article-date">
+  	<time datetime="2018-05-26T13:17:36.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-26</time>
+</a>
+        
+      </header>
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>断断续续零零碎碎地学机器学习半年了，不会实践，不会运用，只是粗略地学了理论基础，因为涉及很多数学公式，markdown的数学公式语法又挺麻烦的，所以一直没有写过机器学习算法的文章。最近恰逢创新班、双特生面试，因为我是以机器学习为特点介绍我自己的，所以看了些算法的具体理论和优缺点。今天下午看了2个小时的BP算法，心想不如在近纲课上写一篇BP算法的文章。</p>
+<p>#一般思想</p>
+<p>首先，依然是梯度下降法，为了更新$W$和$b$，就要计算出代价函数$J$对两者的偏导数，即</p>
+<p>$\frac{\partial}{\partial W_{ij}^{(l)}} J(W,b; x, y) = a^{(l)}_j \delta<em>i^{(l+1)} \\frac{\partial}{\partial b</em>{i}^{(l)}} J(W,b; x, y) = \delta_i^{(l+1)}$</p>
+<p>其中，</p>
+<p>$\delta^{(l)}_i=\frac{\partial J(W,b;x,y)}{\partial z_i^{(l)}}= \frac{\partial}{\partial z^{(l)}<em>i} \;\; \frac{1}{2} \left|y - h</em>{W,b}(x)\right|^2 = - (y_i - a^{(l)}_i) \cdot f’(z^{(l)}_i)$</p>
+<a id="more"></a>
+<p>但这两个公式只能够更新输出层与前一层连接线的权重和输出层的偏置，原因是因为 δ 值依赖了真实值y这个变量，但是我们不可能知道每层隐藏层的真实值，所以无法计算每层隐藏层的 δ 值。而BP算法则可以让我们利用后一个δ计算前一个δ，避免了使用真实值。</p>
+<h1 id="BP算法细节"><a href="#BP算法细节" class="headerlink" title="BP算法细节"></a>BP算法细节</h1><p>1: 首先当然是正向计算咯，分别求出$L2,L3$,…直至最后一层$Ln$的<strong>激活值</strong>。我们这里把输入当做第一层。下面是真正的反向传播。</p>
+<p>2: 对于第n层（最后一层是特殊的，必须单独拿出来）每个输出单元$i$,下面的$l$的值为$n$, 计算每个结点的残差：</p>
+<p>$\delta^{(l)}_i=\frac{\partial J(W,b;x,y)}{\partial z_i^{(l)}}= \frac{\partial}{\partial z^{(l)}<em>i} \;\;\frac{1}{2} \left|y - h</em>{W,b}(x)\right|^2 = - (y_i - a^{(l)}_i) \cdot f’(z^{(l)}_i)$</p>
+<p>注意：这里最后乘上了对“net”的导，如果是用sigmoid的函数的话，根据$f′(z(l)i)=a(l)i(1−a(l)i)$, 最后一层的第$i$个结点的残差$δ^{(l)}i=−(yi−a^{(l)}i)∙a^{(l)}i(1−a^{(l)}i)$</p>
+<p>3： 从倒数第二层开始，也就是说 $l=n−1,n−2,n−3,…,2$ 的各层,第$l$层的第$i$个结点的<strong>残差</strong>计算： </p>
+<p>$\delta^{(l)}<em>i = \left( \sum</em>{j=1}^{s<em>{l+1}} W^{(l)}</em>{ji} \delta^{(l+1)}_j \right) f’(z^{(l)}_i)$</p>
+<p>分析：要想知道第l层的第i个结点的残差，必须知道该节点所连接的下一层的各个结点的权值，以及这些结点的残差，幸亏第l+1层已经计算出来了残差，你只要把后面一层的每个结点j的残差乘以该结点与这一层的结点i相连的权值，然后加和，最后别忘了乘以这一层的激活方式的导数。</p>
+<p> 不吹不黑，如果你不太懂得话，这段话可以够你看10遍，你就懂了。</p>
+<p>4: 你可能会说要残差干嘛？当然是计算$∂J/∂w$和$∂J/∂b$用的。<br>只要：</p>
+<p>$\frac{\partial}{\partial W_{ij}^{(l)}} J(W,b; x, y) = a^{(l)}_j \delta<em>i^{(l+1)} \\frac{\partial}{\partial b</em>{i}^{(l)}} J(W,b; x, y) = \delta_i^{(l+1)}$</p>
+<p><strong>结论：求J对“结点j到i的线路”的导数，求出后者i的残差，然后乘以这条线路的流量即可。</strong></p>
+<p>分析：其实是这样的，Wlij是第l层到l+1层的权值，并且是从结点j到结点i的权值。根据链式法则： </p>
+<p>$\frac{\partial J{(W,b; x, y)}}{\partial w<em>{ij}^{(l)}} = \frac{\partial J{(W,b; x, y)}}{\partial out</em>{i}} <em> \frac{\partial out<em>{i}}{\partial net</em>{i}} </em> \frac{\partial net<em>{i}}{\partial w</em>{ij}}$</p>
+<p>请仔细看上面的公式，好好理解。 </p>
+<p>残差的定义就是$\frac{\partial J{(W,b; x, y)}}{\partial net_{i}}$，根据链式法则： </p>
+<p>$\delta<em>i^{(l+1）}=\frac{\partial J{(W,b; x, y)}}{\partial net</em>{i}} = \frac{\partial J{(W,b; x, y)}}{\partial out<em>{i}} * \frac{\partial out</em>{i}}{\partial net_{i}}$</p>
+<p>这下明白了吧，就是说第$l+1$层，</p>
+<p>$\frac{\partial J}{\partial w_{ij}^{(l)}}=\delta<em>i^{(l+1)}* \frac{\partial net</em>{i}}{\partial w_{ij}}=\delta_i^{(l+1)}a^{(l)}_j$</p>
+<p> 注意，第$l+1$层的$\frac{\partial net<em>{i}}{\partial w</em>{ij}}$就是该层的输入，也就是第l层的输出$a^{(l)}_j$. </p>
+<p><strong>最后一个问题</strong>，为什么</p>
+<p>$\delta^{(l)}<em>i = \left( \sum</em>{j=1}^{s<em>{l+1}} W^{(l)}</em>{ji} \delta^{(l+1)}_j \right) f’(z^{(l)}_i)$</p>
+<p>呢?</p>
+<p>$\delta^{(l-1)}_i =\frac{\partial}{\partial z^{(l-1)}_i}J(W,b;x,y) = \frac{\partial}{\partial z^{(l-1)}<em>i}\frac{1}{2} \left|y - h</em>{W,b}(x)\right|^2 = \frac{\partial}{\partial z^{(l-1)}<em>i}\frac{1}{2}\sum</em>{j=1}^{S_{l}}(y_j-a<em>j^{(l)})^2 \ = \frac{1}{2}\sum</em>{j=1}^{S_{l}}\frac{\partial}{\partial z^{(l-1)}_i}(y_j-a<em>j^{(l)})^2 = \frac{1}{2} \sum</em>{j=1}^{S_{l}}\frac{\partial}{\partial z^{(l-1)}_i}(y_j-f(z<em>j^{(l)}))^2 \= \sum</em>{j=1}^{S_{l}}-(y_j-f(z_j^{(l)})) \cdot \frac{\partial}{\partial z_i^{(l-1)}}f(z<em>j^{(l)}) = \sum</em>{j=1}^{S_{l}}-(y_j-f(z_j^{(n_l)})) \cdot  f’(z_j^{(l)}) \cdot \frac{\partial z_j^{(l)}}{\partial z<em>i^{(l-1)}} \ = \sum</em>{j=1}^{S_{l}} \delta_j^{(l)} \cdot \frac{\partial z_j^{(l)}}{\partial z<em>i^{(l-1)}} = \sum</em>{j=1}^{S_{l}} \left(\delta_j^{(l)} \cdot \frac{\partial}{\partial z<em>i^{(l-1)}}\sum</em>{k=1}^{S_{(l-1)}}f(z<em>k^{(l-1)}) \cdot W</em>{jk}^{(l-1)}\right) \ = \sum<em>{j=1}^{S</em>{l}} \delta<em>j^{(l)} \cdot  W</em>{ji}^{(l-1)} \cdot f’(z<em>i^{(l-1)}) = \left(\sum</em>{j=1}^{S<em>{l}}W</em>{ji}^{(l-1)}\delta_j^{(l)}\right)f’(z_i^{(l-1)})$</p>
+<p> 我们可以看到</p>
+<p>$\delta^{(l-1)}<em>i =\left(\sum</em>{j=1}^{S<em>{l}}W</em>{ji}^{(l-1)}\delta_j^{(l)}\right)f’(z_i^{(l-1)})$</p>
+<p>前一层的偏差是后一层偏差与相关权重的点积，intuitively，前一层的偏差是后一层偏差之和，符合我们的直觉。</p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="http://p7jklu86w.bkt.clouddn.com/Ali_Pay.JPG">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="http://p7jklu86w.bkt.clouddn.com/WeChat_Pay.JPG">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/04/22/《自控力》读书笔记/" class="archive-article-date">
-  	<time datetime="2018-04-21T16:11:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-22</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/04/22/《自控力》读书笔记/">《自控力》读书笔记</a>
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">读书</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">机器学习</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/05/26/BP算法/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/02/23/《论工业社会及其未来》原文摘录/" class="archive-article-date">
-  	<time datetime="2018-02-23T15:13:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-02-23</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2018/05/26/宏大的哲学语境/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">宏大的哲学语境</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/02/23/《论工业社会及其未来》原文摘录/">《论工业社会及其未来》原文摘录</a>
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">读书</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#BP算法细节"><span class="toc-number">1.</span> <span class="toc-text">BP算法细节</span></a></li></ol>
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/02/19/《如何高效学习》读后总结/" class="archive-article-date">
-  	<time datetime="2018-02-19T15:11:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-02-19</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/02/19/《如何高效学习》读后总结/">《如何高效学习》读后总结</a>
-    </h1>
-  
+        
+    </div>
+</aside>
 
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">读书</a>
-        		</li>
-      		
-		</ul>
-	</div>
 
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/02/13/《精进》第二章总结/" class="archive-article-date">
-  	<time datetime="2018-02-13T04:06:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-02-13</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/02/13/《精进》第二章总结/">《精进》chapter-2读后总结</a>
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">读书</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
   
-    </div></section>
   
 
-    
+  
+
+  
+    <section id="comments">
+      <div id="disqus_thread"></div>
+        <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'https-shiyuang-scu-github-io'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+      </script>
+      <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </section>
+  
+
+  
 
 
           </div>
@@ -342,9 +409,9 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: true,
 		toc_hide_index: false,
