@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="Shi Yuang&#39;s Blog">
 <meta property="og:description" content="断断续续零零碎碎地学机器学习半年了，不会实践，不会运用，只是粗略地学了理论基础，因为涉及很多数学公式，markdown的数学公式语法又挺麻烦的，所以一直没有写过机器学习算法的文章。最近恰逢创新班、双特生面试，因为我是以机器学习为特点介绍我自己的，所以看了些算法的具体理论和优缺点。今天下午看了2个小时的BP算法，心想不如在近纲课上写一篇BP算法的文章。 一般思想首先，依然是梯度下降法，为了更新$W$">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-05-30T09:21:51.970Z">
+<meta property="og:updated_time" content="2018-05-30T09:25:42.644Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="BP算法">
 <meta name="twitter:description" content="断断续续零零碎碎地学机器学习半年了，不会实践，不会运用，只是粗略地学了理论基础，因为涉及很多数学公式，markdown的数学公式语法又挺麻烦的，所以一直没有写过机器学习算法的文章。最近恰逢创新班、双特生面试，因为我是以机器学习为特点介绍我自己的，所以看了些算法的具体理论和优缺点。今天下午看了2个小时的BP算法，心想不如在近纲课上写一篇BP算法的文章。 一般思想首先，依然是梯度下降法，为了更新$W$">
@@ -201,11 +201,11 @@
 <p>$\frac{\partial J}{\partial w_{ij}^{(l)}}=\delta<em>i^{(l+1)}* \frac{\partial net</em>{i}}{\partial w_{ij}}=\delta_i^{(l+1)}a^{(l)}_j$</p>
 <p>注意，第$l+1$层的$\frac{\partial net<em>{i}}{\partial w</em>{ij}}$就是该层的输入，也就是第l层的输出$a^{(l)}_j$. </p>
 <p>最后一个问题，为什么</p>
-<p>$\delta^{(l)}<em>i = \left( \sum</em>{j=1}^{s<em>{l+1}} W^{(l)}</em>{ji} \delta^{(l+1)}_j \right) f’(z^{(l)}_i)$</p>
+<p>$delta^{(l)}<em>i = \left( \sum</em>{j=1}^{s<em>{l+1}} W^{(l)}</em>{ji} \delta^{(l+1)}_j \right) f’(z^{(l)}_i)$</p>
 <p>呢?</p>
-<p>$\delta^{(l-1)}_i =\frac{\partial}{\partial z^{(l-1)}_i}J(W,b;x,y) = \frac{\partial}{\partial z^{(l-1)}<em>i}\frac{1}{2} \left|y - h</em>{W,b}(x)\right|^2 = \frac{\partial}{\partial z^{(l-1)}<em>i}\frac{1}{2}\sum</em>{j=1}^{S_{l}}(y_j-a<em>j^{(l)})^2 \ = \frac{1}{2}\sum</em>{j=1}^{S_{l}}\frac{\partial}{\partial z^{(l-1)}_i}(y_j-a<em>j^{(l)})^2 = \frac{1}{2} \sum</em>{j=1}^{S_{l}}\frac{\partial}{\partial z^{(l-1)}_i}(y_j-f(z<em>j^{(l)}))^2 \= \sum</em>{j=1}^{S_{l}}-(y_j-f(z_j^{(l)})) \cdot \frac{\partial}{\partial z_i^{(l-1)}}f(z<em>j^{(l)}) = \sum</em>{j=1}^{S_{l}}-(y_j-f(z_j^{(n_l)})) \cdot  f’(z_j^{(l)}) \cdot \frac{\partial z_j^{(l)}}{\partial z<em>i^{(l-1)}} \ = \sum</em>{j=1}^{S_{l}} \delta_j^{(l)} \cdot \frac{\partial z_j^{(l)}}{\partial z<em>i^{(l-1)}} = \sum</em>{j=1}^{S_{l}} \left(\delta_j^{(l)} \cdot \frac{\partial}{\partial z<em>i^{(l-1)}}\sum</em>{k=1}^{S_{(l-1)}}f(z<em>k^{(l-1)}) \cdot W</em>{jk}^{(l-1)}\right) \ = \sum<em>{j=1}^{S</em>{l}} \delta<em>j^{(l)} \cdot  W</em>{ji}^{(l-1)} \cdot f’(z<em>i^{(l-1)}) = \left(\sum</em>{j=1}^{S<em>{l}}W</em>{ji}^{(l-1)}\delta_j^{(l)}\right)f’(z_i^{(l-1)})$</p>
+<p>$delta^{(l-1)}_i =\frac{\partial}{\partial z^{(l-1)}_i}J(W,b;x,y) = \frac{\partial}{\partial z^{(l-1)}<em>i}\frac{1}{2} \left|y - h</em>{W,b}(x)\right|^2 = \frac{\partial}{\partial z^{(l-1)}<em>i}\frac{1}{2}\sum</em>{j=1}^{S_{l}}(y_j-a<em>j^{(l)})^2 \ = \frac{1}{2}\sum</em>{j=1}^{S_{l}}\frac{\partial}{\partial z^{(l-1)}_i}(y_j-a<em>j^{(l)})^2 = \frac{1}{2} \sum</em>{j=1}^{S_{l}}\frac{\partial}{\partial z^{(l-1)}_i}(y_j-f(z<em>j^{(l)}))^2 \= \sum</em>{j=1}^{S_{l}}-(y_j-f(z_j^{(l)})) \cdot \frac{\partial}{\partial z_i^{(l-1)}}f(z<em>j^{(l)}) = \sum</em>{j=1}^{S_{l}}-(y_j-f(z_j^{(n_l)})) \cdot  f’(z_j^{(l)}) \cdot \frac{\partial z_j^{(l)}}{\partial z<em>i^{(l-1)}} \ = \sum</em>{j=1}^{S_{l}} \delta_j^{(l)} \cdot \frac{\partial z_j^{(l)}}{\partial z<em>i^{(l-1)}} = \sum</em>{j=1}^{S_{l}} \left(\delta_j^{(l)} \cdot \frac{\partial}{\partial z<em>i^{(l-1)}}\sum</em>{k=1}^{S_{(l-1)}}f(z<em>k^{(l-1)}) \cdot W</em>{jk}^{(l-1)}\right) \ = \sum<em>{j=1}^{S</em>{l}} \delta<em>j^{(l)} \cdot  W</em>{ji}^{(l-1)} \cdot f’(z<em>i^{(l-1)}) = \left(\sum</em>{j=1}^{S<em>{l}}W</em>{ji}^{(l-1)}\delta_j^{(l)}\right)f’(z_i^{(l-1)})$</p>
 <p>我们可以看到</p>
-<p>$\delta^{(l-1)}<em>i =\left(\sum</em>{j=1}^{S<em>{l}}W</em>{ji}^{(l-1)}\delta_j^{(l)}\right)f’(z_i^{(l-1)})$</p>
+<p>$delta^{(l-1)}<em>i =\left(\sum</em>{j=1}^{S<em>{l}}W</em>{ji}^{(l-1)}\delta_j^{(l)}\right)f’(z_i^{(l-1)})$</p>
 <p>前一层的偏差是后一层偏差与相关权重的点积，intuitively，前一层的偏差是后一层偏差之和，符合我们的直觉。</p>
 
       
@@ -509,7 +509,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">读书</a>
+                <a href="javascript:void(0)" class="js-tag color3">数学</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">康德</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -517,11 +521,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">数学</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">康德</a>
+                <a href="javascript:void(0)" class="js-tag color3">读书</a>
               </li>
              
               <li class="article-tag-list-item">
