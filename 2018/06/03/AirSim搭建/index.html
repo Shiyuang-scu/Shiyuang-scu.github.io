@@ -16,19 +16,19 @@
 <meta property="og:site_name" content="Shi Yuang&#39;s Blog">
 <meta property="og:description" content="先承接上文，双特生面试很惨淡，老师们一直让我说我对数据科学的理解、我在数据科学方面有何突出。双特生选拔的是川大金字塔尖的人才，我本就是打肿脸充胖子，不过在候考期间认识了易佬，总体而言，收获很大。 最近加入了空天学院飞行模拟协会，本打算做基于增强学习的飞行器自动对战。因为微软的AirSim与我们的主题很契合，我们便打算将AirSim+Unreal作为实验平台。近期老师计划让我研究AirSim的接口">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://github.com/Microsoft/AirSim/blob/master/docs/images/AirSimDroneManual.gif">
-<meta property="og:image" content="https://github.com/Microsoft/AirSim/blob/master/docs/images/unreal_versions.png">
-<meta property="og:image" content="https://github.com/Microsoft/AirSim/blob/master/docs/images/landscape_mountains.png">
-<meta property="og:image" content="https://github.com/Microsoft/AirSim/blob/master/docs/images/unreal_editor.png">
-<meta property="og:image" content="https://github.com/Microsoft/AirSim/blob/master/docs/images/regen_sln.png">
-<meta property="og:image" content="https://github.com/Microsoft/AirSim/blob/master/docs/images/vsbuild_config.png">
-<meta property="og:image" content="https://github.com/Microsoft/AirSim/blob/master/docs/images/lm_player_start_pos.png">
-<meta property="og:image" content="https://github.com/Microsoft/AirSim/blob/master/docs/images/sim_game_mode.png">
-<meta property="og:updated_time" content="2018-06-02T17:37:25.868Z">
+<meta property="og:image" content="http://p7jklu86w.bkt.clouddn.com/AirSimDroneManual.gif">
+<meta property="og:image" content="http://p7jklu86w.bkt.clouddn.com/unreal_versions.png">
+<meta property="og:image" content="http://p7jklu86w.bkt.clouddn.com/landscape_mountains.png">
+<meta property="og:image" content="http://p7jklu86w.bkt.clouddn.com/unreal_editor.png">
+<meta property="og:image" content="http://p7jklu86w.bkt.clouddn.com/regen_sln.png">
+<meta property="og:image" content="http://p7jklu86w.bkt.clouddn.com/vsbuild_config.png">
+<meta property="og:image" content="http://p7jklu86w.bkt.clouddn.com/lm_player_start_pos.png">
+<meta property="og:image" content="http://p7jklu86w.bkt.clouddn.com/sim_game_mode.png">
+<meta property="og:updated_time" content="2018-06-02T17:48:16.882Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="AirSim搭建">
 <meta name="twitter:description" content="先承接上文，双特生面试很惨淡，老师们一直让我说我对数据科学的理解、我在数据科学方面有何突出。双特生选拔的是川大金字塔尖的人才，我本就是打肿脸充胖子，不过在候考期间认识了易佬，总体而言，收获很大。 最近加入了空天学院飞行模拟协会，本打算做基于增强学习的飞行器自动对战。因为微软的AirSim与我们的主题很契合，我们便打算将AirSim+Unreal作为实验平台。近期老师计划让我研究AirSim的接口">
-<meta name="twitter:image" content="https://github.com/Microsoft/AirSim/blob/master/docs/images/AirSimDroneManual.gif">
+<meta name="twitter:image" content="http://p7jklu86w.bkt.clouddn.com/AirSimDroneManual.gif">
   
     <link rel="alternative" href="/atom.xml" title="Shi Yuang&#39;s Blog" type="application/atom+xml">
   
@@ -183,7 +183,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><img src="https://github.com/Microsoft/AirSim/blob/master/docs/images/AirSimDroneManual.gif" alt="record screenshot"></p>
+        <p><img src="http://p7jklu86w.bkt.clouddn.com/AirSimDroneManual.gif" alt="record screenshot"></p>
 <p>先承接上文，双特生面试很惨淡，老师们一直让我说我对数据科学的理解、我在数据科学方面有何突出。双特生选拔的是川大金字塔尖的人才，我本就是打肿脸充胖子，不过在候考期间认识了易佬，总体而言，收获很大。</p>
 <p>最近加入了空天学院飞行模拟协会，本打算做基于增强学习的飞行器自动对战。因为微软的AirSim与我们的主题很契合，我们便打算将AirSim+Unreal作为实验平台。近期老师计划让我研究AirSim的接口，以便把P3D模型移植到Unreal中。至于为什么要用P3D作为模型，事情就很复杂了，在此不赘述。原本的初衷是在编程中学习机器学习，却发现大部分时间做的都是和机器学习无关的偏向于工程的事情，每天在自己完全不熟悉的地方疲于奔命，还是让人不舒服。但话说回来，我的工程能力很差，这次项目也一定会增强我的代码能力。其次，如果真如老师所说，只要将自动对战做出来就能发SCI，那我虽然撑死算是二作，也死而无憾了。<br><a id="more"></a><br>今天搭建AirSim花了很多功夫，起先是看CSDN的搭建教程，安装了很多无用的包和库，而之后却总是遇到编译失败、无法找到Module文件等等错误，学长如数家珍地讲各种错误，真是令人心疼的熟练度。后来回归到AirSim的官方文档，才安安稳稳地搭建好了环境。他们加上我花了3、4天的时间来搭建一个小小的AirSim，算是令人啼笑皆非了。事成之后回想搭建过程，不禁另感慨我的学习能力和搜索能力实在过于低下，如果是其他人，相信1小时内绝对没问题。</p>
 <p>言归正传，我们被CSDN的教程坑坏了，不想让别人也被坑了，下面是亲测有效的搭建流程，实际上是微软官方的Tutorial，能在我们头发寸断的情况下出马，令我这个渣感激涕零。</p>
@@ -192,7 +192,7 @@
 </li>
 <li><p>Run the Epic Games Launcher, open the Library tab from left, click on the “Add Versions” which should show the option to download Unreal 4.18 as shown below. If you have multiple versions of Unreal installed then make sure 4.18 is “Current” by clicking down arrow next to the Launch button for the version.</p>
 <p><strong>Note</strong>: If you have UE 4.16 or older projects, please see the <a href="https://github.com/Microsoft/AirSim/blob/master/docs/unreal_upgrade.md" target="_blank" rel="noopener">upgrade guide</a> to upgrade your projects.</p>
-<p><img src="https://github.com/Microsoft/AirSim/blob/master/docs/images/unreal_versions.png" alt="Unreal Versions"></p>
+<p><img src="http://p7jklu86w.bkt.clouddn.com/unreal_versions.png" alt="Unreal Versions"></p>
 </li>
 </ol>
 <h2 id="Build-AirSim"><a href="#Build-AirSim" class="headerlink" title="Build AirSim"></a>Build AirSim</h2><ol>
@@ -230,11 +230,11 @@
 <li>Make sure AirSim is built and Unreal 4.18 is installed as described in <a href="https://github.com/Microsoft/AirSim/blob/master/docs/build_windows.md" target="_blank" rel="noopener">build instructions</a>.</li>
 <li>In <code>Epic Games Launcher</code> click the Learn tab then scroll down and find <code>Landscape Mountains</code>. Click the <code>Create Project</code> and download this content (~2GB download).</li>
 </ol>
-<p><img src="https://github.com/Microsoft/AirSim/blob/master/docs/images/landscape_mountains.png" alt="current version"></p>
+<p><img src="http://p7jklu86w.bkt.clouddn.com/landscape_mountains.png" alt="current version"></p>
 <ol start="3">
 <li>Open <code>LandscapeMountains.uproject</code>, it should launch the Unreal Editor.</li>
 </ol>
-<p><img src="https://github.com/Microsoft/AirSim/blob/master/docs/images/unreal_editor.png" alt="unreal editor"></p>
+<p><img src="http://p7jklu86w.bkt.clouddn.com/unreal_editor.png" alt="unreal editor"></p>
 <ol start="4">
 <li><p>From the <code>File menu</code> select <code>New C++ class</code>, leave default <code>None</code> on the type of class, click <code>Next</code>, leave default name <code>MyClass</code>, and click <code>Create Class</code>. We need to do this because Unreal requires at least one source file in project. It should trigger compile and open up Visual Studio solution <code>LandscapeMountains.sln</code>.</p>
 </li>
@@ -247,20 +247,20 @@
 <ol start="7">
 <li>Close Visual Studio and the  <code>Unreal Editor</code> and right click the LandscapeMountains.uproject in Windows Explorer and select <code>Generate Visual Studio Project Files</code>.  This step detects all plugins and source files in your Unreal project and generates <code>.sln</code> file for Visual Studio.</li>
 </ol>
-<p><img src="https://github.com/Microsoft/AirSim/blob/master/docs/images/regen_sln.png" alt="regen"></p>
+<p><img src="http://p7jklu86w.bkt.clouddn.com/regen_sln.png" alt="regen"></p>
 <p>Tip: If the <code>Generate Visual Studio Project Files</code> option is missing you may need to reboot your machine for the Unreal Shell extensions to take effect.  If it is still missing then open the LandscapeMountains.uproject in the Unreal Editor and select <code>Refresh Visual Studio Project</code> from the <code>File</code> menu.</p>
 <ol start="8">
 <li>Reopen <code>LandscapeMountains.sln</code> in Visual Studio, and make sure “DebugGame Editor” and “Win64” build configuration is the active build configuration.</li>
 </ol>
-<p><img src="https://github.com/Microsoft/AirSim/blob/master/docs/images/vsbuild_config.png" alt="build config"></p>
+<p><img src="http://p7jklu86w.bkt.clouddn.com/vsbuild_config.png" alt="build config"></p>
 <ol start="9">
 <li>Press <code>F5</code> to <code>run</code>. This will start the Unreal Editor. The Unreal Editor allows you to edit the environment, assets and other game related settings. First thing you want to do in your environment is set up <code>PlayerStart</code> object. In Landscape Mountains environment, <code>PlayerStart</code> object already exist and you can find it in the <code>World Outliner</code>. Make sure its location is setup as shown. This is where AirSim plugin will create and place the vehicle. If its too high up then vehicle will fall down as soon as you press play giving potentially random behaviour.</li>
 </ol>
-<p><img src="https://github.com/Microsoft/AirSim/blob/master/docs/images/lm_player_start_pos.png" alt="lm_player_start_pos.png"></p>
+<p><img src="http://p7jklu86w.bkt.clouddn.com/lm_player_start_pos.png" alt="lm_player_start_pos.png"></p>
 <ol start="10">
 <li>In <code>Window/World Settings</code> as shown below, set the <code>GameMode Override</code> to <code>AirSimGameMode</code>:</li>
 </ol>
-<p><img src="https://github.com/Microsoft/AirSim/blob/master/docs/images/sim_game_mode.png" alt="sim_game_mode.png"></p>
+<p><img src="http://p7jklu86w.bkt.clouddn.com/sim_game_mode.png" alt="sim_game_mode.png"></p>
 <ol start="11">
 <li>Be sure to <code>Save</code> these edits. Hit the Play button in the Unreal Editor. See <a href="https://github.com/Microsoft/AirSim/#how-to-use-it" target="_blank" rel="noopener">how to use AirSim</a>.</li>
 </ol>
@@ -585,11 +585,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">读书</a>
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+                <a href="javascript:void(0)" class="js-tag color3">读书</a>
               </li>
              
               <li class="article-tag-list-item">
