@@ -150,6 +150,171 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-AirSim搭建" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/06/03/AirSim搭建/">AirSim搭建</a>
+    </h1>
+  
+
+
+        
+        <a href="/2018/06/03/AirSim搭建/" class="archive-article-date">
+  	<time datetime="2018-06-02T16:44:25.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-03</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>最近加入了空天学院飞行模拟协会，本打算做基于增强学习的飞行器自动对战。因为微软的AirSim与我们的主题很契合，我们便打算将AirSim+Unreal作为实验平台。近期老师计划让我研究AirSim的接口，以便把P3D模型移植到Unreal中。至于为什么要用P3D作为模型，事情就很复杂了，在此不赘述。原本的初衷是在编程中学习机器学习，却发现大部分时间做的都是和机器学习无关的偏向于工程的事情，每天在自己完全不熟悉的地方疲于奔命，还是让人不舒服。但话说回来，我的工程能力很差，这次项目也一定会增强我的代码能力。其次，如果真如老师所说，只要将自动对战做出来就能发SCI，那我虽然撑死算是二作，也死而无憾了。</p>
+<p>今天搭建AirSim花了很多功夫，起先是看CSDN的搭建教程，安装了很多无用的包和库，而之后却总是遇到编译失败、无法找到Module文件等等错误，学长如数家珍地讲各种错误，真是令人心疼的熟练度。后来回归到AirSim的官方文档，才安安稳稳地搭建好了环境。他们加上我花了3、4天的时间来搭建一个小小的AirSim，算是令人啼笑皆非了。事成之后回想搭建过程，不禁另感慨我的学习能力和搜索能力实在过于低下，如果是其他人，相信1小时内绝对没问题。</p>
+<p>言归正传，我们被CSDN的教程坑坏了，不想让别人也被坑了，下面是亲测有效地搭建流程。</p>
+<h1 id="Build-AirSim-on-Windows"><a href="#Build-AirSim-on-Windows" class="headerlink" title="Build AirSim on Windows"></a>Build AirSim on Windows</h1><h2 id="Install-Unreal-Engine"><a href="#Install-Unreal-Engine" class="headerlink" title="Install Unreal Engine"></a>Install Unreal Engine</h2><ol>
+<li><a href="https://www.unrealengine.com/download" target="_blank" rel="noopener">Download</a> the Epic Games Launcher. While the Unreal Engine is open source and free to download, registration is still required.</li>
+<li><p>Run the Epic Games Launcher, open the Library tab from left, click on the “Add Versions” which should show the option to download Unreal 4.18 as shown below. If you have multiple versions of Unreal installed then make sure 4.18 is “Current” by clicking down arrow next to the Launch button for the version.</p>
+<p><strong>Note</strong>: If you have UE 4.16 or older projects, please see the <a href="unreal_upgrade.md">upgrade guide</a> to upgrade your projects.</p>
+<p><img src="images/unreal_versions.png" alt="Unreal Versions"></p>
+</li>
+</ol>
+<h2 id="Build-AirSim"><a href="#Build-AirSim" class="headerlink" title="Build AirSim"></a>Build AirSim</h2><ol>
+<li>You will need Visual Studio 2017 (make sure to install VC++) or newer.</li>
+<li>Start <code>x64 Native Tools Command Prompt for VS 2017</code>. Create a folder for the repo and run <code>git clone https://github.com/Microsoft/AirSim.git</code>.</li>
+<li>Run <code>build.cmd</code> from the command line. This will create ready to use plugin bits in the <code>Unreal\Plugins</code> folder that can be dropped into any Unreal project.</li>
+</ol>
+<h2 id="Setup-Remote-Control"><a href="#Setup-Remote-Control" class="headerlink" title="Setup Remote Control"></a>Setup Remote Control</h2><p>Because We want to make program to control the vehicle, we didn’t setup the remote control.<br>So if you want to fly manually. See the <a href="remote_control.md">remote control setup</a> for more details.</p>
+<p>We use <a href="apis.md">APIs</a> for programmatic control or use the so-called <a href="image_apis.md">Computer Vision mode</a> to move around using the keyboard.</p>
+<h2 id="Setup-Unreal-Environment"><a href="#Setup-Unreal-Environment" class="headerlink" title="Setup Unreal Environment"></a>Setup Unreal Environment</h2><p>Finally, you will need an Unreal project that hosts the environment for your vehicles. AirSim comes with a built-in “Blocks Environment” which you can use, or you can create your own. We met a lot of problems in this section.</p>
+<h3 id="Option-1-Built-in-Blocks-Environment"><a href="#Option-1-Built-in-Blocks-Environment" class="headerlink" title="Option 1: Built-in Blocks Environment"></a>Option 1: Built-in Blocks Environment</h3><p>To get up and running fast, you can use the Blocks project that already comes with AirSim. This is not very highly detailed environment to keep the repo size reasonable but we use it for various testing all the times and it is the easiest way to get your feet wet in this strange land.<br>Blocks environment is available in repo in folder <code>Unreal/Environments/Blocks</code> and is designed to be lightweight in size. That means its very basic but fast.</p>
+<p>Here are quick steps to get Blocks environment up and running:</p>
+<h4 id="Windows"><a href="#Windows" class="headerlink" title="Windows"></a>Windows</h4><ol>
+<li>Make sure you have <a href="build_windows.md">installed Unreal and built AirSim</a>.</li>
+<li>Navigate to folder <code>AirSim\Unreal\Environments\Blocks</code> and run <code>update_from_git.bat</code>.</li>
+<li>Double click on generated .sln file to open in Visual Studio 2017 or newer.</li>
+<li>Make sure <code>Blocks</code> project is the startup project, build configuration is set to <code>DebugGame_Editor</code> and <code>Win64</code>. Hit F5 to run.</li>
+<li>Press the Play button in Unreal Editor and you will see something like in below video. Also see <a href="https://github.com/Microsoft/AirSim/#how-to-use-it" target="_blank" rel="noopener">how to use AirSim</a>.</li>
+</ol>
+<h5 id="Changing-Code-and-Rebuilding"><a href="#Changing-Code-and-Rebuilding" class="headerlink" title="Changing Code and Rebuilding"></a>Changing Code and Rebuilding</h5><p>For Windows, you can just change the code in Visual Studio, press F5 and re-run. There are few batch files available in folder <code>AirSim\Unreal\Environments\Blocks</code> that lets you sync code, clean etc.</p>
+<h4 id="Linux"><a href="#Linux" class="headerlink" title="Linux"></a>Linux</h4><ol>
+<li>Make sure you have <a href="build_linux.md">built the Unreal Engine and AirSim</a>.</li>
+<li>Navigate to your UnrealEngine repo folder and run <code>Engine/Binaries/Linux/UE4Editor</code> which will start Unreal Editor.</li>
+<li>On first start you might not see any projects in UE4 editor. Click on Projects tab, Browse button and then navigate to <code>AirSim/Unreal/Environments/Blocks/Blocks.uproject</code>. </li>
+<li>If you get prompted for incompatible version and conversion, select In-place conversion which is usually under “More” options. If you get prompted for missing modules, make sure to select No so you don’t exit. </li>
+<li>Finally, when prompted with building AirSim, select Yes. Now it might take a while so go get some coffee :).</li>
+<li>Press the Play button in Unreal Editor and you will see something like in below video. Also see <a href="/#how-to-use-it">how to use AirSim</a>.</li>
+</ol>
+<p><a href="https://www.youtube.com/watch?v=-r_QGaxMT4A" target="_blank" rel="noopener"><img src="images/blocks_video.png" alt="Blocks Demo Video"></a></p>
+<h5 id="Changing-Code-and-Rebuilding-1"><a href="#Changing-Code-and-Rebuilding-1" class="headerlink" title="Changing Code and Rebuilding"></a>Changing Code and Rebuilding</h5><p>For Linux, make code changes in AirLib or Unreal/Plugins folder and then run <code>./build.sh</code> to rebuild. This step also copies the build output to Blocks sample project. You can then follow above steps again to re-run.</p>
+<h4 id="Chosing-Your-Vehicle-Car-or-Multirotor"><a href="#Chosing-Your-Vehicle-Car-or-Multirotor" class="headerlink" title="Chosing Your Vehicle: Car or Multirotor"></a>Chosing Your Vehicle: Car or Multirotor</h4><p>By default AirSim spawns multirotor. You can easily change this to car and use all of AirSim goodies. Please see <a href="using_car.md">using car</a> guide.</p>
+<h3 id="Option-2-Create-Your-Own-Unreal-Environment"><a href="#Option-2-Create-Your-Own-Unreal-Environment" class="headerlink" title="Option 2: Create Your Own Unreal Environment"></a>Option 2: Create Your Own Unreal Environment</h3><p>If you want to setup photo-realistic high quality environments, then you will need to create your own Unreal project. This is little bit more involved but worthwhile!<br>The following contains the complete instructions start to finish for setting up Unreal environment with AirSim. The Unreal Marketplace has <a href="https://www.unrealengine.com/marketplace/content-cat/assets/environments" target="_blank" rel="noopener">several environment</a> available that you can start using in just few minutes. It is also possible to use environments available on websites such as <a href="https://www.turbosquid.com/" target="_blank" rel="noopener">turbosquid.com</a> or <a href="https://www.cgtrader.com/" target="_blank" rel="noopener">cgitrader.com</a> with bit more effort (here’s <a href="https://www.youtube.com/watch?v=y09VbdQWvQY&amp;feature" target="_blank" rel="noopener">tutorial video</a>). In addition there also several <a href="https://github.com/Microsoft/AirSim/issues/424" target="_blank" rel="noopener">free environments</a> available.</p>
+<p>Below we will use a freely downloadable environment from Unreal Marketplace called Landscape Mountain but the steps are same for any other environments. You can also view these steps performed in <a href="https://youtu.be/1oY8Qu5maQQ" target="_blank" rel="noopener">Unreal AirSim Setup Video</a>.</p>
+<h4 id="Note-for-Linux-Users"><a href="#Note-for-Linux-Users" class="headerlink" title="Note for Linux Users"></a>Note for Linux Users</h4><p>There is no <code>Epic Games Launcher</code> for Linux which means that if you need to create custom environment, you will need Windows machine to do that. Once you have Unreal project folder, just copy it over to your Linux machine. </p>
+<h4 id="Step-by-Step-Instructions"><a href="#Step-by-Step-Instructions" class="headerlink" title="Step by Step Instructions"></a>Step by Step Instructions</h4><ol>
+<li>Make sure AirSim is built and Unreal 4.18 is installed as described in <a href="build_windows.md">build instructions</a>.</li>
+<li>In <code>Epic Games Launcher</code> click the Learn tab then scroll down and find <code>Landscape Mountains</code>. Click the <code>Create Project</code> and download this content (~2GB download).</li>
+</ol>
+<p><img src="images/landscape_mountains.png" alt="current version"></p>
+<ol start="3">
+<li>Open <code>LandscapeMountains.uproject</code>, it should launch the Unreal Editor.</li>
+</ol>
+<p><img src="images/unreal_editor.png" alt="unreal editor"></p>
+<ol start="4">
+<li><p>From the <code>File menu</code> select <code>New C++ class</code>, leave default <code>None</code> on the type of class, click <code>Next</code>, leave default name <code>MyClass</code>, and click <code>Create Class</code>. We need to do this because Unreal requires at least one source file in project. It should trigger compile and open up Visual Studio solution <code>LandscapeMountains.sln</code>.</p>
+</li>
+<li><p>Go to your folder for AirSim repo and copy <code>Unreal\Plugins</code> folder in to your <code>LandscapeMountains</code> folder. This way now your own Unreal project has AirSim plugin.</p>
+</li>
+<li><p>Edit the <code>LandscapeMountains.uproject</code> so that it looks like this</p>
+</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">	&quot;FileVersion&quot;: 3,</span><br><span class="line">	&quot;EngineAssociation&quot;: &quot;4.18&quot;,</span><br><span class="line">	&quot;Category&quot;: &quot;Samples&quot;,</span><br><span class="line">	&quot;Description&quot;: &quot;&quot;,</span><br><span class="line">	&quot;Modules&quot;: [</span><br><span class="line">		&#123;</span><br><span class="line">			&quot;Name&quot;: &quot;LandscapeMountains&quot;,</span><br><span class="line">			&quot;Type&quot;: &quot;Runtime&quot;,</span><br><span class="line">			&quot;LoadingPhase&quot;: &quot;Default&quot;,</span><br><span class="line">			&quot;AdditionalDependencies&quot;: [</span><br><span class="line">				&quot;AirSim&quot;</span><br><span class="line">			]</span><br><span class="line">		&#125;</span><br><span class="line">	],</span><br><span class="line">	&quot;TargetPlatforms&quot;: [</span><br><span class="line">		&quot;MacNoEditor&quot;,</span><br><span class="line">		&quot;WindowsNoEditor&quot;</span><br><span class="line">	],</span><br><span class="line">	&quot;Plugins&quot;: [</span><br><span class="line">		&#123;</span><br><span class="line">			&quot;Name&quot;: &quot;AirSim&quot;,</span><br><span class="line">			&quot;Enabled&quot;: true</span><br><span class="line">		&#125;</span><br><span class="line">	]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol start="7">
+<li>Close Visual Studio and the  <code>Unreal Editor</code> and right click the LandscapeMountains.uproject in Windows Explorer and select <code>Generate Visual Studio Project Files</code>.  This step detects all plugins and source files in your Unreal project and generates <code>.sln</code> file for Visual Studio.</li>
+</ol>
+<p><img src="images/regen_sln.png" alt="regen"></p>
+<p>Tip: If the <code>Generate Visual Studio Project Files</code> option is missing you may need to reboot your machine for the Unreal Shell extensions to take effect.  If it is still missing then open the LandscapeMountains.uproject in the Unreal Editor and select <code>Refresh Visual Studio Project</code> from the <code>File</code> menu.</p>
+<ol start="8">
+<li>Reopen <code>LandscapeMountains.sln</code> in Visual Studio, and make sure “DebugGame Editor” and “Win64” build configuration is the active build configuration.</li>
+</ol>
+<p><img src="images/vsbuild_config.png" alt="build config"></p>
+<ol start="9">
+<li>Press <code>F5</code> to <code>run</code>. This will start the Unreal Editor. The Unreal Editor allows you to edit the environment, assets and other game related settings. First thing you want to do in your environment is set up <code>PlayerStart</code> object. In Landscape Mountains environment, <code>PlayerStart</code> object already exist and you can find it in the <code>World Outliner</code>. Make sure its location is setup as shown. This is where AirSim plugin will create and place the vehicle. If its too high up then vehicle will fall down as soon as you press play giving potentially random behaviour.</li>
+</ol>
+<p><img src="images/lm_player_start_pos.png" alt="lm_player_start_pos.png"></p>
+<ol start="10">
+<li>In <code>Window/World Settings</code> as shown below, set the <code>GameMode Override</code> to <code>AirSimGameMode</code>:</li>
+</ol>
+<p><img src="images/sim_game_mode.png" alt="sim_game_mode.png"></p>
+<ol start="11">
+<li>Be sure to <code>Save</code> these edits. Hit the Play button in the Unreal Editor. See <a href="https://github.com/Microsoft/AirSim/#how-to-use-it" target="_blank" rel="noopener">how to use AirSim</a>.</li>
+</ol>
+<p>Congratulations! You are now running AirSim in your own Unreal environment.</p>
+<h4 id="Chosing-Your-Vehicle-Car-or-Multirotor-1"><a href="#Chosing-Your-Vehicle-Car-or-Multirotor-1" class="headerlink" title="Chosing Your Vehicle: Car or Multirotor"></a>Chosing Your Vehicle: Car or Multirotor</h4><p>By default AirSim spawns multirotor. You can easily change this to car and use all of AirSim goodies. Please see <a href="using_car.md">using car</a> guide.</p>
+<h4 id="Updating-Your-Environment-to-Latest-Version-of-AirSim"><a href="#Updating-Your-Environment-to-Latest-Version-of-AirSim" class="headerlink" title="Updating Your Environment to Latest Version of AirSim"></a>Updating Your Environment to Latest Version of AirSim</h4><p>Once you have your environment using above instructions, you should frequently update your local AirSim code to latest version from GitHub. Below are the instructions to do this:</p>
+<ol>
+<li>First put <a href="https://github.com/Microsoft/AirSim/blob/master/Unreal/Environments/Blocks/clean.bat" target="_blank" rel="noopener">clean.bat</a> (or <a href="https://github.com/Microsoft/AirSim/blob/master/Unreal/Environments/Blocks/clean.sh" target="_blank" rel="noopener">clean.sh</a> for Linux users) in the root folder of your environment. Run this file to clean up all intermediate files in your Unreal project.</li>
+<li>Do <code>git pull</code> in your AirSim repo followed by <code>build.cmd</code> (or <code>./build.sh</code> for Linux users).</li>
+<li>Replace [your project]/Plugins folder with AirSim/Unreal/Plugins folder.</li>
+<li>Right click on your .uproject file and chose “Generate Visual Studio project files” option. This is not required for Linux.</li>
+</ol>
+<h2 id="Changing-Code-and-Development-Workflow"><a href="#Changing-Code-and-Development-Workflow" class="headerlink" title="Changing Code and Development Workflow"></a>Changing Code and Development Workflow</h2><p>To see how you can change and test AirSim code, please read our <a href="dev_workflow.md">recommended development workflow</a>.</p>
+<p>OK, wish you a good day!</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">机器学习</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/06/03/AirSim搭建/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-BP算法" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -176,7 +341,7 @@
 <p>$\frac{\partial}{\partial W_{ij}^{(l)}} J(W,b; x, y) = a^{(l)}_j \delta_i^{(l+1)}$</p>
 <p>$\frac{\partial}{\partial b_{i}^{(l)}} J(W,b; x, y) = \delta_i^{(l+1)}$</p>
 <p>其中，</p>
-<p>$\delta^{(l)}_i=\frac{\partial J(W,b;x,y)}{\partial z_i^{(l)}}=\frac{\partial }{\partial z^{(l)}<em>i}\frac{1}{2} \left|y - h</em>{W,b}(x)\right|^2 = - (y_i - a^{(l)}_i)\cdot f’(z^{(l)}_i)$</p>
+<p>//$\delta^{(l)}_i=\frac{\partial J(W,b;x,y)}{\partial z_i^{(l)}}=\frac{\partial }{\partial z^{(l)}<em>i}\frac{1}{2} \left|y - h</em>{W,b}(x)\right|^2 = - (y_i - a^{(l)}_i)\cdot f’(z^{(l)}_i)$</p>
         
           <a class="article-more-a" href="/2018/05/26/BP算法/#more">more >></a>
         
@@ -859,86 +1024,6 @@
 
 
   
-    <article id="post-《论工业社会及其未来》原文摘录" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/02/23/《论工业社会及其未来》原文摘录/">《论工业社会及其未来》原文摘录</a>
-    </h1>
-  
-
-
-        
-        <a href="/2018/02/23/《论工业社会及其未来》原文摘录/" class="archive-article-date">
-  	<time datetime="2018-02-23T15:13:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-02-23</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>工业革命极大增加了城市规模和城市人口比例，而人群聚集会增加压力与攻击性。</p>
-<p>技术变革导致现代社会的变化十分迅速，因此整个社会不存在稳定的框架和价值观。</p>
-<p>有些人急于拯救自由却不愿牺牲技术带来的所谓好处，他们会提出天真的新式社会构想来调和自由与技术。</p>
-<p>所有人都理所当然地认为，每一个人都必需向技术的需要低头，而且理由十分充分：如果人的需求被摆在了优先于技术需要的地位，就会出现经济问题、失业、短缺甚至更糟。在我们的社会当中，“精神健康”的概念主要被定义为在多大程度一个人能够根据体系的需要行事并且不会流露出承受精神压力的迹象。<br>
-        
-          <a class="article-more-a" href="/2018/02/23/《论工业社会及其未来》原文摘录/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">读书</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/02/23/《论工业社会及其未来》原文摘录/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -1067,11 +1152,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">数学</a>
+                <a href="javascript:void(0)" class="js-tag color3">康德</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">康德</a>
+                <a href="javascript:void(0)" class="js-tag color3">数学</a>
               </li>
              
               <li class="article-tag-list-item">

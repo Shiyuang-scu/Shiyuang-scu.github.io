@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="Shi Yuang&#39;s Blog">
 <meta property="og:description" content="断断续续零零碎碎地学机器学习半年了，不会实践，不会运用，只是粗略地学了理论基础，因为涉及很多数学公式，markdown的数学公式语法又挺麻烦的，所以一直没有写过机器学习算法的文章。最近恰逢创新班、双特生面试，因为我是以机器学习为特点介绍我自己的，所以看了些算法的具体理论和优缺点。今天下午看了2个小时的BP算法，心想不如在近纲课上写一篇BP算法的文章。 一般思想首先，依然是梯度下降法，为了更新$W$">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-05-30T10:05:33.037Z">
+<meta property="og:updated_time" content="2018-05-30T12:04:26.059Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="BP算法">
 <meta name="twitter:description" content="断断续续零零碎碎地学机器学习半年了，不会实践，不会运用，只是粗略地学了理论基础，因为涉及很多数学公式，markdown的数学公式语法又挺麻烦的，所以一直没有写过机器学习算法的文章。最近恰逢创新班、双特生面试，因为我是以机器学习为特点介绍我自己的，所以看了些算法的具体理论和优缺点。今天下午看了2个小时的BP算法，心想不如在近纲课上写一篇BP算法的文章。 一般思想首先，依然是梯度下降法，为了更新$W$">
@@ -179,18 +179,19 @@
 <p>$\frac{\partial}{\partial W_{ij}^{(l)}} J(W,b; x, y) = a^{(l)}_j \delta_i^{(l+1)}$</p>
 <p>$\frac{\partial}{\partial b_{i}^{(l)}} J(W,b; x, y) = \delta_i^{(l+1)}$</p>
 <p>其中，</p>
-<p>$\delta^{(l)}_i=\frac{\partial J(W,b;x,y)}{\partial z_i^{(l)}}=\frac{\partial }{\partial z^{(l)}<em>i}\frac{1}{2} \left|y - h</em>{W,b}(x)\right|^2 = - (y_i - a^{(l)}_i)\cdot f’(z^{(l)}_i)$</p>
+<p>//$\delta^{(l)}_i=\frac{\partial J(W,b;x,y)}{\partial z_i^{(l)}}=\frac{\partial }{\partial z^{(l)}<em>i}\frac{1}{2} \left|y - h</em>{W,b}(x)\right|^2 = - (y_i - a^{(l)}_i)\cdot f’(z^{(l)}_i)$</p>
 <a id="more"></a>
 <p>但这两个公式只能够更新输出层与前一层连接线的权重和输出层的偏置，原因是因为 δ 值依赖了真实值y这个变量，但是我们不可能知道每层隐藏层的真实值，所以无法计算每层隐藏层的 δ 值。而BP算法则可以让我们利用后一个δ计算前一个δ，避免了使用真实值。</p>
 <h1 id="BP算法细节"><a href="#BP算法细节" class="headerlink" title="BP算法细节"></a>BP算法细节</h1><p>1: 首先当然是正向计算咯，分别求出$L2,L3$,…直至最后一层$Ln$的<strong>激活值</strong>。我们这里把输入当做第一层。下面是真正的反向传播。</p>
 <p>2: 对于第n层（最后一层是特殊的，必须单独拿出来）每个输出单元$i$,下面的$l$的值为$n$, 计算每个结点的残差：</p>
-<p>$ \delta^{(l)}_i=\frac{\partial J(W,b;x,y)}{\partial z_i^{(l)}}= \frac{\partial}{\partial z^{(l)}<em>i} \;\;\frac{1}{2} \left|y - h</em>{W,b}(x)\right|^2 = - (y_i - a^{(l)}_i) \cdot f’(z^{(l)}_i)$</p>
+<p>$\delta^{(l)}_i=\frac{\partial J(W,b;x,y)}{\partial z_i^{(l)}}=\frac{\partial}{\partial z^{(l)}<em>i} \;\;\frac{1}{2} \left|y - h</em>{W,b}(x)\right|^2 = - (y_i - a^{(l)}_i) \cdot f’(z^{(l)}_i)$</p>
 <p>注意：这里最后乘上了对“net”的导，如果是用sigmoid的函数的话，根据$f′(z(l)i)=a(l)i(1−a(l)i)$, 最后一层的第$i$个结点的残差$δ^{(l)}i=−(yi−a^{(l)}i)∙a^{(l)}i(1−a^{(l)}i)$</p>
 <p>3： 从倒数第二层开始，也就是说 $l=n−1,n−2,n−3,…,2$ 的各层,第$l$层的第$i$个结点的<strong>残差</strong>计算： </p>
-<p>$ \delta^{(l)}<em>i = \left( \sum</em>{j=1}^{s_{l+1}} W^{(l)}_{ji} \delta^{(l+1)}_j \right) f’(z^{(l)}_i)$</p>
+<p>$\delta^{(l)}<em>i = \left( \sum</em>{j=1}^{s_{l+1}} W^{(l)}_{ji} \delta^{(l+1)}_j \right) f’(z^{(l)}_i)$</p>
 <p>分析：要想知道第l层的第i个结点的残差，必须知道该节点所连接的下一层的各个结点的权值，以及这些结点的残差，幸亏第l+1层已经计算出来了残差，你只要把后面一层的每个结点j的残差乘以该结点与这一层的结点i相连的权值，然后加和，最后别忘了乘以这一层的激活方式的导数。</p>
 <p>4: 你可能会说要残差干嘛？当然是计算$∂J/∂w$和$∂J/∂b$用的。<br>只要：</p>
-<p>$ \frac{\partial}{\partial W_{ij}^{(l)}} J(W,b; x, y) = a^{(l)}_j \delta_i^{(l+1)} \\frac{\partial}{\partial b_{i}^{(l)}} J(W,b; x, y) = \delta_i^{(l+1)}$</p>
+<p>$\frac{\partial}{\partial W_{ij}^{(l)}} J(W,b; x, y) = a^{(l)}_j \delta_i^{(l+1)}$</p>
+<p>$\frac{\partial}{\partial b_{i}^{(l)}} J(W,b; x, y) = \delta_i^{(l+1)}$</p>
 <p><strong>结论：求J对“结点j到i的线路”的导数，求出后者i的残差，然后乘以这条线路的流量即可。</strong></p>
 <p>分析：其实是这样的，Wlij是第l层到l+1层的权值，并且是从结点j到结点i的权值。根据链式法则： </p>
 <p>$ \frac{\partial J{(W,b; x, y)}}{\partial w_{ij}^{(l)}} = \frac{\partial J{(W,b; x, y)}}{\partial out_{i}} <em> \frac{\partial out_{i}}{\partial net_{i}} </em> \frac{\partial net_{i}}{\partial w_{ij}}$</p>
@@ -319,6 +320,15 @@
 
   
 <nav id="article-nav">
+  
+    <a href="/2018/06/03/AirSim搭建/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          AirSim搭建
+        
+      </div>
+    </a>
   
   
     <a href="/2018/05/26/宏大的哲学语境/" id="article-nav-older" class="article-nav-link-wrap">
@@ -508,11 +518,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">数学</a>
+                <a href="javascript:void(0)" class="js-tag color3">康德</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">康德</a>
+                <a href="javascript:void(0)" class="js-tag color3">数学</a>
               </li>
              
               <li class="article-tag-list-item">
