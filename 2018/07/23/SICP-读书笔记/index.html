@@ -17,7 +17,8 @@
 <meta property="og:description" content="The acts of the mind, wherein it exerts its power over simple ideas, are chiefly these three: 1. Combining several simple ideas into one compound one, and thus all complex ideas are made. 2. e secon">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://p7jklu86w.bkt.clouddn.com/SICP1.png">
-<meta property="og:updated_time" content="2018-07-23T09:24:46.409Z">
+<meta property="og:image" content="http://p7jklu86w.bkt.clouddn.com/SICP2.png">
+<meta property="og:updated_time" content="2018-07-26T08:07:55.547Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="《SICP》 读书笔记">
 <meta name="twitter:description" content="The acts of the mind, wherein it exerts its power over simple ideas, are chiefly these three: 1. Combining several simple ideas into one compound one, and thus all complex ideas are made. 2. e secon">
@@ -210,7 +211,21 @@
 <p>我们还可以将定义内部化，形成嵌套的定义，如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">(define (sqrt x)</span><br><span class="line">	(define (good-enough? guess x)</span><br><span class="line">		(&lt; (abs (- (square guess) x)) 0.001))</span><br><span class="line">	(define (improve guess x) (average guess (/ x guess))) </span><br><span class="line">	(define (sqrt-iter guess x)</span><br><span class="line">		(if (good-enough? guess x) guess</span><br><span class="line">        (sqrt-iter (improve guess x) x)))</span><br><span class="line">  	(sqrt-iter 1.0 x))</span><br></pre></td></tr></table></figure></p>
 <p>因为x作为局部变量，已经在开头定义过了，所以内部定义再定义x，是没有必要的，所以可以改进为：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">(define (sqrt x)</span><br><span class="line">	(define (good-enough? guess)</span><br><span class="line">		(&lt; (abs (- (square guess) x)) 0.001)) </span><br><span class="line">	(define (improve guess)(average guess (/ x guess))) </span><br><span class="line">	(define (sqrt-iter guess)</span><br><span class="line">		(if (good-enough? guess) guess</span><br><span class="line">        (sqrt-iter (improve guess))))</span><br><span class="line">  	(sqrt-iter 1.0))</span><br></pre></td></tr></table></figure></p>
 <p>以上的定义称之为块结构</p>
-<h2 id="1-2过程与它们所产生的对象"><a href="#1-2过程与它们所产生的对象" class="headerlink" title="1.2过程与它们所产生的对象"></a>1.2过程与它们所产生的对象</h2>
+<h2 id="1-2过程与它们所产生的对象"><a href="#1-2过程与它们所产生的对象" class="headerlink" title="1.2过程与它们所产生的对象"></a>1.2过程与它们所产生的对象</h2><p>程序机制&lt;——&gt;程序行为</p>
+<p>——&gt;代换模型（正则序）</p>
+<p>递归：time  = O(X)</p>
+<p>space = O(X)</p>
+<p>迭代：time = O(X)</p>
+<p>space = O(1)</p>
+<p>迭代和递归的区别？</p>
+<p><img src="http://p7jklu86w.bkt.clouddn.com/SICP2.png" alt="Diffenrance" title="Differance"></p>
+<p>（编程实际上是在编写一种通用规则）</p>
+<p>递归过程——递归计算过过程</p>
+<p>scheme特点：尾递归</p>
+<h3 id="什么是尾递归："><a href="#什么是尾递归：" class="headerlink" title="什么是尾递归："></a>什么是尾递归：</h3><p>函数式编程非常重要的一个概念是递归。在函数式编程里面，递归是原生的合乎情理的，是从lambda计算继承而来的；而迭代（循环）是不良的，因为它的副作用，因为迭代（循环）意味着修改变量的值，违背了函数式编程的本意。修改变量的值是某些纯粹的函数式编程语言所坚决摈弃的，比如haskell。而scheme采取了更务实的做法支持修改变量的值，并且保留了迭代（循环）的语法。这是非常有趣和值得探讨的。我们知道，当一个函数的返回语句是另一个函数的直接调用，可称为尾调用tail call。尾调用的优点是节省程序运行时间和空间。因为函数每一层的嵌套调用，都意味着一个新的栈帧stack frame。栈帧保留了诸如实参值，局部变量，访问链，返回地址等信息，构造和销毁栈帧是程序运行时的开销。而尾调用，可以避免在内存中保留caller函数的栈帧，只需要直接把caller的返回地址复制到callee的返回地址。一般情况下的尾调用，优势不明显，但是如果是层次非常多的递归调用，则可以大大发挥作用。这种递归叫做尾递归。优化后的尾递归，即直接传递返回地址的尾递归，与过程式编程的迭代（循环）类同。以阶乘为例：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">(define (factorial n)</span><br><span class="line">(if (= n 0) 1</span><br><span class="line">(* n (factorial (- n 1)))))</span><br></pre></td></tr></table></figure></p>
+<p>这是非尾递归的阶乘。可以看出，每次递归调用，都要保留caller函数的栈帧，因为callee的返回值还要继续*n的操作才能返回caller的值。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">(define (factorial n acc)</span><br><span class="line">  (if (= n 0) acc</span><br><span class="line">        (factorial (- n 1) acc*n)))</span><br></pre></td></tr></table></figure></p>
+<pre><code>这是尾递归的阶乘。可以看出，每次递归调用，都是同一个函数的不同参数调用，不需要保存多个栈帧，只要有一个栈帧即可。
+</code></pre>
       
 
       
@@ -353,7 +368,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#第一章-构造过程抽象"><span class="toc-number">1.</span> <span class="toc-text">第一章 构造过程抽象</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1-程序设计的基本元素"><span class="toc-number">1.1.</span> <span class="toc-text">1.1 程序设计的基本元素</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-1-三要素"><span class="toc-number">1.1.1.</span> <span class="toc-text">1.1.1 三要素</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-1-1-1-基本表达式："><span class="toc-number">1.1.1.1.</span> <span class="toc-text">1.1.1.1 基本表达式：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-1-1-2-组合的方法："><span class="toc-number">1.1.1.2.</span> <span class="toc-text">1.1.1.2 组合的方法：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-1-1-3-抽象的方法"><span class="toc-number">1.1.1.3.</span> <span class="toc-text">1.1.1.3 抽象的方法</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-2-复合过程"><span class="toc-number">1.1.2.</span> <span class="toc-text">1.1.2 复合过程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-3-过程作为黑箱抽象"><span class="toc-number">1.1.3.</span> <span class="toc-text">1.1.3 过程作为黑箱抽象</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2过程与它们所产生的对象"><span class="toc-number">1.2.</span> <span class="toc-text">1.2过程与它们所产生的对象</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#第一章-构造过程抽象"><span class="toc-number">1.</span> <span class="toc-text">第一章 构造过程抽象</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1-程序设计的基本元素"><span class="toc-number">1.1.</span> <span class="toc-text">1.1 程序设计的基本元素</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-1-三要素"><span class="toc-number">1.1.1.</span> <span class="toc-text">1.1.1 三要素</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-1-1-1-基本表达式："><span class="toc-number">1.1.1.1.</span> <span class="toc-text">1.1.1.1 基本表达式：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-1-1-2-组合的方法："><span class="toc-number">1.1.1.2.</span> <span class="toc-text">1.1.1.2 组合的方法：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-1-1-3-抽象的方法"><span class="toc-number">1.1.1.3.</span> <span class="toc-text">1.1.1.3 抽象的方法</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-2-复合过程"><span class="toc-number">1.1.2.</span> <span class="toc-text">1.1.2 复合过程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-3-过程作为黑箱抽象"><span class="toc-number">1.1.3.</span> <span class="toc-text">1.1.3 过程作为黑箱抽象</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2过程与它们所产生的对象"><span class="toc-number">1.2.</span> <span class="toc-text">1.2过程与它们所产生的对象</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#什么是尾递归："><span class="toc-number">1.2.1.</span> <span class="toc-text">什么是尾递归：</span></a></li></ol></li></ol></li></ol>
                     </div>
                 </span>
             </div>
@@ -508,10 +523,6 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">学习</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">机器学习</a>
               </li>
              
@@ -529,6 +540,10 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">读书</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">学习</a>
               </li>
              
               <li class="article-tag-list-item">
