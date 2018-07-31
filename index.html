@@ -175,31 +175,9 @@
 <p>The acts of the mind, wherein it exerts its power over simple ideas, are chiefly these three: 1. Combining several simple ideas into one compound one, and thus all complex ideas are made. 2. The second is bringing two ideas, whether sim- ple or complex, together, and setting them by one another so as to take a view of them at once, without uniting them into one, by which it gets all its ideas of relations. 3. The third is separating them from all other ideas that accom- pany them in their real existence: this is called abstraction, and thus all its general ideas are made.<br>—John Locke, <em>An Essay Concerning Human Understanding</em>(1690) </p>
 </blockquote>
 <p>数据抽象是一种方法学，它将程序要使用的复合数据与构成复合数据的基本数据和细节过程区分开来。<br><img src="http://p7jklu86w.bkt.clouddn.com/SICP3.png" alt="abstract of data" title="abstract of data"></p>
-<h2 id="复合数据"><a href="#复合数据" class="headerlink" title="复合数据"></a>复合数据</h2><p>将数据封装，由单个数据转化成复合数据，其最终目的和之前将过程抽象化一样，是为了层次化的程序，将过程封装，以达到优化的目的。</p>
-<h3 id="实例：有理数运算"><a href="#实例：有理数运算" class="headerlink" title="实例：有理数运算"></a>实例：有理数运算</h3><p>现在我们来设计一个有理数运算的程序，包括加减乘除，这时我们就会运用一种策略，称之为<strong>不要怂就是干</strong>，好吧我开玩笑的，叫<strong>愿望思维</strong>，很简单，即使你没有实现任何功能，也不要怂，管它有没有实现，先写个顶端代码再说。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">(define (add-rat x y)</span><br><span class="line">    (make-rat (+ (* (numer x) (denom y)) </span><br><span class="line">                 (* (numer y) (denom x)))</span><br><span class="line">              (* (denom x) (denom y))))</span><br></pre></td></tr></table></figure></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">(define (sub-rat x y)</span><br><span class="line">    (make-rat (- (* (numer x) (denom y)) </span><br><span class="line">                (* (numer y) (denom x)))</span><br><span class="line">              (* (denom x) (denom y))))</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">(define (mul-rat x y)</span><br><span class="line">    (make-rat (* (numer x) (numer y)) </span><br><span class="line">              (* (denom x) (denom y))))</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">(define (div-rat x y) </span><br><span class="line">    (make-rat (* (numer x) (denom y))</span><br><span class="line">              (* (denom x) (numer y))))</span><br></pre></td></tr></table></figure>
-<p>我们其实完全没有实现make-rat、numer、denom这些过程，但我们虽然是因为没有完成工作而瞎写的，但无意之间却将每一种过程都抽象化，这实际上有利于程序的实现和维护，所以<del>不要怂就是干</del><strong>愿望思维</strong>是很好的抽象方法。</p>
-<p>下面来实现上面的过程：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">(define (make-rat n d) (cons n d)) </span><br><span class="line"></span><br><span class="line">(define (numer x) (car x)) </span><br><span class="line"></span><br><span class="line">(define (denom x) (cdr x))</span><br></pre></td></tr></table></figure></p>
-<p>以上出现了Lisp新的数据结构，序对（pairs）</p>
-<p>Lisp：表结构——序对<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">(cons x y)</span><br><span class="line">(car p)</span><br><span class="line">(cdr p)</span><br></pre></td></tr></table></figure></p>
-<p><img src="http://p7jklu86w.bkt.clouddn.com/SICP4.png" alt="pairs" title="pairs"></p>
-<p>构造函数和选择函数作为<strong>抽象屏障(Abstract Barriers)</strong>，将数据的使用和表示分离开来。这样的模式被称<strong>数据抽象</strong></p>
-<p>数据抽象的目的也很简单，就是降低系统复杂度，便于维护和改进。</p>
-<p>看有理数运算的例子，我们实际上把这个程序层次化为了四个结构，由构建序对依次向上堆积，层层封装，最后只要调用单纯的一个过程就能实现运算。</p>
-<p><img src="http://p7jklu86w.bkt.clouddn.com/SICP5.png" alt="abstract barriers" title="abstract barriers"></p>
-<h3 id="实例：点与线段"><a href="#实例：点与线段" class="headerlink" title="实例：点与线段"></a>实例：点与线段</h3><p>再举一个和有理数很像的例子，我们在平面上有一个点P(x,y)，我们可以用向量来表示这个点，(x,y)的结构让我们很自然地想到了序对：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">(define (make-vector x y) (cons x y)) </span><br><span class="line"></span><br><span class="line">(define (xcor p) (car p)) </span><br><span class="line"></span><br><span class="line">(define (ycor p) (cdr p))</span><br></pre></td></tr></table></figure></p>
-<p>现在我们有两个点P、Q，我们要如何表示两个点构成的线段呢？很简单，两个点构成的一个抽象组合就能在一定程度上表达线段的位置，那么我们只要将两个向量放到一起就可以了：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">(define (make-seg p q) (cons p q)) </span><br><span class="line"></span><br><span class="line">(define (seg-start s) (car s)) </span><br><span class="line"></span><br><span class="line">(define (seg-end s) (cdr s))</span><br></pre></td></tr></table></figure></p>
-<p>这样定义后，我们就可以很容易地进行和这条线段有关的操作了，比如求线段中点：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">(Define (midpoint s)</span><br><span class="line"></span><br><span class="line">    let ((a (seg-start s))</span><br><span class="line"></span><br><span class="line">         (b (seg-end s)))</span><br><span class="line"></span><br><span class="line">    (make-vector</span><br><span class="line"></span><br><span class="line">        (average (xcor a) (xcor b))</span><br><span class="line"></span><br><span class="line">        (average (ycor a) (ycor b))))</span><br></pre></td></tr></table></figure></p>
-<p>两个例子都在强调，设计系统时要注意将系统分层，每一层之间的抽象屏障都有特定的构造函数和选择函数来组成，比如有理数运算中的make-rat与xcor和两点中点运算中的make-vector与numer。</p>
-<p>所以我们可以自上而下地理解，层次系统要求我们对数据进行复合和封装，否则就会出现混乱乃至系统失控。</p>
-<h4 id="闭包（closure）"><a href="#闭包（closure）" class="headerlink" title="闭包（closure）"></a>闭包（closure）</h4><p>有权访问另一个函数作用域内变量的函数都是闭包。</p>
-<p>在以上例子中，一个序对内部的两个元素依然是序对，这种可以用同样方法把组合物继续进行组合的模式，就叫做闭包性质。</p>
-<p>就拿我们定义一条线段的例子吧，我们将两个向量组合为一个向量，运用了Lisp中的cons，这种序对中的序对，即是把通过cons操作构成的组合物（序对）继续进行组合（将两个序对包装到一个序对里去）的模式。</p>
-<p><img src="http://p7jklu86w.bkt.clouddn.com/SICP6.png" alt="closure" title="closure"></p>
-<p>从上一章开始，你也许慢慢发现了，数据与过程之间的界限越来越模糊，过程可以作为形参存在，而复合数据或者说数据的抽象化也必须由过程来实现，其实，不必感到困惑，<strong>数据与过程之间的界限模糊是抽象化的必然结果。</strong></p>
-
+        
+          <a class="article-more-a" href="/2018/08/01/壹-《SICP》笔记：构造数据抽象/#more">more >></a>
+        
       
 
       
@@ -337,7 +315,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/07/23/零-《SICP》读书笔记：构造过程抽象/">《SICP》 读书笔记</a>
+      <a class="article-title" href="/2018/07/23/零-《SICP》读书笔记：构造过程抽象/">零 《SICP》笔记：构造过程抽象</a>
     </h1>
   
 
@@ -352,7 +330,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <blockquote>
-<p>The acts of the mind, wherein it exerts its power over simple ideas, are chiefly these three: 1. Combining several simple ideas into one compound one, and thus all complex ideas are made. 2. e second is bringing two ideas, whether sim- ple or complex, together, and seing them by one another so as to take a view of them at once, without uniting them into one, by which it gets all its ideas of relations. 3. e third is separating them from all other ideas that accom- pany them in their real existence: this is called abstraction, and thus all its general ideas are made.<br>—John Locke, An Essay Concerning Human Understanding (1690) </p>
+<p>The acts of the mind, wherein it exerts its power over simple ideas, are chiefly these three: 1. Combining several simple ideas into one compound one, and thus all complex ideas are made. 2. The second is bringing two ideas, whether sim- ple or complex, together, and setting them by one another so as to take a view of them at once, without uniting them into one, by which it gets all its ideas of relations. 3. The third is separating them from all other ideas that accom- pany them in their real existence: this is called abstraction, and thus all its general ideas are made.<br>—John Locke, An Essay Concerning Human Understanding (1690) </p>
 </blockquote>
 <h1 id="第一章-构造过程抽象"><a href="#第一章-构造过程抽象" class="headerlink" title="第一章 构造过程抽象"></a>第一章 构造过程抽象</h1><p>这章准备学习的是有关<em>计算过程</em>的知识。</p>
 <p>什么是计算过程？计算过程是一种能操控称之为数据的抽象事物而进行本质上由数值运算构成的一系列进程的过程。程序员就像巫师念出一串咒语——他们编出一系列程序来作为计算过程的准则，来规范和指导计算过程的进行。<br>
@@ -382,87 +360,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2018/07/23/零-《SICP》读书笔记：构造过程抽象/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-SICP-读书笔记" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/07/23/SICP-读书笔记/">零 《SICP》笔记：构造过程抽象</a>
-    </h1>
-  
-
-
-        
-        <a href="/2018/07/23/SICP-读书笔记/" class="archive-article-date">
-  	<time datetime="2018-07-23T09:11:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-23</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <blockquote>
-<p>The acts of the mind, wherein it exerts its power over simple ideas, are chiefly these three: 1. Combining several simple ideas into one compound one, and thus all complex ideas are made. 2. e second is bringing two ideas, whether sim- ple or complex, together, and seing them by one another so as to take a view of them at once, without uniting them into one, by which it gets all its ideas of relations. 3. e third is separating them from all other ideas that accom- pany them in their real existence: this is called abstraction, and thus all its general ideas are made.<br>—John Locke, An Essay Concerning Human Understanding (1690) </p>
-</blockquote>
-<h1 id="第一章-构造过程抽象"><a href="#第一章-构造过程抽象" class="headerlink" title="第一章 构造过程抽象"></a>第一章 构造过程抽象</h1><p>这章准备学习的是有关<em>计算过程</em>的知识。</p>
-<p>什么是计算过程？计算过程是一种能操控称之为数据的抽象事物而进行本质上由数值运算构成的一系列进程的过程。程序员就像巫师念出一串咒语——他们编出一系列程序来作为计算过程的准则，来规范和指导计算过程的进行。<br>
-        
-          <a class="article-more-a" href="/2018/07/23/SICP-读书笔记/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">学习</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/07/23/SICP-读书笔记/">展开全文 >></a>
         </p>
       
 
@@ -899,8 +796,8 @@
         <p>最普通的普通人开始质疑经验的本质</p>
 <p>本体论+认识论=形而上学。回答真实存在的本质问题。</p>
 <p>不能用感觉来解释存在。任何事物都基于宇宙某一最本质的规律，感觉证据是不纯洁的，没有说服力，而只有纯粹的理性才能去解释事物的存在，那没有经验限制的没有经验属性的纯粹理性。</p>
-<p>亚里士多德用形式逻辑来解释问题，三段论。康得建立一种新的术语体系来分析。</p>
-<p>康地说，主语的含义包含在谓语中。举个例子，“所有单身汉都是未婚男性”，我们没有必要去询问每一个单身汉是否未婚，这个事实是基于定义而非经验，其中的真理本质是先天的，不需要你东奔西走去询问去发现。它建立在一种独特的语境或术语体系下，具有普遍性。这种分析命题是先于经验、独立于经验的。</p>
+<p>亚里士多德用形式逻辑来解释问题，三段论。康德建立一种新的术语体系来分析。</p>
+<p>康德说，主语的含义包含在谓语中。举个例子，“所有单身汉都是未婚男性”，我们没有必要去询问每一个单身汉是否未婚，这个事实是基于定义而非经验，其中的真理本质是先天的，不需要你东奔西走去询问去发现。它建立在一种独特的语境或术语体系下，具有普遍性。这种分析命题是先于经验、独立于经验的。</p>
 <p>综合命题，综合是指将物体的属性和特性融合在一起。综合命题的真实性是后天确立的，只有经验才能够证明。休谟的主张就是“理性不能通过其自身的资源揭示世界”，即认为综合命题绝不是先天正确的。</p>
         
           <a class="article-more-a" href="/2018/05/26/宏大的哲学语境/#more">more >></a>
@@ -928,6 +825,86 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2018/05/26/宏大的哲学语境/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-《Kant的“纯粹理性批判”》学习笔记" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/05/11/《Kant的“纯粹理性批判”》学习笔记/">康德的研究领域是什么</a>
+    </h1>
+  
+
+
+        
+        <a href="/2018/05/11/《Kant的“纯粹理性批判”》学习笔记/" class="archive-article-date">
+  	<time datetime="2018-05-11T10:12:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-11</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><img src="http://p7jklu86w.bkt.clouddn.com/Kant1.png" alt="dissapointed"></p>
+<blockquote>
+<p>物理学界过去三十年来，怎样继续对物体的认知已经变得十分清楚。令人惊奇的是，物理学用以认识物体的方法，本质上就是Kant创建的概念框架。</p>
+</blockquote>
+        
+          <a class="article-more-a" href="/2018/05/11/《Kant的“纯粹理性批判”》学习笔记/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">康德</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/05/11/《Kant的“纯粹理性批判”》学习笔记/">展开全文 >></a>
         </p>
       
 
@@ -1081,23 +1058,19 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">机器学习</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">学习</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">数学</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+                <a href="javascript:void(0)" class="js-tag color5">机器学习</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">康德</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1110,6 +1083,10 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">学习</a>
               </li>
             
             <div class="clearfix"></div>

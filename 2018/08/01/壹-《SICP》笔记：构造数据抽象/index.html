@@ -20,7 +20,7 @@
 <meta property="og:image" content="http://p7jklu86w.bkt.clouddn.com/SICP4.png">
 <meta property="og:image" content="http://p7jklu86w.bkt.clouddn.com/SICP5.png">
 <meta property="og:image" content="http://p7jklu86w.bkt.clouddn.com/SICP6.png">
-<meta property="og:updated_time" content="2018-07-31T16:16:00.242Z">
+<meta property="og:updated_time" content="2018-07-31T16:21:48.985Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="壹 《SICP》笔记：构造数据抽象">
 <meta name="twitter:description" content="第二章 构造数据抽象 The acts of the mind, wherein it exerts its power over simple ideas, are chiefly these three: 1. Combining several simple ideas into one compound one, and thus all complex ideas are made. 2">
@@ -183,6 +183,7 @@
 <p>The acts of the mind, wherein it exerts its power over simple ideas, are chiefly these three: 1. Combining several simple ideas into one compound one, and thus all complex ideas are made. 2. The second is bringing two ideas, whether sim- ple or complex, together, and setting them by one another so as to take a view of them at once, without uniting them into one, by which it gets all its ideas of relations. 3. The third is separating them from all other ideas that accom- pany them in their real existence: this is called abstraction, and thus all its general ideas are made.<br>—John Locke, <em>An Essay Concerning Human Understanding</em>(1690) </p>
 </blockquote>
 <p>数据抽象是一种方法学，它将程序要使用的复合数据与构成复合数据的基本数据和细节过程区分开来。<br><img src="http://p7jklu86w.bkt.clouddn.com/SICP3.png" alt="abstract of data" title="abstract of data"></p>
+<a id="more"></a>
 <h2 id="复合数据"><a href="#复合数据" class="headerlink" title="复合数据"></a>复合数据</h2><p>将数据封装，由单个数据转化成复合数据，其最终目的和之前将过程抽象化一样，是为了层次化的程序，将过程封装，以达到优化的目的。</p>
 <h3 id="实例：有理数运算"><a href="#实例：有理数运算" class="headerlink" title="实例：有理数运算"></a>实例：有理数运算</h3><p>现在我们来设计一个有理数运算的程序，包括加减乘除，这时我们就会运用一种策略，称之为<strong>不要怂就是干</strong>，好吧我开玩笑的，叫<strong>愿望思维</strong>，很简单，即使你没有实现任何功能，也不要怂，管它有没有实现，先写个顶端代码再说。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">(define (add-rat x y)</span><br><span class="line">    (make-rat (+ (* (numer x) (denom y)) </span><br><span class="line">                 (* (numer y) (denom x)))</span><br><span class="line">              (* (denom x) (denom y))))</span><br></pre></td></tr></table></figure></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">(define (sub-rat x y)</span><br><span class="line">    (make-rat (- (* (numer x) (denom y)) </span><br><span class="line">                (* (numer y) (denom x)))</span><br><span class="line">              (* (denom x) (denom y))))</span><br></pre></td></tr></table></figure>
@@ -505,23 +506,19 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">机器学习</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">学习</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">数学</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+                <a href="javascript:void(0)" class="js-tag color5">机器学习</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">康德</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -534,6 +531,10 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">学习</a>
               </li>
             
             <div class="clearfix"></div>
