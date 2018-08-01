@@ -25,7 +25,7 @@
 <meta property="og:image" content="http://p7jklu86w.bkt.clouddn.com/SICP2-3.png">
 <meta property="og:image" content="http://p7jklu86w.bkt.clouddn.com/SICP2-4.png">
 <meta property="og:image" content="http://p7jklu86w.bkt.clouddn.com/SICP2-5.png">
-<meta property="og:updated_time" content="2018-08-01T13:19:51.470Z">
+<meta property="og:updated_time" content="2018-08-01T13:41:48.613Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="壹 《SICP》笔记：构造数据抽象">
 <meta name="twitter:description" content="第二章 构造数据抽象 The acts of the mind, wherein it exerts its power over simple ideas, are chiefly these three: 1. Combining several simple ideas into one compound one, and thus all complex ideas are made. 2">
@@ -213,7 +213,9 @@
 <p>就拿我们定义一条线段的例子吧，我们将两个向量组合为一个向量，运用了Lisp中的cons，这种序对中的序对，即是把通过cons操作构成的组合物（序对）继续进行组合（将两个序对包装到一个序对里去）的模式。</p>
 <p><img src="http://p7jklu86w.bkt.clouddn.com/SICP6.png" alt="closure" title="closure"></p>
 <p>从上一章开始，你也许慢慢发现了，数据与过程之间的界限越来越模糊，过程可以作为形参存在，而复合数据或者说数据的抽象化也必须由过程来实现，其实，不必感到困惑，<strong>数据与过程之间的界限模糊是抽象化的必然结果。</strong></p>
-<h2 id="层次性数据与闭包性质"><a href="#层次性数据与闭包性质" class="headerlink" title="层次性数据与闭包性质"></a>层次性数据与闭包性质</h2><p>卡尔维诺关于经典的表述：</p>
+<h2 id="层次性数据与闭包性质"><a href="#层次性数据与闭包性质" class="headerlink" title="层次性数据与闭包性质"></a>层次性数据与闭包性质</h2><blockquote>
+<p>经典作品是一些产生某种特殊影响的书，它们要么自己以遗忘的方式给我们的想像力打下印记，要么乔装成个人或集体的无意识隐藏在深层记忆中。<br>—卡尔维诺《为什么读经典》</p>
+</blockquote>
 <h3 id="数据组合规范：链表"><a href="#数据组合规范：链表" class="headerlink" title="数据组合规范：链表"></a>数据组合规范：链表</h3><p>我们将数据组合起来，组合方式有很多，举个例子，我们有数据1、2、3、4，在没有规定的情况下，可以有很多组合：</p>
 <p><img src="http://p7jklu86w.bkt.clouddn.com/SICP2-1.png" alt="&quot;SICP2-1&quot;"></p>
 <p>因此就需要有一个统一的规定来处理这样的数据组合，在Lisp中称之为<strong>链表</strong>。</p>
@@ -539,11 +541,11 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">数学</a>
+                <a href="javascript:void(0)" class="js-tag color5">机器学习</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">机器学习</a>
+                <a href="javascript:void(0)" class="js-tag color3">数学</a>
               </li>
              
               <li class="article-tag-list-item">
