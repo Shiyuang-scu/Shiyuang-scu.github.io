@@ -25,7 +25,17 @@
 <meta property="og:image" content="http://p7jklu86w.bkt.clouddn.com/SICP2-3.png">
 <meta property="og:image" content="http://p7jklu86w.bkt.clouddn.com/SICP2-4.png">
 <meta property="og:image" content="http://p7jklu86w.bkt.clouddn.com/SICP2-5.png">
-<meta property="og:updated_time" content="2018-08-01T13:46:20.200Z">
+<meta property="og:image" content="http://p7jklu86w.bkt.clouddn.com/SICP2-6.png">
+<meta property="og:image" content="http://p7jklu86w.bkt.clouddn.com/SICP2-7.png">
+<meta property="og:image" content="http://p7jklu86w.bkt.clouddn.com/SICP2-8.png">
+<meta property="og:image" content="http://p7jklu86w.bkt.clouddn.com/SICP2-9.png">
+<meta property="og:image" content="http://p7jklu86w.bkt.clouddn.com/SICP2-10.png">
+<meta property="og:image" content="http://p7jklu86w.bkt.clouddn.com/SICP2-11.png">
+<meta property="og:image" content="http://p7jklu86w.bkt.clouddn.com/SICP2-12.png">
+<meta property="og:image" content="http://p7jklu86w.bkt.clouddn.com/SICP2-13.png">
+<meta property="og:image" content="http://p7jklu86w.bkt.clouddn.com/SICP2-14.png">
+<meta property="og:image" content="http://p7jklu86w.bkt.clouddn.com/SICP2-15.png">
+<meta property="og:updated_time" content="2018-08-02T13:42:13.624Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="壹 《SICP》笔记：构造数据抽象">
 <meta name="twitter:description" content="第二章 构造数据抽象 The acts of the mind, wherein it exerts its power over simple ideas, are chiefly these three: 1. Combining several simple ideas into one compound one, and thus all complex ideas are made. 2">
@@ -243,6 +253,37 @@
 <p>两者有什么区别呢？前者，即树形结构每一个节点的分解都旨在分解，而后者的每一个层级都是一个完全意义上的独立抽象层。换句话说，前者的每一个节点意在完成特定的任务，而后者则将整个过程抽象化，它讨论的不是具体的事，而是整个事件。因此，后者会比前者更具有<strong>鲁棒性（robust）</strong>，当我们改变一个细微的要求时，后者会更加轻易地适用于改变，而前者却会因为这个细小的改变而被摧毁重建。</p>
 <p>换一个角度，我们甚至可以这样思考：鉴于一种语言的基本要素为基本数据、数据组合、过程抽象，这种层次序列的构建实际上是在一种语言的基础上设计了另一种语言，或者说是在一种语言中嵌入（embed）了另一种语言。</p>
 <p>Lisp的设计表达了一个不同于软件工程学的观点：<strong>真正的设计过程，不是在设计程序，而是在设计语言。</strong></p>
+<h2 id="符号数据"><a href="#符号数据" class="headerlink" title="符号数据"></a>符号数据</h2><p>上一节我们知道，对于一个工程，不要依次解决子问题，而要将问题抽象化，抽象化的结果是，以一种方法解决了所有具有相同模式的问题。</p>
+<p>我们之前的抽象，都是在抽象对数值处理的过程，而非对数值抽象化为符号。例如我要求和，我们define一个add过程，即抽象化了求和这个过程，但其参数一定是数值，要不然就无意义。但数值是特定的，无法抽象化，所以符号数据就很自然地被引入了。</p>
+<h3 id="引号"><a href="#引号" class="headerlink" title="引号"></a>引号</h3><p>如果你问我：“说出你的名字！”，我会毫不犹豫地说，“XXX”，但如果你一脸不耐烦，反复地问我，“说出你的名字！”，我会想看智障一样看着你，或许会突然开窍，向你大喊：“你的名字！！！！”。对，这就是引号给我们带来的歧义。</p>
+<p>“说出你的名字”这句话实际上是存在很大歧义的，你可以理解为正常的“说出你的<strong>名字</strong>”，但也可以理解为“说出 <strong>‘你的名字’</strong> ”。<br><img src="http://p7jklu86w.bkt.clouddn.com/SICP2-6.png" alt="&quot;SICP2-6&quot;"><br>如图，“is”作为谓词，在这几句话中实质是“=”，或者说是进行了赋值操作，所以我们可以联立两个等式，最后得出George的妈妈很聪明的结论。但如果将谓词后面的内容改成引号，那么所谓的“is”就绝不是赋值这么简单了。</p>
+<p>如果我们想构造出表示符号数据的运算操作，比如 a*a+b ，我们可以将这个表达在LIsp中表示成<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(a * a + b)</span><br></pre></td></tr></table></figure></p>
+<p>怎么样都行，但我们一般会用Lisp中的运算惯例：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(+ (* a a) b)</span><br></pre></td></tr></table></figure></p>
+<p><em>注意，“（）”所表示的是链表</em><br><img src="http://p7jklu86w.bkt.clouddn.com/SICP2-7.png" alt="&quot;SICP2-7&quot;"><br>现在我们可以区分符号与数值，比如以下代码：<br><img src="http://p7jklu86w.bkt.clouddn.com/SICP2-8.png" alt="&quot;SICP2-8&quot;"><br>引号也可用于复合过程：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(car &apos;(a b c))</span><br></pre></td></tr></table></figure></p>
+<p>其结果是：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a</span><br></pre></td></tr></table></figure></p>
+<p>而<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(cdr &apos;(a b c))</span><br></pre></td></tr></table></figure></p>
+<p>其结果是：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(b c)</span><br></pre></td></tr></table></figure></p>
+<p>从以上代码可以看到，引号确实是构建了一个包含符号的链表。<br><img src="http://p7jklu86w.bkt.clouddn.com/SICP2-9.png" alt="&quot;SICP2-9&quot;"><br>放一张图自己体会：<br><img src="http://p7jklu86w.bkt.clouddn.com/SICP2-10.png" alt="&quot;SICP2-10&quot;"></p>
+<h3 id="符号操作实例：符号求导"><a href="#符号操作实例：符号求导" class="headerlink" title="符号操作实例：符号求导"></a>符号操作实例：符号求导</h3><p><img src="http://p7jklu86w.bkt.clouddn.com/SICP2-11.png" alt="&quot;SICP2-11&quot;"><br><em>再一次膜Lisp</em></p>
+<p>求导和求积分互为逆过程，但为什么求导容易而求积分难？</p>
+<p>因为求导是一种归约过程，可用递归解决，而求积分则会出现很多种可能情况。</p>
+<p>当然，以上是题外话，下面进入正题：</p>
+<p>为了更好地阐述符号操作，我们准备实现一个代数表达式的符号求导过程。</p>
+<p>使用<strong>愿望思维</strong>，我们可以构建出以下过程：<br><img src="http://p7jklu86w.bkt.clouddn.com/SICP2-12.png" alt="&quot;SICP2-12&quot;"><br><img src="http://p7jklu86w.bkt.clouddn.com/SICP2-13.png" alt="&quot;SICP2-13&quot;"></p>
+<p>这也显现了符号数据的优势，即，抽象，抽象，再抽象。</p>
+<p>（……）这样的形式，就是链表，我们可以通过链表的形式来表示一串代数表达式。</p>
+<p>因为符号数据不存在诸如“+、-“的运算机制，所以需要我们自己构造，这在介绍引号那一节已经说明过了。</p>
+<p>所以，之前实现求导过程中没有实现的函数，可以这样表示：<br><img src="http://p7jklu86w.bkt.clouddn.com/SICP2-14.png" alt="&quot;SICP2-14&quot;"><br><img src="http://p7jklu86w.bkt.clouddn.com/SICP2-15.png" alt="&quot;SICP2-15&quot;"><br>就这样，我们完美地实现了代数表达式的符号求导过程。</p>
+<p>我们不厌其烦的强调了这一点：<strong>抽象</strong>。</p>
+<p>以上的过程构造同样重复了<strong>抽象屏障</strong>：</p>
+<p>==求导法则==<br>     ↑<br>==接口过程==<br>     ↑<br> ==表结构==</p>
+<h4 id="注：为什么叫“CAR”“CDR”？"><a href="#注：为什么叫“CAR”“CDR”？" class="headerlink" title="注：为什么叫“CAR”“CDR”？"></a>注：为什么叫“CAR”“CDR”？</h4><p>The popular explanation that CAR and CDR stand for “Contents of the Address Register” and “Contents of the Decrement Register” does not quite match the IBM 704 architecture; the IBM 704 does not have a programmer-accessible address register and the three address modification registers are called “index registers” by IBM.</p>
+<p>The 704 and its successors has a 36-bit word length and a 15-bit address space. These computers had two instruction formats, one of which, the Type A, had a short, 3-bit, operation code prefix and two 15-bit fields separated by a 3-bit tag. The first 15-bit field was the operand address and the second held a decrement or count. The tag specified one of three index registers. Indexing was a subtractive process on the 704, hence the value to be loaded into an index register was called a “decrement”. The 704 hardware had special instructions for accessing the address and decrement fields in a word. As a result it was efficient to use those two fields to store within a single word the two pointers needed for a list.</p>
+<p>Thus, “CAR” is “Contents of the Address part of the Register”. The term “register” in this context refers to “memory location”.</p>
+<ul>
+<li><em>car</em> ( “<strong>C</strong>ontents of the <strong>A</strong>ddress part of <strong>R</strong>egister number”),</li>
+<li><em>cdr</em> (“<strong>C</strong>ontents of the <strong>D</strong>ecrement part of <strong>R</strong>egister number”),</li>
+</ul>
 
       
 
@@ -386,7 +427,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#第二章-构造数据抽象"><span class="toc-number">1.</span> <span class="toc-text">第二章 构造数据抽象</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#数据抽象导引"><span class="toc-number">1.1.</span> <span class="toc-text">数据抽象导引</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#实例：有理数运算"><span class="toc-number">1.1.1.</span> <span class="toc-text">实例：有理数运算</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#实例：点与线段"><span class="toc-number">1.1.2.</span> <span class="toc-text">实例：点与线段</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#闭包（closure）"><span class="toc-number">1.1.2.1.</span> <span class="toc-text">闭包（closure）</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#层次性数据与闭包性质"><span class="toc-number">1.2.</span> <span class="toc-text">层次性数据与闭包性质</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#数据组合规范：链表"><span class="toc-number">1.2.1.</span> <span class="toc-text">数据组合规范：链表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#表操作"><span class="toc-number">1.2.2.</span> <span class="toc-text">表操作</span></a></li></ol></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#第二章-构造数据抽象"><span class="toc-number">1.</span> <span class="toc-text">第二章 构造数据抽象</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#数据抽象导引"><span class="toc-number">1.1.</span> <span class="toc-text">数据抽象导引</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#实例：有理数运算"><span class="toc-number">1.1.1.</span> <span class="toc-text">实例：有理数运算</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#实例：点与线段"><span class="toc-number">1.1.2.</span> <span class="toc-text">实例：点与线段</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#闭包（closure）"><span class="toc-number">1.1.2.1.</span> <span class="toc-text">闭包（closure）</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#层次性数据与闭包性质"><span class="toc-number">1.2.</span> <span class="toc-text">层次性数据与闭包性质</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#数据组合规范：链表"><span class="toc-number">1.2.1.</span> <span class="toc-text">数据组合规范：链表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#表操作"><span class="toc-number">1.2.2.</span> <span class="toc-text">表操作</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#符号数据"><span class="toc-number">1.3.</span> <span class="toc-text">符号数据</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#引号"><span class="toc-number">1.3.1.</span> <span class="toc-text">引号</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#符号操作实例：符号求导"><span class="toc-number">1.3.2.</span> <span class="toc-text">符号操作实例：符号求导</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#注：为什么叫“CAR”“CDR”？"><span class="toc-number">1.3.2.1.</span> <span class="toc-text">注：为什么叫“CAR”“CDR”？</span></a></li></ol></li></ol></li></ol></li></ol>
                     </div>
                 </span>
             </div>
@@ -549,10 +590,6 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">康德</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">随笔</a>
               </li>
              
@@ -565,11 +602,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">学习</a>
+                <a href="javascript:void(0)" class="js-tag color3">康德</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">学习</a>
               </li>
             
             <div class="clearfix"></div>
