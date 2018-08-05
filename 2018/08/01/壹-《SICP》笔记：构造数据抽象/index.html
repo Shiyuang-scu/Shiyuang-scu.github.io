@@ -35,7 +35,12 @@
 <meta property="og:image" content="http://p7jklu86w.bkt.clouddn.com/SICP2-13.png">
 <meta property="og:image" content="http://p7jklu86w.bkt.clouddn.com/SICP2-14.png">
 <meta property="og:image" content="http://p7jklu86w.bkt.clouddn.com/SICP2-15.png">
-<meta property="og:updated_time" content="2018-08-02T13:42:13.624Z">
+<meta property="og:image" content="http://p7jklu86w.bkt.clouddn.com/SICP2-16.png">
+<meta property="og:image" content="http://p7jklu86w.bkt.clouddn.com/SICP2-17.png">
+<meta property="og:image" content="http://p7jklu86w.bkt.clouddn.com/SICP2-18.png">
+<meta property="og:image" content="http://p7jklu86w.bkt.clouddn.com/SICP2-19.png">
+<meta property="og:image" content="http://p7jklu86w.bkt.clouddn.com/SICP2-20.png">
+<meta property="og:updated_time" content="2018-08-05T16:25:38.367Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="壹 《SICP》笔记：构造数据抽象">
 <meta name="twitter:description" content="第二章 构造数据抽象 The acts of the mind, wherein it exerts its power over simple ideas, are chiefly these three: 1. Combining several simple ideas into one compound one, and thus all complex ideas are made. 2">
@@ -277,14 +282,34 @@
 <p>我们不厌其烦的强调了这一点：<strong>抽象</strong>。</p>
 <p>以上的过程构造同样重复了<strong>抽象屏障</strong>：</p>
 <p>==求导法则==<br>     ↑<br>==接口过程==<br>     ↑<br> ==表结构==</p>
-<h4 id="注：为什么叫“CAR”“CDR”？"><a href="#注：为什么叫“CAR”“CDR”？" class="headerlink" title="注：为什么叫“CAR”“CDR”？"></a>注：为什么叫“CAR”“CDR”？</h4><p>The popular explanation that CAR and CDR stand for “Contents of the Address Register” and “Contents of the Decrement Register” does not quite match the IBM 704 architecture; the IBM 704 does not have a programmer-accessible address register and the three address modification registers are called “index registers” by IBM.</p>
+<h3 id="注：为什么叫“CAR”“CDR”？"><a href="#注：为什么叫“CAR”“CDR”？" class="headerlink" title="注：为什么叫“CAR”“CDR”？"></a>注：为什么叫“CAR”“CDR”？</h3><p>The popular explanation that CAR and CDR stand for “Contents of the Address Register” and “Contents of the Decrement Register” does not quite match the IBM 704 architecture; the IBM 704 does not have a programmer-accessible address register and the three address modification registers are called “index registers” by IBM.</p>
 <p>The 704 and its successors has a 36-bit word length and a 15-bit address space. These computers had two instruction formats, one of which, the Type A, had a short, 3-bit, operation code prefix and two 15-bit fields separated by a 3-bit tag. The first 15-bit field was the operand address and the second held a decrement or count. The tag specified one of three index registers. Indexing was a subtractive process on the 704, hence the value to be loaded into an index register was called a “decrement”. The 704 hardware had special instructions for accessing the address and decrement fields in a word. As a result it was efficient to use those two fields to store within a single word the two pointers needed for a list.</p>
 <p>Thus, “CAR” is “Contents of the Address part of the Register”. The term “register” in this context refers to “memory location”.</p>
 <ul>
 <li><em>car</em> ( “<strong>C</strong>ontents of the <strong>A</strong>ddress part of <strong>R</strong>egister number”),</li>
 <li><em>cdr</em> (“<strong>C</strong>ontents of the <strong>D</strong>ecrement part of <strong>R</strong>egister number”),</li>
 </ul>
-
+<h2 id="抽象数据的多重表示"><a href="#抽象数据的多重表示" class="headerlink" title="抽象数据的多重表示"></a>抽象数据的多重表示</h2><h3 id="通用型过程"><a href="#通用型过程" class="headerlink" title="通用型过程"></a>通用型过程</h3><p>我们之前一直在试图实现的，是实现数据对象与对数据对象操作的分离，关键性思想就是构建抽象屏障，比如之前说过的有理数运算，通过有理数的选择函数与构造函数，将有理数的构成与操作分离开来。</p>
+<p>从另一个角度看，一个数据常常会有不同的表示方法，而将同一操作应用于不同的构成方式，则成为这一节的重点。即构建<strong>通用型过程</strong>。</p>
+<p>我们将以复数的运算为例。<br><img src="http://p7jklu86w.bkt.clouddn.com/SICP2-16.png" alt="&quot;SICP2-16&quot;"><br><em>这是构建复数运算的抽象屏障</em></p>
+<p>复数有两种表示形式，直角坐标系与极坐标系，构造函数则为：make-from-real-imag和make-from-mag-ang，分别返回一个采用实部与虚部描述的复数、采用模和幅角描述的复数。选择函数为：real-part、imag-part、magnitude和angle。</p>
+<p>则复数算术就可以实现了：</p>
+<p><img src="http://p7jklu86w.bkt.clouddn.com/SICP2-17.png" alt="&quot;SICP2-17&quot;"></p>
+<p>为了完成这样的运算，我们首先得把两种负数的表示形式转化为其中一种，这样，在接受input数据的时候，就能将其转化为其中一种，统一进行运算。</p>
+<p>问题在于，系统得识别input属于哪一种表示方式，所以，就自然而然地出现了<strong>类型标志</strong>。类型标志用以区分不同的表示方式，在复数算术运算中，标识符为rectangular和polar。</p>
+<p>每个通用型选择函数都得实现这样的过程：检查参数的类型标志——&gt;调用合适的过程来处理数据</p>
+<p><img src="http://p7jklu86w.bkt.clouddn.com/SICP2-18.png" alt="&quot;SICP2-18&quot;"></p>
+<p>这样，直角坐标系与极坐标系<strong>两部分</strong>就可由<strong>第三部分</strong>：real-part等一系列选择函数实现。也就是相当于，整个选择过程被完整地封装成了三个部分，交给了三个程序员去完成。</p>
+<p>第三部分可以理解为<strong>通用型界面过程。</strong></p>
+<h3 id="数据导向"><a href="#数据导向" class="headerlink" title="数据导向"></a>数据导向</h3><p>刚刚的策略被称为<strong>基于类型的分派</strong>，但其存在一定的漏洞和缺点：通用型界面过程必须依赖所有可能性来进行决策，比如我增加了一种新的形势表示复数，我就需要在每一个通用型过程中增加一个选择语句来将这一表示方式转换成统一方式，假如我有成百上千种方式，复杂度就会蹭蹭上涨。</p>
+<p>一句话，基于类型的分派不具有<strong>可加性</strong>。</p>
+<p>因此引入了<strong>数据导向</strong>。</p>
+<p><img src="http://p7jklu86w.bkt.clouddn.com/SICP2-19.png" alt="&quot;SICP2-19&quot;"></p>
+<p>所谓数据导向，就是借助于这张二维表，构建一个类似于索引的过程。如果加入新的表示形式，我们只要增加一列索引即可。具体操作如下：</p>
+<p>举个例子，我们可以定义两个程序包，分别是负数的两种表示形式，在直角坐标系包中，给real-part的操作过程增加两个名称的索引：’polar 和 ‘real-part，意思就是把在直角坐标系中把极坐标系转换成直角坐标系的real-part过程赋予两个名称索引。</p>
+<p>我们再定义一个操作访问表格，返回有关操作：</p>
+<p><img src="http://p7jklu86w.bkt.clouddn.com/SICP2-20.png" alt="&quot;SICP2-20&quot;"></p>
+<h2 id="带有通用型操作的系统"><a href="#带有通用型操作的系统" class="headerlink" title="带有通用型操作的系统"></a>带有通用型操作的系统</h2>
       
 
       
@@ -436,7 +461,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#第二章-构造数据抽象"><span class="toc-number">1.</span> <span class="toc-text">第二章 构造数据抽象</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#数据抽象导引"><span class="toc-number">1.1.</span> <span class="toc-text">数据抽象导引</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#实例：有理数运算"><span class="toc-number">1.1.1.</span> <span class="toc-text">实例：有理数运算</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#实例：点与线段"><span class="toc-number">1.1.2.</span> <span class="toc-text">实例：点与线段</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#闭包（closure）"><span class="toc-number">1.1.2.1.</span> <span class="toc-text">闭包（closure）</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#层次性数据与闭包性质"><span class="toc-number">1.2.</span> <span class="toc-text">层次性数据与闭包性质</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#数据组合规范：链表"><span class="toc-number">1.2.1.</span> <span class="toc-text">数据组合规范：链表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#表操作"><span class="toc-number">1.2.2.</span> <span class="toc-text">表操作</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#符号数据"><span class="toc-number">1.3.</span> <span class="toc-text">符号数据</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#引号"><span class="toc-number">1.3.1.</span> <span class="toc-text">引号</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#符号操作实例：符号求导"><span class="toc-number">1.3.2.</span> <span class="toc-text">符号操作实例：符号求导</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#注：为什么叫“CAR”“CDR”？"><span class="toc-number">1.3.2.1.</span> <span class="toc-text">注：为什么叫“CAR”“CDR”？</span></a></li></ol></li></ol></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#第二章-构造数据抽象"><span class="toc-number">1.</span> <span class="toc-text">第二章 构造数据抽象</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#数据抽象导引"><span class="toc-number">1.1.</span> <span class="toc-text">数据抽象导引</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#实例：有理数运算"><span class="toc-number">1.1.1.</span> <span class="toc-text">实例：有理数运算</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#实例：点与线段"><span class="toc-number">1.1.2.</span> <span class="toc-text">实例：点与线段</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#闭包（closure）"><span class="toc-number">1.1.2.1.</span> <span class="toc-text">闭包（closure）</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#层次性数据与闭包性质"><span class="toc-number">1.2.</span> <span class="toc-text">层次性数据与闭包性质</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#数据组合规范：链表"><span class="toc-number">1.2.1.</span> <span class="toc-text">数据组合规范：链表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#表操作"><span class="toc-number">1.2.2.</span> <span class="toc-text">表操作</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#符号数据"><span class="toc-number">1.3.</span> <span class="toc-text">符号数据</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#引号"><span class="toc-number">1.3.1.</span> <span class="toc-text">引号</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#符号操作实例：符号求导"><span class="toc-number">1.3.2.</span> <span class="toc-text">符号操作实例：符号求导</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#注：为什么叫“CAR”“CDR”？"><span class="toc-number">1.3.3.</span> <span class="toc-text">注：为什么叫“CAR”“CDR”？</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#抽象数据的多重表示"><span class="toc-number">1.4.</span> <span class="toc-text">抽象数据的多重表示</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#通用型过程"><span class="toc-number">1.4.1.</span> <span class="toc-text">通用型过程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数据导向"><span class="toc-number">1.4.2.</span> <span class="toc-text">数据导向</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#带有通用型操作的系统"><span class="toc-number">1.5.</span> <span class="toc-text">带有通用型操作的系统</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>
@@ -591,11 +616,11 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">机器学习</a>
+                <a href="javascript:void(0)" class="js-tag color3">数学</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">数学</a>
+                <a href="javascript:void(0)" class="js-tag color5">机器学习</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -603,11 +628,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+                <a href="javascript:void(0)" class="js-tag color3">读书</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">读书</a>
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
               </li>
              
               <li class="article-tag-list-item">
