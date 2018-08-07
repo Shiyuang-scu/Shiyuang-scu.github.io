@@ -171,7 +171,24 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <h1 id="模块化、对象和状态"><a href="#模块化、对象和状态" class="headerlink" title="模块化、对象和状态"></a>模块化、对象和状态</h1><blockquote>
+<p>Mεταβάλλον ὰναπαύεται<br>(Even while it changes, it stands still.) —Heraclitus<br>Plus ça change, plus c’est la même chose. —Alphonse Karr</p>
+</blockquote>
+<p>上一章实际上叙述了基于被模拟结构去设计程序的结构，而这一章将阐释两种不同策略：一种重点在于对象，另一重在于信息流。两种策略将使我们抛弃老的代换模型，转向新的环境模型。同时，因为时间成了最大的问题，所以还会引入并行概念。</p>
+<h2 id="赋值和局部状态"><a href="#赋值和局部状态" class="headerlink" title="赋值和局部状态"></a>赋值和局部状态</h2><h3 id="局部状态变量"><a href="#局部状态变量" class="headerlink" title="局部状态变量"></a>局部状态变量</h3><p>我们以银行账户系统为例，为了实现一个可以实现取钱和存钱的银行账户，我们可以这样设计：<br><img src="http://p7jklu86w.bkt.clouddn.com/SICP3-0.png" alt="SICP3-0"><br>其中使用了特殊形式set！，其语法是：<br>(set! <name><new-value>)<br>意即将<new-value>赋值给<name>这个变量。<br>以上的程序设计有问题，因为balance是全局变量，任何过程都能访问到balance，所以我们就需要<strong>局部变量</strong>：<br><img src="http://p7jklu86w.bkt.clouddn.com/SICP3-0.5.png" alt="SICP3-0.5"><br>我们可以运用第二章学到的<strong>信息传递</strong>风格，完善我们的程序：<br><img src="http://p7jklu86w.bkt.clouddn.com/SICP3-1.png" alt="SICP3-1"><br>这样的设计方法非常精妙，值得再三品味。</name></new-value></new-value></name></p>
+<h3 id="赋值的优缺点"><a href="#赋值的优缺点" class="headerlink" title="赋值的优缺点"></a>赋值的优缺点</h3><p>到此，我产生了以下疑问：<strong>什么叫赋值？</strong><br><em>简单地说，赋值就是 set! 操作，动态地改变某一变量索引的值。</em></p>
+<p>接下来我们会看到赋值具有缺陷，但其优点也是显而易见的，在很多问题上，善用赋值会帮助我们加强程序的模块化。下面以rand过程的设计为例：<br>我们计划通过rand生成一系列符合均匀分布的随机数，<br><img src="http://p7jklu86w.bkt.clouddn.com/SICP3-2.png" alt="SICP3-2"><br>我们当然可以不用赋值，直接rand-update操作即可，但这会带来很大复杂度，我们以蒙特卡洛仿真为例：<br>我们知道，6/π^2是随机选取两个整数之间没有公因数子的概率，我们利用这个事实进行大量实验，最后就能得出π的近似值。<br>具体代码不在这写出，我只讨论需要用到生成随机数的部分。在对大量随机数的选取步骤中，采用赋值方式的rand，我只需要使用两次rand即可，而如果使用rand-uodate，我就需要显式地操作let ((x1 (rand-update x)))和let ((x2 (rand-update x1))))，这将会十分麻烦。</p>
+<p>目前我们可能这样总结：运用赋值的方式，将会把哪些原本需要显式操作的过程封装起来，使程序更加模块化。但事实并非如此。</p>
+<p>只要不用赋值，以同样参数对同样过程的两次求值，结果一定是相同的，所以可以认为我们在计算函数。就像我们在前两章所做的那样，不用任何赋值的程序设计称为<strong>函数式程序设计</strong>。</p>
+<p>我又产生了这个疑问：<strong>let与set!有什么区别？</strong><br><em>let是lambda表达式的语法糖，即：(let ((var val) …) exp1 exp2 …)，为 ((lambda (var …) exp1 exp2) val …)。一句话，let就是lambda。而set!是赋值操作。</em></p>
+<p><em>注：在scheme中，类似于set!，结尾加“！”是scheme的一种命名约定，表示改变变量的值。</em></p>
+<p>在赋值下，无法使用代换模型。而代换模型的本质就是，一个符号其实只是一个值的的名字或者说是代号。但赋值则将一个变量变成了储存着可变数值的位置，可以说，变量与数值分离了。</p>
+<p>函数式编程的内部是静态的，而命令式编程（即广泛运用赋值的程序设计）则是动态的，一旦将变化引入程序设计，就会混淆很多函数式编程中简洁明了的概念。</p>
+<p>在函数式编程中，任何被定义的对象都是一个过程。举个例子，我定义w1、w2为运用函数式程序设计思维设计的银行账户，因为这个银行账户过程内部是静态的，故相当于将这个处理余额的过程传递给w1、w2，所以在本质上，w1和w2是一回事，它们都代表着一个函数，一个过程。</p>
+<p>而在命令式编程中，任何被定义的对象都是完全不同的东西。仍然拿银行账户为例，这个银行账户用命令式程序设计思维设计，同样定义w1和w2为两个银行账户，则两者就是截然不同的东西了，w1的操作与w2的无关，两者不能互相替代。</p>
+<p>在运用赋值之后，通过等价替换去简化表达式的问题就变得异常复杂，对其推理也变得十分困难。</p>
+<p>广泛采用赋值的命令式程序设计不仅会存在解释性困难的问题，还会出现额外的逻辑问题。以求阶乘为例：<br>这是函数式的风格：<br><img src="http://p7jklu86w.bkt.clouddn.com/SICP3-3.png" alt="SICP3-3"><br>这是命令式的风格：<br><img src="http://p7jklu86w.bkt.clouddn.com/SICP3-4.png" alt="SICP3-4"><br>如果我们对两个赋值操作改变顺序，就会出现错误，这个错误显而易见，不多解释。而这种错误绝对不会出现在函数式程序设计中。所以，在命令式程序设计中，需要我们额外思考赋值顺序带来的问题。</p>
+
       
 
       
@@ -1044,6 +1061,10 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">康德</a>
               </li>
              
@@ -1052,15 +1073,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+                <a href="javascript:void(0)" class="js-tag color3">周记</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">学习</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">周记</a>
               </li>
              
               <li class="article-tag-list-item">
