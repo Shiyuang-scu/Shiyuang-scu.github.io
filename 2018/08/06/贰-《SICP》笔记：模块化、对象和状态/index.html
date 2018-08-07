@@ -21,7 +21,7 @@
 <meta property="og:image" content="http://p7jklu86w.bkt.clouddn.com/SICP3-2.png">
 <meta property="og:image" content="http://p7jklu86w.bkt.clouddn.com/SICP3-3.png">
 <meta property="og:image" content="http://p7jklu86w.bkt.clouddn.com/SICP3-4.png">
-<meta property="og:updated_time" content="2018-08-07T09:29:25.149Z">
+<meta property="og:updated_time" content="2018-08-07T09:31:55.312Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="贰 《SICP》笔记：模块化、对象和状态">
 <meta name="twitter:description" content="模块化、对象和状态 Mεταβάλλον ὰναπαύεται(Even while it changes, it stands still.) —HeraclitusPlus ça change, plus c’est la même chose. —Alphonse Karr  上一章实际上叙述了基于被模拟结构去设计程序的结构，而这一章将阐释两种不同策略：一种重点在于对象，另一重在于">
@@ -183,7 +183,7 @@
         <h1 id="模块化、对象和状态"><a href="#模块化、对象和状态" class="headerlink" title="模块化、对象和状态"></a>模块化、对象和状态</h1><blockquote>
 <p>Mεταβάλλον ὰναπαύεται<br>(Even while it changes, it stands still.) —Heraclitus<br>Plus ça change, plus c’est la même chose. —Alphonse Karr</p>
 </blockquote>
-<p>上一章实际上叙述了基于被模拟结构去设计程序的结构，而这一章将阐释两种不同策略：一种重点在于对象，另一重在于信息流。两种策略将使我们抛弃老的代换模型，转向新的环境模型。同时，因为时间成了最大的问题，所以还会引入并行概念。</p>
+<p>上一章实际上叙述了基于被模拟结构去设计程序的结构，而这一章将阐释两种不同策略：一种重点在于对象，另一重在于信息流。两种策略将使我们抛弃老的代换模型，转向新的环境模型。同时，因为时间成了最大的问题，所以还会引入并行概念。<br><a id="more"></a></p>
 <h2 id="赋值和局部状态"><a href="#赋值和局部状态" class="headerlink" title="赋值和局部状态"></a>赋值和局部状态</h2><h3 id="局部状态变量"><a href="#局部状态变量" class="headerlink" title="局部状态变量"></a>局部状态变量</h3><p>我们以银行账户系统为例，为了实现一个可以实现取钱和存钱的银行账户，我们可以这样设计：<br><img src="http://p7jklu86w.bkt.clouddn.com/SICP3-0.png" alt="SICP3-0"><br>其中使用了特殊形式set！，其语法是：<br>(set! <name><new-value>)<br>意即将<new-value>赋值给<name>这个变量。<br>以上的程序设计有问题，因为balance是全局变量，任何过程都能访问到balance，所以我们就需要<strong>局部变量</strong>：<br><img src="http://p7jklu86w.bkt.clouddn.com/SICP3-0.5.png" alt="SICP3-0.5"><br>我们可以运用第二章学到的<strong>信息传递</strong>风格，完善我们的程序：<br><img src="http://p7jklu86w.bkt.clouddn.com/SICP3-1.png" alt="SICP3-1"><br>这样的设计方法非常精妙，值得再三品味。</name></new-value></new-value></name></p>
 <h3 id="赋值的优缺点"><a href="#赋值的优缺点" class="headerlink" title="赋值的优缺点"></a>赋值的优缺点</h3><p>到此，我产生了以下疑问：<strong>什么叫赋值？</strong><br><em>简单地说，赋值就是 set! 操作，动态地改变某一变量索引的值。</em></p>
 <p>接下来我们会看到赋值具有缺陷，但其优点也是显而易见的，在很多问题上，善用赋值会帮助我们加强程序的模块化。下面以rand过程的设计为例：<br>我们计划通过rand生成一系列符合均匀分布的随机数，<br><img src="http://p7jklu86w.bkt.clouddn.com/SICP3-2.png" alt="SICP3-2"><br>我们当然可以不用赋值，直接rand-update操作即可，但这会带来很大复杂度，我们以蒙特卡洛仿真为例：<br>我们知道，6/π^2是随机选取两个整数之间没有公因数子的概率，我们利用这个事实进行大量实验，最后就能得出π的近似值。<br>具体代码不在这写出，我只讨论需要用到生成随机数的部分。在对大量随机数的选取步骤中，采用赋值方式的rand，我只需要使用两次rand即可，而如果使用rand-uodate，我就需要显式地操作let ((x1 (rand-update x)))和let ((x2 (rand-update x1))))，这将会十分麻烦。</p>
@@ -492,11 +492,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+                <a href="javascript:void(0)" class="js-tag color3">康德</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">康德</a>
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
               </li>
              
               <li class="article-tag-list-item">
