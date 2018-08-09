@@ -8,12 +8,12 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>贰 《SICP》笔记：模块化、对象和状态 | SaD&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="模块化、对象和状态 Mεταβάλλον ὰναπαύεται(Even while it changes, it stands still.) —HeraclitusPlus ça change, plus c’est la même chose. —Alphonse Karr  上一章实际上叙述了基于被模拟结构去设计程序的结构，而这一章将阐释两种不同策略：一种重点在于对象，另一重在于">
+  <meta name="description" content="第三章 模块化、对象和状态 Mεταβάλλον ὰναπαύεται(Even while it changes, it stands still.) —HeraclitusPlus ça change, plus c’est la même chose. —Alphonse Karr  上一章实际上叙述了基于被模拟结构去设计程序的结构，而这一章将阐释两种不同策略：一种重点在于对象，另">
 <meta property="og:type" content="article">
 <meta property="og:title" content="贰 《SICP》笔记：模块化、对象和状态">
 <meta property="og:url" content="http://yoursite.com/2018/08/06/贰-《SICP》笔记：模块化、对象和状态/index.html">
 <meta property="og:site_name" content="SaD&#39;s Blog">
-<meta property="og:description" content="模块化、对象和状态 Mεταβάλλον ὰναπαύεται(Even while it changes, it stands still.) —HeraclitusPlus ça change, plus c’est la même chose. —Alphonse Karr  上一章实际上叙述了基于被模拟结构去设计程序的结构，而这一章将阐释两种不同策略：一种重点在于对象，另一重在于">
+<meta property="og:description" content="第三章 模块化、对象和状态 Mεταβάλλον ὰναπαύεται(Even while it changes, it stands still.) —HeraclitusPlus ça change, plus c’est la même chose. —Alphonse Karr  上一章实际上叙述了基于被模拟结构去设计程序的结构，而这一章将阐释两种不同策略：一种重点在于对象，另">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://p7jklu86w.bkt.clouddn.com/SICP3-0.png">
 <meta property="og:image" content="http://p7jklu86w.bkt.clouddn.com/SICP3-0.5.png">
@@ -21,10 +21,14 @@
 <meta property="og:image" content="http://p7jklu86w.bkt.clouddn.com/SICP3-2.png">
 <meta property="og:image" content="http://p7jklu86w.bkt.clouddn.com/SICP3-3.png">
 <meta property="og:image" content="http://p7jklu86w.bkt.clouddn.com/SICP3-4.png">
-<meta property="og:updated_time" content="2018-08-07T09:31:55.312Z">
+<meta property="og:image" content="http://p7jklu86w.bkt.clouddn.com/SICP3-5.png">
+<meta property="og:image" content="http://p7jklu86w.bkt.clouddn.com/SICP3-6.png">
+<meta property="og:image" content="http://p7jklu86w.bkt.clouddn.com/SICP3-7.png">
+<meta property="og:image" content="http://p7jklu86w.bkt.clouddn.com/SICP3-8.png">
+<meta property="og:updated_time" content="2018-08-09T08:51:41.497Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="贰 《SICP》笔记：模块化、对象和状态">
-<meta name="twitter:description" content="模块化、对象和状态 Mεταβάλλον ὰναπαύεται(Even while it changes, it stands still.) —HeraclitusPlus ça change, plus c’est la même chose. —Alphonse Karr  上一章实际上叙述了基于被模拟结构去设计程序的结构，而这一章将阐释两种不同策略：一种重点在于对象，另一重在于">
+<meta name="twitter:description" content="第三章 模块化、对象和状态 Mεταβάλλον ὰναπαύεται(Even while it changes, it stands still.) —HeraclitusPlus ça change, plus c’est la même chose. —Alphonse Karr  上一章实际上叙述了基于被模拟结构去设计程序的结构，而这一章将阐释两种不同策略：一种重点在于对象，另">
 <meta name="twitter:image" content="http://p7jklu86w.bkt.clouddn.com/SICP3-0.png">
   
     <link rel="alternative" href="/atom.xml" title="SaD&#39;s Blog" type="application/atom+xml">
@@ -180,7 +184,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="模块化、对象和状态"><a href="#模块化、对象和状态" class="headerlink" title="模块化、对象和状态"></a>模块化、对象和状态</h1><blockquote>
+        <h1 id="第三章-模块化、对象和状态"><a href="#第三章-模块化、对象和状态" class="headerlink" title="第三章 模块化、对象和状态"></a>第三章 模块化、对象和状态</h1><blockquote>
 <p>Mεταβάλλον ὰναπαύεται<br>(Even while it changes, it stands still.) —Heraclitus<br>Plus ça change, plus c’est la même chose. —Alphonse Karr</p>
 </blockquote>
 <p>上一章实际上叙述了基于被模拟结构去设计程序的结构，而这一章将阐释两种不同策略：一种重点在于对象，另一重在于信息流。两种策略将使我们抛弃老的代换模型，转向新的环境模型。同时，因为时间成了最大的问题，所以还会引入并行概念。<br><a id="more"></a></p>
@@ -196,7 +200,16 @@
 <p>在函数式编程中，任何被定义的对象都是一个过程。举个例子，我定义w1、w2为运用函数式程序设计思维设计的银行账户，因为这个银行账户过程内部是静态的，故相当于将这个处理余额的过程传递给w1、w2，所以在本质上，w1和w2是一回事，它们都代表着一个函数，一个过程。</p>
 <p>而在命令式编程中，任何被定义的对象都是完全不同的东西。仍然拿银行账户为例，这个银行账户用命令式程序设计思维设计，同样定义w1和w2为两个银行账户，则两者就是截然不同的东西了，w1的操作与w2的无关，两者不能互相替代。</p>
 <p>在运用赋值之后，通过等价替换去简化表达式的问题就变得异常复杂，对其推理也变得十分困难。</p>
-<p>广泛采用赋值的命令式程序设计不仅会存在解释性困难的问题，还会出现额外的逻辑问题。以求阶乘为例：<br>这是函数式的风格：<br><img src="http://p7jklu86w.bkt.clouddn.com/SICP3-3.png" alt="SICP3-3"><br>这是命令式的风格：<br><img src="http://p7jklu86w.bkt.clouddn.com/SICP3-4.png" alt="SICP3-4"><br>如果我们对两个赋值操作改变顺序，就会出现错误，这个错误显而易见，不多解释。而这种错误绝对不会出现在函数式程序设计中。所以，在命令式程序设计中，需要我们额外思考赋值顺序带来的问题。</p>
+<p>广泛采用赋值的命令式程序设计不仅会存在解释性困难的问题，还会出现额外的逻辑问题。以求阶乘为例：<br>这是函数式的风格：<br><img src="http://p7jklu86w.bkt.clouddn.com/SICP3-3.png" alt="SICP3-3"><br>这是命令式的风格：<br><img src="http://p7jklu86w.bkt.clouddn.com/SICP3-4.png" alt="SICP3-4"></p>
+<p>如果我们对两个赋值操作改变顺序，就会出现错误，这个错误显而易见，不多解释。而这种错误绝对不会出现在函数式程序设计中。所以，在命令式程序设计中，需要我们额外思考赋值顺序带来的问题。</p>
+<p>在生活中，从物理的角度看，每个独立对象都由数种独立状态组成，我和你有相同的独立状态名称：身高、体重、血压、心率……那么。我们该如何确定两个对象之间的独立性呢？举个例子，假设我们有两只粉笔，而这两只粉笔的所有独立状态参数都是一样的，比如说长度、表面粗糙度、重量等等，那么我们如何去区分这两只粉笔就是两个独立个体，而不是一支粉笔和其在镜子前的投影呢？答案就是<strong>改变</strong>，我把一支粉笔折了，如果另一只粉笔没有变化，那么就可以确定两支粉笔是独立的。但是，问题又来了，我现在拿出指甲钳剪下自己的一小片指甲，现在的我改变了，而一秒前的我没改变，那按理说我不该是我，或者换句话说，我无法判断我就是我，而赋值和对象的使用，则为程序设计引入了这样的哲学问题。</p>
+<h2 id="求值的环境模型"><a href="#求值的环境模型" class="headerlink" title="求值的环境模型"></a>求值的环境模型</h2><p>术语：<br><strong>约束</strong><br>约束变量（bound variables）<br>自由变量（free variables）<br>作用域（scope）<br>lambda表达式是约束变量的唯一方式，它是唯一能创建名字的东西。Define可以被避免。</p>
+<p>两个规则<br><img src="http://p7jklu86w.bkt.clouddn.com/SICP3-5.png" alt="SICP3-5"></p>
+<p>环境模型，本质上来说，<strong>是由一串由指针连接至父环境的序列</strong>。define操作将定义的对象固定在父环境中，这个对象指向形参和一串描述操作过程的代码。举个例子，假设我有以下操作：<br><img src="http://p7jklu86w.bkt.clouddn.com/SICP3-6.png" alt="SICP3-6"><br>那么他们在环境模型中的表示就为：<br><img src="http://p7jklu86w.bkt.clouddn.com/SICP3-7.png" alt="SICP3-7"><br>在调用这些过程进行具体的数值运算时，我们需要创建一个新的子环境来储存参数的值，这个子环境指向父环境，获取过程的具体实现代码，创建一个将参数代入的具体过程，并将这个过程结果返回至上一级环境。</p>
+<p>再举一个更通俗的例子，我设计了一个计数器：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">(define make-counter</span><br><span class="line">    (lambda(n)</span><br><span class="line">        lambda()</span><br><span class="line">            (set! n (+ 1 n))</span><br><span class="line">            n))</span><br></pre></td></tr></table></figure></p>
+<p>想法是创建一个计数器，每次调用都会返回一个+1的值。我现在做了这样的操作：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">(define c1 (make-counter 0))</span><br><span class="line">(define c2 (make-counter 10))</span><br></pre></td></tr></table></figure></p>
+<p>我创建了两个计数器，一个起始值为0，另一个为10，这样的过程在环境模型中是这样描述的：<br><img src="http://p7jklu86w.bkt.clouddn.com/SICP3-8.png" alt="SICP3-8"><br>随着两个对象的调用，处于子环境的N的值一直在变化，我在命令行中输入<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">(c1)</span><br><span class="line">(c2)</span><br></pre></td></tr></table></figure></p>
+<p>c1环境中的N就变成了1，返回值即为1，c2环境中的N变成了11，返回值即为11。就像是一股水流，从父环境经流c1、c2，在流动过程中进行具体操作，最后操作所造成的影响被水流裹挟，流回原处。</p>
 
       
 
@@ -329,7 +342,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#模块化、对象和状态"><span class="toc-number">1.</span> <span class="toc-text">模块化、对象和状态</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#赋值和局部状态"><span class="toc-number">1.1.</span> <span class="toc-text">赋值和局部状态</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#局部状态变量"><span class="toc-number">1.1.1.</span> <span class="toc-text">局部状态变量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#赋值的优缺点"><span class="toc-number">1.1.2.</span> <span class="toc-text">赋值的优缺点</span></a></li></ol></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#第三章-模块化、对象和状态"><span class="toc-number">1.</span> <span class="toc-text">第三章 模块化、对象和状态</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#赋值和局部状态"><span class="toc-number">1.1.</span> <span class="toc-text">赋值和局部状态</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#局部状态变量"><span class="toc-number">1.1.1.</span> <span class="toc-text">局部状态变量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#赋值的优缺点"><span class="toc-number">1.1.2.</span> <span class="toc-text">赋值的优缺点</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#求值的环境模型"><span class="toc-number">1.2.</span> <span class="toc-text">求值的环境模型</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>
@@ -496,11 +509,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+                <a href="javascript:void(0)" class="js-tag color3">读书</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">读书</a>
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -508,11 +521,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">学习</a>
+                <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
+                <a href="javascript:void(0)" class="js-tag color3">学习</a>
               </li>
             
             <div class="clearfix"></div>
