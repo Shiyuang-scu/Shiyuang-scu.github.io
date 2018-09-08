@@ -150,6 +150,112 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Softmax-Regression" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/09/08/Softmax-Regression/">Softmax Regression</a>
+    </h1>
+  
+
+
+        
+        <a href="/2018/09/08/Softmax-Regression/" class="archive-article-date">
+  	<time datetime="2018-09-08T10:03:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-08</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><em>Softmax Regression是Logistic Regression的推广</em></p>
+<p><em>LR能做的是区分两类，而SR则能区分n类，虽然两者的本质都是线性的</em></p>
+<h1 id="Logistic-Regression的回顾"><a href="#Logistic-Regression的回顾" class="headerlink" title="Logistic Regression的回顾"></a>Logistic Regression的回顾</h1><p>对于数据集$${(x^1,y^1) , … , (x^m,y^m)}$$,$$y$$只有两个类别，我们记为$${0,1}$$，LR的假设函数(hypothesis function) 如下：</p>
+<p><img src="http://deeplearning.stanford.edu/wiki/images/math/b/b/3/bb3791d463b832a88731b94f1d8e5279.png" alt="Softmax-1"></p>
+<p>我们的目的是训练参数$$theta$$，使得可以拟合原数据集，则代价函数为：</p>
+<p><img src="http://deeplearning.stanford.edu/wiki/images/math/f/a/6/fa6565f1e7b91831e306ec404ccc1156.png" alt="Softmax-2"></p>
+<h1 id="假设函数"><a href="#假设函数" class="headerlink" title="假设函数"></a>假设函数</h1><p>对于给定的测试输入 <img src="http://deeplearning.stanford.edu/wiki/images/math/f/6/c/f6c0f8758a1eb9c99c0bbe309ff2c5a5.png" alt="\textstyle x">，我们想用假设函数针对每一个类别$$j$$  估算出概率值 <img src="http://deeplearning.stanford.edu/wiki/images/math/c/1/d/c1d5aaee0724f2183116cb8860f1b9e4.png" alt="\textstyle p(y=j | x)">。也就是说，我们想估计 <img src="http://deeplearning.stanford.edu/wiki/images/math/f/6/c/f6c0f8758a1eb9c99c0bbe309ff2c5a5.png" alt="\textstyle x"> 的每一种分类结果出现的概率。因此，我们的假设函数将要输出一个 <img src="http://deeplearning.stanford.edu/wiki/images/math/b/0/0/b0066e761791cae480158b649e5f5a69.png" alt="\textstyle k"> 维的向量（向量元素的和为1）来表示这 <img src="http://deeplearning.stanford.edu/wiki/images/math/b/0/0/b0066e761791cae480158b649e5f5a69.png" alt="\textstyle k"> 个估计的概率值。 具体地说，我们的假设函数 <img src="http://deeplearning.stanford.edu/wiki/images/math/8/8/7/887e72d0a7b7eb5083120e23a909a554.png" alt="\textstyle h_{\theta}(x)"> 形式如下：</p>
+<p><img src="http://deeplearning.stanford.edu/wiki/images/math/a/1/b/a1b0d7b40fe624cd8a24354792223a9d.png" alt="Softmax-3"></p>
+<p>其中 <img src="http://deeplearning.stanford.edu/wiki/images/math/f/d/9/fd93be6ab8e2b869691579202d7b4417.png" alt="\theta_1, \theta_2, \ldots, \theta_k \in \Re^{n+1}"> 是模型的参数。请注意 <img src="http://deeplearning.stanford.edu/wiki/images/math/a/a/b/aab84964dbe1a2f77c9c91327ea0d6d6.png" alt="\frac{1}{ \sum_{j=1}^{k}{e^{ \theta_j^T x^{(i)} }} } ">这一项对概率分布实际上进行归一化，使得所有概率之和为 1，这也是Softmax分类器的精髓。</p>
+<h1 id="代价函数"><a href="#代价函数" class="headerlink" title="代价函数"></a>代价函数</h1><p>回望Logistic Regression，我们的代价函数中，有$$(1-y^{i})$$和$$(y^i)$$原因就在于，y只能是0或者1，所以在计算代价的时候，能够用这种形式来去除不属于y=0或者1的结果。但是在Softmax中，y不只是等于0、1了，所以我们这样定义：</p>
+<p>在下面的公式中，<img src="http://deeplearning.stanford.edu/wiki/images/math/b/2/7/b279688f53460dc80e6a81235beee14d.png" alt="\textstyle 1\{\cdot\}"> 是示性函数，其取值规则为：</p>
+<p><img src="http://deeplearning.stanford.edu/wiki/images/math/2/5/4/25481caeef48c5fa12aa22988d931716.png" alt="\textstyle 1\{"> 值为真的表达式$$}=1$$， <img src="http://deeplearning.stanford.edu/wiki/images/math/2/5/4/25481caeef48c5fa12aa22988d931716.png" alt="\textstyle 1\{"> 值为假的表达式 <img src="http://deeplearning.stanford.edu/wiki/images/math/1/1/2/11274c6dbf36bae0b02acd07555f4ce7.png" alt="\textstyle \}=0">。举例来说，表达式 <img src="http://deeplearning.stanford.edu/wiki/images/math/6/8/1/68118d4cdfdbe134b420cc4031f3c46e.png" alt="\textstyle 1\{2+2=4\}"> 的值为1 ，<img src="http://deeplearning.stanford.edu/wiki/images/math/4/5/f/45f90c8f2e9a8d2f00dff993e45c9dbd.png" alt="\textstyle 1\{1+1=5\}">的值为 0。我们的代价函数为：</p>
+<p><img src="http://deeplearning.stanford.edu/wiki/images/math/7/6/3/7634eb3b08dc003aa4591a95824d4fbd.png" alt="Softmax-4"></p>
+<p>值得注意的是，上述公式是logistic回归代价函数的推广。logistic回归代价函数可以改为：</p>
+<p><img src="http://deeplearning.stanford.edu/wiki/images/math/5/4/9/5491271f19161f8ea6a6b2a82c83fc3a.png" alt="Softmax-5"></p>
+<p>可以看到，Softmax代价函数与logistic 代价函数在形式上非常类似，只是在Softmax损失函数中对类标记的 <img src="http://deeplearning.stanford.edu/wiki/images/math/b/0/0/b0066e761791cae480158b649e5f5a69.png" alt="\textstyle k"> 个可能值进行了累加。注意在Softmax回归中将 <img src="http://deeplearning.stanford.edu/wiki/images/math/f/6/c/f6c0f8758a1eb9c99c0bbe309ff2c5a5.png" alt="\textstyle x"> 分类为类别 <img src="http://deeplearning.stanford.edu/wiki/images/math/2/3/5/235c5146ab110558897640c34dad7d97.png" alt="\textstyle j"> 的概率为：</p>
+<p><img src="http://deeplearning.stanford.edu/wiki/images/math/a/2/e/a2e69ec139cdd4828130c175d990d4e3.png" alt="Softmax-6"></p>
+<p>对于 <img src="http://deeplearning.stanford.edu/wiki/images/math/c/e/0/ce027336c1cb3c0cd461406c81369ebf.png" alt="\textstyle J(\theta)"> 的最小化问题，目前还没有闭式解法。因此，我们使用迭代的优化算法（例如梯度下降法，或 L-BFGS），步骤和在LR中的一样。</p>
+<h1 id="参数冗余"><a href="#参数冗余" class="headerlink" title="参数冗余"></a>参数冗余</h1><p>Softmax有一个很神奇的特性，它存在参数冗余。什么意思呢？举个例子：</p>
+<p>假设我们从参数向量 <img src="http://deeplearning.stanford.edu/wiki/images/math/3/7/e/37e2eaf89c7b1f26381f438a0367099a.png" alt="\textstyle \theta_j"> 中减去了向量 <img src="http://deeplearning.stanford.edu/wiki/images/math/2/0/0/200d05b77b27ed6a0aa466165f660b64.png" alt="\textstyle \psi">，这时，每一个 <img src="http://deeplearning.stanford.edu/wiki/images/math/3/7/e/37e2eaf89c7b1f26381f438a0367099a.png" alt="\textstyle \theta_j"> 都变成了 <img src="http://deeplearning.stanford.edu/wiki/images/math/9/b/8/9b8020b23b66a91888062b4a9d8902c5.png" alt="\textstyle \theta_j - \psi">(<img src="http://deeplearning.stanford.edu/wiki/images/math/8/3/a/83aaa94ba392e98b15d29ed67fdaae12.png" alt="\textstyle j=1, \ldots, k">)。此时假设函数变成了以下的式子：</p>
+<p><img src="http://deeplearning.stanford.edu/wiki/images/math/d/8/0/d8076908fb40b49db821dc410b03700f.png" alt="Softmax-7"></p>
+<p>换句话说，从 <img src="http://deeplearning.stanford.edu/wiki/images/math/3/7/e/37e2eaf89c7b1f26381f438a0367099a.png" alt="\textstyle \theta_j"> 中减去 <img src="http://deeplearning.stanford.edu/wiki/images/math/2/0/0/200d05b77b27ed6a0aa466165f660b64.png" alt="\textstyle \psi"> 完全不影响假设函数的预测结果！这表明前面的 softmax 回归模型中存在冗余的参数。更正式一点来说， Softmax 模型被过度参数化了。对于任意一个用于拟合数据的假设函数，可以求出多组参数值，这些参数得到的是完全相同的假设函数 <img src="http://deeplearning.stanford.edu/wiki/images/math/3/2/b/32b8c2324fe254830c693b4e9a62cad6.png" alt="\textstyle h_\theta">。具体来说，如果参数 <img src="http://deeplearning.stanford.edu/wiki/images/math/6/b/8/6b8d6eff611b23105ff5876c348e19b2.png" alt="\textstyle (\theta_1, \theta_2,\ldots, \theta_k)"> 是代价函数 <img src="http://deeplearning.stanford.edu/wiki/images/math/c/e/0/ce027336c1cb3c0cd461406c81369ebf.png" alt="\textstyle J(\theta)"> 的极小值点，那么 <img src="http://deeplearning.stanford.edu/wiki/images/math/e/d/3/ed3ccb28d5145b361d3396fca429a751.png" alt="\textstyle (\theta_1 - \psi, \theta_2 - \psi,\ldots, \theta_k - \psi)"> 同样也是它的极小值点，其中 <img src="http://deeplearning.stanford.edu/wiki/images/math/2/0/0/200d05b77b27ed6a0aa466165f660b64.png" alt="\textstyle \psi"> 可以为任意向量。因此使 <img src="http://deeplearning.stanford.edu/wiki/images/math/c/e/0/ce027336c1cb3c0cd461406c81369ebf.png" alt="\textstyle J(\theta)"> 最小化的解不是唯一的。</p>
+<p>那我们可以直接把 <img src="http://deeplearning.stanford.edu/wiki/images/math/5/0/6/5068a95b00ca4021de31c92d1b9265eb.png" alt="\textstyle \psi = \theta_1"> 嘛，这样一来，原本是 <img src="http://deeplearning.stanford.edu/wiki/images/math/f/5/3/f538938bbd1f7000bcc2c9d990d53632.png" alt="\textstyle \theta_1">的地方就变成了$$0$$，式子简化了不少。</p>
+<p>接下来我们就利用参数冗余这个特点，来推导<strong>SR其实就是LR的普遍形式，LR是SR的分类数n=2时的特殊情况</strong>这个结论。</p>
+<p>当 <img src="http://deeplearning.stanford.edu/wiki/images/math/4/0/9/409483805c4d8c79f734a131d859b9f7.png" alt="\textstyle k = 2"> 时，softmax 回归的假设函数为：</p>
+<p><img src="http://deeplearning.stanford.edu/wiki/images/math/e/3/2/e32efab7bff7353e04775b030af0dae9.png" alt="Softmax-8"></p>
+<p>利用softmax回归参数冗余的特点，我们令 <img src="http://deeplearning.stanford.edu/wiki/images/math/5/0/6/5068a95b00ca4021de31c92d1b9265eb.png" alt="\textstyle \psi = \theta_1">，并且从两个参数向量中都减去向量 <img src="http://deeplearning.stanford.edu/wiki/images/math/f/5/3/f538938bbd1f7000bcc2c9d990d53632.png" alt="\textstyle \theta_1">，得到:</p>
+<p><img src="http://deeplearning.stanford.edu/wiki/images/math/b/8/1/b81d6e553283fadddbe29fe55226fb38.png" alt="Softmax-9"></p>
+<p>因此，用 <img src="http://deeplearning.stanford.edu/wiki/images/math/4/1/8/418c4d9ed2c50151474385a534eb3537.png" alt="\textstyle \theta&#39;">来表示<img src="http://deeplearning.stanford.edu/wiki/images/math/f/1/d/f1dd3fd83eddc4b396b62c33c8a637ac.png" alt="\textstyle \theta_2-\theta_1">，我们就会发现 softmax 回归器预测其中一个类别的概率为 <img src="http://deeplearning.stanford.edu/wiki/images/math/b/5/6/b56e13a98d2fe77d4bc5fd0c004befed.png" alt="\textstyle \frac{1}{ 1  + e^{ (\theta&#39;)^T x^{(i)} } }">，另一个类别概率的为 <img src="http://deeplearning.stanford.edu/wiki/images/math/4/e/3/4e3deb50277418cc3eb445aa9aa7ac46.png" alt="\textstyle 1 - \frac{1}{ 1 + e^{ (\theta&#39;)^T x^{(i)} } }">，这与 logistic回归是一致的。</p>
+<h1 id="SR与LR的使用场合"><a href="#SR与LR的使用场合" class="headerlink" title="SR与LR的使用场合"></a>SR与LR的使用场合</h1><p>SR与LR的使用场合区别在于，分类的对象是否互斥。举个例子：以前世界上只有男性、女性和阉人，那么我们就可以用SR来做分类，因为三者是互斥的，不可能有人既是男人又是女人，或者既是男人又是阉人。</p>
+<p>但是，若是依照奥巴马政府在“跨厕法”中提出的心理性别标准，即你生下来是男的，即使现在心理上认为自己是女性，就可以进女厕，反之亦然。那么一个人既可以是男性的女性，也可以是女性的男性，可能这个人前一段时间觉得自己是女性，后来又觉得自己是男性了。现在的类别包括：男性、女性、女性的男性、男性的女性，这四者不再互斥，那么我们就只能用4个LR来作区分。</p>
+<h1 id="Reference："><a href="#Reference：" class="headerlink" title="Reference："></a>Reference：</h1><p><a href="http://deeplearning.stanford.edu/wiki/index.php/Softmax回归" target="_blank" rel="noopener">Softmax回归</a><br><a href="http://scientificrat.com/2018/06/21/理解softmax分类器/" target="_blank" rel="noopener">理解softmax分类器</a></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">机器学习</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/09/08/Softmax-Regression/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Rational" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -835,85 +941,6 @@
 
 
   
-    <article id="post-AirSim搭建" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/06/03/AirSim搭建/">AirSim搭建</a>
-    </h1>
-  
-
-
-        
-        <a href="/2018/06/03/AirSim搭建/" class="archive-article-date">
-  	<time datetime="2018-06-02T16:44:25.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-03</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><img src="http://p7jklu86w.bkt.clouddn.com/AirSimDroneManual.gif" alt="record screenshot"></p>
-<p>先承接上文，双特生面试很惨淡，老师们一直让我说我对数据科学的理解、我在数据科学方面有何突出。双特生选拔的是川大金字塔尖的人才，我本就是打肿脸充胖子，不过在候考期间认识了易佬，总体而言，收获很大。</p>
-<p>最近加入了空天学院飞行模拟协会，本打算做基于增强学习的飞行器自动对战。因为微软的AirSim与我们的主题很契合，我们便打算将AirSim+Unreal作为实验平台。近期老师计划让我研究AirSim的接口，以便把P3D模型移植到Unreal中。至于为什么要用P3D作为模型，事情就很复杂了，在此不赘述。原本的初衷是在编程中学习机器学习，却发现大部分时间做的都是和机器学习无关的偏向于工程的事情，每天在自己完全不熟悉的地方疲于奔命，还是让人不舒服。但话说回来，我的工程能力很差，这次项目也一定会增强我的代码能力。其次，如果真如老师所说，只要将自动对战做出来就能发SCI，那我虽然撑死算是二作，也死而无憾了。<br>
-        
-          <a class="article-more-a" href="/2018/06/03/AirSim搭建/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">机器学习</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/06/03/AirSim搭建/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -1050,11 +1077,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">康德</a>
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+                <a href="javascript:void(0)" class="js-tag color3">康德</a>
               </li>
              
               <li class="article-tag-list-item">
