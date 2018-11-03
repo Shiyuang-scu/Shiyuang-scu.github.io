@@ -6,15 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives | ClowNaxcvd</title>
+  <title>Policy Gradient | ClowNaxcvd</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="ClowNaxcvd">
-<meta property="og:url" content="http://yoursite.com/archives/page/2/index.html">
+  <meta name="description" content="Reference： http://karpathy.github.io/2016/05/31/rl/ Reinforcement learning An introduction Policy gradient methods for reinforcement learning with function approximation. Q ：Policy Gradient和Q-Learning">
+<meta name="keywords" content="增强学习">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Policy Gradient">
+<meta property="og:url" content="http://yoursite.com/2018/11/03/Policy-Gradient/index.html">
 <meta property="og:site_name" content="ClowNaxcvd">
+<meta property="og:description" content="Reference： http://karpathy.github.io/2016/05/31/rl/ Reinforcement learning An introduction Policy gradient methods for reinforcement learning with function approximation. Q ：Policy Gradient和Q-Learning">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-11-03T11:55:36.851Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="ClowNaxcvd">
+<meta name="twitter:title" content="Policy Gradient">
+<meta name="twitter:description" content="Reference： http://karpathy.github.io/2016/05/31/rl/ Reinforcement learning An introduction Policy gradient methods for reinforcement learning with function approximation. Q ：Policy Gradient和Q-Learning">
   
     <link rel="alternative" href="/atom.xml" title="ClowNaxcvd" type="application/atom+xml">
   
@@ -148,393 +153,220 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-Policy-Gradient" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Policy Gradient
+    </h1>
+  
+
+
+        
+        <a href="/2018/11/03/Policy-Gradient/" class="archive-article-date">
+  	<time datetime="2018-11-03T11:50:36.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-03</time>
+</a>
+        
+      </header>
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Reference：</p>
+<p><a href="http://karpathy.github.io/2016/05/31/rl/" target="_blank" rel="noopener">http://karpathy.github.io/2016/05/31/rl/</a></p>
+<p><em><a href="https://morvanzhou.github.io/static/files/Reinforcement_learning_An_introduction.pdf" target="_blank" rel="noopener">Reinforcement learning An introduction</a></em></p>
+<p><em><a href="https://papers.nips.cc/paper/1713-policy-gradient-methods-for-reinforcement-learning-with-function-approximation.pdf" target="_blank" rel="noopener">Policy gradient methods for reinforcement learning with function approximation.</a></em></p>
+<p>Q ：<strong>Policy Gradient和Q-Learning的区别在于，前者直接选择动作，后者根据奖惩值选择动作。Q-Learning的方法，通俗点来说，就是哪个动作更有好处，就选择哪个。但是，</strong>PG在选择动作上的策略在本质上不也是因为这个动作更有好处吗？所以不还是需要一个类似奖惩值来供参考吗？</p>
+<p><strong>A：</strong>第一句话的后半句说得没错，但前半句就错了。PG和QL的区别在于，QL是基于贪婪算法的，具体地说，就是将每一个目标分成一个个小目标，只要把小目标做得好，大目标就做好了，所以QL做的是优化每一个小目标，而不管大目标怎么样；PG则倒过来，它不管小目标怎么样，他只关心大目标——只要大目标完成好了，之后就多多用完成大目标的这种方法，如果大目标完成不好，那这种方法就给它打入冷宫。</p>
+<h1 id="为什么是PG，而不是QL？"><a href="#为什么是PG，而不是QL？" class="headerlink" title="为什么是PG，而不是QL？"></a><em>为什么是PG，而不是QL？</em></h1><p>QL的输入是动作和状态，输出的是奖励值（评判在这种状态下做出这种动作是好是坏的分数），所以我们要把所有在该状态下可能的动作做一遍得到每个动作的奖励值，然后选择奖励值最大的（在该状态下最有利的动作）。因为这种性质，所以QL算法得到的策略不具有整体观——因为它选择的是每一个对当前状态最有利的行为。所以本质上QL也就是贪婪算法。</p>
+<p>PG的输入是状态，输出是动作，是端对端的算法，更加直观而且更具有整体性。PG就是先不管三七二十一，随机来个100套动作试一试，其中有的一套做得好，有的做得不好，这一套动作做得好，就加分，增加下次做这套动作的可能性；那一套动作做得不好，就扣分，下次就尽可能不做这套动作了。这样下来，训练量多了，就大概知道什么状态下该做什么了。</p>
+<h1 id="Pong-为例"><a href="#Pong-为例" class="headerlink" title="Pong 为例"></a>Pong 为例</h1><h1 id="Policy-Network-（模型）"><a href="#Policy-Network-（模型）" class="headerlink" title="Policy Network     （模型）"></a>Policy Network     <em>（模型）</em></h1><h1 id="Supervised-Learning-类比PG"><a href="#Supervised-Learning-类比PG" class="headerlink" title="Supervised Learning   类比PG"></a>Supervised Learning   <em>类比PG</em></h1><p>#Policy Gradient</p>
+<ul>
+<li><p>怎么找Label</p>
+</li>
+<li><p>Algorithm</p>
+</li>
+</ul>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="http://p7jklu86w.bkt.clouddn.com/alipay.jpg">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="http://p7jklu86w.bkt.clouddn.com/wepay.jpg">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/09/08/Softmax-Regression/" class="archive-article-date">
-  	<time datetime="2018-09-08T10:03:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-08</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/09/08/Softmax-Regression/">Softmax Regression</a>
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">机器学习</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">增强学习</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/11/03/Policy-Gradient/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/09/03/Rational/" class="archive-article-date">
-  	<time datetime="2018-09-02T16:12:07.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-03</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2018/10/20/Every-hero-and-coward/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Every hero and coward</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/09/03/Rational/">Rational</a>
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">周记</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#为什么是PG，而不是QL？"><span class="toc-number">1.</span> <span class="toc-text">为什么是PG，而不是QL？</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Pong-为例"><span class="toc-number">2.</span> <span class="toc-text">Pong 为例</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Policy-Network-（模型）"><span class="toc-number">3.</span> <span class="toc-text">Policy Network     （模型）</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Supervised-Learning-类比PG"><span class="toc-number">4.</span> <span class="toc-text">Supervised Learning   类比PG</span></a></li></ol>
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/08/06/贰-《SICP》笔记：模块化、对象和状态/" class="archive-article-date">
-  	<time datetime="2018-08-05T16:36:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-06</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/08/06/贰-《SICP》笔记：模块化、对象和状态/">贰 《SICP》笔记：模块化、对象和状态</a>
-    </h1>
-  
+        
+    </div>
+</aside>
 
 
-        <div class="article-info info-on-right">
-          
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/08/05/困倦/" class="archive-article-date">
-  	<time datetime="2018-08-04T16:00:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-05</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/08/05/困倦/">困倦</a>
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">周记</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/08/01/壹-《SICP》笔记：构造数据抽象/" class="archive-article-date">
-  	<time datetime="2018-07-31T16:14:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-01</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/08/01/壹-《SICP》笔记：构造数据抽象/">壹 《SICP》笔记：构造数据抽象</a>
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">学习</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/08/01/原爆点/" class="archive-article-date">
-  	<time datetime="2018-07-31T16:06:27.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-01</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/08/01/原爆点/">原爆点</a>
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">周记</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/07/23/零-《SICP》读书笔记：构造过程抽象/" class="archive-article-date">
-  	<time datetime="2018-07-23T09:11:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-23</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/07/23/零-《SICP》读书笔记：构造过程抽象/">零 《SICP》笔记：构造过程抽象</a>
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">学习</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/07/10/norms-or-maybe-more/" class="archive-article-date">
-  	<time datetime="2018-07-09T16:49:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-10</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/07/10/norms-or-maybe-more/">Norms or maybe more</a>
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">数学</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/07/06/颜色恒常性的几种基本算法/" class="archive-article-date">
-  	<time datetime="2018-07-06T13:43:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-06</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/07/06/颜色恒常性的几种基本算法/">颜色恒常性的几种基本算法</a>
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/06/25/事已至此/" class="archive-article-date">
-  	<time datetime="2018-06-24T18:31:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-25</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/06/25/事已至此/">事已至此</a>
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
   
-    </div></section>
   
 
-    
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/archives/">&laquo; Prev</a><a class="page-number" href="/archives/">1</a><span class="page-number current">2</span><a class="page-number" href="/archives/page/3/">3</a><a class="page-number" href="/archives/page/4/">4</a><a class="extend next" rel="next" href="/archives/page/3/">Next &raquo;</a>
-    </nav>
+  
+
+  
+    <section id="comments">
+      <div id="disqus_thread"></div>
+        <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'https-shiyuang-scu-github-io'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+      </script>
+      <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </section>
+  
+
   
 
 
@@ -558,8 +390,8 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: true,

@@ -150,6 +150,95 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Policy-Gradient" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/11/03/Policy-Gradient/">Policy Gradient</a>
+    </h1>
+  
+
+
+        
+        <a href="/2018/11/03/Policy-Gradient/" class="archive-article-date">
+  	<time datetime="2018-11-03T11:50:36.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-03</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Reference：</p>
+<p><a href="http://karpathy.github.io/2016/05/31/rl/" target="_blank" rel="noopener">http://karpathy.github.io/2016/05/31/rl/</a></p>
+<p><em><a href="https://morvanzhou.github.io/static/files/Reinforcement_learning_An_introduction.pdf" target="_blank" rel="noopener">Reinforcement learning An introduction</a></em></p>
+<p><em><a href="https://papers.nips.cc/paper/1713-policy-gradient-methods-for-reinforcement-learning-with-function-approximation.pdf" target="_blank" rel="noopener">Policy gradient methods for reinforcement learning with function approximation.</a></em></p>
+<p>Q ：<strong>Policy Gradient和Q-Learning的区别在于，前者直接选择动作，后者根据奖惩值选择动作。Q-Learning的方法，通俗点来说，就是哪个动作更有好处，就选择哪个。但是，</strong>PG在选择动作上的策略在本质上不也是因为这个动作更有好处吗？所以不还是需要一个类似奖惩值来供参考吗？</p>
+<p><strong>A：</strong>第一句话的后半句说得没错，但前半句就错了。PG和QL的区别在于，QL是基于贪婪算法的，具体地说，就是将每一个目标分成一个个小目标，只要把小目标做得好，大目标就做好了，所以QL做的是优化每一个小目标，而不管大目标怎么样；PG则倒过来，它不管小目标怎么样，他只关心大目标——只要大目标完成好了，之后就多多用完成大目标的这种方法，如果大目标完成不好，那这种方法就给它打入冷宫。</p>
+<h1 id="为什么是PG，而不是QL？"><a href="#为什么是PG，而不是QL？" class="headerlink" title="为什么是PG，而不是QL？"></a><em>为什么是PG，而不是QL？</em></h1><p>QL的输入是动作和状态，输出的是奖励值（评判在这种状态下做出这种动作是好是坏的分数），所以我们要把所有在该状态下可能的动作做一遍得到每个动作的奖励值，然后选择奖励值最大的（在该状态下最有利的动作）。因为这种性质，所以QL算法得到的策略不具有整体观——因为它选择的是每一个对当前状态最有利的行为。所以本质上QL也就是贪婪算法。</p>
+<p>PG的输入是状态，输出是动作，是端对端的算法，更加直观而且更具有整体性。PG就是先不管三七二十一，随机来个100套动作试一试，其中有的一套做得好，有的做得不好，这一套动作做得好，就加分，增加下次做这套动作的可能性；那一套动作做得不好，就扣分，下次就尽可能不做这套动作了。这样下来，训练量多了，就大概知道什么状态下该做什么了。</p>
+<h1 id="Pong-为例"><a href="#Pong-为例" class="headerlink" title="Pong 为例"></a>Pong 为例</h1><h1 id="Policy-Network-（模型）"><a href="#Policy-Network-（模型）" class="headerlink" title="Policy Network     （模型）"></a>Policy Network     <em>（模型）</em></h1><h1 id="Supervised-Learning-类比PG"><a href="#Supervised-Learning-类比PG" class="headerlink" title="Supervised Learning   类比PG"></a>Supervised Learning   <em>类比PG</em></h1><p>#Policy Gradient</p>
+<ul>
+<li><p>怎么找Label</p>
+</li>
+<li><p>Algorithm</p>
+</li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">增强学习</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/11/03/Policy-Gradient/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Every-hero-and-coward" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -856,85 +945,6 @@
 
 
   
-    <article id="post-Softmax-Regression" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/09/08/Softmax-Regression/">Softmax Regression</a>
-    </h1>
-  
-
-
-        
-        <a href="/2018/09/08/Softmax-Regression/" class="archive-article-date">
-  	<time datetime="2018-09-08T10:03:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-08</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><img src="http://p7jklu86w.bkt.clouddn.com/Softmax-0.jpg" alt="Softmax-0"></p>
-<h1 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract"></a>Abstract</h1><p><em>Softmax Regression是Logistic Regression的推广</em></p>
-<p><em>LR能做的是区分两类，而SR则能区分n类，虽然两者的本质都是线性的</em></p>
-        
-          <a class="article-more-a" href="/2018/09/08/Softmax-Regression/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">机器学习</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/09/08/Softmax-Regression/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -1059,7 +1069,7 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">机器学习</a>
+                <a href="javascript:void(0)" class="js-tag color5">增强学习</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1071,15 +1081,19 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">机器学习</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">康德</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">随笔</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Java</a>
               </li>
              
               <li class="article-tag-list-item">
