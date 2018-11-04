@@ -6,19 +6,27 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>A Review of Brian - Inspired Computer Vision | ClowNaxcvd</title>
+  <title>计算机组成与体系结构 | ClowNaxcvd</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="AbstractVision is the most important way for us to getexternal information. Understanding the information processing mechanism of thebiological visual system can help us to better understand how the b">
+  <meta name="description" content="[TOC] 小小的复习笔记">
 <meta property="og:type" content="article">
-<meta property="og:title" content="A Review of Brian - Inspired Computer Vision">
-<meta property="og:url" content="http://yoursite.com/2018/02/12/A Review of Brian - Inspired Computer Vision /index.html">
+<meta property="og:title" content="计算机组成与体系结构">
+<meta property="og:url" content="http://yoursite.com/2018/11/04/Memory/index.html">
 <meta property="og:site_name" content="ClowNaxcvd">
-<meta property="og:description" content="AbstractVision is the most important way for us to getexternal information. Understanding the information processing mechanism of thebiological visual system can help us to better understand how the b">
+<meta property="og:description" content="[TOC] 小小的复习笔记">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-04-30T16:57:51.967Z">
+<meta property="og:image" content="https://tse1.mm.bing.net/th?id=OIP.ZX4-PKKOP8SI9qubOrXDcwAAAA&pid=Api">
+<meta property="og:image" content="http://p7jklu86w.bkt.clouddn.com/ISA-1.png">
+<meta property="og:image" content="http://p7jklu86w.bkt.clouddn.com/Memory-2.png">
+<meta property="og:image" content="https://wdxtub.com/images/14612628563878.jpg">
+<meta property="og:image" content="https://wdxtub.com/images/14612633441722.jpg">
+<meta property="og:image" content="http://p7jklu86w.bkt.clouddn.com/Memory-1.png">
+<meta property="og:image" content="https://wdxtub.com/images/14612642281687.jpg">
+<meta property="og:updated_time" content="2018-11-04T09:25:39.358Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="A Review of Brian - Inspired Computer Vision">
-<meta name="twitter:description" content="AbstractVision is the most important way for us to getexternal information. Understanding the information processing mechanism of thebiological visual system can help us to better understand how the b">
+<meta name="twitter:title" content="计算机组成与体系结构">
+<meta name="twitter:description" content="[TOC] 小小的复习笔记">
+<meta name="twitter:image" content="https://tse1.mm.bing.net/th?id=OIP.ZX4-PKKOP8SI9qubOrXDcwAAAA&pid=Api">
   
     <link rel="alternative" href="/atom.xml" title="ClowNaxcvd" type="application/atom+xml">
   
@@ -152,90 +160,134 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-A Review of Brian - Inspired Computer Vision " class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-Memory" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      A Review of Brian - Inspired Computer Vision
+      计算机组成与体系结构
     </h1>
   
 
 
         
-        <a href="/2018/02/12/A Review of Brian - Inspired Computer Vision /" class="archive-article-date">
-  	<time datetime="2018-02-11T16:32:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-02-12</time>
+        <a href="/2018/11/04/Memory/" class="archive-article-date">
+  	<time datetime="2018-11-04T09:09:19.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-04</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract"></a>Abstract</h1><p>Vision is the most important way for us to getexternal information. Understanding the information processing mechanism of thebiological visual system can help us to better understand how the brain works.</p>
-<p>Humanvisual system has perfect capability for visual information processing and itsintelligence outperforms the best current computer vision system. Therefore, buildingbrain-inspired methods to improve computer Vision applications has attracted seriousconcern. </p>
-<p>Althoughthe research of computer vision has made a great progress in recent years,there are still a wide gap between computer visual system and human visionexcept some specific visual assignment, such as target recognition in specific imagelibrary. [1]</p>
-<p>Thisthesis will address a series of research status related to the brain-computervision in the world.</p>
-<p><strong>Keywords</strong>：visual perception   brain-computer vision<br><a id="more"></a></p>
-<h1 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h1><p>Visionis the most important way for us to get external information. Understanding theinformation processing mechanism of the biological visual system can help us tobetter understand how the brain works.</p>
-<p>On the other hand,a large number of information acquisition and processing in the field ofartificial intelligence also depends on the visual signals like video, image and so on. The ultimate goal ofcomputer vision is to establish a visual information processing system asintelligent as biological visual system which can help artificial intelligencesystem to complete the visual signal acquisition and analysis. With thedevelopment of Internet technology, the amount of data which is based on visionis also growing sharply. It includes the photographs taken by mobile phone, thedifferent kinds of video acquired by surveillance equipment, etc. Coding andstoring these massive data effectively as well as mining useful information amajor challenge that computer science faces now. It is hoped that the computercan efficiently feel and understand the world, and be able to handle thecomplex visual information like human beings which sets higherrequirements to all kinds of algorithms of visualinformation processing. Constructing a visual-perception computer is anextremely difficult process which needs to build three-dimensional physicalreal scenes from the two-dimensional image. People, however, can easily finishthese tasks. Although the research of computer vision hasmade a great progress in recent years, there are still a wide gap betweencomputer visual system and human vision except some specific visual assignment,such as target recognition in specific image library.[1]</p>
-<p>Currently,the research of vision mainly includes two fields: one is the visualneuroscience for studying the mechanism of information processing of visualsystem; another is computer vision that aims at developing visual informationprocessing method. Neuroscientists concentrates more on the study of neural mechanismof visual information process. About 70% of the information that the brainreceives comes from the visual system, while nearly 40% of the neurons in thebrain are involved in the processing of visual information. At the same time,the biological visual information processing is not carried out in isolation,it is closely related to the advanced cognitive process, such as learning andmemory. Therefore, vision is an important access point and a part of brain science research. In recentdecades, neuroscientists have studied systematically the vision from differentangles and levels, such as neuron level, neural network level, cognition,behavior and so on, and has accumulated rich research data. In order toeffectively integrate experimental data from different levels, computationalneuroscientist, by means of computational modeling from the basic function ofeach level, explore the calculation mode of visual information processing</p>
-<p>Visualperception refers to the process of perceiving and understanding the scene byprocessing the information from the external environment by the visual system.The vision system of intelligent beings is a very complex and efficientinformation processing system. It can achieve a series assignments fast andaccurately like image acquisition, detection of objects in images, andperception of distance, relationship and movement of objects.</p>
-<p>Human visual systemhas perfect capability for visual information processing and its intelligenceoutperforms the best current computer vision system. Therefore, buildingbrain-inspired methods to improve computer Vision applications has attractedserious concern. </p>
-<p>This thesis will addressa series of research status related to the brain-computer vision in the world.</p>
-<h1 id="The-status-quo-of-brain-inspired-computer-vision"><a href="#The-status-quo-of-brain-inspired-computer-vision" class="headerlink" title="The status quo of brain-inspired computer vision"></a>The status quo of brain-inspired computer vision</h1><p>Thehuman brain is the most efficient information processing system that we haveknown in the world, but we know little about the brain’s information processingmechanism. At present, the scientific research on the brain is the forefront ofnatural science and is also one of the biggest challenges of human itself.Therefore, exploring the mechanism of the brain will make the human moreprofoundly know itself. At the same time, simulating the mechanism of brain anddeveloping intelligent information processing system will boost not only thedevelopment of information industry but a new technological revolution inrecent years. Europe and the United States have put forward the strategic brainresearch program, its key content includes simulating computing pattern of thebrain and developing brain-technique. In the recent years, Chinese brain projectis also put forward. Brian-Inspired computing has become a hot research topicin the field of artificial intelligence.</p>
-<p>Atpresent, the efficiency of intelligent information processing in biologicalvisual system (especially the visual system of the higher animals) is farsuperior to any computer vision system existing. As a result, the researchersbegan to consider introducing mechanism of biological visual informationprocessing to develop new computer vision algorithm. In this paper,<a href=""> Brain-Inspired Computer Vision</a> means developing homologouscomputer algorithms to perform relevant image processing or visual tasks likeimage enhancement image segmentation target detection and so on by learning thebiological visual information processing mechanism. The inspiration frombiological vision often provides a simple and efficient solution for manycomputer vision problems. Currently, the experimental study on the mechanism offront-end vision has achieved rich results and scientists also has a thoroughunderstanding about the information processing mechanism. However, themechanism of advanced visual information processing still remains a mystery.Therefore, the research of brain-inspired computer vision started from theprimary visual task and the front-end visual system.</p>
-<p>In1970s, Marr put forward the theory of visual computing [4] based on theachievements of research for vision mechanism in the field of psychophysics,neurophysiology and clinical neurology. Marr systematically studied the problemof visual information processing from two aspects: visual representation andvisual processing. And he described the process of visual informationprocessing from three levels: computing theory, computing algorithm andhardware implementation. Marr believed that the human visual system combinesthe various visual representations of the image organically to form theperception of the target and the understanding of the scene. The visualcomputing theory holds that the three stages of vison’s formation include theestablishment of the primal sketch, the establishment of the 2.5-dimensionalsketch and the formation of the three-dimensional target characterization.Although the theory is not perfect (only established theoretically whichignores the work of feedback mechanism), but was established for the first timefrom the visual image information derived from the frame structure of theoutside world, which greatly promoted the development of computer visionresearch</p>
-<p>Atypical example of brain-inspired computer vision is Retinex theory [5, 6], atheory that put forward by Land who simulated the retina and visual cortexmechanism in 1960s. The key idea is that the ability people perceive the colorand brightness are not only absolutely depend on the light form the position theystand, but also the color and brightness around them. Based on Land’s Retinextheory, Jobson developed Single-scale Retinex algorithm [7] and Multi-scaleRetinex algorithm [8] successively, and those algorithms have been successfullyapplied to image processing tasks such as image intensification and colorconstancy. In addition, the idea about realizing the adaption in bright or darkenvironment by using cone cells and rod cells is also widely used in imageintensification and high dynamic range image processing [9 – 11].</p>
-<p>Besides,in primary visual processing, biological visual receptive field model has beenwidely used in various image processing tasks. For example, the receptive fieldmodel based on the mechanism of the retina and the LGN neurons can be used forcolor correction, enhancing visibility of hazy images [12] [13] and othervisual tasks. And the computing model based on the properties of primary visualcortex receptive field has been successfully applied to image texture analysis aswell as contour detection [14] [15]. Recently, Wei and other scientists establishedretinal neural circuit model. Such model is used to describe the image feature[16, 17]. It was found that the image characteristics encoded by this model canimprove the performance of senior visual task (such as image segmentation,target recognition, etc.). By simulating the mechanism of color opponent-process receptive field, Zhang withhis team established the color character description method which alsosignificantly improves the performance of contour detection and targetrecognition system [18]. In addition, based on the rattlesnake’s receptivefield mechanism of optical information and of the infrared signal, the receptivefield model established by Waxman’s team can be used in optical image andinfrared image in low light environment [19]</p>
-<p>Anothersuccessful example is selective attention model. Visual selective attention is animportant means to implement the coding of visual information effectively [2][20]. Based on the feature integration theory put forward by Treisman, Itti’svisual selective attention model has been widely used in the field of imageprocessing [24] [21]. For instance, in JPEG2000 image compression method, usingselective attention model can compressed image and at the same time as much aspossible to retain the important area of image [21]. Selective attention model promotesthe development of advanced computer vision algorithms, such as targetrecognition [25]. Recent research applied saliency model to analysing thebehavior of the autistics [26], which helps people to understand the mechanismof the autistic disorder and provide supplementary treatment of this disease. Saliencycomputing model was also used to analyze the driver’s behavior which hasimportant reference value for the design of self-driving systems [27]. At the same time, visual perception process based on the Gestaltprinciples (Gestalt) or topological perception theory provides a new insightinto the development ofintelligent target perception algorithm [3].</p>
-<p>In termsof advanced vision tasks, Poggio and other people put forward HMAX models basedon hierarchical information processing model of vision system which achievegood performance in target recognition tasks of complex scenes [28, 29]. The deeplearning algorithm which is successfully applied in the field of computervision, to some extent, is also using the hierarchical processing method ofvisual system [30 - 34]. Among them, the weights sharing mechanism of convolutionalneural network is also similar to visual receptive field’s. Convolutioncomputing and pool operation in the convolution neural network are directlyinspired by the way of information processing in the visual system of simplecells and complex cell. What is more, the overall structure of convolutionalneural network is similar to the visual processing structure from visualpathway in the cortex such as LGN-V1-V2-V4-IT [34]. </p>
-<p>At thesame time, the related research is also of great significance to understandingthe computing mode of the brain. With the development of the research onmechanism of the brain, researchers began to consider using a computer to simulatethe brain function and behavior [35]. Recently, Eliasmith and other people putsforward a brain computing model consists of 2.5 million simulated neurons [36].This model can implement multiple vision and learning tasks. The simulation tothe whole brain based on the great progress of early visual model study. Thosecomputing models have irreplaceable scientific value in explaining the braininformation processing mechanism. At the same time, on account of theachievements in the field of cognitive science, developing new computationallearning theories is an important part of artificial intelligence. This paperfocuses on the vision problems in brain-inspired computing, and other parts ofit is beyond the research scope of this paper for which I will introduce littlein this paper.</p>
-<h1 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h1><p>Over thepast few decades, especially in the past 10 years, the neuroscience hasobtained the very rapid development. Now we have accumulated a wealth ofknowledge for the working principle of the brain, this provides an importantbiological basis for the development of brain-inspired computer vision. But as forthe mechanism of how neurons with relatively simple function are organizedthrough the network, there are still many problems remain to be resolved.</p>
-<p>Thebrain is a complex network consists of nearly billions of neurons. The materialbasis of the implement of feeling, working and other brain functions is orderlytransmission and processingof information in this hugenetwork.</p>
-<p>In thefield of algorithms, many people worry about how to create algorithms forbrain-inspired computing when we know little about the working principles of brain.However, the multi-layer and step processing structure in the brain, especiallythe visual pathway, is the basic knowledge that has been acquired inneuroscience. This suggests that we do not have to fully understand theprinciples of the brain to study the algorithms of the brain. On the contrary,what is really enlightening is probably a relatively basic principle. Some ofthese principles may have been known by brain scientists, while others may yetbe discovered. Every basic principle and its successful application inartificial information processing system may bring about progress in brain computingresearch. It is very important that this process of discovering andtransforming   can not only promote the development of theartificial intelligence, but also be synchronized to deepen our understandingof how can information be so effective in dealing with the issue about why thebrain [37], thus forming a virtuous circle of a brain science and artificialintelligence technology to promote each other.</p>
-<p>Thebrain-inspired computer vision is the highly cross and fusion of life sciences,especially brain science and information technology. The technology includesunderstanding the brain’s visual information processing principle, and developa new algorithm on this basis, and apply it to a new generation of artificialintelligence, human-computer interaction and other fields. Brain-inspiredcomputer vision technology is expected to enable artificial vision informationprocessing system to produce a visual information processing system that is similarto human brain at very low energy consumption. Many people believe that thesubstantial progress in this direction will actually open the prelude to theintelligent revolution and bring a profound change to the social production andlife [38].</p>
-<h1 id="References"><a href="#References" class="headerlink" title="References"></a>References</h1><p> [1] K. He, X. Zhang, S.Ren, et al. Delving deep into rectifiers: Surpassing human-level performance onImage Net classification[C]. IEEE International Conference on Computer Vision,Santiago, Chile,2015,1026–1034</p>
-<p>[2] J. K. Tsotsos, S. M. Culhane, W. Y. K. Wai, et al. Modelingvisual attention via selective tuning[J]. Artificial Intelligence, 1995,78(1):507–545</p>
-<p>[3] L. Chen. The topological approach to perceptualorganization[J]. Visual Cognition, 2005,12(4):553–637</p>
-<p>[4] D. Marr. 视觉计算理论[M]. 科学出版社, 1988</p>
-<p>[5] E. H. Land, J. J. Mc Cann. Lightness and retinex theory[J].Journal of the Optical Society of America, 1971, 61(1):1–11</p>
-<p>[6] E. H. Land. An alternative technique for the computation ofthe designator in the retinex theory of color vision[J]. Proceedings of theNational Academy of Sciences, 1986, 83(10):3078–3080</p>
-<p>[7] R. Zia. Properties of a center/surround Retinex: part 1.signal processing design[J]. NASA Langley Technical Report Server, 1995</p>
-<p>[8] D. J. Jobson, Z.-u. Rahman, G. A. Woodell. A multiscaleretinex for bridging the gap between color images and the human observation ofscenes[J]. IEEE Transactions on Image Processing,1997, 6(7):965–976</p>
-<p>[9] K. Devlin. A review of tone reproduction techniques[J].Computer Science, University of Bristol, Technical Report CSTR-02-005, 2002</p>
-<p>[10] S. N. Pattanaik, J. Tumblin, H. Yee, et al. Time-dependentvisual adaptation for fast realistic image display[C]. IEEE Conference onComputer Graphics and Interactive Techniques, New Orleans, USA, 2000, 47–54</p>
-<p>[11] P. Vangorp, K. Myszkowski, E. W. Graf, et al. A model oflocal adaptation[J]. ACM Transactions on Graphics, 2015, 34(6):166:1–13</p>
-<p>[12] X.-S. Zhang, S.-B. Gao, R.-X. Li, et al. A Retinal MechanismInspired Color Constancy Model[J]. IEEE Transactions on Image Processing, 2016,25(3):1219–1232</p>
-<p>[13] X.-S. Zhang, S.-B. Gao, C.-Y. Li, et al. A Retina InspiredModel for Enhancing Visibility of Hazy Images[J]. Frontiers in ComputationalNeuroscience, 2015, 9:151,1–13</p>
-<p>[14] N. Petkov, M. A. Westenberg. Suppression of contourperception by band-limited noise and its relation to nonclassical receptivefield inhibition[J]. Biological Cybernetics, 2003, 88(3):236–246</p>
-<p>[15] J. Malik, P. Perona. Preattentive texture discrimination withearly vision mechanisms[J]. Journal of the Optical Society of America A:Optics, Vision and Image Science, 1990, 7(5):923–932</p>
-<p>[16] D. Weng, Y. Wang, M. Gong, et al. DERF: Distinctive EfficientRobust Features From the Biological Modeling of the P Ganglion Cells[J]. IEEETransactions on Image Processing, 2015,24(8):2287–2302</p>
-<p>[17] H. Wei, Q. Zuo. A biologically inspired neurocomputingcircuit for image representation[J]. Neurocomputing, 2015, 164:96–111</p>
-<p>[18] J. Zhang, Y. Barhomi, T. Serre. A new biologically inspiredcolor image descriptor[C]. European Conference on Computer Vision, Florence,Italy, 2012, 312–324</p>
-<p>[19] A. M. Waxman, A. N. Gove, D. A. Fay, et al. Color nightvision: opponent processing in the fusion of visible and IR imagery[J]. NeuralNetworks, 1997, 10(1):1–6</p>
-<p>[20] A. M. Treisman, G. Gelade. A feature-integration theory ofattention[J]. Cognitive Psychology,1980, 12(1):97–136</p>
-<p>[21] C. Christopoulos, A. Skodras, T. Ebrahimi. The JPEG2000 stillimage coding system: an</p>
-<p>overview[J]. IEEE Transactions on Consumer Electronics, 2000,46(4):1103–1127</p>
-<p>[22] L. Itti, C. Koch, E. Niebur. A model of saliency-based visualattention for rapid scene analysis[J]. IEEE Transactions on Pattern Analysisand Machine Intelligence, 1998(11):1254–1259</p>
-<p>[23] A. Borji, L. Itti. State-of-the-art in visual attentionmodeling[J]. IEEE Transactions on Pattern Analysis and Machine Intelligence,2013, 35(1):185–207</p>
-<p>[24] A. Borji, M.-M. Cheng, H. Jiang, et al. Salient objectdetection: A survey[J]. ar Xiv preprint ar Xiv:1411.5878, 2014</p>
-<p>[25] U. Rutishauser, D. Walther, C. Koch, et al. Is bottom-upattention useful for object recogni-tion?[C]. IEEE Conference on ComputerVision and Pattern Recognition, Washington, USA,2004, 37–44</p>
-<p>[26] S. Wang, M. Jiang, X. M. Duchesne, et al. Atypical VisualSaliency in Autism Spectrum Disorder</p>
-<p>Quantified through Model-Based Eye Tracking[J]. Neuron, 2015,88(3):604–616</p>
-<p>[27] T. Deng, A. Chen, M. Gao, et al. Top-down based saliencymodel in traffic driving environment[C]. IEEE International Conference onIntelligent Transportation Systems, Qingdao, China,2014, 75–80</p>
-<p>[28] M. Riesenhuber, T. Poggio. Hierarchical models of objectrecognition in cortex[J]. Nature Neuroscience, 1999, 2(11):1019–1025</p>
-<p>[29] T. Serre, L. Wolf, S. Bileschi, et al. Robust objectrecognition with cortex-like mechanisms[J].IEEE Transactions on PatternAnalysis and Machine Intelligence, 2007, 29(3):411–426</p>
-<p>[30] G. E. Hinton. What kind of graphical model is the brain?[C].International Joint Conference on Artificial Intelligence, Edinburgh, UK,1765–1775</p>
-<p>[31] G. E. Hinton, S. Osindero, Y.-W. Teh. A fast learningalgorithm for deep belief nets[J]. Neural Computation, 2006, 18(7):1527–1554</p>
-<p>[32] G. E. Hinton, R. R. Salakhutdinov. Reducing thedimensionality of data with neural networks[J]. Science, 2006,313(5786):504–507</p>
-<p>[33] Y. Bengio, A. Courville, P. Vincent. Representation learning:A review and new perspectives[J]. IEEE Transactions on Pattern Analysis andMachine Intelligence, 2013, 35(8):1798–1828</p>
-<p>[34] Y. Le Cun, Y. Bengio, G. Hinton. Deep learning[J]. Nature,2015, 521(7553):436–444</p>
-<p>[35] C. K. Machens, et al. Building the human brain[J]. Science,2012, 338(6111):1156–1157</p>
-<p>[36] C. Eliasmith, T. C. Stewart, X. Choo, et al. A large-scalemodel of the functioning brain[J]. Science, 2012, 338(6111):1202–1205</p>
-<p>[37]Yamins D L K, DiCarlo J J. Using goal-driven deep learning models to understandsensory cortex[J]. Nature Neuroscience, 2016, 19: 356-365.</p>
-<p>[38]Bostrom N. Superintelligence[M]. New York: Oxford University Press, 2014.</p>
+        <p>[TOC]</p>
+<p>小小的复习笔记</p>
+<p><img src="https://tse1.mm.bing.net/th?id=OIP.ZX4-PKKOP8SI9qubOrXDcwAAAA&amp;pid=Api" alt=""></p>
+<a id="more"></a>
+<h1 id="ISA"><a href="#ISA" class="headerlink" title="ISA"></a>ISA</h1><p>本章讨论指令系统体系结构。</p>
+<p>最开始的一件事，在创造指令前，我们需要给他安个家：指令要存在哪儿？要怎么存？这就涉及到CPU的数据存储的体系结构。</p>
+<p>其次，家找好了，一心一意给造指令吧。我们必须要规定指令的格式，包括指令类型、指令长度、指令顺序。</p>
+<p>指令自己的格式指定好了，接下来就要明确指令如何在数据上发生作用，而要发生作用，首先得取得数据，而取得数据，不能单纯在指令地址域指定数值大小，你总得找一个地方把过程数据、结果数据储存起来，这就涉及到寻找数据的存储器地址。寻址方式，我们就可以想到：1.直接寻址；2.立刻寻址；3.间接寻址；4.变址寻址和基址寻址。</p>
+<p>所有事情都做好了，我们会开始思考，能不能让指令执行起来更有效率？这就引出了流水线的概念。</p>
+<p><img src="http://p7jklu86w.bkt.clouddn.com/ISA-1.png" alt="ISA-1"></p>
+<h2 id="寻址方式"><a href="#寻址方式" class="headerlink" title="寻址方式"></a>寻址方式</h2><ul>
+<li>immediate addressing</li>
+<li>direct addressing</li>
+</ul>
+<p>在指令中直接指定所需要的数据在存储器中的地址。</p>
+<ul>
+<li>indirect addressing</li>
+</ul>
+<p>地址的地址：指令地址域中所指的是一个存储器地址，这个存储器地址指向的数据是存储着所需数据的存储器地址。</p>
+<ul>
+<li>indexed addressing</li>
+</ul>
+<p>变址寻址需要额外一个变址寄存器，其中存有偏移量（Displacement），而指令地址域是基地址，数据的地址是两者相加。</p>
+<ul>
+<li>based addressing</li>
+</ul>
+<p>基址寻址，首先需要一个基址寄存器，存储基址，而指令地址域则是一个偏移量。</p>
+<p><strong>其中，最后两种本质上是相同的，形式上不同而已。</strong></p>
+<h2 id="流水线"><a href="#流水线" class="headerlink" title="流水线"></a>流水线</h2><p>加速比：K</p>
+<h2 id="指令格式"><a href="#指令格式" class="headerlink" title="指令格式"></a>指令格式</h2><h3 id="大、小端"><a href="#大、小端" class="headerlink" title="大、小端"></a>大、小端</h3><p>大端：符号位在放在首位，很容易判断正负；</p>
+<p>小端：强制转换数据不需要调整字节内容。</p>
+<h3 id="扩展操作码"><a href="#扩展操作码" class="headerlink" title="扩展操作码"></a>扩展操作码</h3><p>我们想，应该给操作码opcode多少空间？给得太长，操作码数量会变得丰富，但空间利用率不高；给得太小，效率挺高，但指令数量就变少了；我们给一个灵活的可变大变小的空间吧，译码又会很麻烦。我们想到Expanding Opcode，相当于可变长的操作码，思想一般是：给指令一个固定的空间，首先最好取短操作码，这时候操作数的空间就变多了，我们可以用多个操作数，来简化操作码的数量，如果需要更多的操作码，我们就expand opcode，压缩操作数。</p>
+<h2 id="操作数"><a href="#操作数" class="headerlink" title="操作数"></a>操作数</h2><ul>
+<li><p>Reverse Polish Notation / Postfix Notation</p>
+</li>
+<li><p>操作数数量对指令的影响</p>
+</li>
+</ul>
+<h2 id="CPU数据存储"><a href="#CPU数据存储" class="headerlink" title="CPU数据存储"></a>CPU数据存储</h2><ul>
+<li>堆栈体系结构</li>
+<li><p>寄存器体系结构</p>
+</li>
+<li><ul>
+<li>MARIE</li>
+</ul>
+</li>
+<li><p>通用寄存器体系结构</p>
+</li>
+<li><ul>
+<li>memory-memory</li>
+<li>register-memory</li>
+<li><ul>
+<li>X86</li>
+</ul>
+</li>
+<li>load-store</li>
+<li><ul>
+<li>MISP</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="Cache"><a href="#Cache" class="headerlink" title="Cache"></a>Cache</h1><h2 id="Memory-Hierarchy"><a href="#Memory-Hierarchy" class="headerlink" title="Memory Hierarchy"></a>Memory Hierarchy</h2><p>首先我们看到存储器的层次结构，可以发现是呈现金字塔状的，为什么呢？因为一种介质的速度越快，就会越贵，同时也消耗更多的电量，所以一般容量比较小。而 CPU 和内存之间的速度差距越来越大，所以好的程序都会尽可能利用局部性。而根据这些特性，引申出了安排存储的方式，称为金字塔式存储体系(Memory Hierarch)。</p>
+<p><img src="http://p7jklu86w.bkt.clouddn.com/Memory-2.png" alt="Memory-2"></p>
+<p>这里就涉及到一个技术：缓存。缓存可以看作是把大且缓慢的设备中的数据的一部分拿出来存储到其中的更快的存储设备。由<strong>局部性原理</strong>，CPU会更倾向于访问第 k 层的数据，而非第 k+1 层，这样就减少了访问时间。</p>
+<p>举个例子，CPU取值的时候，会首先到L1Cache中找，找不到的话，就到L2Cahche中找，如果找到了，就取那一大块的数据放到L1Cache中去，然后再从L1Cache取想要的数据。为什么要取一大块放进L1Cache里而不是直接取需要的数据到CPU呢？这是因为程序往往会使用相同区域内的数据，而且程序往往会重复使用某些数据，所以直接取一大块，这一大块数据有很大可能是程序需要的大部分数据，所以CPU就不需要每次都去L2Cache找数据了。</p>
+<p>注意，缓存是一个<strong>相对概念</strong>，在金字塔式存储体系中，<strong>每一层都可以看作是下一层的缓存</strong>。而高速缓存一般指的是L1Cache，L1集成在CPU中。</p>
+<h2 id="地址"><a href="#地址" class="headerlink" title="地址"></a>地址</h2><p>CPU对数据的操作首先是要得到这个数据，而得到这个数据就得知道这个数据在哪儿，要知道这个数据在哪儿，就得知道这个数据的地址。所以接下来我们说说数据地址。</p>
+<p>我们由前面可知，CPU取指–译指—执行，在译址过程中，会生成一个主存储器地址，但是我们知道，CPU是去Cache中取数据的，所以怎么用主存地址去Cache中找数据呢？而且，Cache的空间肯定比主存空间小，怎么把主存的每一个地址表示在Cache中呢？</p>
+<h3 id="Cache的内部设计"><a href="#Cache的内部设计" class="headerlink" title="Cache的内部设计"></a>Cache的内部设计</h3><p>我们先来看看Cache的内部结构是怎么样的：</p>
+<p><img src="https://wdxtub.com/images/14612628563878.jpg" alt=""></p>
+<p>我们可以看到，缓存的空间被分成了S个集合，每一个集合中有E行，每一个行被分为三部分：V、tag、数据（data）。</p>
+<p><strong><em>Q:为什么要分成包含很多行的集合？</em></strong></p>
+<p>A:因为局部性。我们要把需要数据周围的一大块数据拿过来，每一个集合存放一大块数据，符合局部性原理。</p>
+<p><strong><em>Q:为什么行要分成三部分？</em></strong></p>
+<p>A:V表示合法性（Valid），当合法性为1时，数据可以取，合法性为0时，数据不能取。而tag确定的是集合，比如Cache有4个集合，那么tag就有2位，00表示第0个集合，01表示第一个集合……。</p>
+<h3 id="主存的地址设计"><a href="#主存的地址设计" class="headerlink" title="主存的地址设计"></a>主存的地址设计</h3><p>当CPU要一个数据时，它会生成一个主存的地址，而这个主存的地址就可以根据上面进行的架构来设计。</p>
+<p><img src="https://wdxtub.com/images/14612633441722.jpg" alt=""></p>
+<p><strong>这是主存的地址分布，注意不要和缓存的内容分布搞混。</strong></p>
+<p>知道了Cache内容的设计，主存地址的设计意图就很明显了，t用来匹配相应的行，s用来匹配相应的集合，b表示在某集合某行中第几个数据才是我们要的数据。</p>
+<h3 id="直接映射高速缓存"><a href="#直接映射高速缓存" class="headerlink" title="直接映射高速缓存"></a>直接映射高速缓存</h3><p>当E=1时，即每个集合只有一行时，主存的每一块也就直接对应到Cache的一块，这就叫<strong>直接映射高速缓存(Direct Mapped Cache)。</strong></p>
+<p><img src="http://p7jklu86w.bkt.clouddn.com/Memory-1.png" alt="Memory-1"></p>
+<p>要寻找数据，则是如下图所示：</p>
+<p><img src="https://wdxtub.com/images/14612642281687.jpg" alt=""></p>
+<h3 id="全关联高速缓存"><a href="#全关联高速缓存" class="headerlink" title="全关联高速缓存"></a>全关联高速缓存</h3><p>全关联高速缓存非常极端，他干脆不分在Cache中的集合，随便存在哪儿都行，所以主存的地址就变成了两部分：tag和block，没有了set。</p>
+<h3 id="组关联高速缓存"><a href="#组关联高速缓存" class="headerlink" title="组关联高速缓存"></a>组关联高速缓存</h3><p>当 E 大于 1 时，也就是每个 set 有 E 个 line 的时候，称之为 E 路联结缓存，也叫E路组关联高速缓存(E-way set associative Cache mapping)。</p>
+<h2 id="写入"><a href="#写入" class="headerlink" title="写入"></a>写入</h2><p>在整个存储层级中，不同的层级可能会存放同一个数据的不同拷贝（如 L1, L2, L3, 主内存, 硬盘）。如果发生写入命中的时候（也就是要写入的地址在缓存中有），有两种策略：</p>
+<ul>
+<li>Write-through: 命中后更新缓存，同时写入到内存中</li>
+<li>Write-back: 直到这个缓存需要被置换出去，才写入到内存中（需要额外的 dirty bit 来表示缓存中的数据是否和内存中相同，因为可能在其他的时候内存中对应地址的数据已经更新，那么重复写入就会导致原有数据丢失）</li>
+</ul>
+<p>在写入 miss 的时候，同样有两种方式：</p>
+<ul>
+<li>Write-allocate: 载入到缓存中，并更新缓存（如果之后还需要对其操作，这个方式就比较好）</li>
+<li>No-write-allocate: 直接写入到内存中，不载入到缓存 </li>
+</ul>
+<p>这四种策略通常的搭配是：</p>
+<ul>
+<li>Write-through + No-write-allocate</li>
+<li>Write-back + Write-allocate</li>
+</ul>
+<p>其中第一种可以保证绝对的数据一致性，第二种效率会比较高（通常情况下）。</p>
+<h1 id="虚拟存储器"><a href="#虚拟存储器" class="headerlink" title="虚拟存储器"></a>虚拟存储器</h1><p><strong>Reference：</strong></p>
+<p><a href="https://wdxtub.com/2016/04/16/thin-csapp-3/" target="_blank" rel="noopener">https://wdxtub.com/2016/04/16/thin-csapp-3/</a></p>
+<p><em>Computer System A Programer Perspective</em></p>
+<p><em>Essentials Of Computer Organization And Architecture.pdf</em></p>
 
       
 
@@ -325,7 +377,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/02/12/A Review of Brian - Inspired Computer Vision /" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/11/04/Memory/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -339,18 +391,18 @@
   
 <nav id="article-nav">
   
-    <a href="/2018/02/13/《精进》第二章总结/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2018/11/04/生活/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          《精进》chapter-2读后总结
+          生活
         
       </div>
     </a>
   
   
-    <a href="/2017/12/08/最近有个女生，说对我很失望/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">最近有个女生，说对我很失望</div>
+    <a href="/2018/11/03/Policy-Gradient/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Policy Gradient</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -377,7 +429,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Abstract"><span class="toc-number">1.</span> <span class="toc-text">Abstract</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Introduction"><span class="toc-number">2.</span> <span class="toc-text">Introduction</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#The-status-quo-of-brain-inspired-computer-vision"><span class="toc-number">3.</span> <span class="toc-text">The status quo of brain-inspired computer vision</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Summary"><span class="toc-number">4.</span> <span class="toc-text">Summary</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#References"><span class="toc-number">5.</span> <span class="toc-text">References</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#ISA"><span class="toc-number">1.</span> <span class="toc-text">ISA</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#寻址方式"><span class="toc-number">1.1.</span> <span class="toc-text">寻址方式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#流水线"><span class="toc-number">1.2.</span> <span class="toc-text">流水线</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#指令格式"><span class="toc-number">1.3.</span> <span class="toc-text">指令格式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#大、小端"><span class="toc-number">1.3.1.</span> <span class="toc-text">大、小端</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#扩展操作码"><span class="toc-number">1.3.2.</span> <span class="toc-text">扩展操作码</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#操作数"><span class="toc-number">1.4.</span> <span class="toc-text">操作数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CPU数据存储"><span class="toc-number">1.5.</span> <span class="toc-text">CPU数据存储</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Cache"><span class="toc-number">2.</span> <span class="toc-text">Cache</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Memory-Hierarchy"><span class="toc-number">2.1.</span> <span class="toc-text">Memory Hierarchy</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#地址"><span class="toc-number">2.2.</span> <span class="toc-text">地址</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Cache的内部设计"><span class="toc-number">2.2.1.</span> <span class="toc-text">Cache的内部设计</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#主存的地址设计"><span class="toc-number">2.2.2.</span> <span class="toc-text">主存的地址设计</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#直接映射高速缓存"><span class="toc-number">2.2.3.</span> <span class="toc-text">直接映射高速缓存</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#全关联高速缓存"><span class="toc-number">2.2.4.</span> <span class="toc-text">全关联高速缓存</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#组关联高速缓存"><span class="toc-number">2.2.5.</span> <span class="toc-text">组关联高速缓存</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#写入"><span class="toc-number">2.3.</span> <span class="toc-text">写入</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#虚拟存储器"><span class="toc-number">3.</span> <span class="toc-text">虚拟存储器</span></a></li></ol>
                     </div>
                 </span>
             </div>
