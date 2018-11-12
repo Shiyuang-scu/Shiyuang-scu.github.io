@@ -9,14 +9,14 @@
   <title>BP算法 | ClowNaxcvd</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="断断续续零零碎碎地学机器学习半年了，不会实践，不会运用，只是粗略地学了理论基础，因为涉及很多数学公式，markdown的数学公式语法又挺麻烦的，所以一直没有写过机器学习算法的文章。最近恰逢创新班、双特生面试，因为我是以机器学习为特点介绍我自己的，所以看了些算法的具体理论和优缺点。今天下午看了2个小时的BP算法，心想不如在近纲课上写一篇BP算法的文章。 一般思想首先，依然是梯度下降法，为了更新$W$">
-<meta name="keywords" content="机器学习">
+<meta name="keywords" content="世界之内">
 <meta property="og:type" content="article">
 <meta property="og:title" content="BP算法">
 <meta property="og:url" content="http://yoursite.com/2018/05/26/BP算法/index.html">
 <meta property="og:site_name" content="ClowNaxcvd">
 <meta property="og:description" content="断断续续零零碎碎地学机器学习半年了，不会实践，不会运用，只是粗略地学了理论基础，因为涉及很多数学公式，markdown的数学公式语法又挺麻烦的，所以一直没有写过机器学习算法的文章。最近恰逢创新班、双特生面试，因为我是以机器学习为特点介绍我自己的，所以看了些算法的具体理论和优缺点。今天下午看了2个小时的BP算法，心想不如在近纲课上写一篇BP算法的文章。 一般思想首先，依然是梯度下降法，为了更新$W$">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-08-09T09:15:59.655Z">
+<meta property="og:updated_time" content="2018-11-12T09:08:50.269Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="BP算法">
 <meta name="twitter:description" content="断断续续零零碎碎地学机器学习半年了，不会实践，不会运用，只是粗略地学了理论基础，因为涉及很多数学公式，markdown的数学公式语法又挺麻烦的，所以一直没有写过机器学习算法的文章。最近恰逢创新班、双特生面试，因为我是以机器学习为特点介绍我自己的，所以看了些算法的具体理论和优缺点。今天下午看了2个小时的BP算法，心想不如在近纲课上写一篇BP算法的文章。 一般思想首先，依然是梯度下降法，为了更新$W$">
@@ -62,7 +62,11 @@
 			
 				<li><a href="/">主页</a></li>
 	        
-				<li><a href="/tags/随笔/">随笔</a></li>
+				<li><a href="/tags/世界之内/">(G)ödel</a></li>
+	        
+				<li><a href="/tags/世界之外/">(E)scher</a></li>
+	        
+				<li><a href="/tags/随笔/">(B)ach</a></li>
 	        
 			</ul>
 		</nav>
@@ -85,10 +89,6 @@
 			<div class="social">
 				
 					<a class="github" target="_blank" href="https://github.com/Shiyuang-scu" title="github"><i class="icon-github"></i></a>
-		        
-					<a class="qq" target="_blank" href="/1540337172" title="qq"><i class="icon-qq"></i></a>
-		        
-					<a class="mail" target="_blank" href="/shiandweng@icloud.com" title="mail"><i class="icon-mail"></i></a>
 		        
 					<a class="twitter" target="_blank" href="https://twitter.com/YoI1ZRL7iDJf2xx" title="twitter"><i class="icon-twitter"></i></a>
 		        
@@ -122,6 +122,10 @@
 			
 				
 			
+				
+			
+				
+			
 			
 			
 			<nav class="header-nav">
@@ -129,22 +133,22 @@
 					
 						<a class="github" target="_blank" href="https://github.com/Shiyuang-scu" title="github"><i class="icon-github"></i></a>
 			        
-						<a class="qq" target="_blank" href="/1540337172" title="qq"><i class="icon-qq"></i></a>
-			        
-						<a class="mail" target="_blank" href="/shiandweng@icloud.com" title="mail"><i class="icon-mail"></i></a>
-			        
 						<a class="twitter" target="_blank" href="https://twitter.com/YoI1ZRL7iDJf2xx" title="twitter"><i class="icon-twitter"></i></a>
 			        
 				</div>
 			</nav>
 
 			<nav class="header-menu js-header-menu">
-				<ul style="width: 50%">
+				<ul style="width: 70%">
 				
 				
-					<li style="width: 50%"><a href="/">主页</a></li>
+					<li style="width: 25%"><a href="/">主页</a></li>
 		        
-					<li style="width: 50%"><a href="/tags/随笔/">随笔</a></li>
+					<li style="width: 25%"><a href="/tags/世界之内/">(G)ödel</a></li>
+		        
+					<li style="width: 25%"><a href="/tags/世界之外/">(E)scher</a></li>
+		        
+					<li style="width: 25%"><a href="/tags/随笔/">(B)ach</a></li>
 		        
 				</ul>
 			</nav>
@@ -256,7 +260,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">机器学习</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">世界之内</a>
         		</li>
       		
 		</ul>
@@ -326,18 +330,18 @@
   
 <nav id="article-nav">
   
-    <a href="/2018/06/03/AirSim搭建/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2018/06/25/事已至此/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          AirSim搭建
+          事已至此
         
       </div>
     </a>
   
   
-    <a href="/2018/05/26/宏大的哲学语境/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">宏大的哲学语境</div>
+    <a href="/2018/04/22/《自控力》读书笔记/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">《自控力》读书笔记</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -519,31 +523,7 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">机器学习</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">学习</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">增强学习</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">周记</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">数学</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">哲学</a>
+                <a href="javascript:void(0)" class="js-tag color5">世界之内</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -551,11 +531,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">读书</a>
+                <a href="javascript:void(0)" class="js-tag color5">世界之外</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
+                <a href="javascript:void(0)" class="js-tag color3">周记</a>
               </li>
             
             <div class="clearfix"></div>
@@ -607,7 +587,11 @@ MathJax.Hub.Queue(function() {
         <ul class="search-ul">
           
             <li class="search-li">
-              <a href="https://wangyang-wy.github.io" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>阳神</a>
+              <a href="https://wangyang-wy.github.io" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>Yang</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="https://www.wuuuudle.cn" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>Wudle</a>
             </li>
           
         </ul>
