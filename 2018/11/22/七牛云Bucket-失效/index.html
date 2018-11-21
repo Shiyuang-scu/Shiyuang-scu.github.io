@@ -16,13 +16,13 @@
 <meta property="og:site_name" content="ClowNaxcvd">
 <meta property="og:description" content="很讨厌，今天照例写博客传图片，发现七牛云的图床失效了，刚开始还以为是网站出错了，后来查了一下出错信息，是因为七牛云收回了测试域名，要求每个域名都要有备案。最难受的是，Bucket失效后，我无法下载图片、获取图片地址，我博客所有的图都挂了，怎么办？">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://github.com/Shiyuang-scu/blog_img/blob/master/QiNiuYunFix1.png">
-<meta property="og:image" content="https://github.com/Shiyuang-scu/blog_img/blob/master/QiNiuYunFix2.png">
-<meta property="og:updated_time" content="2018-11-21T22:43:32.050Z">
+<meta property="og:image" content="https://raw.githubusercontent.com/Shiyuang-scu/blog_img/master/QiNiuYunFix1.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Shiyuang-scu/blog_img/master/QiNiuYunFix2.png">
+<meta property="og:updated_time" content="2018-11-21T22:46:26.089Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="七牛云Bucket失效">
 <meta name="twitter:description" content="很讨厌，今天照例写博客传图片，发现七牛云的图床失效了，刚开始还以为是网站出错了，后来查了一下出错信息，是因为七牛云收回了测试域名，要求每个域名都要有备案。最难受的是，Bucket失效后，我无法下载图片、获取图片地址，我博客所有的图都挂了，怎么办？">
-<meta name="twitter:image" content="https://github.com/Shiyuang-scu/blog_img/blob/master/QiNiuYunFix1.png">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/Shiyuang-scu/blog_img/master/QiNiuYunFix1.png">
   
     <link rel="alternative" href="/atom.xml" title="ClowNaxcvd" type="application/atom+xml">
   
@@ -198,12 +198,12 @@
 <p>接下来，我们列出我们所有的空间（buckets）：</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./qrsctl buckets</span><br></pre></td></tr></table></figure>
 <p>可以看到我有一个空间：blog</p>
-<p><img src="https://github.com/Shiyuang-scu/blog_img/blob/master/QiNiuYunFix1.png" alt="QiNiuYunFix1"></p>
+<p><img src="https://raw.githubusercontent.com/Shiyuang-scu/blog_img/master/QiNiuYunFix1.png" alt="QiNiuYunFix1"></p>
 <p>现在我们通过命令行看看blog里有什么文件：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./qrsctl listprefix outmusic &apos;&apos;</span><br></pre></td></tr></table></figure>
 <p>注意后两个是英文的两个单引号</p>
 <p>结果就是我blog中的文件名。</p>
-<p><img src="https://github.com/Shiyuang-scu/blog_img/blob/master/QiNiuYunFix2.png" alt="QiNiuYunFix2"></p>
+<p><img src="https://raw.githubusercontent.com/Shiyuang-scu/blog_img/master/QiNiuYunFix2.png" alt="QiNiuYunFix2"></p>
 <p>当然要注意第一行是七牛云自带的一个标志字符串”marker:”。</p>
 <p>得到图片名后，可以通过七牛云的如下命令下载一个文件。</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">qrsctl get &lt;Bucket&gt; &lt;Key&gt; &lt;DestFile&gt;</span><br><span class="line">拿我做例子，就是：</span><br><span class="line">./qrsctl get blog 1.tiff ./1.tiff</span><br></pre></td></tr></table></figure>
