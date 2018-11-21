@@ -17,13 +17,13 @@
 <meta property="og:description" content="[TOC] 小小的复习笔记">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://tse1.mm.bing.net/th?id=OIP.ZX4-PKKOP8SI9qubOrXDcwAAAA&pid=Api">
-<meta property="og:image" content="http://p7jklu86w.bkt.clouddn.com/ISA-1.png">
-<meta property="og:image" content="http://p7jklu86w.bkt.clouddn.com/Memory-2.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Shiyuang-scu/blog_img/master/ISA-1.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Shiyuang-scu/blog_img/master/Memory-2.png">
 <meta property="og:image" content="https://wdxtub.com/images/14612628563878.jpg">
 <meta property="og:image" content="https://wdxtub.com/images/14612633441722.jpg">
-<meta property="og:image" content="http://p7jklu86w.bkt.clouddn.com/Memory-1.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Shiyuang-scu/blog_img/master/Memory-1.png">
 <meta property="og:image" content="https://wdxtub.com/images/14612642281687.jpg">
-<meta property="og:updated_time" content="2018-11-12T09:05:25.042Z">
+<meta property="og:updated_time" content="2018-11-21T23:13:00.310Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="计算机组成与体系结构">
 <meta name="twitter:description" content="[TOC] 小小的复习笔记">
@@ -201,7 +201,7 @@
 <p>其次，家找好了，一心一意给造指令吧。我们必须要规定指令的格式，包括指令类型、指令长度、指令顺序。</p>
 <p>指令自己的格式指定好了，接下来就要明确指令如何在数据上发生作用，而要发生作用，首先得取得数据，而取得数据，不能单纯在指令地址域指定数值大小，你总得找一个地方把过程数据、结果数据储存起来，这就涉及到寻找数据的存储器地址。寻址方式，我们就可以想到：1.直接寻址；2.立刻寻址；3.间接寻址；4.变址寻址和基址寻址。</p>
 <p>所有事情都做好了，我们会开始思考，能不能让指令执行起来更有效率？这就引出了流水线的概念。</p>
-<p><img src="http://p7jklu86w.bkt.clouddn.com/ISA-1.png" alt="ISA-1"></p>
+<p><img src="https://raw.githubusercontent.com/Shiyuang-scu/blog_img/master/ISA-1.png" alt="ISA-1"></p>
 <h2 id="寻址方式"><a href="#寻址方式" class="headerlink" title="寻址方式"></a>寻址方式</h2><ul>
 <li>immediate addressing</li>
 <li>direct addressing</li>
@@ -256,7 +256,7 @@
 </li>
 </ul>
 <h1 id="Cache"><a href="#Cache" class="headerlink" title="Cache"></a>Cache</h1><h2 id="Memory-Hierarchy"><a href="#Memory-Hierarchy" class="headerlink" title="Memory Hierarchy"></a>Memory Hierarchy</h2><p>首先我们看到存储器的层次结构，可以发现是呈现金字塔状的，为什么呢？因为一种介质的速度越快，就会越贵，同时也消耗更多的电量，所以一般容量比较小。而 CPU 和内存之间的速度差距越来越大，所以好的程序都会尽可能利用局部性。而根据这些特性，引申出了安排存储的方式，称为金字塔式存储体系(Memory Hierarch)。</p>
-<p><img src="http://p7jklu86w.bkt.clouddn.com/Memory-2.png" alt="Memory-2"></p>
+<p><img src="https://raw.githubusercontent.com/Shiyuang-scu/blog_img/master/Memory-2.png" alt="Memory-2"></p>
 <p>这里就涉及到一个技术：缓存。缓存可以看作是把大且缓慢的设备中的数据的一部分拿出来存储到其中的更快的存储设备。由<strong>局部性原理</strong>，CPU会更倾向于访问第 k 层的数据，而非第 k+1 层，这样就减少了访问时间。</p>
 <p>举个例子，CPU取值的时候，会首先到L1Cache中找，找不到的话，就到L2Cahche中找，如果找到了，就取那一大块的数据放到L1Cache中去，然后再从L1Cache取想要的数据。为什么要取一大块放进L1Cache里而不是直接取需要的数据到CPU呢？这是因为程序往往会使用相同区域内的数据，而且程序往往会重复使用某些数据，所以直接取一大块，这一大块数据有很大可能是程序需要的大部分数据，所以CPU就不需要每次都去L2Cache找数据了。</p>
 <p>注意，缓存是一个<strong>相对概念</strong>，在金字塔式存储体系中，<strong>每一层都可以看作是下一层的缓存</strong>。而高速缓存一般指的是L1Cache，L1集成在CPU中。</p>
@@ -274,7 +274,7 @@
 <p><strong>这是主存的地址分布，注意不要和缓存的内容分布搞混。</strong></p>
 <p>知道了Cache内容的设计，主存地址的设计意图就很明显了，t用来匹配相应的行，s用来匹配相应的集合，b表示在某集合某行中第几个数据才是我们要的数据。</p>
 <h3 id="直接映射高速缓存"><a href="#直接映射高速缓存" class="headerlink" title="直接映射高速缓存"></a>直接映射高速缓存</h3><p>当E=1时，即每个集合只有一行时，主存的每一块也就直接对应到Cache的一块，这就叫<strong>直接映射高速缓存(Direct Mapped Cache)。</strong></p>
-<p><img src="http://p7jklu86w.bkt.clouddn.com/Memory-1.png" alt="Memory-1"></p>
+<p><img src="https://raw.githubusercontent.com/Shiyuang-scu/blog_img/master/Memory-1.png" alt="Memory-1"></p>
 <p>要寻找数据，则是如下图所示：</p>
 <p><img src="https://wdxtub.com/images/14612642281687.jpg" alt=""></p>
 <h3 id="全关联高速缓存"><a href="#全关联高速缓存" class="headerlink" title="全关联高速缓存"></a>全关联高速缓存</h3><p>全关联高速缓存非常极端，他干脆不分在Cache中的集合，随便存在哪儿都行，所以主存的地址就变成了两部分：tag和block，没有了set。</p>

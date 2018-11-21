@@ -18,7 +18,7 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://raw.githubusercontent.com/Shiyuang-scu/blog_img/master/QiNiuYunFix1.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/Shiyuang-scu/blog_img/master/QiNiuYunFix2.png">
-<meta property="og:updated_time" content="2018-11-21T22:46:26.089Z">
+<meta property="og:updated_time" content="2018-11-21T23:18:18.783Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="七牛云Bucket失效">
 <meta name="twitter:description" content="很讨厌，今天照例写博客传图片，发现七牛云的图床失效了，刚开始还以为是网站出错了，后来查了一下出错信息，是因为七牛云收回了测试域名，要求每个域名都要有备案。最难受的是，Bucket失效后，我无法下载图片、获取图片地址，我博客所有的图都挂了，怎么办？">
@@ -212,6 +212,8 @@
 <p>下面是批处理代码：</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line">files=`./qrsctl listprefix blog <span class="string">''</span>`</span><br><span class="line">i=0</span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$files</span> | tr <span class="string">" "</span> <span class="string">"\n"</span> | <span class="keyword">while</span> <span class="built_in">read</span> line</span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">    <span class="keyword">if</span>((<span class="variable">$i</span>&gt;0))</span><br><span class="line">    <span class="keyword">then</span></span><br><span class="line">        <span class="built_in">echo</span> <span class="variable">$line</span></span><br><span class="line">        ./qrsctl get blog <span class="variable">$line</span> ./<span class="variable">$line</span></span><br><span class="line">    <span class="keyword">fi</span></span><br><span class="line">    i=$((<span class="variable">$i</span>+1))</span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure>
 <p>完美。</p>
+<p>把图片转移到github上了，修改图片路径太费力了，也许我可以做个批处理，但愿不要有让我做批处理的机会了……</p>
+<p>另外，想骂七牛云……</p>
 
       
 
