@@ -7,15 +7,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2018 | ClowNaxcvd</title>
+  <title>test | ClowNaxcvd</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="ClowNaxcvd">
-<meta property="og:url" content="http://yoursite.com/archives/2018/page/2/index.html">
+  <meta name="description" content="这是在hexo下的echart图标嵌入测试，为年终总结准备。">
+<meta name="keywords" content="随笔">
+<meta property="og:type" content="article">
+<meta property="og:title" content="test">
+<meta property="og:url" content="http://yoursite.com/2018/12/07/test/index.html">
 <meta property="og:site_name" content="ClowNaxcvd">
+<meta property="og:description" content="这是在hexo下的echart图标嵌入测试，为年终总结准备。">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-12-07T13:23:27.125Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="ClowNaxcvd">
+<meta name="twitter:title" content="test">
+<meta name="twitter:description" content="这是在hexo下的echart图标嵌入测试，为年终总结准备。">
   
     <link rel="alternative" href="/atom.xml" title="ClowNaxcvd" type="application/atom+xml">
   
@@ -159,76 +164,496 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-test" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      test
+    </h1>
+  
+
+
+        
+        <a href="/2018/12/07/test/" class="archive-article-date">
+  	<time datetime="2018-12-07T13:21:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-12-07</time>
+</a>
+        
+      </header>
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>这是在hexo下的echart图标嵌入测试，为年终总结准备。<br><a id="more"></a></p>
+<p><div id="fig1" style="height: 500%"></div></p>
+<script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/echarts.min.js"></script>
+<script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts-gl/echarts-gl.min.js"></script>
+<script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts-stat/ecStat.min.js"></script>
+<script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/extension/dataTool.min.js"></script>
+<script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/map/js/china.js"></script>
+<script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/map/js/world.js"></script>
+<script type="text/javascript" src="https://api.map.baidu.com/api?v=2.0&ak=ZUONbpqGBsYGXNIYHicvbAbM"></script>
+<script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/extension/bmap.min.js"></script>
+<script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/simplex.js"></script>
+<script type="text/javascript">
+    var dom = document.getElementById("fig1");
+    var myChart = echarts.init(dom);
+    var app = {};
+    option = null;
+    option = {
+        backgroundColor: '#EEEEEE',
+        title: [{
+                    text: 'ClowNaxcvd 2018 读书种类统计',
+                    bottom: 20,
+                    right: 20,
+                }],
+        series : [
+            {
+                name: '访问来源',
+                type: 'pie',
+                radius: '55%',
+                data:[
+                    {value:1, name:'计算机：\n1 本'},
+                    {value:1, name:'哲学：\n1 本'},
+                    {value:2, name:'科技：\n2 本'},
+                    {value:1, name:'心理学：\n1 本'},
+                    {value:1, name:'物理：\n1 本'},
+                    {value:3, name:'历史：\n3 本'},
+                    {value:5, name:'个人管理：\n5 本'},
+                    {value:19, name:'小说：\n19 本'},
+                ]
+            }
+        ],
+        itemStyle:{
+            shadowBlur:100,
+            shadowColor:'rgba(100,100,100)',
+            emphasis: {
+                shadowBlur:400,
+                shadowColor:'rgba(100,100,100)'
+            },
+        },
+    };;
+    if (option && typeof option === "object") {
+        myChart.setOption(option, true);
+    }
+</script>
+
+
+
+<p><div id="fig" style="height: 600%"></div></p>
+<script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/echarts.min.js"></script>
+<script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts-gl/echarts-gl.min.js"></script>
+<script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts-stat/ecStat.min.js"></script>
+<script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/extension/dataTool.min.js"></script>
+<script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/map/js/china.js"></script>
+<script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/map/js/world.js"></script>
+<script type="text/javascript" src="https://api.map.baidu.com/api?v=2.0&ak=ZUONbpqGBsYGXNIYHicvbAbM"></script>
+<script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/extension/bmap.min.js"></script>
+<script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/simplex.js"></script>
+<script type="text/javascript">
+    var dom = document.getElementById("fig");
+    var myChart = echarts.init(dom);
+    var app = {};
+    option = null;
+    var colors = ['#FFAE57', '#FF7853', '#EA5151', '#CC3F57', '#9A2555'];
+    var bgColor = '#2E2733';
+    var itemStyle = {
+        star5: {
+            color: colors[0]
+        },
+        star4: {
+            color: colors[1]
+        },
+        star3: {
+            color: colors[2]
+        },
+        star2: {
+            color: colors[3]
+        }
+    };
+    var data = [{
+        name: '虚构',
+        itemStyle: {
+            normal: {
+                color: colors[1]
+            }
+        },
+        children: [{
+            name: '小说',
+            children: [
+            {
+                name: '5☆',
+                children: 
+            [
+                {
+                    name: '雪国'
+                }, 
+                {
+                    name: '爱因斯坦赤道'
+                }, 
+                {
+                    name: '镜子'
+                },
+                {
+                    name: '梦之海'
+                }, 
+                {
+                    name: '赡养人类'
+                }, 
+                {
+                    name: '时间移民'
+                },
+                {
+                    name: '世界尽头与冷酷仙境'
+                }, 
+                {
+                    name: '我的帝王生涯'
+                }, 
+                {
+                    name: '妻妾成群'
+                },
+                {
+                    name: '流浪地球'
+                },
+                {
+                    name: '球状闪电'
+                },
+                {
+                    name: '在细雨中呼喊'
+                },
+                {
+                    name: '国境以南，太阳以西'
+                },
+            ]
+            }, 
+            {
+                name: '4☆',
+                children: [{
+                    name: '东方快车谋杀案'
+                }, {
+                    name: '恶意'
+                }, {
+                    name: '解密'
+                },
+                {
+                    name: '白夜行'
+                }, {
+                    name: '一百个人的十年'
+                }, {
+                    name: '远山淡影'
+                },
+                {
+                    name: '梦幻花'
+                }, {
+                    name: '猎豹'
+                }, {
+                    name: '蛙'
+                },
+                {
+                    name: '许三观卖血记'
+                }, {
+                    name: '兄弟'
+                }, {
+                    name: '天黑以后'
+                }]
+            }, 
+            {
+                name: '3☆',
+                children: [{
+                    name: '天才在左,疯子在右'
+                },
+                {
+                    name: '第七天'
+                }]
+            }]
+        }, 
+        ]
+    }, 
+    {
+        name: '非虚构',
+        itemStyle: {
+            color: colors[2]
+        },
+        children: [
+        {
+            name: '历史',
+            children: [{
+                name: '5☆',
+                children: [{
+                    name: '人类简史'
+                },
+                {
+                    name: '维米尔的帽子'
+                }]
+            }, {
+                name: '4☆',
+                children: [{
+                    name: '未来简史'
+                }]
+            }, ]
+        }, 
+        {
+            name: '自我管理',
+            children: [{
+                name: '5☆',
+                children: [{
+                    name: '暗时间'
+                },
+                {
+                    name: '自控力'
+                }]
+            }, 
+            {
+                name: '4☆',
+                children: [{
+                    name: '如何高效学习'
+                }, {
+                    name: '高效能人士的七个习惯'
+                }, {
+                    name: '格调'
+                }]
+            }, 
+            {
+                name: '3☆',
+                children: [{
+                    name: '精进'
+                }]
+            }, 
+            ]
+        }, 
+        {
+            name: '物理',
+            children: [{
+                name: '5☆',
+                children: [{
+                    name: '上帝掷骰子吗'
+                }]
+            }]
+        }, 
+        {
+            name: '心理学',
+            children: [{
+                name: '5☆',
+                children: [{
+                    name: '影响力'
+                }]
+            }]
+        }, 
+        {
+            name: '哲学',
+            children: [{
+                name: '5☆',
+                children: [{
+                    name: '哲学家们都干了些什么'
+                }]
+            }]
+        }, 
+        {
+            name: '科技',
+            children: [
+                {
+                name: '5☆',
+                children: [{
+                    name: '浪潮之巅'
+                }]
+            }, 
+            {
+                name: '4☆',
+                children: [{
+                    name: '大学之路'
+                }]
+            },
+            {
+                name: '3☆',
+                children: [{
+                    name: '人工智能（李开复）'
+                }]
+            }
+        ]
+        }]
+    }];
+    for (var j = 0; j < data.length; ++j) {
+        var level1 = data[j].children;
+        for (var i = 0; i < level1.length; ++i) {
+            var block = level1[i].children;
+            var bookScore = [];
+            var bookScoreId;
+            for (var star = 0; star < block.length; ++star) {
+                var style = (function (name) {
+                    switch (name) {
+                        case '5☆':
+                            bookScoreId = 0;
+                            return itemStyle.star5;
+                        case '4☆':
+                            bookScoreId = 1;
+                            return itemStyle.star4;
+                        case '3☆':
+                            bookScoreId = 2;
+                            return itemStyle.star3;
+                        case '2☆':
+                            bookScoreId = 3;
+                            return itemStyle.star2;
+                    }
+                })(block[star].name);
+                block[star].label = {
+                    color: style.color,
+                    downplay: {
+                        opacity: 0.5
+                    }
+                };
+                if (block[star].children) {
+                    style = {
+                        opacity: 1,
+                        color: style.color
+                    };
+                    block[star].children.forEach(function (book) {
+                        book.value = 1;
+                        book.itemStyle = style;
+                        book.label = {
+                            color: style.color
+                        };
+                        var value = 1;
+                        if (bookScoreId === 0 || bookScoreId === 3) {
+                            value = 5;
+                        }
+                        if (bookScore[bookScoreId]) {
+                            bookScore[bookScoreId].value += value;
+                        }
+                        else {
+                            bookScore[bookScoreId] = {
+                                color: colors[bookScoreId],
+                                value: value
+                            };
+                        }
+                    });
+                }
+            }
+            level1[i].itemStyle = {
+                color: data[j].itemStyle.color
+            };
+        }
+    }
+    option = {
+        title: [{
+            text: 'ClowNaxcvd 2018 读书记录',
+            bottom: 20,
+            right: 20,
+            textStyle: {
+                color: colors[0],
+                fontsize: 40,
+            }
+        }],
+        backgroundColor: bgColor,
+        color: colors,
+        series: [{
+            type: 'sunburst',
+            center: ['50%', '48%'],
+            data: data,
+            sort: function (a, b) {
+                if (a.depth === 1) {
+                    return b.getValue() - a.getValue();
+                }
+                else {
+                    return a.dataIndex - b.dataIndex;
+                }
+            },
+            label: {
+                rotate: 'radial',
+                color: bgColor
+            },
+            itemStyle: {
+                borderColor: bgColor,
+                borderWidth: 2
+            },
+            levels: [{}, {
+                r0: 0,
+                r: 40,
+                label: {
+                    rotate: 0
+                }
+            }, {
+                r0: 40,
+                r: 105
+            }, {
+                r0: 115,
+                r: 140,
+                itemStyle: {
+                    shadowBlur: 2,
+                    shadowColor: colors[2],
+                    color: 'transparent'
+                },
+                label: {
+                    rotate: 'tangential',
+                    fontSize: 10,
+                    color: colors[0]
+                }
+            }, {
+                r0: 140,
+                r: 145,
+                itemStyle: {
+                    shadowBlur: 80,
+                    shadowColor: colors[0]
+                },
+                label: {
+                    position: 'outside',
+                    textShadowBlur: 5,
+                    textShadowColor: '#333',
+                },
+                downplay: {
+                    label: {
+                        opacity: 0.5
+                    }
+                }
+            }]
+        }]
+    };
+    if (option && typeof option === "object") {
+        myChart.setOption(option, true);
+    }
+</script>
+
+
+
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="https://raw.githubusercontent.com/Shiyuang-scu/blog_img/master/alipay.jpg">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="https://raw.githubusercontent.com/Shiyuang-scu/blog_img/master/wepay.jpg">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/10/11/Web in Java/" class="archive-article-date">
-  	<time datetime="2018-10-11T14:52:39.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-10-11</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/10/11/Web in Java/">Web in Java</a>
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">世界之内</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/10/02/十月女泽/" class="archive-article-date">
-  	<time datetime="2018-10-02T08:51:54.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-10-02</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/10/02/十月女泽/">【周记】十月女泽</a>
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -240,334 +665,134 @@
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/12/07/test/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/09/28/托福备考/" class="archive-article-date">
-  	<time datetime="2018-09-28T15:08:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-28</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2018/11/30/旋转/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">【周记】旋转</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/09/28/托福备考/">托福备考</a>
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">世界之内</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    目录，不存在的…
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/09/24/裸体之舞/" class="archive-article-date">
-  	<time datetime="2018-09-24T12:32:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-24</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/09/24/裸体之舞/">【周记】裸体之舞</a>
-    </h1>
-  
+        
+    </div>
+</aside>
 
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
-        		</li>
-      		
-		</ul>
-	</div>
 
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/09/18/中秋幸福/" class="archive-article-date">
-  	<time datetime="2018-09-18T02:53:01.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-18</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/09/18/中秋幸福/">【周记】中秋幸福</a>
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/09/12/哲学与电影/" class="archive-article-date">
-  	<time datetime="2018-09-12T09:33:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-12</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/09/12/哲学与电影/">哲学与电影</a>
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">世界之外</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/09/09/History-of-artificial-intelligence/" class="archive-article-date">
-  	<time datetime="2018-09-09T14:26:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-09</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/09/09/History-of-artificial-intelligence/">History of artificial intelligence</a>
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">世界之外</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/09/09/我那无趣的灵魂/" class="archive-article-date">
-  	<time datetime="2018-09-09T10:09:57.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-09</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/09/09/我那无趣的灵魂/">【周记】我那无趣的灵魂</a>
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/09/08/Softmax-Regression/" class="archive-article-date">
-  	<time datetime="2018-09-08T10:03:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-08</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/09/08/Softmax-Regression/">Softmax Regression</a>
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">世界之内</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/09/03/Rational/" class="archive-article-date">
-  	<time datetime="2018-09-02T16:12:07.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-03</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/09/03/Rational/">【周记】Rational</a>
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
   
-    </div></section>
   
 
-    
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/archives/2018/">&laquo; Prev</a><a class="page-number" href="/archives/2018/">1</a><span class="page-number current">2</span><a class="page-number" href="/archives/2018/page/3/">3</a><a class="page-number" href="/archives/2018/page/4/">4</a><a class="page-number" href="/archives/2018/page/5/">5</a><a class="extend next" rel="next" href="/archives/2018/page/3/">Next &raquo;</a>
-    </nav>
+  
+
+  
+    <section id="comments">
+      <div id="disqus_thread"></div>
+        <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'https-shiyuang-scu-github-io'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+      </script>
+      <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </section>
+  
+
   
 
 
@@ -602,8 +827,8 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: true,
