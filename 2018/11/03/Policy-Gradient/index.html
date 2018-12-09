@@ -23,7 +23,7 @@
 <meta property="og:image" content="https://raw.githubusercontent.com/Shiyuang-scu/blog_img/master/policygradient-4.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/Shiyuang-scu/blog_img/master/policygradient-5.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/Shiyuang-scu/blog_img/master/policygradient-6.png">
-<meta property="og:updated_time" content="2018-12-09T09:34:55.815Z">
+<meta property="og:updated_time" content="2018-12-09T09:41:18.225Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【强化学习】Policy Gradient">
 <meta name="twitter:description" content="2018.11.3创建 2018.12.9更新 这篇文章更多地是对Karpathy Deep Reinforcement Learning: Pong from Pixels文章的阅读和学习笔记,或者说翻译🐶。">
@@ -238,7 +238,7 @@
 <p>输出的每个神经元代表一个动作，神经元包含的值表示这个动作的发生概率。</p>
 <p><img src="https://raw.githubusercontent.com/Shiyuang-scu/blog_img/master/policygradient-4.png" alt="image-20181209160020187"></p>
 <p>我们会选择概率最高的动作，作为策略的最终结果，然后根据反馈，计算这个动作的得分<strong>reward</strong>，第$i$个动作$a_i$的reward用$r_i$表示。</p>
-<h2 id="以电脑游戏为例"><a href="#以电脑游戏为例" class="headerlink" title="以电脑游戏为例"></a>以电脑游戏为例</h2><p>比如说我们玩一个电脑游戏，游戏现在的状态是$s_1$，然后 $\pi$ 选择了动作$a_1$，游戏照做了，然后我们计算一个reward $r_1$；游戏在执行了动作$a_1$后的状态为$s_2$，然后我们再选择了动作$a_2$，执行动作后，计算了一个reward $r_2​$，这样一直下去，直到游戏结束（游戏赢了或者输了）。</p>
+<h2 id="以电脑游戏为例"><a href="#以电脑游戏为例" class="headerlink" title="以电脑游戏为例"></a>以电脑游戏为例</h2><p>比如说我们玩一个电脑游戏，游戏现在的状态是$s_1$，然后 $\pi$ 选择了动作$a_1$，游戏照做了，然后我们计算一个reward $r_1$；游戏在执行了动作$a_1$后的状态为$s_2$，然后我们再选择了动作$a_2$，执行动作后，计算了一个reward $r_2$，这样一直下去，直到游戏结束（游戏赢了或者输了）。</p>
 <p>截止游戏结束，我们一共选择了$T$个动作，计算出了$T$个reward，这一回合我们称之为一个<strong>episode</strong>，一个episode的整个reward是每个动作的reward之和：</p>
 <p> $R = \sum^T_{t=1}{r_t}$ </p>
 <p>我们用一个图来更直观地看看在这个过程中Actor, Environment, Reward 之间的关系。</p>
@@ -254,7 +254,7 @@
 <p>其中</p>
 <p>$\nabla\overline{R_\theta}=\sum_\tau{R(\tau){\nabla}p_\theta{(\tau)}}=E_{\tau{-}{p_\theta}}[R(\tau){\nabla}logp_{\theta}(\tau)]$</p>
 <p>${\approx}\frac{1}{N}\sum^N_{n=1}R(\tau^n){\nabla}logp_{\theta}(\tau^n)$</p>
-<p>$=\frac{1}{N}\sum^N_{n=1}\sum^{T_n}<em>{t=1}R(\tau^n){\nabla}logp</em>{\theta}(a^n_t|s^n_t)$</p>
+<p>$=\frac{1}{N}\sum^N_{n=1}$$\sum^{T_n}<em>{t=1}R(\tau^n){\nabla}$$logp</em>{\theta}(a^n_t|s^n_t)$</p>
 <p>整个过程如图</p>
 <p><img src="https://raw.githubusercontent.com/Shiyuang-scu/blog_img/master/policygradient-6.png" alt="image-20181209164225978"></p>
 <p>在$N$个episode中，我们要记录每一个$\tau^n$中的序列对$(s^n_i,a^n_i)$，记录$\tau^n$的reward$R({\tau}^n)$，然后对$\theta$进行更新。</p>
