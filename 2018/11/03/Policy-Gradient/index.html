@@ -23,7 +23,7 @@
 <meta property="og:image" content="https://raw.githubusercontent.com/Shiyuang-scu/blog_img/master/policygradient-4.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/Shiyuang-scu/blog_img/master/policygradient-5.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/Shiyuang-scu/blog_img/master/policygradient-6.png">
-<meta property="og:updated_time" content="2018-12-09T09:41:18.225Z">
+<meta property="og:updated_time" content="2018-12-09T09:47:49.817Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【强化学习】Policy Gradient">
 <meta name="twitter:description" content="2018.11.3创建 2018.12.9更新 这篇文章更多地是对Karpathy Deep Reinforcement Learning: Pong from Pixels文章的阅读和学习笔记,或者说翻译🐶。">
@@ -254,7 +254,7 @@
 <p>其中</p>
 <p>$\nabla\overline{R_\theta}=\sum_\tau{R(\tau){\nabla}p_\theta{(\tau)}}=E_{\tau{-}{p_\theta}}[R(\tau){\nabla}logp_{\theta}(\tau)]$</p>
 <p>${\approx}\frac{1}{N}\sum^N_{n=1}R(\tau^n){\nabla}logp_{\theta}(\tau^n)$</p>
-<p>$=\frac{1}{N}\sum^N_{n=1}$$\sum^{T_n}<em>{t=1}R(\tau^n){\nabla}$$logp</em>{\theta}(a^n_t|s^n_t)$</p>
+<p>$=\frac{1}{N}\sum^N_{n=1}\sum^{T_n}_{t=1}R(\tau^n){\nabla}logp_{\theta}(a^n_t|s^n_t)$</p>
 <p>整个过程如图</p>
 <p><img src="https://raw.githubusercontent.com/Shiyuang-scu/blog_img/master/policygradient-6.png" alt="image-20181209164225978"></p>
 <p>在$N$个episode中，我们要记录每一个$\tau^n$中的序列对$(s^n_i,a^n_i)$，记录$\tau^n$的reward$R({\tau}^n)$，然后对$\theta$进行更新。</p>
