@@ -9,22 +9,25 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>【强化学习】Policy Gradient | ClowNaxcvd</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Reference： 这篇文章更多地是对Karpathy Deep Reinforcement Learning: Pong from Pixels文章的阅读和学习笔记,或者说翻译🐶。 http://karpathy.github.io/2016/05/31/rl/ Reinforcement learning An introduction Policy gradient methods fo">
+  <meta name="description" content="2018.11.3创建 2018.12.9更新 这篇文章更多地是对Karpathy Deep Reinforcement Learning: Pong from Pixels文章的阅读和学习笔记,或者说翻译🐶。">
 <meta name="keywords" content="世界之内">
 <meta property="og:type" content="article">
 <meta property="og:title" content="【强化学习】Policy Gradient">
 <meta property="og:url" content="http://yoursite.com/2018/11/03/Policy-Gradient/index.html">
 <meta property="og:site_name" content="ClowNaxcvd">
-<meta property="og:description" content="Reference： 这篇文章更多地是对Karpathy Deep Reinforcement Learning: Pong from Pixels文章的阅读和学习笔记,或者说翻译🐶。 http://karpathy.github.io/2016/05/31/rl/ Reinforcement learning An introduction Policy gradient methods fo">
+<meta property="og:description" content="2018.11.3创建 2018.12.9更新 这篇文章更多地是对Karpathy Deep Reinforcement Learning: Pong from Pixels文章的阅读和学习笔记,或者说翻译🐶。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://karpathy.github.io/assets/rl/pong.gif">
-<meta property="og:image" content="http://karpathy.github.io/assets/rl/policy.png">
-<meta property="og:image" content="http://karpathy.github.io/assets/rl/sl.png">
-<meta property="og:updated_time" content="2018-11-21T23:13:15.532Z">
+<meta property="og:image" content="https://raw.githubusercontent.com/Shiyuang-scu/blog_img/master/policygradient-1.gif">
+<meta property="og:image" content="https://raw.githubusercontent.com/Shiyuang-scu/blog_img/master/policygradient-2.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Shiyuang-scu/blog_img/master/policygradient-3.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Shiyuang-scu/blog_img/master/policygradient-4.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Shiyuang-scu/blog_img/master/policygradient-5.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Shiyuang-scu/blog_img/master/policygradient-6.png">
+<meta property="og:updated_time" content="2018-12-09T09:34:55.815Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【强化学习】Policy Gradient">
-<meta name="twitter:description" content="Reference： 这篇文章更多地是对Karpathy Deep Reinforcement Learning: Pong from Pixels文章的阅读和学习笔记,或者说翻译🐶。 http://karpathy.github.io/2016/05/31/rl/ Reinforcement learning An introduction Policy gradient methods fo">
-<meta name="twitter:image" content="http://karpathy.github.io/assets/rl/pong.gif">
+<meta name="twitter:description" content="2018.11.3创建 2018.12.9更新 这篇文章更多地是对Karpathy Deep Reinforcement Learning: Pong from Pixels文章的阅读和学习笔记,或者说翻译🐶。">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/Shiyuang-scu/blog_img/master/policygradient-1.gif">
   
     <link rel="alternative" href="/atom.xml" title="ClowNaxcvd" type="application/atom+xml">
   
@@ -189,13 +192,11 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Reference：</p>
+        <p>2018.11.3创建</p>
+<p>2018.12.9更新</p>
 <p><strong>这篇文章更多地是对Karpathy <em><a href="http://karpathy.github.io/2016/05/31/rl/" target="_blank" rel="noopener">Deep Reinforcement Learning: Pong from Pixels</a></em>文章的阅读和学习笔记,或者说翻译🐶。</strong></p>
-<p><a href="http://karpathy.github.io/2016/05/31/rl/" target="_blank" rel="noopener">http://karpathy.github.io/2016/05/31/rl/</a></p>
-<p><em><a href="https://morvanzhou.github.io/static/files/Reinforcement_learning_An_introduction.pdf" target="_blank" rel="noopener">Reinforcement learning An introduction</a></em></p>
-<p><em><a href="https://papers.nips.cc/paper/1713-policy-gradient-methods-for-reinforcement-learning-with-function-approximation.pdf" target="_blank" rel="noopener">Policy gradient methods for reinforcement learning with function approximation.</a></em></p>
 <a id="more"></a>
-<p>Q ：<strong>Policy Gradient和Q-Learning的区别在于，前者直接选择动作，后者根据奖惩值选择动作。Q-Learning的方法，通俗点来说，就是哪个动作更有好处，就选择哪个。但是，</strong>PG在选择动作上的策略在本质上不也是因为这个动作更有好处吗？所以不还是需要一个类似奖惩值来供参考吗？</p>
+<p><strong>Q ：Policy Gradient和Q-Learning的区别在于，前者直接选择动作，后者根据奖惩值选择动作。Q-Learning的方法，通俗点来说，就是哪个动作更有好处，就选择哪个。但是，</strong>PG在选择动作上的策略在本质上不也是因为这个动作更有好处吗？所以不还是需要一个类似奖惩值来供参考吗？</p>
 <p><strong>A：</strong>第一句话的后半句说得没错，但前半句就错了。PG和QL的区别在于，QL是基于贪婪算法的，具体地说，就是将每一个目标分成一个个小目标，只要把小目标做得好，大目标就做好了，所以QL做的是优化每一个小目标，而不管大目标怎么样；PG则倒过来，它不管小目标怎么样，他只关心大目标——只要大目标完成好了，之后就多多用完成大目标的这种方法，如果大目标完成不好，那这种方法就给它打入冷宫。</p>
 <h1 id="为什么是PG，而不是QL？"><a href="#为什么是PG，而不是QL？" class="headerlink" title="为什么是PG，而不是QL？"></a><em>为什么是PG，而不是QL？</em></h1><p>QL的输入是动作和状态，输出的是奖励值（评判在这种状态下做出这种动作是好是坏的分数），所以我们要把所有在该状态下可能的动作做一遍得到每个动作的奖励值，然后选择奖励值最大的（在该状态下最有利的动作）。因为这种性质，所以QL算法得到的策略不具有整体观——因为它选择的是每一个对当前状态最有利的行为。所以本质上QL也就是贪婪算法。</p>
 <p>PG的输入是状态，输出是动作，是端对端的算法，更加直观而且更具有整体性。PG就是先不管三七二十一，随机来个100套动作试一试，其中有的一套做得好，有的做得不好，这一套动作做得好，就加分，增加下次做这套动作的可能性；那一套动作做得不好，就扣分，下次就尽可能不做这套动作了。这样下来，训练量多了，就大概知道什么状态下该做什么了。</p>
@@ -205,10 +206,10 @@
 </blockquote>
 <p>连DQN的作者都承认，PG比DQL表现得更好。😝</p>
 <h1 id="Pong-为例"><a href="#Pong-为例" class="headerlink" title="Pong 为例"></a>Pong 为例</h1><p>我们以雅达利2600上的游戏Pong为例，来展示算法的思想和细节。</p>
-<p><img src="http://karpathy.github.io/assets/rl/pong.gif" alt="Pong"></p>
+<p><img src="https://raw.githubusercontent.com/Shiyuang-scu/blog_img/master/policygradient-1.gif" alt="Pong"></p>
 <p>Pong就是一个类似于乒乓的游戏，你要控制右边的板子，把左边电脑控制的板子打过来的球打过去，对方没接到你得一分，你没接到对方就得一分。把这个游戏拆分成计算机能够懂得的模型，就是：我们看到一帧图片(比如说210*160*3的像素)，通过分析图片中板子和球的位置和运动趋势，来做出板子移动的决策，这个决策只有两个：上（UP）和下（DOWN）。</p>
 <h1 id="Policy-Network"><a href="#Policy-Network" class="headerlink" title="Policy Network"></a>Policy Network</h1><p>首先我们要定义一个决策网络(Policy Network)。这个网络会收到游戏的状态，然后输出在这个状态下应该做的决策。在Pong中，我们的输入是一帧图片，输出是UP or DOWN，因为只有两个行为，所以我们可以只用一个神经元就能表示了（当然也可以用两个，如果用一个，那么输出其实是做出UP或者DOWN策略的概率）。</p>
-<p><img src="http://karpathy.github.io/assets/rl/policy.png" alt="Policy Network"></p>
+<p><img src="https://raw.githubusercontent.com/Shiyuang-scu/blog_img/master/policygradient-2.png" alt="Policy Network"></p>
 <p>这是我们的计算代码：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">h = np.dot(W1, x) <span class="comment"># compute hidden layer neuron activations</span></span><br><span class="line">h[h&lt;<span class="number">0</span>] = <span class="number">0</span> <span class="comment"># ReLU nonlinearity: threshold at zero</span></span><br><span class="line">logp = np.dot(W2, h) <span class="comment"># compute log probability of going up</span></span><br><span class="line">p = <span class="number">1.0</span> / (<span class="number">1.0</span> + np.exp(-logp)) <span class="comment"># sigmoid function (gives probability of going up)</span></span><br></pre></td></tr></table></figure>
 <p>直观上来说，隐层（W1）提取了图片中的各个特征，比如板子在哪儿，球在哪儿，输出层（W2）则决定了UP和DOWN的概率，所以，在Policy Network中，W1和W2是最重要的参数，我们要训练的就是这两组参数。</p>
@@ -218,13 +219,51 @@
 <p><strong>疑问</strong>：Policy Network抽象上来说，实际上就是根据一帧帧的图像来反馈相对应的一个个动作，问题在于，也许我到第20个动作才得分，但是我之所以能得分，是取决于我第10个动作精妙的技巧，但是Policy Network肯定不知道啊，那么我们又谈何学习这个动作，增加这个动作的概率呢？所以问题在于，我们要知道是哪一个动作决定了我得分，并且在我知道这个得分后学习到了这个动作。</p>
 <h1 id="Supervised-Learning"><a href="#Supervised-Learning" class="headerlink" title="Supervised Learning"></a>Supervised Learning</h1><p>如果你之前接触过监督学习，就会发现决策网络和监督学习是非常像的，唯一一点不同就是Label，那么我们在学习Policy Gradient之前，就先谈谈监督学习(Supervised Learning)。</p>
 <p>如下图，我们输入一张图片，得到了输出，输出的是log概率（是log概率还是原始概率，不是关键）。在监督学习下，我们知道在这种情况下应该怎么做，假设我们知道应该UP，那么我们就可以用BP算法来更新权重，来达到增加在这种情况下得出UP决策的概率。</p>
-<p><img src="http://karpathy.github.io/assets/rl/sl.png" alt="Supervised Learning"></p>
+<p><img src="https://raw.githubusercontent.com/Shiyuang-scu/blog_img/master/policygradient-3.png" alt="Supervised Learning"></p>
 <p>关于监督学习的内容不再赘述，可以查相关资料。</p>
 <p>#Policy Gradient</p>
 <p>那么如果我们没有Label怎么办呢？假如我们进行了一次计算，得到UP的概率为30%，DOWN的概率为70%，那么我们就会在这个分布中随机选择一个，假如选中的是DOWN吧，那么在这时就让板子往下移动，如果这个移动是好的，那么Label就是positive的，在backprop后就增加在这个状态下DOWN的概率。问题是，我们怎么知道这就是好的呢？比如我在第一帧选择了DOWN，然后在20帧才赢/输了游戏，我又不知道第一帧的动作对结果有什么影响。</p>
 <p>我们可以这么做，先做一系列动作，直到游戏结束，然后再根据结果，对这一串动作中的每一个动作标记Label。比如说我第一帧DOWN，然后最后赢了，那么DOWN的Label就是positive的。</p>
-<p>在PG中，我们的损失函数是$\sum_iA_ilogp(y_i|x_i)$,其中$A_i$是<strong>advantag</strong>，如果赢了就是1，输了就是-1；$y_i$是我们选取的动作；$x_i$是输入的状态（在Pong例子中是图片（像素））。</p>
-<h3 id="Algorithm"><a href="#Algorithm" class="headerlink" title="Algorithm"></a>Algorithm</h3>
+<p>在PG中，我们的损失函数是$\sum_iA_ilogp(y_i|x_i)$,其中$A_i$是<strong>advantage</strong>，如果赢了就是1，输了就是-1；$y_i$是我们选取的动作；$x_i$是输入的状态（在Pong例子中是图片（像素））。</p>
+<p>以上以pong为例，对advantag的选择也过于草率（因为一律都是1或者0），实际上，对于不同的动作$x$，advange是不同的。</p>
+<hr>
+<hr>
+<p>下面我们抛去pong这个例子，来重新描述policy gradient。</p>
+<h2 id="基本组件"><a href="#基本组件" class="headerlink" title="基本组件"></a>基本组件</h2><p>对于一个强化学习问题，我们首先要明确，这个问题的基本对象有这些：Actor、Environment、Reward Function。</p>
+<p>举个例子，AlphaGo下围棋的问题，Actor是AlphaGo，Environment是对手和棋盘，Reward Function基于围棋的规则。再举个栗子，我们玩电子游戏，手柄是Actor，电脑屏幕或者游戏机是Environment，Reward Function是杀死敌人或者占领据点（还是依据游戏规则）。其中Environment和Reward Function是我们<strong>无法</strong>在训练过程中改变的，只有Actor是<strong>受控</strong>的。</p>
+<p>那么如何控制Actor？</p>
+<h2 id="Policy-of-Actor"><a href="#Policy-of-Actor" class="headerlink" title="Policy of Actor"></a>Policy of Actor</h2><p>我们对Actor的控制，需要策略，而策略我们用 $\pi$ 符号表示。</p>
+<p>$\pi$ 是一个参数为 $\theta$ 的神经网络，输入是observation（矩阵）；输出是数量为 $n$ 的神经元。</p>
+<p>observation是给神经网络提供当前状态的参数，我们可以把游戏的当前图像作为observation，这时observation实际上是一串像素，我们也可以直接把各种参数作为observation，比如说我和敌人的距离、我方英雄技能的攻击范围。总之，observation提供了当前状态的特征。</p>
+<p>输出的每个神经元代表一个动作，神经元包含的值表示这个动作的发生概率。</p>
+<p><img src="https://raw.githubusercontent.com/Shiyuang-scu/blog_img/master/policygradient-4.png" alt="image-20181209160020187"></p>
+<p>我们会选择概率最高的动作，作为策略的最终结果，然后根据反馈，计算这个动作的得分<strong>reward</strong>，第$i$个动作$a_i$的reward用$r_i$表示。</p>
+<h2 id="以电脑游戏为例"><a href="#以电脑游戏为例" class="headerlink" title="以电脑游戏为例"></a>以电脑游戏为例</h2><p>比如说我们玩一个电脑游戏，游戏现在的状态是$s_1$，然后 $\pi$ 选择了动作$a_1$，游戏照做了，然后我们计算一个reward $r_1$；游戏在执行了动作$a_1$后的状态为$s_2$，然后我们再选择了动作$a_2$，执行动作后，计算了一个reward $r_2​$，这样一直下去，直到游戏结束（游戏赢了或者输了）。</p>
+<p>截止游戏结束，我们一共选择了$T$个动作，计算出了$T$个reward，这一回合我们称之为一个<strong>episode</strong>，一个episode的整个reward是每个动作的reward之和：</p>
+<p> $R = \sum^T_{t=1}{r_t}$ </p>
+<p>我们用一个图来更直观地看看在这个过程中Actor, Environment, Reward 之间的关系。</p>
+<p><img src="https://raw.githubusercontent.com/Shiyuang-scu/blog_img/master/policygradient-5.png" alt="image-20181209161133065"></p>
+<p>这整个episode是Environment、Actor之间的交互，在episode中产生了一串环境与动作的序列，叫做<strong>Trajectory</strong></p>
+<p> <strong>Trajectory</strong>   $\tau = {s_1,a_1,s_2,a_2,…,s_T,a_T}$</p>
+<p>我们可以算出整个trajectory的概率$p_\theta(\tau)$</p>
+<p>$p_\theta(\tau)=p(s_1)p_\theta(a_1|s_1)p(s_2|s_1,a_1)p_\theta(a_2|s_2)…=p(s_1)\Pi^T_{t=1}p_\theta(a_t|s_t)p(s_{t+1}|s_t,a_t)$</p>
+<p>有一点很<strong>重要</strong>，虽然在episode中，$\theta $是确定的，但是Environment是不受我们控制的，所以即使在相同的$\theta$下，游戏状态$s_i$是不受控的，所以在不同的状态下，产生出的trajectory也会不同。所以要求在 $\theta$ 下的Reward，我们需要求R的期望Expectation</p>
+<p>$\overline{R_\theta}=\sum_\tau{R(\tau)p_\theta{(\tau)}=E_{\tau{-}{p_\theta}}[R(\tau)]}$</p>
+<p>我们的目的很明确很简单，就是调整$\theta$把$\overline{R_\theta}$最大化，下面就是我们常用的梯度下降（Gradient Descent）</p>
+<p>$\theta \leftarrow \theta + {\eta} {\nabla} \overline{R_{\theta}}$</p>
+<p>其中</p>
+<p>$\nabla\overline{R_\theta}=\sum_\tau{R(\tau){\nabla}p_\theta{(\tau)}}=E_{\tau{-}{p_\theta}}[R(\tau){\nabla}logp_{\theta}(\tau)]$</p>
+<p>${\approx}\frac{1}{N}\sum^N_{n=1}R(\tau^n){\nabla}logp_{\theta}(\tau^n)$</p>
+<p>$=\frac{1}{N}\sum^N_{n=1}\sum^{T_n}<em>{t=1}R(\tau^n){\nabla}logp</em>{\theta}(a^n_t|s^n_t)$</p>
+<p>整个过程如图</p>
+<p><img src="https://raw.githubusercontent.com/Shiyuang-scu/blog_img/master/policygradient-6.png" alt="image-20181209164225978"></p>
+<p>在$N$个episode中，我们要记录每一个$\tau^n$中的序列对$(s^n_i,a^n_i)$，记录$\tau^n$的reward$R({\tau}^n)$，然后对$\theta$进行更新。</p>
+<h1 id="Reference："><a href="#Reference：" class="headerlink" title="Reference："></a>Reference：</h1><p><a href="http://karpathy.github.io/2016/05/31/rl/" target="_blank" rel="noopener">Deep Reinforcement Learning: Pong from Pixels</a></p>
+<p><a href="http://karpathy.github.io/2016/05/31/rl/" target="_blank" rel="noopener">http://karpathy.github.io/2016/05/31/rl/</a></p>
+<p><em><a href="https://morvanzhou.github.io/static/files/Reinforcement_learning_An_introduction.pdf" target="_blank" rel="noopener">Reinforcement learning An introduction</a></em></p>
+<p><em><a href="https://papers.nips.cc/paper/1713-policy-gradient-methods-for-reinforcement-learning-with-function-approximation.pdf" target="_blank" rel="noopener">Policy gradient methods for reinforcement learning with function approximation.</a></em></p>
+<p><a href="http://speech.ee.ntu.edu.tw/~tlkagk/courses_MLDS18.html" target="_blank" rel="noopener">“Deep Reinforcement Learning, 2018” by 李宏毅 </a></p>
+
       
 
       
@@ -376,7 +415,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#为什么是PG，而不是QL？"><span class="toc-number">1.</span> <span class="toc-text">为什么是PG，而不是QL？</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Pong-为例"><span class="toc-number">2.</span> <span class="toc-text">Pong 为例</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Policy-Network"><span class="toc-number">3.</span> <span class="toc-text">Policy Network</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Supervised-Learning"><span class="toc-number">4.</span> <span class="toc-text">Supervised Learning</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Algorithm"><span class="toc-number">4.0.1.</span> <span class="toc-text">Algorithm</span></a></li></ol></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#为什么是PG，而不是QL？"><span class="toc-number">1.</span> <span class="toc-text">为什么是PG，而不是QL？</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Pong-为例"><span class="toc-number">2.</span> <span class="toc-text">Pong 为例</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Policy-Network"><span class="toc-number">3.</span> <span class="toc-text">Policy Network</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Supervised-Learning"><span class="toc-number">4.</span> <span class="toc-text">Supervised Learning</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#基本组件"><span class="toc-number">4.1.</span> <span class="toc-text">基本组件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Policy-of-Actor"><span class="toc-number">4.2.</span> <span class="toc-text">Policy of Actor</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#以电脑游戏为例"><span class="toc-number">4.3.</span> <span class="toc-text">以电脑游戏为例</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Reference："><span class="toc-number">5.</span> <span class="toc-text">Reference：</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -617,7 +656,7 @@ MathJax.Hub.Queue(function() {
     
     	<section class="tools-section tools-section-me" q-show="aboutme">
   	  	
-  	  		<div class="aboutme-wrap" id="js-aboutme">我曾七次鄙视我的灵魂&lt;br&gt;第一次，当它本可进取时，却故作谦卑；&lt;br&gt;第二次，当它在空虚时，用爱欲来填充；&lt;br&gt;第三次，在困难和容易之间，它选择了容易；&lt;br&gt;第四次，它犯了错，却借由别人也会犯错来宽慰自己；&lt;br&gt;第五次，它自由软弱，却把它认为是生命的坚韧；&lt;br&gt;第六次，当它鄙夷一张丑恶的嘴脸时，却不知那正是自己面具中的一副；&lt;br&gt;第七次，它侧身于生活的污泥中，虽不甘心，却又畏首畏尾。</div>
+  	  		<div class="aboutme-wrap" id="js-aboutme">Undergraduate in College of Software Engineering, Sichuan University &lt;br&gt; Shuangte Student(?)(Wu Yuzhang Honors College of Sichuan University) &lt;br&gt;</div>
   	  	
     	</section>
     
