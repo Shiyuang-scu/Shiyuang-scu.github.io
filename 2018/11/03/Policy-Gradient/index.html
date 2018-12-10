@@ -9,13 +9,13 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>【强化学习】Policy Gradient | ClowNaxcvd</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="2018.11.3创建 2018.12.9更新 这篇文章更多地是对Karpathy Deep Reinforcement Learning: Pong from Pixels文章的阅读和学习笔记,或者说翻译🐶。">
+  <meta name="description" content="2018.11.3创建 2018.12.9更新 2018.12.10更新 2018.12.11更新 这篇文章更多地是对Karpathy Deep Reinforcement Learning: Pong from Pixels文章的阅读和学习笔记,或者说翻译🐶。">
 <meta name="keywords" content="世界之内">
 <meta property="og:type" content="article">
 <meta property="og:title" content="【强化学习】Policy Gradient">
 <meta property="og:url" content="http://yoursite.com/2018/11/03/Policy-Gradient/index.html">
 <meta property="og:site_name" content="ClowNaxcvd">
-<meta property="og:description" content="2018.11.3创建 2018.12.9更新 这篇文章更多地是对Karpathy Deep Reinforcement Learning: Pong from Pixels文章的阅读和学习笔记,或者说翻译🐶。">
+<meta property="og:description" content="2018.11.3创建 2018.12.9更新 2018.12.10更新 2018.12.11更新 这篇文章更多地是对Karpathy Deep Reinforcement Learning: Pong from Pixels文章的阅读和学习笔记,或者说翻译🐶。">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://raw.githubusercontent.com/Shiyuang-scu/blog_img/master/policygradient-1.gif">
 <meta property="og:image" content="https://raw.githubusercontent.com/Shiyuang-scu/blog_img/master/policygradient-2.png">
@@ -23,10 +23,12 @@
 <meta property="og:image" content="https://raw.githubusercontent.com/Shiyuang-scu/blog_img/master/policygradient-4.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/Shiyuang-scu/blog_img/master/policygradient-5.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/Shiyuang-scu/blog_img/master/policygradient-6.png">
-<meta property="og:updated_time" content="2018-12-09T09:47:49.817Z">
+<meta property="og:image" content="http://yoursite.com/Users/seunoboru/Library/Application%20Support/typora-user-images/image-20181210235905610.png">
+<meta property="og:image" content="http://yoursite.com/Users/seunoboru/Library/Application%20Support/typora-user-images/image-20181211000035207.png">
+<meta property="og:updated_time" content="2018-12-10T16:18:56.415Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【强化学习】Policy Gradient">
-<meta name="twitter:description" content="2018.11.3创建 2018.12.9更新 这篇文章更多地是对Karpathy Deep Reinforcement Learning: Pong from Pixels文章的阅读和学习笔记,或者说翻译🐶。">
+<meta name="twitter:description" content="2018.11.3创建 2018.12.9更新 2018.12.10更新 2018.12.11更新 这篇文章更多地是对Karpathy Deep Reinforcement Learning: Pong from Pixels文章的阅读和学习笔记,或者说翻译🐶。">
 <meta name="twitter:image" content="https://raw.githubusercontent.com/Shiyuang-scu/blog_img/master/policygradient-1.gif">
   
     <link rel="alternative" href="/atom.xml" title="ClowNaxcvd" type="application/atom+xml">
@@ -194,6 +196,8 @@
       
         <p>2018.11.3创建</p>
 <p>2018.12.9更新</p>
+<p>2018.12.10更新</p>
+<p>2018.12.11更新</p>
 <p><strong>这篇文章更多地是对Karpathy <em><a href="http://karpathy.github.io/2016/05/31/rl/" target="_blank" rel="noopener">Deep Reinforcement Learning: Pong from Pixels</a></em>文章的阅读和学习笔记,或者说翻译🐶。</strong></p>
 <a id="more"></a>
 <p><strong>Q ：Policy Gradient和Q-Learning的区别在于，前者直接选择动作，后者根据奖惩值选择动作。Q-Learning的方法，通俗点来说，就是哪个动作更有好处，就选择哪个。但是，</strong>PG在选择动作上的策略在本质上不也是因为这个动作更有好处吗？所以不还是需要一个类似奖惩值来供参考吗？</p>
@@ -258,6 +262,40 @@
 <p>整个过程如图</p>
 <p><img src="https://raw.githubusercontent.com/Shiyuang-scu/blog_img/master/policygradient-6.png" alt="image-20181209164225978"></p>
 <p>在$N$个episode中，我们要记录每一个$\tau^n$中的序列对$(s^n_i,a^n_i)$，记录$\tau^n$的reward$R({\tau}^n)$，然后对$\theta$进行更新。</p>
+<h2 id="Important-Tips"><a href="#Important-Tips" class="headerlink" title="Important Tips"></a>Important Tips</h2><p>在Policy Gradient中，我们可以做一些优化，这些优化包括：<strong>增加基线、分配合适奖励值</strong></p>
+<h3 id="Tip1-Add-a-Baseline"><a href="#Tip1-Add-a-Baseline" class="headerlink" title="Tip1: Add a Baseline"></a>Tip1: Add a Baseline</h3><p>增加基线，很好理解，我们看下面这个情况：</p>
+<p>在Policy Gradient中，我们常常会发现在实际情况下，每一个动作的奖励值都是正的，比如说我们训练Agent玩FIFA，因为Agent进的球最少是0，其奖励值不可能是一个负数。</p>
+<p>但是实际上，即使都是正的，也<strong>不会影响</strong>到我们训练的结果，因为奖励值有多有少，所以在回馈的时候，对参数的调整也有大有小。奖励值大的，参数就往这一个动作序列靠近得大；奖励值小的，参数就往这一个动作序列靠近得小。因为输出的动作是根据动作的概率来判定的，而所有的动作概率之和为1，一个动作概率大了，其他动作的概率就会变小，所以参数倾向于对奖励值大的动作靠近，实际上就是在远离奖励值较小的动作。</p>
+<p>但问题是，注意我们之前推导的梯度下降公式：</p>
+<p>$\nabla\overline{R_\theta}{\approx}\frac{1}{N}\sum^N_{n=1}\sum^{T_n}_{t=1}R(\tau^n){\nabla}logp_{\theta}(a^n_t|s^n_t)$</p>
+<p>我们是在对动作序列 $\tau^{i}$ 进行采样，采样的结果是，我们不可能把所有的可能序列都采集到。所以会出现这种情况：有一个动作序列${\tau}^{j}$的奖励值是很高的，但是我们没有采样到，我们只采样到了不是很高的动作序列。那么我们就只能在这一群矮子中挑高的，把参数调整得靠近其中最高的动作序列，提高一个序列几率代表着减少其他动作序列的几率，所以那个原本奖励值最高的${\tau}^{j}$，就被埋没了。<strong>气不气？</strong></p>
+<p>所以我们提出，加一条基线，这样矮子就不会因为运气好，没和高子排在一起而被当成高子处理了。加一条基线，在公式中表示为奖励值多减了一个$b$：</p>
+<p>$\nabla\overline{R_\theta}{\approx}\frac{1}{N}\sum^N_{n=1}\sum^{T_n}_{t=1}(R(\tau^n)-b){\nabla}logp_{\theta}(a^n_t|s^n_t)$</p>
+<p>其中这个$b$，我们一般取所有序列总奖励值的期望：</p>
+<p>$b {\approx}E[R({\tau})]$</p>
+<p>###Tip2: Assign Suitable Credit</p>
+<p>我们看下面这个例子：</p>
+<p>我有两个episode：</p>
+<p><img src="/Users/seunoboru/Library/Application Support/typora-user-images/image-20181210235905610.png" alt="image-20181210235905610"></p>
+<p>根据公式</p>
+<p>$\nabla\overline{R_\theta}{\approx}\frac{1}{N}\sum^N_{n=1}\sum^{T_n}_{t=1}(R(\tau^n)-b){\nabla}logp_{\theta}(a^n_t|s^n_t)$</p>
+<p>我们要对每一个Action都乘上相同的R，在episode1中是3，episode2中，是7。</p>
+<p><img src="/Users/seunoboru/Library/Application Support/typora-user-images/image-20181211000035207.png" alt="image-20181211000035207"></p>
+<p>很显然，这是很不公平的。因为在最终结果好的episode里，指不准有一个action是不好的。比如说上图的episode1，它的action2导致了后来action3的得分为负。但是我们同样把它看成了一个好的动作，并且增大了这个动作的几率。</p>
+<p>同样的，即使在结果不好的episode里，也可能有好的action。比如说上图的episode2，它的action2虽然导致了后来action3的得分也为负，但是负的程度变小了，说明action2还是有益的。</p>
+<p>那么我们可以用以下公式来代替原来的公式：</p>
+<p>$\nabla\overline{R_\theta}{\approx}\frac{1}{N}\sum^N_{n=1}\sum^{T_n}<em>{t=1}({\sum</em>{t’=t}^{T_n}r_{t’}^{n}}-b){\nabla}logp_{\theta}(a^n_t|s^n_t)$</p>
+<p>我们把</p>
+<p>$R(\tau^n)$</p>
+<p>替换成了</p>
+<p>${\sum_{t’=t}^{T_n}r_{t’}^{n}}$</p>
+<p>什么意思呢？我们由原来的，对动作${a_i}$都乘上一个相同的R，变成乘上一个以动作$a_i$为起点的动作序列的奖励值。直观上理解，就是对每个动作的调节，不再是看整个动作序列的结果了，而是看这个动作在整个动作序列中发挥的作用。</p>
+<p>理解了上面的意思，我们可以进一步优化，将</p>
+<p>${\sum_{t’=t}^{T_n}r_{t’}^{n}}$</p>
+<p>改进为</p>
+<p>${\sum_{t’=t}^{T_n}{\gamma}^{t’-t}r_{t’}^{n}}$</p>
+<p>其中$0&lt;{\gamma}&lt;1$</p>
+<p>这个也很好理解，随着动作$a_i$和$a_j$之前隔的时间越来越久，两个动作的相关性就越来越小。</p>
 <h1 id="Reference："><a href="#Reference：" class="headerlink" title="Reference："></a>Reference：</h1><p><a href="http://karpathy.github.io/2016/05/31/rl/" target="_blank" rel="noopener">Deep Reinforcement Learning: Pong from Pixels</a></p>
 <p><a href="http://karpathy.github.io/2016/05/31/rl/" target="_blank" rel="noopener">http://karpathy.github.io/2016/05/31/rl/</a></p>
 <p><em><a href="https://morvanzhou.github.io/static/files/Reinforcement_learning_An_introduction.pdf" target="_blank" rel="noopener">Reinforcement learning An introduction</a></em></p>
@@ -415,7 +453,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#为什么是PG，而不是QL？"><span class="toc-number">1.</span> <span class="toc-text">为什么是PG，而不是QL？</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Pong-为例"><span class="toc-number">2.</span> <span class="toc-text">Pong 为例</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Policy-Network"><span class="toc-number">3.</span> <span class="toc-text">Policy Network</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Supervised-Learning"><span class="toc-number">4.</span> <span class="toc-text">Supervised Learning</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#基本组件"><span class="toc-number">4.1.</span> <span class="toc-text">基本组件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Policy-of-Actor"><span class="toc-number">4.2.</span> <span class="toc-text">Policy of Actor</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#以电脑游戏为例"><span class="toc-number">4.3.</span> <span class="toc-text">以电脑游戏为例</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Reference："><span class="toc-number">5.</span> <span class="toc-text">Reference：</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#为什么是PG，而不是QL？"><span class="toc-number">1.</span> <span class="toc-text">为什么是PG，而不是QL？</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Pong-为例"><span class="toc-number">2.</span> <span class="toc-text">Pong 为例</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Policy-Network"><span class="toc-number">3.</span> <span class="toc-text">Policy Network</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Supervised-Learning"><span class="toc-number">4.</span> <span class="toc-text">Supervised Learning</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#基本组件"><span class="toc-number">4.1.</span> <span class="toc-text">基本组件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Policy-of-Actor"><span class="toc-number">4.2.</span> <span class="toc-text">Policy of Actor</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#以电脑游戏为例"><span class="toc-number">4.3.</span> <span class="toc-text">以电脑游戏为例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Important-Tips"><span class="toc-number">4.4.</span> <span class="toc-text">Important Tips</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Tip1-Add-a-Baseline"><span class="toc-number">4.4.1.</span> <span class="toc-text">Tip1: Add a Baseline</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Reference："><span class="toc-number">5.</span> <span class="toc-text">Reference：</span></a></li></ol>
                     </div>
                 </span>
             </div>
