@@ -9,13 +9,13 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>【强化学习】Policy Gradient | ClowNaxcvd</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="2018.11.3创建 2018.12.9更新 2018.12.10更新 2018.12.11更新 这篇文章更多地是对Karpathy Deep Reinforcement Learning: Pong from Pixels文章的阅读和学习笔记,或者说翻译🐶。">
+  <meta name="description" content="2018.11.3创建 2018.12.9更新 2018.12.10更新 2018.12.11完成 这篇文章更多地是对Karpathy Deep Reinforcement Learning: Pong from Pixels文章的阅读和学习笔记,或者说翻译🐶。">
 <meta name="keywords" content="世界之内">
 <meta property="og:type" content="article">
 <meta property="og:title" content="【强化学习】Policy Gradient">
 <meta property="og:url" content="http://yoursite.com/2018/11/03/Policy-Gradient/index.html">
 <meta property="og:site_name" content="ClowNaxcvd">
-<meta property="og:description" content="2018.11.3创建 2018.12.9更新 2018.12.10更新 2018.12.11更新 这篇文章更多地是对Karpathy Deep Reinforcement Learning: Pong from Pixels文章的阅读和学习笔记,或者说翻译🐶。">
+<meta property="og:description" content="2018.11.3创建 2018.12.9更新 2018.12.10更新 2018.12.11完成 这篇文章更多地是对Karpathy Deep Reinforcement Learning: Pong from Pixels文章的阅读和学习笔记,或者说翻译🐶。">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://raw.githubusercontent.com/Shiyuang-scu/blog_img/master/policygradient-1.gif">
 <meta property="og:image" content="https://raw.githubusercontent.com/Shiyuang-scu/blog_img/master/policygradient-2.png">
@@ -23,12 +23,12 @@
 <meta property="og:image" content="https://raw.githubusercontent.com/Shiyuang-scu/blog_img/master/policygradient-4.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/Shiyuang-scu/blog_img/master/policygradient-5.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/Shiyuang-scu/blog_img/master/policygradient-6.png">
-<meta property="og:image" content="http://yoursite.com/Users/seunoboru/Library/Application%20Support/typora-user-images/image-20181210235905610.png">
-<meta property="og:image" content="http://yoursite.com/Users/seunoboru/Library/Application%20Support/typora-user-images/image-20181211000035207.png">
-<meta property="og:updated_time" content="2018-12-10T16:18:56.415Z">
+<meta property="og:image" content="https://raw.githubusercontent.com/Shiyuang-scu/blog_img/master/policygradient-7.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Shiyuang-scu/blog_img/master/policygradient-8.png">
+<meta property="og:updated_time" content="2018-12-10T16:24:19.352Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【强化学习】Policy Gradient">
-<meta name="twitter:description" content="2018.11.3创建 2018.12.9更新 2018.12.10更新 2018.12.11更新 这篇文章更多地是对Karpathy Deep Reinforcement Learning: Pong from Pixels文章的阅读和学习笔记,或者说翻译🐶。">
+<meta name="twitter:description" content="2018.11.3创建 2018.12.9更新 2018.12.10更新 2018.12.11完成 这篇文章更多地是对Karpathy Deep Reinforcement Learning: Pong from Pixels文章的阅读和学习笔记,或者说翻译🐶。">
 <meta name="twitter:image" content="https://raw.githubusercontent.com/Shiyuang-scu/blog_img/master/policygradient-1.gif">
   
     <link rel="alternative" href="/atom.xml" title="ClowNaxcvd" type="application/atom+xml">
@@ -197,7 +197,7 @@
         <p>2018.11.3创建</p>
 <p>2018.12.9更新</p>
 <p>2018.12.10更新</p>
-<p>2018.12.11更新</p>
+<p>2018.12.11完成</p>
 <p><strong>这篇文章更多地是对Karpathy <em><a href="http://karpathy.github.io/2016/05/31/rl/" target="_blank" rel="noopener">Deep Reinforcement Learning: Pong from Pixels</a></em>文章的阅读和学习笔记,或者说翻译🐶。</strong></p>
 <a id="more"></a>
 <p><strong>Q ：Policy Gradient和Q-Learning的区别在于，前者直接选择动作，后者根据奖惩值选择动作。Q-Learning的方法，通俗点来说，就是哪个动作更有好处，就选择哪个。但是，</strong>PG在选择动作上的策略在本质上不也是因为这个动作更有好处吗？所以不还是需要一个类似奖惩值来供参考吗？</p>
@@ -273,19 +273,20 @@
 <p>$\nabla\overline{R_\theta}{\approx}\frac{1}{N}\sum^N_{n=1}\sum^{T_n}_{t=1}(R(\tau^n)-b){\nabla}logp_{\theta}(a^n_t|s^n_t)$</p>
 <p>其中这个$b$，我们一般取所有序列总奖励值的期望：</p>
 <p>$b {\approx}E[R({\tau})]$</p>
-<p>###Tip2: Assign Suitable Credit</p>
-<p>我们看下面这个例子：</p>
+<h3 id="Tip2-Assign-Suitable-Credit"><a href="#Tip2-Assign-Suitable-Credit" class="headerlink" title="Tip2: Assign Suitable Credit"></a>Tip2: Assign Suitable Credit</h3><p>我们看下面这个例子：</p>
 <p>我有两个episode：</p>
-<p><img src="/Users/seunoboru/Library/Application Support/typora-user-images/image-20181210235905610.png" alt="image-20181210235905610"></p>
+<p><img src="https://raw.githubusercontent.com/Shiyuang-scu/blog_img/master/policygradient-7.png" alt="image-20181210235905610"></p>
 <p>根据公式</p>
 <p>$\nabla\overline{R_\theta}{\approx}\frac{1}{N}\sum^N_{n=1}\sum^{T_n}_{t=1}(R(\tau^n)-b){\nabla}logp_{\theta}(a^n_t|s^n_t)$</p>
 <p>我们要对每一个Action都乘上相同的R，在episode1中是3，episode2中，是7。</p>
-<p><img src="/Users/seunoboru/Library/Application Support/typora-user-images/image-20181211000035207.png" alt="image-20181211000035207"></p>
+<p><img src="https://raw.githubusercontent.com/Shiyuang-scu/blog_img/master/policygradient-8.png" alt="image-20181211000035207"></p>
 <p>很显然，这是很不公平的。因为在最终结果好的episode里，指不准有一个action是不好的。比如说上图的episode1，它的action2导致了后来action3的得分为负。但是我们同样把它看成了一个好的动作，并且增大了这个动作的几率。</p>
 <p>同样的，即使在结果不好的episode里，也可能有好的action。比如说上图的episode2，它的action2虽然导致了后来action3的得分也为负，但是负的程度变小了，说明action2还是有益的。</p>
-<p>那么我们可以用以下公式来代替原来的公式：</p>
-<p>$\nabla\overline{R_\theta}{\approx}\frac{1}{N}\sum^N_{n=1}\sum^{T_n}<em>{t=1}({\sum</em>{t’=t}^{T_n}r_{t’}^{n}}-b){\nabla}logp_{\theta}(a^n_t|s^n_t)$</p>
-<p>我们把</p>
+<p>那么我们可以把代替原来的公式：</p>
+<p>$\nabla\overline{R_\theta}{\approx}\frac{1}{N}\sum^N_{n=1}\sum^{T_n}_{t=1}(R(\tau^n)-b){\nabla}logp_{\theta}(a^n_t|s^n_t)$</p>
+<p>代替为以下公式：</p>
+<p>$\nabla\overline{R_\theta}{\approx}\frac{1}{N}\sum^N_{n=1}\sum^{T_n}_{t=1}({\sum_{t’=t}^{T_n}r_{t’}^{n}}-b){\nabla}logp_{\theta}(a^n_t|s^n_t)$</p>
+<p>其中，我们把</p>
 <p>$R(\tau^n)$</p>
 <p>替换成了</p>
 <p>${\sum_{t’=t}^{T_n}r_{t’}^{n}}$</p>
@@ -453,7 +454,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#为什么是PG，而不是QL？"><span class="toc-number">1.</span> <span class="toc-text">为什么是PG，而不是QL？</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Pong-为例"><span class="toc-number">2.</span> <span class="toc-text">Pong 为例</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Policy-Network"><span class="toc-number">3.</span> <span class="toc-text">Policy Network</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Supervised-Learning"><span class="toc-number">4.</span> <span class="toc-text">Supervised Learning</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#基本组件"><span class="toc-number">4.1.</span> <span class="toc-text">基本组件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Policy-of-Actor"><span class="toc-number">4.2.</span> <span class="toc-text">Policy of Actor</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#以电脑游戏为例"><span class="toc-number">4.3.</span> <span class="toc-text">以电脑游戏为例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Important-Tips"><span class="toc-number">4.4.</span> <span class="toc-text">Important Tips</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Tip1-Add-a-Baseline"><span class="toc-number">4.4.1.</span> <span class="toc-text">Tip1: Add a Baseline</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Reference："><span class="toc-number">5.</span> <span class="toc-text">Reference：</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#为什么是PG，而不是QL？"><span class="toc-number">1.</span> <span class="toc-text">为什么是PG，而不是QL？</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Pong-为例"><span class="toc-number">2.</span> <span class="toc-text">Pong 为例</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Policy-Network"><span class="toc-number">3.</span> <span class="toc-text">Policy Network</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Supervised-Learning"><span class="toc-number">4.</span> <span class="toc-text">Supervised Learning</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#基本组件"><span class="toc-number">4.1.</span> <span class="toc-text">基本组件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Policy-of-Actor"><span class="toc-number">4.2.</span> <span class="toc-text">Policy of Actor</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#以电脑游戏为例"><span class="toc-number">4.3.</span> <span class="toc-text">以电脑游戏为例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Important-Tips"><span class="toc-number">4.4.</span> <span class="toc-text">Important Tips</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Tip1-Add-a-Baseline"><span class="toc-number">4.4.1.</span> <span class="toc-text">Tip1: Add a Baseline</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Tip2-Assign-Suitable-Credit"><span class="toc-number">4.4.2.</span> <span class="toc-text">Tip2: Assign Suitable Credit</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Reference："><span class="toc-number">5.</span> <span class="toc-text">Reference：</span></a></li></ol>
                     </div>
                 </span>
             </div>
