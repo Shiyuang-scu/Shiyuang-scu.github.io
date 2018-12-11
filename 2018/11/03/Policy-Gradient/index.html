@@ -9,13 +9,13 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>【强化学习】Policy Gradient | ClowNaxcvd</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="2018.11.3创建 2018.12.9更新 2018.12.10更新 2018.12.11完成 这篇文章更多地是对Karpathy Deep Reinforcement Learning: Pong from Pixels文章的阅读和学习笔记,或者说翻译🐶。">
+  <meta name="description" content="2018.11.3创建 2018.12.9更新 2018.12.10更新 2018.12.11完成 本篇介绍了Policy Gradient的结构、算法，以及优化">
 <meta name="keywords" content="世界之内">
 <meta property="og:type" content="article">
 <meta property="og:title" content="【强化学习】Policy Gradient">
 <meta property="og:url" content="http://yoursite.com/2018/11/03/Policy-Gradient/index.html">
 <meta property="og:site_name" content="ClowNaxcvd">
-<meta property="og:description" content="2018.11.3创建 2018.12.9更新 2018.12.10更新 2018.12.11完成 这篇文章更多地是对Karpathy Deep Reinforcement Learning: Pong from Pixels文章的阅读和学习笔记,或者说翻译🐶。">
+<meta property="og:description" content="2018.11.3创建 2018.12.9更新 2018.12.10更新 2018.12.11完成 本篇介绍了Policy Gradient的结构、算法，以及优化">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://raw.githubusercontent.com/Shiyuang-scu/blog_img/master/policygradient-1.gif">
 <meta property="og:image" content="https://raw.githubusercontent.com/Shiyuang-scu/blog_img/master/policygradient-2.png">
@@ -25,10 +25,10 @@
 <meta property="og:image" content="https://raw.githubusercontent.com/Shiyuang-scu/blog_img/master/policygradient-6.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/Shiyuang-scu/blog_img/master/policygradient-7.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/Shiyuang-scu/blog_img/master/policygradient-8.png">
-<meta property="og:updated_time" content="2018-12-10T16:24:19.352Z">
+<meta property="og:updated_time" content="2018-12-10T16:27:52.346Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【强化学习】Policy Gradient">
-<meta name="twitter:description" content="2018.11.3创建 2018.12.9更新 2018.12.10更新 2018.12.11完成 这篇文章更多地是对Karpathy Deep Reinforcement Learning: Pong from Pixels文章的阅读和学习笔记,或者说翻译🐶。">
+<meta name="twitter:description" content="2018.11.3创建 2018.12.9更新 2018.12.10更新 2018.12.11完成 本篇介绍了Policy Gradient的结构、算法，以及优化">
 <meta name="twitter:image" content="https://raw.githubusercontent.com/Shiyuang-scu/blog_img/master/policygradient-1.gif">
   
     <link rel="alternative" href="/atom.xml" title="ClowNaxcvd" type="application/atom+xml">
@@ -198,7 +198,7 @@
 <p>2018.12.9更新</p>
 <p>2018.12.10更新</p>
 <p>2018.12.11完成</p>
-<p><strong>这篇文章更多地是对Karpathy <em><a href="http://karpathy.github.io/2016/05/31/rl/" target="_blank" rel="noopener">Deep Reinforcement Learning: Pong from Pixels</a></em>文章的阅读和学习笔记,或者说翻译🐶。</strong></p>
+<p>本篇介绍了Policy Gradient的结构、算法，以及优化</p>
 <a id="more"></a>
 <p><strong>Q ：Policy Gradient和Q-Learning的区别在于，前者直接选择动作，后者根据奖惩值选择动作。Q-Learning的方法，通俗点来说，就是哪个动作更有好处，就选择哪个。但是，</strong>PG在选择动作上的策略在本质上不也是因为这个动作更有好处吗？所以不还是需要一个类似奖惩值来供参考吗？</p>
 <p><strong>A：</strong>第一句话的后半句说得没错，但前半句就错了。PG和QL的区别在于，QL是基于贪婪算法的，具体地说，就是将每一个目标分成一个个小目标，只要把小目标做得好，大目标就做好了，所以QL做的是优化每一个小目标，而不管大目标怎么样；PG则倒过来，它不管小目标怎么样，他只关心大目标——只要大目标完成好了，之后就多多用完成大目标的这种方法，如果大目标完成不好，那这种方法就给它打入冷宫。</p>
