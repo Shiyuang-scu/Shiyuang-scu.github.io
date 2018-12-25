@@ -9,13 +9,13 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>【强化学习】Policy Gradient | ClowNaxcvd</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="2018.11.3创建 2018.12.9更新 2018.12.10更新 2018.12.11完成 本篇介绍了Policy Gradient的结构、算法，以及优化">
+  <meta name="description" content="2018.11.3创建 2018.12.9更新 2018.12.10更新 2018.12.11完稿 本篇介绍了Policy Gradient的结构、算法，以及优化">
 <meta name="keywords" content="世界之内">
 <meta property="og:type" content="article">
 <meta property="og:title" content="【强化学习】Policy Gradient">
 <meta property="og:url" content="http://yoursite.com/2018/11/03/Policy-Gradient/index.html">
 <meta property="og:site_name" content="ClowNaxcvd">
-<meta property="og:description" content="2018.11.3创建 2018.12.9更新 2018.12.10更新 2018.12.11完成 本篇介绍了Policy Gradient的结构、算法，以及优化">
+<meta property="og:description" content="2018.11.3创建 2018.12.9更新 2018.12.10更新 2018.12.11完稿 本篇介绍了Policy Gradient的结构、算法，以及优化">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://raw.githubusercontent.com/Shiyuang-scu/blog_img/master/policygradient-1.gif">
 <meta property="og:image" content="https://raw.githubusercontent.com/Shiyuang-scu/blog_img/master/policygradient-2.png">
@@ -25,10 +25,10 @@
 <meta property="og:image" content="https://raw.githubusercontent.com/Shiyuang-scu/blog_img/master/policygradient-6.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/Shiyuang-scu/blog_img/master/policygradient-7.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/Shiyuang-scu/blog_img/master/policygradient-8.png">
-<meta property="og:updated_time" content="2018-12-10T16:27:52.346Z">
+<meta property="og:updated_time" content="2018-12-24T06:55:21.734Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【强化学习】Policy Gradient">
-<meta name="twitter:description" content="2018.11.3创建 2018.12.9更新 2018.12.10更新 2018.12.11完成 本篇介绍了Policy Gradient的结构、算法，以及优化">
+<meta name="twitter:description" content="2018.11.3创建 2018.12.9更新 2018.12.10更新 2018.12.11完稿 本篇介绍了Policy Gradient的结构、算法，以及优化">
 <meta name="twitter:image" content="https://raw.githubusercontent.com/Shiyuang-scu/blog_img/master/policygradient-1.gif">
   
     <link rel="alternative" href="/atom.xml" title="ClowNaxcvd" type="application/atom+xml">
@@ -197,7 +197,7 @@
         <p>2018.11.3创建</p>
 <p>2018.12.9更新</p>
 <p>2018.12.10更新</p>
-<p>2018.12.11完成</p>
+<p>2018.12.11完稿</p>
 <p>本篇介绍了Policy Gradient的结构、算法，以及优化</p>
 <a id="more"></a>
 <p><strong>Q ：Policy Gradient和Q-Learning的区别在于，前者直接选择动作，后者根据奖惩值选择动作。Q-Learning的方法，通俗点来说，就是哪个动作更有好处，就选择哪个。但是，</strong>PG在选择动作上的策略在本质上不也是因为这个动作更有好处吗？所以不还是需要一个类似奖惩值来供参考吗？</p>
@@ -225,8 +225,7 @@
 <p>如下图，我们输入一张图片，得到了输出，输出的是log概率（是log概率还是原始概率，不是关键）。在监督学习下，我们知道在这种情况下应该怎么做，假设我们知道应该UP，那么我们就可以用BP算法来更新权重，来达到增加在这种情况下得出UP决策的概率。</p>
 <p><img src="https://raw.githubusercontent.com/Shiyuang-scu/blog_img/master/policygradient-3.png" alt="Supervised Learning"></p>
 <p>关于监督学习的内容不再赘述，可以查相关资料。</p>
-<p>#Policy Gradient</p>
-<p>那么如果我们没有Label怎么办呢？假如我们进行了一次计算，得到UP的概率为30%，DOWN的概率为70%，那么我们就会在这个分布中随机选择一个，假如选中的是DOWN吧，那么在这时就让板子往下移动，如果这个移动是好的，那么Label就是positive的，在backprop后就增加在这个状态下DOWN的概率。问题是，我们怎么知道这就是好的呢？比如我在第一帧选择了DOWN，然后在20帧才赢/输了游戏，我又不知道第一帧的动作对结果有什么影响。</p>
+<h1 id="Policy-Gradient"><a href="#Policy-Gradient" class="headerlink" title="Policy Gradient"></a>Policy Gradient</h1><p>那么如果我们没有Label怎么办呢？假如我们进行了一次计算，得到UP的概率为30%，DOWN的概率为70%，那么我们就会在这个分布中随机选择一个，假如选中的是DOWN吧，那么在这时就让板子往下移动，如果这个移动是好的，那么Label就是positive的，在backprop后就增加在这个状态下DOWN的概率。问题是，我们怎么知道这就是好的呢？比如我在第一帧选择了DOWN，然后在20帧才赢/输了游戏，我又不知道第一帧的动作对结果有什么影响。</p>
 <p>我们可以这么做，先做一系列动作，直到游戏结束，然后再根据结果，对这一串动作中的每一个动作标记Label。比如说我第一帧DOWN，然后最后赢了，那么DOWN的Label就是positive的。</p>
 <p>在PG中，我们的损失函数是$\sum_iA_ilogp(y_i|x_i)$,其中$A_i$是<strong>advantage</strong>，如果赢了就是1，输了就是-1；$y_i$是我们选取的动作；$x_i$是输入的状态（在Pong例子中是图片（像素））。</p>
 <p>以上以pong为例，对advantag的选择也过于草率（因为一律都是1或者0），实际上，对于不同的动作$x$，advange是不同的。</p>
@@ -454,7 +453,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#为什么是PG，而不是QL？"><span class="toc-number">1.</span> <span class="toc-text">为什么是PG，而不是QL？</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Pong-为例"><span class="toc-number">2.</span> <span class="toc-text">Pong 为例</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Policy-Network"><span class="toc-number">3.</span> <span class="toc-text">Policy Network</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Supervised-Learning"><span class="toc-number">4.</span> <span class="toc-text">Supervised Learning</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#基本组件"><span class="toc-number">4.1.</span> <span class="toc-text">基本组件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Policy-of-Actor"><span class="toc-number">4.2.</span> <span class="toc-text">Policy of Actor</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#以电脑游戏为例"><span class="toc-number">4.3.</span> <span class="toc-text">以电脑游戏为例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Important-Tips"><span class="toc-number">4.4.</span> <span class="toc-text">Important Tips</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Tip1-Add-a-Baseline"><span class="toc-number">4.4.1.</span> <span class="toc-text">Tip1: Add a Baseline</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Tip2-Assign-Suitable-Credit"><span class="toc-number">4.4.2.</span> <span class="toc-text">Tip2: Assign Suitable Credit</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Reference："><span class="toc-number">5.</span> <span class="toc-text">Reference：</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#为什么是PG，而不是QL？"><span class="toc-number">1.</span> <span class="toc-text">为什么是PG，而不是QL？</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Pong-为例"><span class="toc-number">2.</span> <span class="toc-text">Pong 为例</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Policy-Network"><span class="toc-number">3.</span> <span class="toc-text">Policy Network</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Supervised-Learning"><span class="toc-number">4.</span> <span class="toc-text">Supervised Learning</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Policy-Gradient"><span class="toc-number">5.</span> <span class="toc-text">Policy Gradient</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#基本组件"><span class="toc-number">5.1.</span> <span class="toc-text">基本组件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Policy-of-Actor"><span class="toc-number">5.2.</span> <span class="toc-text">Policy of Actor</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#以电脑游戏为例"><span class="toc-number">5.3.</span> <span class="toc-text">以电脑游戏为例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Important-Tips"><span class="toc-number">5.4.</span> <span class="toc-text">Important Tips</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Tip1-Add-a-Baseline"><span class="toc-number">5.4.1.</span> <span class="toc-text">Tip1: Add a Baseline</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Tip2-Assign-Suitable-Credit"><span class="toc-number">5.4.2.</span> <span class="toc-text">Tip2: Assign Suitable Credit</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Reference："><span class="toc-number">6.</span> <span class="toc-text">Reference：</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -620,11 +619,11 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+                <a href="javascript:void(0)" class="js-tag color5">世界之内</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">世界之内</a>
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
               </li>
              
               <li class="article-tag-list-item">

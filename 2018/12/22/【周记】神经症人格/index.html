@@ -19,7 +19,7 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://raw.githubusercontent.com/Shiyuang-scu/blog_img/master/程序编译流程.png">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/4787675-64fb86764c822a09.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1000">
-<meta property="og:updated_time" content="2018-12-22T08:55:07.354Z">
+<meta property="og:updated_time" content="2018-12-24T06:54:21.340Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【周记】神经症人格">
 <meta name="twitter:description" content="比失败本身更令他害怕的，乃是他已经以某种方式显示了自己正在与他人竞争，显示了他确实希望获得成功并已经为此做出了努力，然后遭到了失败。他觉得单纯的失败还可以被人们原谅，甚至还可能唤起他人的同情而不是敌意；然而一旦他表现出对成功有兴趣，他就会被一大群迫害他的敌人所包围。 这种对成功的恐惧，来源于害怕遭到他人的嫉妒并因而失去他人的爱。 神经症病人可能完全压抑住他自己野心勃勃的愿望，以致竟完全不愿做任何">
@@ -255,7 +255,7 @@
 <hr>
 <p>有一天突然对函数式编程起了三分钟热度。之前学习《SICP》的时候，感受到了Lisp（Scheme MIT）的魅力，感受到了丘奇 $\lambda \,\,calculus$（λ表达式）的奇幻——一切命题能够用函数表示，太神奇了。然后查了查Lisp，看到了王垠老师对“中缀表达式”、“前缀表达式”的独到见解。很兴奋，我感受到了一种新的世界观。</p>
 <blockquote>
-<p>关于“前缀表达式”与“中缀表达式”，我有一个很独到的见解：我觉得“中缀表达式”其实是一种过时的，来源于传统数学的历史遗留产物。几百年以来，人们都在用 x+y 这样的符号来表示加法。之所以这样写，而不是 (+ x y)，是因为在没有计算机以前，数学公式都得写在纸上，写 x+y 显然比 (+ x y) 方便简洁。但是，中缀表达式却是容易出现歧义的。如果你有多个操作符，比如 1+2<em>3。那么它表示的是 (+ 1 (</em> 2 3)) 呢，还是 (<em> (+ 1 2) 3)？所以才出现了“运算符优先级”这种东西。看见没有，S表达式已经在这里显示出它没有歧义的优点。你不需要知道 + 和 </em> 的优先级，就能明白 (+ 1 (<em> 2 3)) 和 (</em> (+ 1 2) 3) 的区别。第一个先乘后加，而第二个先加后乘。</p>
+<p>关于“前缀表达式”与“中缀表达式”，我有一个很独到的见解：我觉得“中缀表达式”其实是一种过时的，来源于传统数学的历史遗留产物。几百年以来，人们都在用 x+y 这样的符号来表示加法。之所以这样写，而不是 (+ x y)，是因为在没有计算机以前，数学公式都得写在纸上，写 x+y 显然比 (+ x y) 方便简洁。但是，中缀表达式却是容易出现歧义的。如果你有多个操作符，比如 1+2*3。那么它表示的是 (+ 1 (* 2 3)) 呢，还是 (* (+ 1 2) 3)？所以才出现了“运算符优先级”这种东西。看见没有，S表达式已经在这里显示出它没有歧义的优点。你不需要知道 + 和 * 的优先级，就能明白 (+ 1 (* 2 3)) 和 (* (+ 1 2) 3) 的区别。第一个先乘后加，而第二个先加后乘。</p>
 <p>-王垠《论语法》</p>
 </blockquote>
 <h1 id="学习"><a href="#学习" class="headerlink" title="学习"></a>学习</h1><p>十二月主要在赶大创申报书。学习了PyTorch框架的使用，搞懂了Policy Gradient的算法原理和优化，在空天学院的项目有了些许进展。</p>
@@ -445,6 +445,15 @@
 
   
 <nav id="article-nav">
+  
+    <a href="/2018/12/25/人类的心理行为模式/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          人类的心理行为模式
+        
+      </div>
+    </a>
   
   
     <a href="/2018/12/11/GAN-RL-文本生成的方法/" id="article-nav-older" class="article-nav-link-wrap">
@@ -641,11 +650,11 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+                <a href="javascript:void(0)" class="js-tag color5">世界之内</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">世界之内</a>
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
               </li>
              
               <li class="article-tag-list-item">
