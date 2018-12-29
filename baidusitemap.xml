@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://yoursite.com/2018/12/31/2018%E5%B9%B4%E5%BA%A6%E5%B0%8F%E7%BB%93/</loc>
+    <lastmod>2018-12-29T02:20:41.705Z</lastmod>
+  </url>  <url>
     <loc>http://yoursite.com/2018/12/25/%E4%BA%BA%E7%B1%BB%E7%9A%84%E5%BF%83%E7%90%86%E8%A1%8C%E4%B8%BA%E6%A8%A1%E5%BC%8F/</loc>
     <lastmod>2018-12-25T05:35:31.910Z</lastmod>
   </url>  <url>
@@ -15,9 +18,6 @@
   </url>  <url>
     <loc>http://yoursite.com/2018/11/30/%E6%97%8B%E8%BD%AC/</loc>
     <lastmod>2018-12-22T14:29:27.994Z</lastmod>
-  </url>  <url>
-    <loc>http://yoursite.com/2018/12/07/test/</loc>
-    <lastmod>2018-12-20T07:28:47.001Z</lastmod>
   </url>  <url>
     <loc>http://yoursite.com/2018/12/11/GAN-RL-%E6%96%87%E6%9C%AC%E7%94%9F%E6%88%90%E7%9A%84%E6%96%B9%E6%B3%95/</loc>
     <lastmod>2018-12-11T13:47:42.966Z</lastmod>
@@ -144,9 +144,6 @@
   </url>  <url>
     <loc>http://yoursite.com/2016/10/30/%E7%99%BD%E6%96%87%E9%B8%9F/</loc>
     <lastmod>2018-11-12T09:10:04.254Z</lastmod>
-  </url>  <url>
-    <loc>http://yoursite.com/2018/07/06/%E9%A2%9C%E8%89%B2%E6%81%92%E5%B8%B8%E6%80%A7%E7%9A%84%E5%87%A0%E7%A7%8D%E5%9F%BA%E6%9C%AC%E7%AE%97%E6%B3%95/</loc>
-    <lastmod>2018-11-12T09:07:42.530Z</lastmod>
   </url>  <url>
     <loc>http://yoursite.com/2018/09/09/History-of-artificial-intelligence/</loc>
     <lastmod>2018-11-12T09:05:48.202Z</lastmod>
