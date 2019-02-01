@@ -17,7 +17,7 @@
 <meta property="og:site_name" content="ClowNaxcvd">
 <meta property="og:description" content="在学数理逻辑的时候，有一个问题一直想不通：P-&amp;gt;Q，为什么在P为假时，无论Q为真还是假，整个命题都为真。在当时，我想到了两个解释：  命题实际上包含的是一个世界观，P-&amp;gt;Q是世界观P到Q的自然推导或者说是一种类似因果关系的宇宙定律，当作为前提的世界观都是错误的，那么这个世界就必然是混沌的，在混沌的宇宙中，没有你我之分，所有的事件都搅拌在一起，无论Q是什么，都是同一个结果：真。 数理逻辑">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-11-21T23:13:20.388Z">
+<meta property="og:updated_time" content="2019-02-01T14:25:06.165Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【数理逻辑】Incompleteness Theorem">
 <meta name="twitter:description" content="在学数理逻辑的时候，有一个问题一直想不通：P-&amp;gt;Q，为什么在P为假时，无论Q为真还是假，整个命题都为真。在当时，我想到了两个解释：  命题实际上包含的是一个世界观，P-&amp;gt;Q是世界观P到Q的自然推导或者说是一种类似因果关系的宇宙定律，当作为前提的世界观都是错误的，那么这个世界就必然是混沌的，在混沌的宇宙中，没有你我之分，所有的事件都搅拌在一起，无论Q是什么，都是同一个结果：真。 数理逻辑">
@@ -191,11 +191,8 @@
 <li>数理逻辑需要明确的定义，既然当前件P是假的，那么P-&gt;Q的结果真假，是和P与Q具体是什么东西有关的。而数理逻辑是为了构建一个抽象的世界观，所以为了便于形式化的推导，数学家便将这种情况永久地定义为“真”。</li>
 </ul>
 <p><strong>可是，</strong>今天无意间看了一系列哥德尔不完备定理的文章，内心激动无比。</p>
-<p><strong>Reference:</strong></p>
-<p><a href="http://blog.sciencenet.cn/blog-409681-1067019.html" target="_blank" rel="noopener">“哥德尔不完备定理”到底说了些什么？——（一）</a></p>
-<p><a href="http://blog.sciencenet.cn/blog-409681-1067020.html" target="_blank" rel="noopener">“哥德尔不完备定理”到底说了些什么？——（二）</a></p>
 <a id="more"></a>
-<p>在哥德尔的论文中，我们一般所说的“哥德尔不完备定理”（有时候也被叫做“哥德尔第一不完备定理”）是指论文中的定理VI，原文如下：</p>
+<h1 id="什么是哥德尔不完备定理"><a href="#什么是哥德尔不完备定理" class="headerlink" title="什么是哥德尔不完备定理"></a>什么是哥德尔不完备定理</h1><p>在哥德尔的论文中，我们一般所说的“哥德尔不完备定理”（有时候也被叫做“哥德尔第一不完备定理”）是指论文中的定理VI，原文如下：</p>
 <blockquote>
 <p>TheoremVI: For every ω-consistent primitive recursive class κ of formulae, there is aprimitive recursive class-sign r , such that neither forall(v,r) nornot(forall(v,r)) belongs to Conseq(κ) (where v is the free variable of r).</p>
 </blockquote>
@@ -205,8 +202,7 @@
 </blockquote>
 <p>我们简要理解“哥德尔不完备定理”说的是：一个足够复杂的公理体系（至少蕴含了皮亚诺算术公理），如果它是一致的（相容的，无矛盾的），那么它就是不完备的。这里的完备，指的是“对于任何可在这个公理体系内描述的命题，都可以在这个公理体系内得到判定，要么是正确的，要么是错误的”。</p>
 <p>再用大白话解释一下，就是说，一个没有矛盾的公理体系内，总有一些命题是说不清楚对还是错的（务必注意，这是指在这个体系内说不清楚，不是说永远都说不清楚了）。也许有人说了，既然没矛盾的公理体系有问题，那就搞个有矛盾的公理体系呗。如果设想一个公理体系，一会儿告诉我们“1+1=2”，一会儿又告诉我们“1+1!=2”，相信不会再有人把这个公理体系当回事。有矛盾的公理体系会导致彻底的无意义和虚无</p>
-<p><u><strong>为什么？</strong></u></p>
-<p>构造一个不一致（不相容、存在矛盾）的公理体系是无意义的。从直觉出发，我们都清楚，存在矛盾的体系当然有问题了。这里，我们给出逻辑上的说明（或者说证明）。</p>
+<h1 id="为什么哥德尔不完备定理成立"><a href="#为什么哥德尔不完备定理成立" class="headerlink" title="为什么哥德尔不完备定理成立"></a>为什么哥德尔不完备定理成立</h1><p>构造一个不一致（不相容、存在矛盾）的公理体系是无意义的。从直觉出发，我们都清楚，存在矛盾的体系当然有问题了。这里，我们给出逻辑上的说明（或者说证明）。</p>
 <p>做这件事之前，让我们先来感谢罗素和怀特海，是他们的艰苦工作成果《数学原理》给出了数学形式化的基础。我们正是以此为基础，来说明一致性的重要意义。另外，了解《数学原理》中给出的数学形式化的基本表示，也是继续修炼第三重、第四重神功的基础，因为哥德尔就是基于《数学原理》中数学形式化的表达来证明“哥德尔不完备定理”的。</p>
 <p>由于形式化表达的符号存在不同的样式，为避免歧义，本文中数学形式化的表达与哥德尔论文中的样子保持一致。以下是数学形式化的基本原则：</p>
 <ol>
@@ -245,6 +241,8 @@
 <p>“在非真实的前提下运用逻辑可以得出任何结果”。这句话时是有其逻辑基础的，”有矛盾的公理体系可以推导出任意命题都成立“。</p>
 <p>这也是为什么，p-&gt;q，当p为假时，整个命题永远都是真的。</p>
 <p>豁然开朗。</p>
+<h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><p><a href="http://blog.sciencenet.cn/blog-409681-1067019.html" target="_blank" rel="noopener">“哥德尔不完备定理”到底说了些什么？——（一）</a></p>
+<p><a href="http://blog.sciencenet.cn/blog-409681-1067020.html" target="_blank" rel="noopener">“哥德尔不完备定理”到底说了些什么？——（二）</a></p>
 
       
 
@@ -397,7 +395,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    目录，不存在的…
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#什么是哥德尔不完备定理"><span class="toc-number">1.</span> <span class="toc-text">什么是哥德尔不完备定理</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#为什么哥德尔不完备定理成立"><span class="toc-number">2.</span> <span class="toc-text">为什么哥德尔不完备定理成立</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Reference"><span class="toc-number">3.</span> <span class="toc-text">Reference</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -563,11 +561,11 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">世界之内</a>
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+                <a href="javascript:void(0)" class="js-tag color5">世界之内</a>
               </li>
              
               <li class="article-tag-list-item">
