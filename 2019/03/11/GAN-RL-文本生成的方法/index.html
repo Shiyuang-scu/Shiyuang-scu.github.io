@@ -23,7 +23,7 @@
 <meta property="og:image" content="https://raw.githubusercontent.com/Shiyuang-scu/blog_img/master/RNN-4.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/Shiyuang-scu/blog_img/master/RNN-5.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/Shiyuang-scu/blog_img/master/RNN-6.png">
-<meta property="og:updated_time" content="2019-03-12T02:39:08.040Z">
+<meta property="og:updated_time" content="2019-03-12T02:44:38.064Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="生成对抗网络与强化学习:文本生成的方法">
 <meta name="twitter:description" content="本文介绍了一种文本生成的方法，关键技术为生成对抗网络（GAN）和强化学习（RL）。 内容主要包括方法的数学原理、实现思路和具体实现细节。">
@@ -213,23 +213,23 @@
 <p>我们通过上图，可以看到RNN的另一个特点：每一个中间层，或者说每一个 $input$ 状态都与前一个 $input$ 状态相关，这就体现了相邻 $input$ 之间的<strong>相关性</strong>。</p>
 <p>比如说我输入一句话作为我的 $input$ ，”猫吃鱼“，其中 $input_1$ ”猫“， $input_2$ ”吃“， $input_3$ ”鱼“，”猫“的中间状态由前两个 $input$ 的中间状态决定，即，”吃“”鱼“这两个 $input​$ 和”猫“有关，这符合我们的逻辑，猫不就是吃鱼的么。</p>
 <p>上下文构成了联系，而不是被单一孤立开来，RNN实际上实现了部分我们对智能体的期待，所以Karpathy也说，RNN是最令他激动的模型。</p>
-<h4 id="模型"><a href="#模型" class="headerlink" title="模型"></a>模型</h4><p>我们用$x^{<i>}​$来表示第 $i​$ 个输入值，$y^{<i>}​$来表示第 $i​$ 个输出值，举个例子，我有一句话：</i></i></p>
+<h4 id="模型"><a href="#模型" class="headerlink" title="模型"></a>模型</h4><p>我们用$x^{&lt; i &gt;}$来表示第 $i$ 个输入值，$y^{&lt; i &gt;}$来表示第 $i$ 个输出值，举个例子，我有一句话：</p>
 <p>$$My\  name \ is\ ClowNaxcvd\ Shi​$$</p>
-<p>那么每一个单词分别对应一个输入值，即，$My$ 对应 $x^ {<1>} $,$name$ 对应 $x^{<2>}$……</2></1></p>
+<p>那么每一个单词分别对应一个输入值，即，$My$ 对应 $x^ {&lt; 1 &gt;} $,$name$ 对应 $x^{&lt; 2 &gt;}$……</p>
 <p>我想要判断这句话中有哪些单词表示名字，那么$x^ { &lt; t &gt; }​$对应的输出值就为 ​$y^ { &lt; t &gt; }​$ 。如果是名字，​$y^ { &lt; t &gt; } ​$就等于1，否则就等于0。</p>
 <p>因为计算机只认数字，其他的东西一律看不懂，所以还涉及到将单词向量化的问题。简单来说，就是将文字数字化，所以我们输入的$x^ { &lt; t &gt; }​$实际上应该是一组数字，不是单词。</p>
 <p>我们首先要将单词变成数字，这一点知道就好，为了方便理解，我们就当计算机识字好了。</p>
 <p>对于一般神经网络来说，如果我们要做名字的识别，我们一般会这样做：</p>
-<p>将 $x^{<1>}$ 传入神经网络，输出 $y^{<1>}$，</1></1></p>
+<p>将 $x^{&lt; 1 &gt;}$ 传入神经网络，输出 $y^{&lt; 1 &gt;}$，</p>
 <p><img src="https://raw.githubusercontent.com/Shiyuang-scu/blog_img/master/RNN-2.png" alt="RNN-2"></p>
-<p>图中 $a^{<1>}​$ 表示中间状态，一般会用激活函数，将其变成$y^{<1>}​$。</1></1></p>
-<p>同理，将 $x^{<2>}$ 传入神经网络，输出 $y^{<2>}$，</2></2></p>
+<p>图中 $a^{&lt; 1 &gt;}$ 表示中间状态，一般会用激活函数，将其变成$y^{&lt; 1 &gt;}$。</p>
+<p>同理，将 $x^{&lt; 2 &gt;}$ 传入神经网络，输出 $y^{&lt; 2 &gt;}$，</p>
 <p><img src="https://raw.githubusercontent.com/Shiyuang-scu/blog_img/master/RNN-3.png" alt="RNN-3"></p>
 <p>这样做的问题很明显，我们不能将前一个输入和后一个输入联系起来，每一个单词都是孤立的。但是我们可以看到，$ClowNaxcvd$ 和 $Shi$ ，我们不会将 $Shi$ 理解成一个东西，因为它跟在 $ClowNaxcvd$ 后面，符合姓名的逻辑。</p>
 <p>于是我们将这两者结合：</p>
 <p><img src="https://raw.githubusercontent.com/Shiyuang-scu/blog_img/master/RNN-4.png" alt="RNN-4"></p>
-<p>$x^{<1>}$ 的中间状态 $a^{<1>}$ 传给 $x^{<2>}$，共同计算出它的中间状态 $a^{<2>}$，然后再通过$a^{<2>}$计算出 $y^{<2>}$。</2></2></2></2></1></1></p>
-<p>我们将其推广到一般情况，如下图。其中我们看到一开始有一个 $a^{<0>}​$，是因为$a^{&lt; t &gt;}​$ 是由$a^{&lt; t-1 &gt;}、x^{&lt; t &gt;}​$决定的，而 $a^{&lt; 1 &gt;}​$之前已经没有输入值和中间值了，所以我们额外加一个 $a^{&lt; 0 &gt;}​$ ，这样 $a^{&lt; 1 &gt;}​$ 就合乎逻辑了。</0></p>
+<p>$x^{&lt; 1 &gt;}$ 的中间状态 $a^{&lt; 1 &gt;}$ 传给 $x^{&lt; 2 &gt;}$，共同计算出它的中间状态 $a^{&lt; 2 &gt;}$，然后再通过$a^{&lt; 2 &gt;}$计算出 $y^{&lt; 2 &gt;}$。</p>
+<p>我们将其推广到一般情况，如下图。其中我们看到一开始有一个 $a^{&lt; 0 &gt;}​$，是因为$a^{&lt; t &gt;}​$ 是由$a^{&lt; t-1 &gt;}、x^{&lt; t &gt;}​$决定的，而 $a^{&lt; 1 &gt;}​$之前已经没有输入值和中间值了，所以我们额外加一个 $a^{&lt; 0 &gt;}​$ ，这样 $a^{&lt; 1 &gt;}​$ 就合乎逻辑了。</p>
 <p><img src="https://raw.githubusercontent.com/Shiyuang-scu/blog_img/master/RNN-5.png" alt="RNN-5"></p>
 <p>逻辑讲清楚了，接下来我们看该怎么计算出 $a^{&lt; t &gt;}​$ $y^{&lt; t &gt;}​$。</p>
 <h5 id="前向传播"><a href="#前向传播" class="headerlink" title="前向传播"></a>前向传播</h5><p>我们从左向右看，一般开始先输入 $𝑎^{<0>}$，它是一个零向量。接着就是前向传播过程，先计算激活值 $𝑎^{<1>}$，然后再计算 $y^{<1>}$。 </1></1></0></p>
@@ -558,11 +558,11 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+                <a href="javascript:void(0)" class="js-tag color5">世界之内</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">世界之内</a>
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
               </li>
              
               <li class="article-tag-list-item">
