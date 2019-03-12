@@ -23,7 +23,7 @@
 <meta property="og:image" content="https://raw.githubusercontent.com/Shiyuang-scu/blog_img/master/RNN-4.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/Shiyuang-scu/blog_img/master/RNN-5.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/Shiyuang-scu/blog_img/master/RNN-6.png">
-<meta property="og:updated_time" content="2019-03-12T02:17:54.903Z">
+<meta property="og:updated_time" content="2019-03-12T02:39:08.040Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="生成对抗网络与强化学习:文本生成的方法">
 <meta name="twitter:description" content="本文介绍了一种文本生成的方法，关键技术为生成对抗网络（GAN）和强化学习（RL）。 内容主要包括方法的数学原理、实现思路和具体实现细节。">
@@ -213,11 +213,11 @@
 <p>我们通过上图，可以看到RNN的另一个特点：每一个中间层，或者说每一个 $input$ 状态都与前一个 $input$ 状态相关，这就体现了相邻 $input$ 之间的<strong>相关性</strong>。</p>
 <p>比如说我输入一句话作为我的 $input$ ，”猫吃鱼“，其中 $input_1$ ”猫“， $input_2$ ”吃“， $input_3$ ”鱼“，”猫“的中间状态由前两个 $input$ 的中间状态决定，即，”吃“”鱼“这两个 $input​$ 和”猫“有关，这符合我们的逻辑，猫不就是吃鱼的么。</p>
 <p>上下文构成了联系，而不是被单一孤立开来，RNN实际上实现了部分我们对智能体的期待，所以Karpathy也说，RNN是最令他激动的模型。</p>
-<h4 id="模型"><a href="#模型" class="headerlink" title="模型"></a>模型</h4><p>我们用 $x^{<i>}$ 来表示第 $i$ 个输入值， $y^{<i>}$ 来表示第 $i$ 个输出值，举个例子，我有一句话：</i></i></p>
-<p>$$My\  name \ is\ ClowNaxcvd\ Shi$$</p>
-<p>那么每一个单词分别对应一个输入值，即，$My​$ 对应 $x^{<1>}​$,$name​$ 对应 $x^{<2>}​$……</2></1></p>
-<p>我想要判断这句话中有哪些单词表示名字，那么 $x^{<i>}​$ 对应的输出值就为 $y^{<i>}​$ 。如果是名字，$y^{<i>}​$ 就等于1，否则就等于0</i></i></i></p>
-<p>因为计算机只认数字，其他的东西一律看不懂，所以还涉及到将单词向量化的问题。简单来说，就是将文字数字化，所以我们输入的 $x^{<i>}​$ 实际上应该是一组数字，不是单词。</i></p>
+<h4 id="模型"><a href="#模型" class="headerlink" title="模型"></a>模型</h4><p>我们用$x^{<i>}​$来表示第 $i​$ 个输入值，$y^{<i>}​$来表示第 $i​$ 个输出值，举个例子，我有一句话：</i></i></p>
+<p>$$My\  name \ is\ ClowNaxcvd\ Shi​$$</p>
+<p>那么每一个单词分别对应一个输入值，即，$My$ 对应 $x^ {<1>} $,$name$ 对应 $x^{<2>}$……</2></1></p>
+<p>我想要判断这句话中有哪些单词表示名字，那么$x^ { &lt; t &gt; }​$对应的输出值就为 ​$y^ { &lt; t &gt; }​$ 。如果是名字，​$y^ { &lt; t &gt; } ​$就等于1，否则就等于0。</p>
+<p>因为计算机只认数字，其他的东西一律看不懂，所以还涉及到将单词向量化的问题。简单来说，就是将文字数字化，所以我们输入的$x^ { &lt; t &gt; }​$实际上应该是一组数字，不是单词。</p>
 <p>我们首先要将单词变成数字，这一点知道就好，为了方便理解，我们就当计算机识字好了。</p>
 <p>对于一般神经网络来说，如果我们要做名字的识别，我们一般会这样做：</p>
 <p>将 $x^{<1>}$ 传入神经网络，输出 $y^{<1>}$，</1></1></p>
@@ -229,15 +229,17 @@
 <p>于是我们将这两者结合：</p>
 <p><img src="https://raw.githubusercontent.com/Shiyuang-scu/blog_img/master/RNN-4.png" alt="RNN-4"></p>
 <p>$x^{<1>}$ 的中间状态 $a^{<1>}$ 传给 $x^{<2>}$，共同计算出它的中间状态 $a^{<2>}$，然后再通过$a^{<2>}$计算出 $y^{<2>}$。</2></2></2></2></1></1></p>
-<p>我们将其推广到一般情况，如下图。其中我们看到一开始有一个 $a^{<0>}$，是因为$a^{<i>}$ 是由$a^{<i-1>}、x^{<i>}$决定的，而 $a^{<1>}$之前已经没有输入值和中间值了，所以我们额外加一个$a^{<0>}$ ，这样$a^{<1>}​$ 就合乎逻辑了。</1></0></1></i></i-1></i></0></p>
+<p>我们将其推广到一般情况，如下图。其中我们看到一开始有一个 $a^{<0>}​$，是因为$a^{&lt; t &gt;}​$ 是由$a^{&lt; t-1 &gt;}、x^{&lt; t &gt;}​$决定的，而 $a^{&lt; 1 &gt;}​$之前已经没有输入值和中间值了，所以我们额外加一个 $a^{&lt; 0 &gt;}​$ ，这样 $a^{&lt; 1 &gt;}​$ 就合乎逻辑了。</0></p>
 <p><img src="https://raw.githubusercontent.com/Shiyuang-scu/blog_img/master/RNN-5.png" alt="RNN-5"></p>
-<p>逻辑讲清楚了，接下来我们看该怎么计算出 $a^{<i>}$ $y^{<i>}$。</i></i></p>
+<p>逻辑讲清楚了，接下来我们看该怎么计算出 $a^{&lt; t &gt;}​$ $y^{&lt; t &gt;}​$。</p>
 <h5 id="前向传播"><a href="#前向传播" class="headerlink" title="前向传播"></a>前向传播</h5><p>我们从左向右看，一般开始先输入 $𝑎^{<0>}$，它是一个零向量。接着就是前向传播过程，先计算激活值 $𝑎^{<1>}$，然后再计算 $y^{<1>}$。 </1></1></0></p>
-<p>$$𝑎^{<1>}=g_1(𝑊<em>{𝑎a}a^{<0>}+𝑊</0></em>{a𝑥}x^{<1>}+𝑏_a)​$$<br> $$\hat{𝑦}^{<1>} =g_2(𝑊_{ya}a^{<1>} +𝑏_y) ​$$</1></1></1></1></p>
+<p>$$𝑎^{&lt; 1 &gt;}=g_1(𝑊 _ {𝑎a}a^{&lt; 0 &gt;}+𝑊 _ {a𝑥}x^{&lt; 1 &gt;}+𝑏 _ a)​$$</p>
+<p>$$\hat{𝑦}^{&lt; 1 &gt;} =g_2(𝑊_{ya}a^{&lt; 1 &gt;} +𝑏_y) ​$$</p>
 <p>我将用这样的符号约定来表示这些矩阵下标，举个例子,  $W_{ax}​$第二个下标$x​$意味着 $W_{ax}​$要乘以某个$x​$类型的量，然后第一个下标$a​$表示它是用来计算某个$a​$类型的变量。同样的，可以看出这里的 $W_{ya}​$乘上了某个$a​$类型的量，用来计算出某个$y​$类型的量。 </p>
 <p>循环神经网络用的激活函数经常是 <strong>tanh</strong>，不过有时候也会用 <strong>ReLU</strong>，但是 <strong>tanh</strong> 是更通常的选择，我们有其他方法来避免梯度消失问题，我们将在之后进行讲述。选用哪个激活函数是取决于你的输出𝑦，如果它是一个二分问题，那么我猜你会用 <strong>sigmoid</strong> 函数作为激活函数， 如果是𝑘类别分类问题的话，那么可以选用 <strong>softmax</strong> 作为激活函数。不过这里激活函数的类型取决于你有什么样类型的输出$y​$，对于命名实体识别来说𝑦只可能是 0 或者 1，那我猜这里第二个激活函数 $g​$ 可以是 <strong>sigmoid</strong> 激活函数。 </p>
 <p>更一般的情况下，在 $t​$ 时刻，</p>
-<p>$$𝑎^{<t>}=g_1(𝑊<em>{𝑎a}a^{<t-1>}+𝑊</t-1></em>{a𝑥}x^{<t>}+𝑏_a)$$<br>  $$\hat{𝑦}^{<t>} =g_2(𝑊_{ya}a^{<t>} +𝑏_y) $$</t></t></t></t></p>
+<p>$$a^{&lt; t &gt;}=g_1(𝑊 _ {aa}a^{&lt; t-1 &gt;}+𝑊 _ {ax}x^{&lt; t &gt;}+b _ a)$$</p>
+<p>$$\hat{y}^{&lt; t &gt;} =g_2(𝑊_{ya}a^{&lt; t &gt;} +b_y) ​$$</p>
 <p>下图提供了更直观的过程。其中 $h$ 就是 $y​$ ，只是不同人的表示方法有所差异而已，这点不用细究了。</p>
 <p><img src="https://raw.githubusercontent.com/Shiyuang-scu/blog_img/master/RNN-6.png" alt="RNN-6"></p>
 <p>RNN虽然理论上可以很漂亮的解决序列数据的训练，但是它也像DNN一样有梯度消失时的问题，当序列很长的时候问题尤其严重。</p>
@@ -556,11 +558,11 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">世界之内</a>
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+                <a href="javascript:void(0)" class="js-tag color5">世界之内</a>
               </li>
              
               <li class="article-tag-list-item">
