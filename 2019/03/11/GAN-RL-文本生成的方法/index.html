@@ -23,7 +23,15 @@
 <meta property="og:image" content="https://raw.githubusercontent.com/Shiyuang-scu/blog_img/master/RNN-4.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/Shiyuang-scu/blog_img/master/RNN-5.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/Shiyuang-scu/blog_img/master/RNN-6.png">
-<meta property="og:updated_time" content="2019-03-12T02:44:38.064Z">
+<meta property="og:image" content="https://raw.githubusercontent.com/Shiyuang-scu/blog_img/master/RNN-7.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Shiyuang-scu/blog_img/master/lstm-1.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Shiyuang-scu/blog_img/master/lstm-2.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Shiyuang-scu/blog_img/master/lstm-2.1.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Shiyuang-scu/blog_img/master/lstm-2.2.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Shiyuang-scu/blog_img/master/lstm-2.3.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Shiyuang-scu/blog_img/master/lstm-2.4.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Shiyuang-scu/blog_img/master/lstm-3.png">
+<meta property="og:updated_time" content="2019-03-17T11:07:29.148Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="生成对抗网络与强化学习:文本生成的方法">
 <meta name="twitter:description" content="本文介绍了一种文本生成的方法，关键技术为生成对抗网络（GAN）和强化学习（RL）。 内容主要包括方法的数学原理、实现思路和具体实现细节。">
@@ -196,7 +204,8 @@
 <p>内容主要包括方法的数学原理、实现思路和具体实现细节。</p>
 <a id="more"></a>
 <p>2019.3.3 初稿 初定内容大纲</p>
-<p>2019.3.11 增加 <em>循环神经网络（Recurrent Neural Network RNN）</em>内容</p>
+<p>2019.3.11 增加 <em>循环神经网络（Recurrent Neural Network RNN）</em> 内容</p>
+<p>2019.3.17 增加 <em>长短时记忆模型（Long Short-Term Memory LSTM）</em> 内容</p>
 <h1 id="关键技术"><a href="#关键技术" class="headerlink" title="关键技术"></a>关键技术</h1><p>我们要使用的是LSTM，但是LSTM是一个RNN模型的改进，其目的是为了适应原始RNN梯度消失、文本相关性等缺点，所以首先我们要知道什么是RNN。</p>
 <h3 id="循环神经网络（Recurrent-Neural-Network-RNN）"><a href="#循环神经网络（Recurrent-Neural-Network-RNN）" class="headerlink" title="循环神经网络（Recurrent Neural Network RNN）"></a>循环神经网络（Recurrent Neural Network RNN）</h3><p><a href="http://karpathy.github.io/2015/05/21/rnn-effectiveness/" target="_blank" rel="noopener">【Karpathy】The Unreasonable Effectiveness of Recurrent Neural Networks</a></p>
 <h4 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h4><ul>
@@ -239,17 +248,68 @@
 <p>循环神经网络用的激活函数经常是 <strong>tanh</strong>，不过有时候也会用 <strong>ReLU</strong>，但是 <strong>tanh</strong> 是更通常的选择，我们有其他方法来避免梯度消失问题，我们将在之后进行讲述。选用哪个激活函数是取决于你的输出𝑦，如果它是一个二分问题，那么我猜你会用 <strong>sigmoid</strong> 函数作为激活函数， 如果是𝑘类别分类问题的话，那么可以选用 <strong>softmax</strong> 作为激活函数。不过这里激活函数的类型取决于你有什么样类型的输出$y​$，对于命名实体识别来说𝑦只可能是 0 或者 1，那我猜这里第二个激活函数 $g​$ 可以是 <strong>sigmoid</strong> 激活函数。 </p>
 <p>更一般的情况下，在 $t​$ 时刻，</p>
 <p>$$a^{&lt; t &gt;}=g_1(𝑊 _ {aa}a^{&lt; t-1 &gt;}+𝑊 _ {ax}x^{&lt; t &gt;}+b _ a)$$</p>
-<p>$$\hat{y}^{&lt; t &gt;} =g_2(𝑊_{ya}a^{&lt; t &gt;} +b_y) ​$$</p>
+<p>$$\hat{y}^{&lt; t &gt;} =g_2(𝑊_{ya}a^{&lt; t &gt;} +b_y) $$</p>
 <p>下图提供了更直观的过程。其中 $h$ 就是 $y​$ ，只是不同人的表示方法有所差异而已，这点不用细究了。</p>
 <p><img src="https://raw.githubusercontent.com/Shiyuang-scu/blog_img/master/RNN-6.png" alt="RNN-6"></p>
 <p>RNN虽然理论上可以很漂亮的解决序列数据的训练，但是它也像DNN一样有梯度消失时的问题，当序列很长的时候问题尤其严重。</p>
 <p>同时，随着序列加长，模型很难捕捉前面的输入与后面的输入之间的关系，举个例子，我有两句话</p>
-<p>$$The \ person, \ who \ standing \ there\ and……, \ is \ lively​$$</p>
-<p>$$The \ people, \ who \ standing\ there\ and……, \ are \ lively$$</p>
-<p>除了主语之外，其他的成分一模一样，模型在判断后面到底是is还是are的时候，就非常困难。</p>
+<p>$$The \ person, \ who \ standing \ there\ and……, \ is \ lively.$$</p>
+<p>$$The \ people, \ who \ standing\ there\ and……, \ are \ lively.​$$</p>
+<p>除了主语的单复数之外，其他的成分一模一样，而且在主谓之间，有一句可以无限长的从句，这种情况下，模型在判断后面到底是is还是are的时候，就非常困难。一方面存在<strong>梯度爆炸或者梯度消失</strong>问题，另一方面，主谓之间的<strong>依赖性</strong>（就是 $a^{ &lt; i &gt; }​$ ）会随着从句的边长而被稀释。</p>
+<p><img src="https://raw.githubusercontent.com/Shiyuang-scu/blog_img/master/RNN-7.png" alt="RNN-7"></p>
 <p>因此，上面的RNN模型一般不能直接用于应用领域。在语音识别，手写书别以及机器翻译等NLP领域实际应用比较广泛的是基于RNN模型的一个特例LSTM，下面我们就来讨论LSTM模型。</p>
 <h2 id="长短时记忆模型（Long-Short-Term-Memory-LSTM）"><a href="#长短时记忆模型（Long-Short-Term-Memory-LSTM）" class="headerlink" title="长短时记忆模型（Long Short-Term Memory LSTM）"></a>长短时记忆模型（Long Short-Term Memory LSTM）</h2><p><a href="http://colah.github.io/posts/2015-08-Understanding-LSTMs/" target="_blank" rel="noopener">【Colah】Understanding LSTM Networks</a></p>
-<h2 id="生成对抗网络（Generative-Adversarial-Networks）"><a href="#生成对抗网络（Generative-Adversarial-Networks）" class="headerlink" title="生成对抗网络（Generative Adversarial Networks）"></a>生成对抗网络（Generative Adversarial Networks）</h2><h2 id="强化学习方法：策略梯度（Policy-Gradient）"><a href="#强化学习方法：策略梯度（Policy-Gradient）" class="headerlink" title="强化学习方法：策略梯度（Policy Gradient）"></a>强化学习方法：策略梯度（Policy Gradient）</h2><h1 id="实现思路-逻辑"><a href="#实现思路-逻辑" class="headerlink" title="实现思路/逻辑"></a>实现思路/逻辑</h1><h2 id="LTSM"><a href="#LTSM" class="headerlink" title="LTSM"></a>LTSM</h2><h2 id="GAN-PG-GAN-RL"><a href="#GAN-PG-GAN-RL" class="headerlink" title="GAN+PG/GAN+RL"></a>GAN+PG/GAN+RL</h2><h1 id="实现细节-代码"><a href="#实现细节-代码" class="headerlink" title="实现细节/代码"></a>实现细节/代码</h1><h2 id="LTSM-1"><a href="#LTSM-1" class="headerlink" title="LTSM"></a>LTSM</h2><h2 id="GAN-PG-GAN-RL-1"><a href="#GAN-PG-GAN-RL-1" class="headerlink" title="GAN+PG/GAN+RL"></a>GAN+PG/GAN+RL</h2><h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1>
+<p><a href="https://www.bilibili.com/video/av35932863/?p=29" target="_blank" rel="noopener">【李宏毅】机器学习-Recurrent Neural Network（2019）</a></p>
+<h3 id="概述-1"><a href="#概述-1" class="headerlink" title="概述"></a>概述</h3><p>原始RNN模型只有一个计算流程，$x^{&lt; t &gt;} \rightarrow a^{&lt; t &gt;} \rightarrow y^{&lt; t &gt;}$，如下图所示。</p>
+<p><img src="https://raw.githubusercontent.com/Shiyuang-scu/blog_img/master/lstm-1.png" alt="lstm-1"></p>
+<p>而LSTM则增加了三个计算流程，如下图。</p>
+<p><img src="https://raw.githubusercontent.com/Shiyuang-scu/blog_img/master/lstm-2.png" alt="lstm-2"></p>
+<p>这几个流程是什么意思呢？</p>
+<p>LSTM的本质，其实就是对$a^{&lt; t &gt;}​$的一系列改进，也就是对输入$x^{&lt; t &gt;}​$状态的改进。</p>
+<p>更形象地说，还是那两句话：</p>
+<p>$$The \ person, \ who \ standing \ there\ and……, \ is \ lively.​$$</p>
+<p>$$The \ people, \ who \ standing\ there\ and……, \ are \ lively.​$$</p>
+<p>我的目的就是，即使主谓之间隔着这么远的距离，我仍然能够让计算机知道，后面的谓语应该是单数还是复数，LSTM实际上就是通过增强了$a^{&lt; t &gt;}$对$a^{&lt; t + i&gt;}$的影响，来增加$x^{&lt; t &gt;}$对$x^{&lt; t+i &gt;}​$的影响。</p>
+<p>这种影响的增强，就是通过的三个门来实现的。</p>
+<ul>
+<li>输入门</li>
+</ul>
+<p>保留多少 当前时刻输入 到 当前时刻单元状态。</p>
+<ul>
+<li>遗忘门</li>
+</ul>
+<p>保留多少 前一时刻单元状态 到 当前时刻单元状态。</p>
+<ul>
+<li>输出门</li>
+</ul>
+<p>保留多少 当前时刻单元状态 留给 下一时刻的单元状态。</p>
+<p>下面我们一步步详述。</p>
+<h3 id="门机制"><a href="#门机制" class="headerlink" title="门机制"></a>门机制</h3><h4 id="遗忘门"><a href="#遗忘门" class="headerlink" title="遗忘门"></a>遗忘门</h4><p>首先，我需要利用上一个输入量得到的输出为参考量，去判断上一个单元状态对现在的输入量，有多少联系。</p>
+<p><img src="https://raw.githubusercontent.com/Shiyuang-scu/blog_img/master/lstm-2.1.png" alt="lstm-2.1"></p>
+<p>这个$f_t$是一个尺度，在0-1之间，用来度量上一个单元状态对此刻单元状态的约束。</p>
+<h4 id="输入门"><a href="#输入门" class="headerlink" title="输入门"></a>输入门</h4><p>然后，我要判断，当前输入量有没有价值，是否需要把它存到我的单元状态里面。</p>
+<p><img src="https://raw.githubusercontent.com/Shiyuang-scu/blog_img/master/lstm-2.2.png" alt="lstm-2.2"></p>
+<p>再然后，我综合通过遗忘门和输入门的值，得到了当前单元状态量。这个单元状态量，结合了前一个输出量与现在输入量的综合关系。</p>
+<p><img src="https://raw.githubusercontent.com/Shiyuang-scu/blog_img/master/lstm-2.3.png" alt="lstm-2.3"></p>
+<h4 id="输出门"><a href="#输出门" class="headerlink" title="输出门"></a>输出门</h4><p>最后，我需要一个尺度，来判断我算出来单元状态量有多少意义，这个尺度就是输出门。</p>
+<p><img src="https://raw.githubusercontent.com/Shiyuang-scu/blog_img/master/lstm-2.4.png" alt="lstm-2.4"></p>
+<p>总结以上叙述，整个流程可以归纳为：</p>
+<p><img src="https://raw.githubusercontent.com/Shiyuang-scu/blog_img/master/lstm-3.png" alt="lstm-3"></p>
+<ol>
+<li>通过输入门，得到当前时刻输入值的对当前单元状态的价值；</li>
+<li>通过遗忘门，得到前一时刻单元状态对当前单元状态的价值；</li>
+<li>累加1、2两步的值，得到的当前单元状态，表示的意义为：当前输入值和上一输入值对当前状态的意义；</li>
+<li>通过输出门，得到当前状态值对输出结果的影响。</li>
+</ol>
+<p>整个过程可以跟着上图过一遍。</p>
+<h2 id="生成对抗网络（Generative-Adversarial-Networks）"><a href="#生成对抗网络（Generative-Adversarial-Networks）" class="headerlink" title="生成对抗网络（Generative Adversarial Networks）"></a>生成对抗网络（Generative Adversarial Networks）</h2><h2 id="强化学习方法：策略梯度（Policy-Gradient）"><a href="#强化学习方法：策略梯度（Policy-Gradient）" class="headerlink" title="强化学习方法：策略梯度（Policy Gradient）"></a>强化学习方法：策略梯度（Policy Gradient）</h2><p>该方法可参考我以前的学习笔记，<a href="http://rationalist.me/2018/11/03/Policy-Gradient/" target="_blank" rel="noopener">【强化学习】Policy Gradient</a></p>
+<p>写得还算详细，故此不再赘述。</p>
+<h1 id="实现思路-逻辑"><a href="#实现思路-逻辑" class="headerlink" title="实现思路/逻辑"></a>实现思路/逻辑</h1><h2 id="LTSM"><a href="#LTSM" class="headerlink" title="LTSM"></a>LTSM</h2><h2 id="GAN-PG-GAN-RL"><a href="#GAN-PG-GAN-RL" class="headerlink" title="GAN+PG/GAN+RL"></a>GAN+PG/GAN+RL</h2><h1 id="实现细节-代码"><a href="#实现细节-代码" class="headerlink" title="实现细节/代码"></a>实现细节/代码</h1><h2 id="LTSM-1"><a href="#LTSM-1" class="headerlink" title="LTSM"></a>LTSM</h2><h2 id="GAN-PG-GAN-RL-1"><a href="#GAN-PG-GAN-RL-1" class="headerlink" title="GAN+PG/GAN+RL"></a>GAN+PG/GAN+RL</h2><h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><p><a href="http://karpathy.github.io/2015/05/21/rnn-effectiveness/" target="_blank" rel="noopener">【Karpathy】The Unreasonable Effectiveness of Recurrent Neural Networks</a></p>
+<p><a href="http://colah.github.io/posts/2015-08-Understanding-LSTMs/" target="_blank" rel="noopener">【Colah】Understanding LSTM Networks</a></p>
+<p><a href="https://www.bilibili.com/video/av35932863/?p=29" target="_blank" rel="noopener">【李宏毅】机器学习-Recurrent Neural Network（2019）</a></p>
+<p><a href="https://blog.csdn.net/wangyangzhizhou/article/details/76651116" target="_blank" rel="noopener">【超人汪小建】LSTM神经网络</a></p>
+<p><a href="http://rationalist.me/2018/11/03/Policy-Gradient/" target="_blank" rel="noopener">【ClowNaxcvd】Policy Gradient</a></p>
+
       
 
       
@@ -392,7 +452,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#关键技术"><span class="toc-number">1.</span> <span class="toc-text">关键技术</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#循环神经网络（Recurrent-Neural-Network-RNN）"><span class="toc-number">1.0.1.</span> <span class="toc-text">循环神经网络（Recurrent Neural Network RNN）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#概述"><span class="toc-number">1.0.1.1.</span> <span class="toc-text">概述</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#模型"><span class="toc-number">1.0.1.2.</span> <span class="toc-text">模型</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#前向传播"><span class="toc-number">1.0.1.2.1.</span> <span class="toc-text">前向传播</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#长短时记忆模型（Long-Short-Term-Memory-LSTM）"><span class="toc-number">1.1.</span> <span class="toc-text">长短时记忆模型（Long Short-Term Memory LSTM）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#生成对抗网络（Generative-Adversarial-Networks）"><span class="toc-number">1.2.</span> <span class="toc-text">生成对抗网络（Generative Adversarial Networks）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#强化学习方法：策略梯度（Policy-Gradient）"><span class="toc-number">1.3.</span> <span class="toc-text">强化学习方法：策略梯度（Policy Gradient）</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#实现思路-逻辑"><span class="toc-number">2.</span> <span class="toc-text">实现思路/逻辑</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#LTSM"><span class="toc-number">2.1.</span> <span class="toc-text">LTSM</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#GAN-PG-GAN-RL"><span class="toc-number">2.2.</span> <span class="toc-text">GAN+PG/GAN+RL</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#实现细节-代码"><span class="toc-number">3.</span> <span class="toc-text">实现细节/代码</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#LTSM-1"><span class="toc-number">3.1.</span> <span class="toc-text">LTSM</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#GAN-PG-GAN-RL-1"><span class="toc-number">3.2.</span> <span class="toc-text">GAN+PG/GAN+RL</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Reference"><span class="toc-number">4.</span> <span class="toc-text">Reference</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#关键技术"><span class="toc-number">1.</span> <span class="toc-text">关键技术</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#循环神经网络（Recurrent-Neural-Network-RNN）"><span class="toc-number">1.0.1.</span> <span class="toc-text">循环神经网络（Recurrent Neural Network RNN）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#概述"><span class="toc-number">1.0.1.1.</span> <span class="toc-text">概述</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#模型"><span class="toc-number">1.0.1.2.</span> <span class="toc-text">模型</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#前向传播"><span class="toc-number">1.0.1.2.1.</span> <span class="toc-text">前向传播</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#长短时记忆模型（Long-Short-Term-Memory-LSTM）"><span class="toc-number">1.1.</span> <span class="toc-text">长短时记忆模型（Long Short-Term Memory LSTM）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#概述-1"><span class="toc-number">1.1.1.</span> <span class="toc-text">概述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#门机制"><span class="toc-number">1.1.2.</span> <span class="toc-text">门机制</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#遗忘门"><span class="toc-number">1.1.2.1.</span> <span class="toc-text">遗忘门</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#输入门"><span class="toc-number">1.1.2.2.</span> <span class="toc-text">输入门</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#输出门"><span class="toc-number">1.1.2.3.</span> <span class="toc-text">输出门</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#生成对抗网络（Generative-Adversarial-Networks）"><span class="toc-number">1.2.</span> <span class="toc-text">生成对抗网络（Generative Adversarial Networks）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#强化学习方法：策略梯度（Policy-Gradient）"><span class="toc-number">1.3.</span> <span class="toc-text">强化学习方法：策略梯度（Policy Gradient）</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#实现思路-逻辑"><span class="toc-number">2.</span> <span class="toc-text">实现思路/逻辑</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#LTSM"><span class="toc-number">2.1.</span> <span class="toc-text">LTSM</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#GAN-PG-GAN-RL"><span class="toc-number">2.2.</span> <span class="toc-text">GAN+PG/GAN+RL</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#实现细节-代码"><span class="toc-number">3.</span> <span class="toc-text">实现细节/代码</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#LTSM-1"><span class="toc-number">3.1.</span> <span class="toc-text">LTSM</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#GAN-PG-GAN-RL-1"><span class="toc-number">3.2.</span> <span class="toc-text">GAN+PG/GAN+RL</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Reference"><span class="toc-number">4.</span> <span class="toc-text">Reference</span></a></li></ol>
                     </div>
                 </span>
             </div>
