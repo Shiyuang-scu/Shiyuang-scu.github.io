@@ -18,7 +18,7 @@
 <meta property="og:description" content="本文简略介绍了SLD消解及其背后的原理和思想。">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://github.com/Shiyuang-scu/blog_img/raw/master/SLDresolution-1.png">
-<meta property="og:updated_time" content="2019-04-06T09:09:11.928Z">
+<meta property="og:updated_time" content="2019-04-06T09:16:27.002Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="学习笔记|SLD Resolution">
 <meta name="twitter:description" content="本文简略介绍了SLD消解及其背后的原理和思想。">
@@ -257,10 +257,10 @@
 <p><strong>定义8</strong> $E_1θ=…=E_nθ$, 则称置换θ为${E_1,…,E_n}$的合一子(unifier). 如果对${E_1,…,E_n}$存在这样的合一子, 则称集合${E_1,…,E_n}$可合一.</p>
 <p><strong>定义9</strong> 如果对E的每个合一子θ, 都存在一个置换λ, 使得θ=γ°λ, 则称合一子γ是集合${E_1,…,E_n}$的最一般合一子(most general unifier，mgu)</p>
 <p>如果能够找到一个公式集的合一，特别是最一般合一，则可使互否的文字的形式结构完全一致起来，进而达到消解的目的。</p>
-<h4 id="谓词逻辑中的归结原理"><a href="#谓词逻辑中的归结原理" class="headerlink" title="谓词逻辑中的归结原理"></a>谓词逻辑中的归结原理</h4><p><strong>定义10</strong> 设$C_1$、$C_2$是两个无相同变元的字句，$L_1$、$L_2$分别是$C_1$、$C_2$中的两个文字，如果$L_1$、$L_2$有最一般合一$\sigma$，则子句$\left(\mathrm{C}<em>{1} \sigma-\left{\mathrm{L}</em>{1} \sigma\right}\right) \cup \left(\mathrm{C}<em>{2} \sigma-\left{\mathrm{L}</em>{2} \sigma\right}\right)$称作$C_1$、$C_2$的二元归结式（二元消解式），$C_1$、$C_2$称作归结式的亲本子句，$L_1$、$L_2$称作消解文字。</p>
+<h4 id="谓词逻辑中的归结原理"><a href="#谓词逻辑中的归结原理" class="headerlink" title="谓词逻辑中的归结原理"></a>谓词逻辑中的归结原理</h4><p><strong>定义10</strong> 设$C_1$、$C_2$是两个无相同变元的字句，$L_1$、$L_2$分别是$C_1$、$C_2$中的两个文字，如果$L_1$、$L_2$有最一般合一$\sigma$，则子句$\left(\mathrm{C}\ _ {1} \sigma-\left{\mathrm{L}\ _{1} \sigma\right}\right) \cup \left(\mathrm{C}_{2} \sigma-\left{\mathrm{L}_{2} \sigma\right}\right)$称作$C_1$、$C_2$的二元归结式（二元消解式），$C_1$、$C_2$称作归结式的亲本子句，$L_1$、$L_2$称作消解文字。</p>
 <p><strong>定理3</strong> 谓词逻辑中的消解式是它的亲本子句的逻辑结果。</p>
 <p>由此定理我们即得谓词逻辑中的推理规则：</p>
-<p>$\mathrm{C}<em>{1} \wedge \mathrm{C}</em>{2}=&gt;\left(\mathrm{C}<em>{1} \sigma</em>{-}\left{\mathrm{L}<em>{1} \sigma\right}\right) \cup\left(\mathrm{C}</em>{2} \sigma-\left{\mathrm{L}_{2} \sigma\right}\right)$</p>
+<p>$\mathrm{C}_{1} \wedge \mathrm{C}_{2}=&gt;\left(\mathrm{C}_{1} \sigma_{-}\left{\mathrm{L}_{1} \sigma\right}\right) \cup\left(\mathrm{C}_{2} \sigma-\left{\mathrm{L}_{2} \sigma\right}\right)$</p>
 <p>此规则称为谓词逻辑中的消解原理（归结原理）。</p>
 <p><strong>定理4</strong> （归结原理的完备性定理）如果子句集S是不可满足的，那么必存在一个由S推出空子句$\square $的消解序列。</p>
 <h3 id="归结策略"><a href="#归结策略" class="headerlink" title="归结策略"></a>归结策略</h3><p>归结原理如何在机器上实现？下面给出一个一般性算法：</p>
@@ -294,23 +294,23 @@
 <p>线性归结的归结演绎树如图所示：</p>
 <p><img src="https://github.com/Shiyuang-scu/blog_img/raw/master/SLDresolution-1.png" alt="SLDresolution-1"></p>
 <p>线性归结的特点是：它本身不仅是完备的且高效的，还能与许多别的策略兼容，例如在线性归结中可同时采用支持集策略或输入策略。</p>
-<h3 id="Horn字句"><a href="#Horn字句" class="headerlink" title="Horn字句"></a>Horn字句</h3><h4 id="子句的蕴涵表示形式"><a href="#子句的蕴涵表示形式" class="headerlink" title="子句的蕴涵表示形式"></a>子句的蕴涵表示形式</h4><p>子句是若干文字的析取，析取词又满足交换律，因此，对于任一个子句，总可以将其表示成如下形式：<br>$$\neg \mathrm{Q}<em>{1} \mathrm{v} \ldots \mathrm{v} \neg \mathrm{Q}</em>{\mathrm{n}} \mathrm{vP}<em>{1} \mathrm{v} \ldots \mathrm{vP}</em>{\mathrm{m}}$$</p>
-<p>可进一步变形为<br>$$\mathrm{Q}<em>{1} \wedge \mathrm{Q}</em>{2} \wedge \ldots \wedge \mathrm{Q}<em>{\mathrm{n}} \rightarrow \mathrm{P}</em>{1} \vee \mathrm{P}<em>{2} \vee  \ldots \vee \mathrm{P}</em>{\mathrm{m}}$$</p>
+<h3 id="Horn字句"><a href="#Horn字句" class="headerlink" title="Horn字句"></a>Horn字句</h3><h4 id="子句的蕴涵表示形式"><a href="#子句的蕴涵表示形式" class="headerlink" title="子句的蕴涵表示形式"></a>子句的蕴涵表示形式</h4><p>子句是若干文字的析取，析取词又满足交换律，因此，对于任一个子句，总可以将其表示成如下形式：<br>$$\neg \mathrm{Q}_{1} \mathrm{v} \ldots \mathrm{v} \neg \mathrm{Q}_{\mathrm{n}} \mathrm{vP}_{1} \mathrm{v} \ldots \mathrm{vP}_{\mathrm{m}}$$</p>
+<p>可进一步变形为<br>$$\mathrm{Q}_{1} \wedge \mathrm{Q}_{2} \wedge \ldots \wedge \mathrm{Q}_{\mathrm{n}} \rightarrow \mathrm{P}_{1} \vee \mathrm{P}_{2} \vee  \ldots \vee \mathrm{P}_{\mathrm{m}}$$</p>
 <p>如果约定蕴含式前件的文字之间恒为合取关系，而蕴含式后件的文字恒为析取关系，那么上述公式可改写为：</p>
-<p>$$\mathrm{Q}<em>{1}, \mathrm{Q}</em>{2}, \ldots, \mathrm{Q}<em>{\mathrm{n}} \rightarrow \mathrm{P}</em>{1}, \mathrm{P}<em>{2}, \ldots, \mathrm{P}</em>{\mathrm{m}}$$</p>
+<p>$$\mathrm{Q}_{1}, \mathrm{Q}_{2}, \ldots, \mathrm{Q}_{\mathrm{n}} \rightarrow \mathrm{P}_{1}, \mathrm{P}_{2}, \ldots, \mathrm{P}_{\mathrm{m}}$$</p>
 <p>一般的，这种蕴含式子句的归结过程可表示如下：</p>
 <p>设子句</p>
-<p>$$\mathrm{C} : \mathrm{P}<em>{1}, \ldots, \mathrm{P}</em>{\mathrm{m}} \leftarrow \mathrm{Q}<em>{1}, \ldots, \mathrm{Q}</em>{\mathrm{n}}$$</p>
+<p>$$\mathrm{C} : \mathrm{P}_{1}, \ldots, \mathrm{P}_{\mathrm{m}} \leftarrow \mathrm{Q}_{1}, \ldots, \mathrm{Q}_{\mathrm{n}}$$</p>
 <p>和</p>
-<p>$$\mathrm{C}^{\prime} : \mathrm{P}<em>{1}^{\prime}, \ldots, \mathrm{P}</em>{\mathrm{s}}^{\prime} \leftarrow \mathrm{Q}<em>{1}^{\prime}, \ldots, \mathrm{Q}</em>{\mathrm{t}}^{\prime}$$</p>
-<p>其中有$P_i$和$Q’_j$可合一，$\sigma$为它们的MGU，则$C$和$C’$的归结式为</p>
-<p>$$\mathrm{P}<em>{1} \sigma, \ldots, \mathrm{P}</em>{\mathrm{i}-1} \sigma, \mathrm{P}<em>{\mathrm{i}+1} \sigma, \ldots, \mathrm{P}</em>{\mathrm{m}} \sigma, \mathrm{P}<em>{1}^{\prime} \sigma, \ldots, \mathrm{P}</em>{\mathrm{s}}^{\prime} \sigma \leftarrow \mathrm{Q}<em>{1} \sigma, \ldots, \mathrm{Q}</em>{\mathrm{n}} \sigma, \mathrm{Q}<em>{1}^{\prime} \sigma, \ldots, \mathrm{Q}</em>{\mathrm{j}-1}^{\prime} \sigma, \mathrm{Q}<em>{\mathrm{j}+1}^{\prime} \sigma, \ldots, \mathrm{Q}</em>{\mathrm{t}}^{\prime} \sigma$$</p>
+<p>$$\mathrm{C}^{\prime} : \mathrm{P}_{1}^{\prime}, \ldots, \mathrm{P}_{\mathrm{s}}^{\prime} \leftarrow \mathrm{Q}_{1}^{\prime}, \ldots, \mathrm{Q}_{\mathrm{t}}^{\prime}$$</p>
+<p>其中有$P_i​$和$Q’_j​$可合一，$\sigma​$为它们的MGU，则$C​$和$C’​$的归结式为</p>
+<p>$$\mathrm{P}_{1} \sigma, \ldots, \mathrm{P}_{\mathrm{i}-1} \sigma, \mathrm{P}_{\mathrm{i}+1} \sigma, \ldots, \mathrm{P}_{\mathrm{m}} \sigma, \mathrm{P}_{1}^{\prime} \sigma, \ldots, \mathrm{P}_{\mathrm{s}}^{\prime} \sigma \leftarrow \mathrm{Q}_{1} \sigma, \ldots, \mathrm{Q}_{\mathrm{n}} \sigma, \mathrm{Q}_{1}^{\prime} \sigma, \ldots, \mathrm{Q}_{\mathrm{j}-1}^{\prime} \sigma, \mathrm{Q}_{\mathrm{j}+1}^{\prime} \sigma, \ldots, \mathrm{Q}_{\mathrm{t}}^{\prime} \sigma$$</p>
 <h4 id="Horn子句消解"><a href="#Horn子句消解" class="headerlink" title="Horn子句消解"></a>Horn子句消解</h4><p><strong>定义1</strong> <em>至多含有一个正文字的子句称为Horn子句</em></p>
 <p>由定义，蕴含型Horn子句有下列三种形式：</p>
 <ul>
 <li>$\mathrm{P} \leftarrow \mathrm{Q} 1, \mathrm{Q} 2, \ldots, \mathrm{Q}_{\mathrm{m}}$称为条件子句，P称为头部或结论</li>
 <li>$P \leftarrow $称为无条件句</li>
-<li>$\leftarrow \mathrm{Q}<em>{1}, \mathrm{Q}</em>{2}, \ldots, \mathrm{Q}_{\mathrm{m}}$称为目标子句，$Q_i$称为子目标。</li>
+<li>$\leftarrow \mathrm{Q}_{1}, \mathrm{Q}_{2}, \ldots, \mathrm{Q}_{\mathrm{m}}$称为目标子句，$Q_i$称为子目标。</li>
 </ul>
 <p>可以看出，Horn子句形式简明，逻辑意义清晰，更重要的是，Horn子句的消解过程可与计算机程序的执行过程统一起来。</p>
 <h3 id="SLD-Resolution-1"><a href="#SLD-Resolution-1" class="headerlink" title="SLD Resolution"></a>SLD Resolution</h3><p>通过以上讨论，我们就明白了通过Horn子句，运用线性消解策略，实现消解的方法，就是SLD消解。</p>

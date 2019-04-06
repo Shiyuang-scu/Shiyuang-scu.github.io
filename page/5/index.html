@@ -662,7 +662,7 @@
 <h1 id="一般思想"><a href="#一般思想" class="headerlink" title="一般思想"></a>一般思想</h1><p>首先，依然是梯度下降法，为了更新$W$和$b$，就要计算出代价函数$J$对两者的偏导数，即</p>
 <p>$\frac{\partial}{\partial W_{ij}^{(l)}} J(W,b; x, y) = a^{(l)}_j \delta_i^{(l+1)}$<br>$\frac{\partial}{\partial b_{i}^{(l)}} J(W,b; x, y) = \delta_i^{(l+1)}$</p>
 <p>其中，</p>
-<p>$\delta^{(l)}_i=\frac{\partial J(W,b;x,y)}{\partial z_i^{(l)}}=\frac{\partial }{\partial z^{(l)}<em>i}\frac{1}{2} \left|y - h</em>{W,b}(x)\right|^2 = - (y_i - a^{(l)}_i)\cdot f’(z^{(l)}_i)$</p>
+<p>$\delta^{(l)}_i=\frac{\partial J(W,b;x,y)}{\partial z_i^{(l)}}=\frac{\partial }{\partial z^{(l)}_i}\frac{1}{2} \left|y - h_{W,b}(x)\right|^2 = - (y_i - a^{(l)}_i)\cdot f’(z^{(l)}_i)$</p>
         
           <a class="article-more-a" href="/2018/05/26/BP算法/#more">more >></a>
         
