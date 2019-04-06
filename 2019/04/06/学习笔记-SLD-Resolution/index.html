@@ -18,7 +18,7 @@
 <meta property="og:description" content="本文简略介绍了SLD消解及其背后的原理和思想。">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://github.com/Shiyuang-scu/blog_img/raw/master/SLDresolution-1.png">
-<meta property="og:updated_time" content="2019-04-06T09:26:29.548Z">
+<meta property="og:updated_time" content="2019-04-06T09:39:38.849Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="学习笔记|SLD Resolution">
 <meta name="twitter:description" content="本文简略介绍了SLD消解及其背后的原理和思想。">
@@ -257,12 +257,12 @@
 <p><strong>定义8</strong> $E_1θ=…=E_nθ$, 则称置换θ为${E_1,…,E_n}$的合一子(unifier). 如果对${E_1,…,E_n}$存在这样的合一子, 则称集合${E_1,…,E_n}$可合一.</p>
 <p><strong>定义9</strong> 如果对E的每个合一子θ, 都存在一个置换λ, 使得θ=γ°λ, 则称合一子γ是集合${E_1,…,E_n}$的最一般合一子(most general unifier，mgu)</p>
 <p>如果能够找到一个公式集的合一，特别是最一般合一，则可使互否的文字的形式结构完全一致起来，进而达到消解的目的。</p>
-<h4 id="谓词逻辑中的归结原理"><a href="#谓词逻辑中的归结原理" class="headerlink" title="谓词逻辑中的归结原理"></a>谓词逻辑中的归结原理</h4><p><strong>定义10</strong> 设$C_1$、$C_2$是两个无相同变元的字句，$L_1$、$L_2$分别是$C_1$、$C_2$中的两个文字，如果$L_1$、$L_2$有最一般合一$\sigma$，则子句$\left(\mathrm{C}_{1} \sigma-\left{\mathrm{L}_{1} \sigma\right}\right) \cup \left(\mathrm{C}_{2} \sigma-\left{\mathrm{L}_{2} \sigma\right}\right)$称作$C_1$、$C_2$的二元归结式（二元消解式），$C_1$、$C_2$称作归结式的亲本子句，$L_1$、$L_2$称作消解文字。</p>
+<h4 id="谓词逻辑中的归结原理"><a href="#谓词逻辑中的归结原理" class="headerlink" title="谓词逻辑中的归结原理"></a>谓词逻辑中的归结原理</h4><p><strong>定义10</strong> 设$C_1$、$C_2$是两个无相同变元的字句，$L_1$、$L_2$分别是$C_1$、$C_2$中的两个文字，如果$L_1$、$L_2$有最一般合一$\sigma$，则子句$(C_{1} \sigma - { L_{1} \sigma }) \cup (C_{2} \sigma - { L_{2} \sigma })$称作$C_1$、$C_2$的二元归结式（二元消解式），$C_1$、$C_2$称作归结式的亲本子句，$L_1$、$L_2​$称作消解文字。</p>
 <p><strong>定理3</strong> 谓词逻辑中的消解式是它的亲本子句的逻辑结果。</p>
 <p>由此定理我们即得谓词逻辑中的推理规则：</p>
-<p>$\mathrm{C}_{1} \wedge \mathrm{C}_{2}=&gt;\left(\mathrm{C}_{1} \sigma_{-}\left{\mathrm{L}_{1} \sigma\right}\right) \cup\left(\mathrm{C}_{2} \sigma-\left{\mathrm{L}_{2} \sigma\right}\right)$</p>
+<p>$$C_{1} \wedge C_{2} =&gt; (C_{1} \sigma - { L_{1} \sigma }) \cup (C_{2} \sigma - { L_{2} \sigma })$$</p>
 <p>此规则称为谓词逻辑中的消解原理（归结原理）。</p>
-<p><strong>定理4</strong> （归结原理的完备性定理）如果子句集S是不可满足的，那么必存在一个由S推出空子句$\square $的消解序列。</p>
+<p><strong>定理4</strong> （归结原理的完备性定理）如果子句集S是不可满足的，那么必存在一个由S推出空子句$\square ​$的消解序列。</p>
 <h3 id="归结策略"><a href="#归结策略" class="headerlink" title="归结策略"></a>归结策略</h3><p>归结原理如何在机器上实现？下面给出一个一般性算法：</p>
 <p><strong>Input</strong>: 子句集 $S$。<br><strong>Output</strong>: $S$ 是可满足的或不可满足的。</p>
 <p>让S成为子句集并定义 $S_0 =S$. </p>
@@ -632,11 +632,11 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+                <a href="javascript:void(0)" class="js-tag color5">世界之内</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">世界之内</a>
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
               </li>
              
               <li class="article-tag-list-item">
