@@ -7,21 +7,21 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://rationalist.me">
-  <title>学习笔记|SLD Resolution | ClowNaxcvd</title>
+  <title>机器推理|SLD Resolution | ClowNaxcvd</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="本文简略介绍了SLD消解及其背后的原理和思想。">
+  <meta name="description" content="Prolog 程序的执行过程是一个（归结）演绎推理过程。其推理方式为反向推理，控制策略是深度优先且有回溯机制，具体实现方法是：自上而下匹配子句；从左向右选择子目标；（归结后）产生的新子目标总是插入被消去的目标处（即目标队列的左部）。 SLD 消解是 Prolog 程序的运行机理，也就是所谓的 Prolog 语言的过程性语义。 本文简略介绍了SLD消解及其原理和思想。 因为时间比较紧张，故没有仔细斟">
 <meta name="keywords" content="世界之内">
 <meta property="og:type" content="article">
-<meta property="og:title" content="学习笔记|SLD Resolution">
+<meta property="og:title" content="机器推理|SLD Resolution">
 <meta property="og:url" content="http://rationalist.me/2019/04/06/学习笔记-SLD-Resolution/index.html">
 <meta property="og:site_name" content="ClowNaxcvd">
-<meta property="og:description" content="本文简略介绍了SLD消解及其背后的原理和思想。">
+<meta property="og:description" content="Prolog 程序的执行过程是一个（归结）演绎推理过程。其推理方式为反向推理，控制策略是深度优先且有回溯机制，具体实现方法是：自上而下匹配子句；从左向右选择子目标；（归结后）产生的新子目标总是插入被消去的目标处（即目标队列的左部）。 SLD 消解是 Prolog 程序的运行机理，也就是所谓的 Prolog 语言的过程性语义。 本文简略介绍了SLD消解及其原理和思想。 因为时间比较紧张，故没有仔细斟">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://github.com/Shiyuang-scu/blog_img/raw/master/SLDresolution-1.png">
-<meta property="og:updated_time" content="2019-04-06T09:39:38.849Z">
+<meta property="og:updated_time" content="2019-04-06T12:08:34.507Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="学习笔记|SLD Resolution">
-<meta name="twitter:description" content="本文简略介绍了SLD消解及其背后的原理和思想。">
+<meta name="twitter:title" content="机器推理|SLD Resolution">
+<meta name="twitter:description" content="Prolog 程序的执行过程是一个（归结）演绎推理过程。其推理方式为反向推理，控制策略是深度优先且有回溯机制，具体实现方法是：自上而下匹配子句；从左向右选择子目标；（归结后）产生的新子目标总是插入被消去的目标处（即目标队列的左部）。 SLD 消解是 Prolog 程序的运行机理，也就是所谓的 Prolog 语言的过程性语义。 本文简略介绍了SLD消解及其原理和思想。 因为时间比较紧张，故没有仔细斟">
 <meta name="twitter:image" content="https://github.com/Shiyuang-scu/blog_img/raw/master/SLDresolution-1.png">
   
     <link rel="alternative" href="/atom.xml" title="ClowNaxcvd" type="application/atom+xml">
@@ -173,7 +173,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      学习笔记|SLD Resolution
+      机器推理|SLD Resolution
     </h1>
   
 
@@ -187,7 +187,10 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>本文简略介绍了SLD消解及其背后的原理和思想。</p>
+        <p>Prolog 程序的执行过程是一个（归结）演绎推理过程。其推理方式为反向推理，控制策略是深度优先且有回溯机制，具体实现方法是：自上而下匹配子句；从左向右选择子目标；（归结后）产生的新子目标总是插入被消去的目标处（即目标队列的左部）。</p>
+<p>SLD 消解是 Prolog 程序的运行机理，也就是所谓的 Prolog 语言的过程性语义。</p>
+<p>本文简略介绍了SLD消解及其原理和思想。</p>
+<p>因为时间比较紧张，故没有仔细斟酌行文结构、语法、语言流畅度，读起来十分缺乏user-friendliness，以后如果有时间，会试图讲得更详细、明白些的。</p>
 <a id="more"></a>
 <h1 id="SLD-Resolution"><a href="#SLD-Resolution" class="headerlink" title="SLD Resolution"></a>SLD Resolution</h1><p>消解法是命题逻辑完备且充分的算法：当且仅当算法报告其不可满足时，分词形式的公式是不可满足的。对于命题逻辑，该算法也是不可满足的决策过程，因为它保证终止。当推广到一阶逻辑时，消解仍然是完备的，但它不是一个决策过程，因为算法可能不会终止。[3]</p>
 <p>消解法最初是作为自动定理证明的方法而开发的。后来，发现受限形式的消解法可以被用来通过编程来实现计算，这种方法称为逻辑编程( logic programming )。程序表示为一组子句，查询表示为可以与一个或多个程序子句冲突的附加子句，先假设与结论相反的命题是成立的，然后根据前提和否定结论的假设（都以子句形式出现），求出一系列中间结论（以归结式的形式出现），如果最后得到两个相互矛盾的命题（以互补句元形式出现的一对单句元子句），即表明与结论相反的假设不能成立，因而原结论的正确性得证，此时归结式是空子句 $\square$ 。可以从理论上证明一阶谓词逻辑的归结原理是完备的，即一个子句集 $S$（前提和结论否定式合取形成的全体子句）不可满足的充要条件是从子句集 $S$ 中能推导出空子句。[4]</p>
@@ -437,6 +440,15 @@
   
 <nav id="article-nav">
   
+    <a href="/2019/04/17/机器学习-模型评估与选择/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          机器学习|模型评估与选择
+        
+      </div>
+    </a>
+  
   
     <a href="/2019/03/31/第五代计算机/" id="article-nav-older" class="article-nav-link-wrap">
       <div class="article-nav-title">第五代计算机</div>
@@ -645,6 +657,10 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">图像处理</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">机器学习</a>
               </li>
             
             <div class="clearfix"></div>
