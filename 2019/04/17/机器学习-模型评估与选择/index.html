@@ -21,7 +21,7 @@
 <meta property="og:image" content="https://raw.githubusercontent.com/Shiyuang-scu/blog_img/master/modelselection-2.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/Shiyuang-scu/blog_img/master/modelselection-3.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/Shiyuang-scu/blog_img/master/modelselection-4.png">
-<meta property="og:updated_time" content="2019-04-17T02:22:42.906Z">
+<meta property="og:updated_time" content="2019-04-17T02:41:21.294Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="机器学习|模型评估与选择">
 <meta name="twitter:description" content="整个统计机器学习模型选择的逻辑，在我看来，其实是：  模型测试：通过某种方法（留出法、交叉验证法……），使模型输出一系列数据，这个数据是其性能的表现； 性能度量：根据模型展示出的一系列数据，运用数学方法对数据进行处理，使得处理后的数据能够直观地代表模型的性能；(就是问题一讨论的内容) 模型评估：对由第二步处理后的数据进行比较，每个模型都有自己的性能度量数据，我们将每个模型的性能度量数据进行比较，这">
@@ -205,7 +205,7 @@
 </ol>
 <a id="more"></a>
 <h1 id="How-to-evaluate-the-performance-of-a-model"><a href="#How-to-evaluate-the-performance-of-a-model" class="headerlink" title="How to evaluate the performance of a model?"></a>How to evaluate the performance of a model?</h1><p>性能度量(Performance measure)，字面理解就是对学习模型性能的度量，那什么叫做模型的性能呢？简单来说，就是度量模型的泛化能力。性能度量的目的，是通过对模型的性能评估，来帮助决策——选择哪一种模型、选择哪一个参数、选择什么优化方法。</p>
-<p>在预测任务中，给定样例集$D=\left{\left(\boldsymbol{x}_{1}, y_{1}\right),\left(\boldsymbol{x}_{2}, y_{2}\right), \ldots,\left(\boldsymbol{x}_{m}, y_{m}\right)\right}$，其中$y_i$是示例$x_i$的真实标记。要评估学习器$f$的性能，就要把学习器的预测结果$f(x)$与真实标记$y$进行比较。</p>
+<p>在预测任务中，给定样例集$D={(x_1,y_1),(x_2,y_2),…(x_m,y_m)}$，其中$y_i$是示例$x_i$的真实标记。要评估学习器$f$的性能，就要把学习器的预测结果$f(x)$与真实标记$y$进行比较。</p>
 <p><em>（这里把学习器的预测结果，用$f(x)$符号表示，表明了一个思想：所谓模型，实际上就是一个映射或者函数，把一个$x$映射到$y$上。）</em></p>
 <p>在分类任务中，有以下常用的性能度量。</p>
 <h2 id="错误率与精度"><a href="#错误率与精度" class="headerlink" title="错误率与精度"></a>错误率与精度</h2><p>这个很容易理解，错误率就是模型在测试集中，分类错误的样本数占样本总数的比例，精度就是分类正确的样本数占总样本数的比例。</p>
@@ -249,12 +249,9 @@
 <p>如何度量模型的性能，在问题一中已经说明了，但是接下来的问题就是，用什么方法去使得模型能够显示出自己的性能好坏。</p>
 <p>整个模型选择的逻辑，在我看来，其实是：</p>
 <ol>
-<li><p><strong>模型测试：</strong>通过某种方法（留出法、交叉验证法……），使模型输出一系列数据，这个数据是其性能的表现；</p>
-</li>
-<li><p><strong>性能度量：</strong>根据模型展示出的一系列数据，运用数学方法对数据进行处理，使得处理后的数据能够直观地代表模型的性能；(就是问题一讨论的内容)</p>
-</li>
-<li><p><strong>模型评估：</strong>对由第二步处理后的数据进行比较，每个模型都有自己的性能度量数据，我们将每个模型的性能度量数据进行比较，这个比较不是单纯的比大小，需要运用数学方法对每个模型的性能度量数据进行处理，在处理完后得到的数据，才能进行比较。</p>
-</li>
+<li><strong>模型测试：</strong>通过某种方法（留出法、交叉验证法……），使模型输出一系列数据，这个数据是其性能的表现；</li>
+<li><strong>性能度量：</strong>根据模型展示出的一系列数据，运用数学方法对数据进行处理，使得处理后的数据能够直观地代表模型的性能；(就是问题一讨论的内容)</li>
+<li><strong>模型评估：</strong>对由第二步处理后的数据进行比较，每个模型都有自己的性能度量数据，我们将每个模型的性能度量数据进行比较，这个比较不是单纯的比大小，需要运用数学方法对每个模型的性能度量数据进行处理，在处理完后得到的数据，才能进行比较。</li>
 <li><strong>模型选择：</strong>根据比较的结果，选择最好的模型。</li>
 </ol>
 <p>每个步骤的名称是我自己定的，肯定和经典书籍中的描述有所出入，但是整个流程的逻辑应该是对的。</p>
