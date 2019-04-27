@@ -7,15 +7,23 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://rationalist.me">
-  <title>Tag: 世界之内 | ClowNaxcvd</title>
+  <title>机器学习|感知机与支持向量机 | ClowNaxcvd</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="ClowNaxcvd">
-<meta property="og:url" content="http://rationalist.me/tags/世界之内/index.html">
+  <meta name="description" content="本文简单介绍了感知机(Perceptron)与支持向量机(Support Vector Machine SVM)的部分概念。 本文没有系统地介绍两种算法，只是作为四川大学彭玺老师《机器学习引论》的课程作业和笔记，以供参考。">
+<meta name="keywords" content="世界之内,机器学习">
+<meta property="og:type" content="article">
+<meta property="og:title" content="机器学习|感知机与支持向量机">
+<meta property="og:url" content="http://rationalist.me/2019/04/27/机器学习-感知机与支持向量机/index.html">
 <meta property="og:site_name" content="ClowNaxcvd">
+<meta property="og:description" content="本文简单介绍了感知机(Perceptron)与支持向量机(Support Vector Machine SVM)的部分概念。 本文没有系统地介绍两种算法，只是作为四川大学彭玺老师《机器学习引论》的课程作业和笔记，以供参考。">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://rationalist.me/Users/seunoboru/Library/Application%20Support/typora-user-images/image-20190426164604875.png">
+<meta property="og:image" content="http://rationalist.me/Users/seunoboru/Library/Application%20Support/typora-user-images/image-20190426171218390.png">
+<meta property="og:updated_time" content="2019-04-27T13:18:23.981Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="ClowNaxcvd">
+<meta name="twitter:title" content="机器学习|感知机与支持向量机">
+<meta name="twitter:description" content="本文简单介绍了感知机(Perceptron)与支持向量机(Support Vector Machine SVM)的部分概念。 本文没有系统地介绍两种算法，只是作为四川大学彭玺老师《机器学习引论》的课程作业和笔记，以供参考。">
+<meta name="twitter:image" content="http://rationalist.me/Users/seunoboru/Library/Application%20Support/typora-user-images/image-20190426164604875.png">
   
     <link rel="alternative" href="/atom.xml" title="ClowNaxcvd" type="application/atom+xml">
   
@@ -159,37 +167,150 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-机器学习-感知机与支持向量机" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      机器学习|感知机与支持向量机
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/04/27/机器学习-感知机与支持向量机/" class="archive-article-date">
+
+
+        
+        <a href="/2019/04/27/机器学习-感知机与支持向量机/" class="archive-article-date">
   	<time datetime="2019-04-27T13:17:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-04-27</time>
 </a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>本文简单介绍了感知机(Perceptron)与支持向量机(Support Vector Machine SVM)的部分概念。</p>
+<p>本文没有系统地介绍两种算法，只是作为四川大学彭玺老师《机器学习引论》的课程作业和笔记，以供参考。</p>
+<a id="more"></a>
+<h3 id="The-evolution-of-neuron-from-biology-to-mathematics"><a href="#The-evolution-of-neuron-from-biology-to-mathematics" class="headerlink" title="The evolution of neuron from biology to mathematics?"></a>The evolution of neuron from biology to mathematics?</h3><p>1890：美国心理学家和哲学家William James在其著作中指出——当两个事件同时发生时，涉及到的大脑过程间的连接将会增强，这是无监督的Hebb学习规则的灵感来源。此外，James还提出了加权(weighted)、可变(modifiable) 、及并行连接(parallel connections)等神经网络至今采用的基本概念。 </p>
+<p>1906：神经科学家、诺贝尔奖得主S. R. Cajal对神经元突触的可变的连接方式的发现为神经元建模提供了基本模型。 </p>
+<p>1932：James的学生Edward Lee Thorndike被认为是第一位真正的连接主义者。其专著《The Fundamentals of Learning》中提出学习是刺激和响应之间建立关联的结果。y?=f(x)</p>
+<p>1943：C. L. Hull则提出神经元的输出是其输入与其他多个传入脉冲叠加的非线性函数，学习 是对神经元连接的修改。y=f(Wx) 这一理论是神经元连接模型、激活状态和学习算法的生理学依据。此外，Hull还提出了几个经验性的公式，其本质上就是Bernard Widrow和Marcian Hoff提出的Delta rule。 </p>
+<p>1943：Warren McCulloch和Walter Pitts提出第一个人工神经元模型——M-P模型，其通过阈值加权和定义了输入与输出的关系，奠定了人工神经元的数学模型基础。此外，McCulloch和Pitts 于1947年的工作是模式识别领域的开端; y=f(Wx+b) </p>
+<p>1957：基于上述发现和研究，Frank Rosenblatt发明了Perceptron，是第一个2层的ANN，同时也是第一个基于学习的能处理线性可分数据的分类器。</p>
+<h3 id="The-key-concepts-of-Perceptron-and-its-limitations"><a href="#The-key-concepts-of-Perceptron-and-its-limitations" class="headerlink" title="The key concepts of Perceptron and its limitations."></a>The key concepts of Perceptron and its limitations.</h3><h4 id="Key-Concepts"><a href="#Key-Concepts" class="headerlink" title="Key Concepts"></a>Key Concepts</h4><p>感知机(perceptron)由两层神经元组成，输入层接受外界输入信号，传递给输出层，输出层是M-P神经元，也称为”阈值逻辑单元”(threshold logic unit)。</p>
+<p>因此，感知机具有M-P神经元的特点，输入信号通过带权重的连接进行传递，通过”激活函数”处理以产生神经元的输出，给定训练数据集，权重$w$可通过学习得到。其生理学和哲学基础为：</p>
+<ul>
+<li><p>William James：具有加权、可变、并性连接的基本概念；</p>
+</li>
+<li><p>Edward Lee Thorndike：学习是刺激和响应之间建立关联的结果；</p>
+</li>
+<li><p>C. L. Hull：神经元的输出是其输入与其他多个传入脉冲叠加的非线性函数，学习是对神经元连接的修改。</p>
+</li>
+</ul>
+<p>感知机与之前的KNN方法相比，更近了一步。</p>
+<p>KNN做的是纯粹的”识别”。也就是说，如果用KNN方法，那么我们在一个庞大的数据集下，每次输入一个待分类的数据，都要从头开始做一次计算。举个例子说，我有一大堆兔子和老鼠的图片作为数据集，每张图片都包含着各自所属动物的特征，那么当我拿到一张新的图片，就要拿这张图片与数据集里每一张图片进行比较，哪种动物的图片与这张图片更接近，我们就预测这个图片里是哪种动物。</p>
+<p>而perceptron做的是”学习”，它做的不是每次识别、分类都要与每一个数据进行比较，而是作为一种方法，去学习另一种方法，使得通过它学习的这种方法，得到分类结果。本质上，是一个函数的映射过程，感知机需要学习一个函数$f(x)$，只要把待识别的样本$x$放进这个函数里，就会得到一个$y$，这个结果就是$x$的分类结果。</p>
+<h4 id="Limitations"><a href="#Limitations" class="headerlink" title="Limitations"></a>Limitations</h4><ul>
+<li>无最优解</li>
+</ul>
+<p>因为感知机的目的是进行分类，通过错误数据，不断调整权重，只要没有错误数据，就不会发生调整。因此，会因为参数初始化、输入训练集的顺序等因素，导致输出的模型，即决策边界千变万化。</p>
+<p><img src="/Users/seunoboru/Library/Application Support/typora-user-images/image-20190426164604875.png" alt="image-20190426164604875"></p>
+<p>如图，同一个训练集，得到了两个不同的决策边界，那么选择哪一个决策边界？感知机没有给出方法。</p>
+<ul>
+<li>无法解决非线性可分问题</li>
+</ul>
+<p>感知机只有输出层神经元进行激活函数处理，即只有一层功能神经元，所以无法解决非线性可分问题，如异或问题。</p>
+<h3 id="Who-is-Vladimir-N-Vapnik"><a href="#Who-is-Vladimir-N-Vapnik" class="headerlink" title="Who is Vladimir N. Vapnik."></a>Who is Vladimir N. Vapnik.</h3><p>Vladimir Naumovich Vapnik，1936年12月6日－，俄罗斯统计学家、数学家。他是VC理论（Vapnik Chervonenkis theory）的主要创建人之一。(VC理论是一套机器学习理论，使用统计的方法，因此有别于归纳学习等其它机器学习方法由这套理论所引出的支持向量机对机器学习的理论界以及各个应用领域都有极大的贡献。）</p>
+<p>Vapnik出生于苏联。1958年，他在撒马尔罕(现属乌兹别克斯坦)的乌兹别克国立大学完成了硕士学业。1964年，他于莫斯科的控制科学学院获得博士学位。毕业后，他一直在该校工作直到1990年，在此期间，他成为了该校<em>计算机科学与研究系</em>的系主任。</p>
+<p>1995年，他被伦敦大学聘为<em>计算机与统计科学专业</em>的教授。1991至2001年间，他工作于AT&amp;T贝尔实验室(后来的香农实验室)，并和他的同事们一起发明了<strong>支持向量机理论</strong>。他们为机器学习的许多方法奠定了理论基础。</p>
+<p>现在，他工作于新泽西州普林斯顿的NEC实验室。他同时是哥伦比亚大学的特聘教授。</p>
+<p>2006年，他成为美国国家工程院院士。</p>
+<h3 id="Maximum-Margin-Principle-and-why-support-vector-is-important"><a href="#Maximum-Margin-Principle-and-why-support-vector-is-important" class="headerlink" title="Maximum Margin Principle and why support vector is important?"></a>Maximum Margin Principle and why support vector is important?</h3><p><img src="/Users/seunoboru/Library/Application Support/typora-user-images/image-20190426171218390.png" alt="image-20190426171218390"></p>
+<h4 id="Maximum-Margin-Principle"><a href="#Maximum-Margin-Principle" class="headerlink" title="Maximum Margin Principle"></a>Maximum Margin Principle</h4><p>接着上面一个问题，感知机有一个问题，就是无法找到一个最优的决策边界，如图，所有的决策边界都能很好地拟合数据集，那么我们应该去找哪一个呢？</p>
+<p>直观上看，肯定选择两类样本正中间的决策边界，因为这个决策边界没有偏袒任何一方，很公平地站在两类样本的中间。更准切一点，这个决策边界所产生的分类结果会是拥有泛化能力最强的，鲁棒性最好的。</p>
+<p>我们发现，实际上，决策边界应该尽可能远离所有种类的数据样本，这样就会有最好的鲁棒性，我们这个直觉很对，用一条准则来描述我们的直觉，叫最大边界准则（Maximum Margin Principle）。</p>
+<p>那么如何利用最大边界准则呢？</p>
+<p>最大边界准则，其后包含着一个条件——决策边界尽可能远离所有种类的数据样本，所以，我们需要<strong>最大化</strong>决策边界与距其最近的数据点的距离$m$，而距离决策边界最近的数据点，就称之为<strong>支持向量</strong>。</p>
+<h4 id="Why-support-vector-is-important"><a href="#Why-support-vector-is-important" class="headerlink" title="Why support vector is important"></a>Why support vector is important</h4><p>支持向量之所以重要，可以从定性和定量两个角度讨论。</p>
+<h5 id="定性角度"><a href="#定性角度" class="headerlink" title="定性角度"></a>定性角度</h5><p>从定性角度看，最大边界准则或者说SVM的基本概念、原则，就是最大化决策边界与支持向量（support vector）的距离，所以支持向量是整个算法的基础。</p>
+<h5 id="定量角度"><a href="#定量角度" class="headerlink" title="定量角度"></a>定量角度</h5><p>从定量角度看，支持向量是求出决策边界的重要参数，这一点可以从SVM的数学性质来看。</p>
+<p>首先，SVM的思想基础就是，寻找符号最大边界准则的决策边界，假定有一个点$x$，待定决策边界的方程为$w^Tx+b=0$，可得点$x$到待定决策边界的距离$\gamma$为：</p>
+<p>$$\gamma=\frac{w^{T} x+b}{|w|}=\frac{f(x)}{|w|}$$</p>
+<p>因为$f(x)$作为一个决策边界，当$f(x)&gt;0$时，数据点标签为$y=1$，当$f(x)&lt;0$时，另一边数据点标签为$y=-1$，所以为了防止$\gamma&lt;0$的情况，我们再乘上$y$：</p>
+<p>$$\tilde{\gamma}=y \gamma=\frac{\hat{\gamma}}{|w|}$$</p>
+<p>最大间隔分类器的目标函数就可以因此定义为：</p>
+<p>$$ \max \tilde{\gamma}$$</p>
+<p>但同时需要满足条件：</p>
+<p>$$y_{i}\left(w^{T} x_{i}+b\right)=\hat{\gamma}_{i} \geq \hat{\gamma}, \quad i=1, \ldots, n$$</p>
+<p>为了方便推导和优化，我们可以把$\hat{\gamma}$等于1，这样的处理不会给推导和优化带来任何影响。因此，以上式子就变成了以下形式：</p>
+<p>$$\max \frac{1}{|w|}, \quad s . t ., y_{i}\left(w^{T} x_{i}+b\right) \geq 1, i=1, \ldots, n$$</p>
+<p>我们可以将以上形式转换成如下形式，之所以这样转换，一方面是为了便于求导，另一方面，求最大值问题和求最小值问题本质上是相同的。</p>
+<p>$$\min \frac{1}{2}|w|{^2}, \quad s . t ., y_{i}\left(w^{T} x_{i}+b\right) \geq 1, i=1, \ldots, n$$</p>
+<p>我们可以用拉格朗日乘子法解决这个问题。</p>
+<p>首先将这个约束形式转换成拉格朗日函数：</p>
+<p>$$L(\boldsymbol{w}, b, \boldsymbol{\alpha})=\frac{1}{2}|\boldsymbol{w}|^{2}+\sum_{i=1}^{m} \alpha_{i}\left(1-y_{i}\left(\boldsymbol{w}^{\mathbf{T}} \boldsymbol{x}_{i}+b\right)\right)$$</p>
+<p>当某个约束条件不满足时，例如$y_{i}\left(w^{T} x_{i}+b\right) \leq 1$，那么显然有$\theta(w)=\max _{\alpha_{i} \geq 0} \mathcal{L}(w, b, \alpha)=\infin$。</p>
+<p>而当所有约束条件都满足时，则最优值为$\theta(w)=\frac{1}{2}|w|^2$，亦即最初要最小化的量。</p>
+<p>所以，我们的目的是最小化$\theta(w)$，也就是：</p>
+<p>$$\min _{w, b} \theta(w)=\min _{w, b} \max _{\alpha_{i} \geq 0} \mathcal{L}(w, b, \alpha)$$</p>
+<p>这个求解过程不好做，不妨把最小和最大的位置交换一下，变成：</p>
+<p>$$\max _{\alpha_{i} \geq 0} \min _{w, b} \mathcal{L}(w, b, \alpha)$$</p>
+<p>这样的改变满足KKT条件的情况下是没关系的，即要求：</p>
+<p>$$\left{\begin{array}{l}{\alpha_{i} \geqslant 0} \ {y_{i} f\left(\boldsymbol{x}_{i}\right)-1 \geqslant 0} \ {\alpha_{i}\left(y_{i} f\left(\boldsymbol{x}_{i}\right)-1\right)=0}\end{array}\right.$$</p>
+<p>注意这组式子，在最后我们还会提到。</p>
+<p>为了求解以上式子，我们首先令$\mathcal{L}(w, b, \alpha)$对$w$、$b$求偏导，得到：</p>
+<p>$$\boldsymbol{w}=\sum_{i=1}^{m} \alpha_{i} y_{i} \boldsymbol{x}_{i}$$</p>
+<p>$$0=\sum_{i=1}^{m} \alpha_{i} y_{i}$$</p>
+<p>将这两个式子代回原式，可得：</p>
+<p>$$\max _{\alpha} \sum_{i=1}^{m} \alpha_{i}-\frac{1}{2} \sum_{i=1}^{m} \sum_{j=1}^{m} \alpha_{i} \alpha_{j} y_{i} y_{j} \boldsymbol{x}_{i}^{\mathrm{T}} \boldsymbol{x}_{j}$$</p>
+<p>$$\begin{array}{c}{\text {s.t.}, \alpha_{i} \geq 0, i=1, \ldots, n} \ {\sum_{i=1}^{n} \alpha_{i} y=0}\end{array}$$</p>
+<p>上式就是原始式的对偶式。这里，我们已经把$w$、$b$消除，只要把每个$\alpha_i$求出，就能求得模型：</p>
+<p>$$\begin{aligned} f(\boldsymbol{x}) &amp;=\boldsymbol{w}^{\mathrm{T}} \boldsymbol{x}+b \ &amp;=\sum_{i=1}^{m} \alpha_{i} y_{i} \boldsymbol{x}_{i}^{\mathrm{T}} \boldsymbol{x}+\boldsymbol{b} \end{aligned}$$</p>
+<p>从这里我们可以看到为什么支持向量很重要。看我们上面说到的KKT条件，为了满足KKT条件，对于任意的训练样本，总有$\alpha_i=0$或者$y_if(x_i)-1=0$。如果$\alpha_i=0$，那么这个样本点不会在结果中体现；如果$y_if(x_i)-1=0$，那么实际上这个样本点就是支持向量。</p>
+<p>通过以上我们可以看到，$w$的训练，是由支持向量决定的。</p>
+<h3 id="How-to-compute-the-distance-between-a-given-data-point-to-the-boundary"><a href="#How-to-compute-the-distance-between-a-given-data-point-to-the-boundary" class="headerlink" title="How to compute the distance between a given data point to the boundary?"></a>How to compute the distance between a given data point to the boundary?</h3><p>点到线的距离公式如下：</p>
+<p>$$r=\frac{w^Tx_i+b}{||w||}$$</p>
+<h3 id="What-limitations-the-linear-SVM-suffered-from"><a href="#What-limitations-the-linear-SVM-suffered-from" class="headerlink" title="What limitations the linear SVM suffered from?"></a>What limitations the linear SVM suffered from?</h3><p>线性SVM只能实现线性可分问题，基于训练样本线性可分的假设，即存在一个划分超平面能将训练样本正确分类。</p>
+<p>但是现实中，大部分分类任务的原始样本空间内并不存在一个能正确划分两类样本的超平面。</p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="https://raw.githubusercontent.com/Shiyuang-scu/blog_img/master/alipay.jpg">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="https://raw.githubusercontent.com/Shiyuang-scu/blog_img/master/wepay.jpg">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/04/27/机器学习-感知机与支持向量机/">机器学习|感知机与支持向量机</a>
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -205,391 +326,134 @@
 		</ul>
 	</div>
 
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/04/17/机器学习-模型评估与选择/" class="archive-article-date">
-  	<time datetime="2019-04-17T02:17:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-04-17</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/04/17/机器学习-模型评估与选择/">机器学习|模型评估与选择</a>
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">世界之内</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">机器学习</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/04/06/学习笔记-SLD-Resolution/" class="archive-article-date">
-  	<time datetime="2019-04-06T09:05:19.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-04-06</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/04/06/学习笔记-SLD-Resolution/">机器推理|SLD Resolution</a>
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">世界之内</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/03/31/第五代计算机/" class="archive-article-date">
-  	<time datetime="2019-03-31T13:45:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-31</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/03/31/第五代计算机/">第五代计算机</a>
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">世界之内</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/03/31/学习笔记-Volume-Rendering/" class="archive-article-date">
-  	<time datetime="2019-03-31T13:38:18.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-31</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/03/31/学习笔记-Volume-Rendering/">学习笔记|Volume Rendering</a>
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">世界之内</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">图像处理</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/03/11/GAN-RL-文本生成的方法/" class="archive-article-date">
-  	<time datetime="2019-03-11T13:47:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-11</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/03/11/GAN-RL-文本生成的方法/">生成对抗网络与强化学习:文本生成的方法</a>
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">世界之内</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
       
-        </div></section>
+
       
+
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/11/22/七牛云Bucket-失效/" class="archive-article-date">
-  	<time datetime="2018-11-21T22:27:09.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-22</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/11/22/七牛云Bucket-失效/">七牛云Bucket失效</a>
-    </h1>
-  
+      </div>
+    </span>
+  </div>
+</div>
 
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://rationalist.me/2019/04/27/机器学习-感知机与支持向量机/" alt="微信分享二维码">
+    </div>
+</div>
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">世界之内</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/11/04/计算机组成与体系结构/" class="archive-article-date">
-  	<time datetime="2018-11-04T09:09:19.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-04</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2019/04/27/周记-记忆-概念-庸俗/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">周记|记忆 概念 庸俗</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/11/04/计算机组成与体系结构/">计算机组成与体系结构</a>
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">世界之内</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#The-evolution-of-neuron-from-biology-to-mathematics"><span class="toc-number">1.</span> <span class="toc-text">The evolution of neuron from biology to mathematics?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#The-key-concepts-of-Perceptron-and-its-limitations"><span class="toc-number">2.</span> <span class="toc-text">The key concepts of Perceptron and its limitations.</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Key-Concepts"><span class="toc-number">2.1.</span> <span class="toc-text">Key Concepts</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Limitations"><span class="toc-number">2.2.</span> <span class="toc-text">Limitations</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Who-is-Vladimir-N-Vapnik"><span class="toc-number">3.</span> <span class="toc-text">Who is Vladimir N. Vapnik.</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Maximum-Margin-Principle-and-why-support-vector-is-important"><span class="toc-number">4.</span> <span class="toc-text">Maximum Margin Principle and why support vector is important?</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Maximum-Margin-Principle"><span class="toc-number">4.1.</span> <span class="toc-text">Maximum Margin Principle</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Why-support-vector-is-important"><span class="toc-number">4.2.</span> <span class="toc-text">Why support vector is important</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#定性角度"><span class="toc-number">4.2.1.</span> <span class="toc-text">定性角度</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#定量角度"><span class="toc-number">4.2.2.</span> <span class="toc-text">定量角度</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#How-to-compute-the-distance-between-a-given-data-point-to-the-boundary"><span class="toc-number">5.</span> <span class="toc-text">How to compute the distance between a given data point to the boundary?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#What-limitations-the-linear-SVM-suffered-from"><span class="toc-number">6.</span> <span class="toc-text">What limitations the linear SVM suffered from?</span></a></li></ol>
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/11/03/Policy-Gradient/" class="archive-article-date">
-  	<time datetime="2018-11-03T11:50:36.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-03</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/11/03/Policy-Gradient/">【强化学习】Policy Gradient</a>
-    </h1>
-  
+        
+    </div>
+</aside>
 
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">世界之内</a>
-        		</li>
-      		
-		</ul>
-	</div>
 
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/10/11/Web in Java/" class="archive-article-date">
-  	<time datetime="2018-10-11T14:52:39.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-10-11</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/10/11/Web in Java/">Web in Java</a>
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">世界之内</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
   
-    </div></section>
   
 
-    
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/tags/世界之内/page/2/">2</a><a class="page-number" href="/tags/世界之内/page/3/">3</a><a class="extend next" rel="next" href="/tags/世界之内/page/2/">Next &raquo;</a>
-    </nav>
+  
+
+  
+    <section id="comments">
+      <div id="disqus_thread"></div>
+        <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'https-shiyuang-scu-github-io'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+      </script>
+      <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </section>
+  
+
   
 
 
@@ -624,9 +488,9 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: true,
 		toc_hide_index: false,
