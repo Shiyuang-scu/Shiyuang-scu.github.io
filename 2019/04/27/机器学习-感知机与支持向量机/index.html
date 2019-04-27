@@ -17,13 +17,13 @@
 <meta property="og:site_name" content="ClowNaxcvd">
 <meta property="og:description" content="本文简单介绍了感知机(Perceptron)与支持向量机(Support Vector Machine SVM)的部分概念。 本文没有系统地介绍两种算法，只是作为四川大学彭玺老师《机器学习引论》的课程作业和笔记，以供参考。  机器学习中有一个概念叫做『线性可分』，意思是可以画一条线把把两个不同的类别分开，比方说男左女右排好队，就是线性可分的。不过有的时候大家混在一起乱成一锅粥，完全没有办法找到这么">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://rationalist.me/Users/seunoboru/Library/Application%20Support/typora-user-images/image-20190426164604875.png">
-<meta property="og:image" content="http://rationalist.me/Users/seunoboru/Library/Application%20Support/typora-user-images/image-20190426171218390.png">
-<meta property="og:updated_time" content="2019-04-27T13:20:21.836Z">
+<meta property="og:image" content="https://raw.githubusercontent.com/Shiyuang-scu/blog_img/master/perceptron-svm-1.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Shiyuang-scu/blog_img/master/perceptron-svm-2.png">
+<meta property="og:updated_time" content="2019-04-27T13:25:56.917Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="机器学习|感知机与支持向量机">
 <meta name="twitter:description" content="本文简单介绍了感知机(Perceptron)与支持向量机(Support Vector Machine SVM)的部分概念。 本文没有系统地介绍两种算法，只是作为四川大学彭玺老师《机器学习引论》的课程作业和笔记，以供参考。  机器学习中有一个概念叫做『线性可分』，意思是可以画一条线把把两个不同的类别分开，比方说男左女右排好队，就是线性可分的。不过有的时候大家混在一起乱成一锅粥，完全没有办法找到这么">
-<meta name="twitter:image" content="http://rationalist.me/Users/seunoboru/Library/Application%20Support/typora-user-images/image-20190426164604875.png">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/Shiyuang-scu/blog_img/master/perceptron-svm-1.png">
   
     <link rel="alternative" href="/atom.xml" title="ClowNaxcvd" type="application/atom+xml">
   
@@ -218,7 +218,7 @@
 <li>无最优解</li>
 </ul>
 <p>因为感知机的目的是进行分类，通过错误数据，不断调整权重，只要没有错误数据，就不会发生调整。因此，会因为参数初始化、输入训练集的顺序等因素，导致输出的模型，即决策边界千变万化。</p>
-<p><img src="/Users/seunoboru/Library/Application Support/typora-user-images/image-20190426164604875.png" alt="image-20190426164604875"></p>
+<p><img src="https://raw.githubusercontent.com/Shiyuang-scu/blog_img/master/perceptron-svm-1.png" alt="perceptron-svm-1"></p>
 <p>如图，同一个训练集，得到了两个不同的决策边界，那么选择哪一个决策边界？感知机没有给出方法。</p>
 <ul>
 <li>无法解决非线性可分问题</li>
@@ -229,7 +229,7 @@
 <p>1995年，他被伦敦大学聘为<em>计算机与统计科学专业</em>的教授。1991至2001年间，他工作于AT&amp;T贝尔实验室(后来的香农实验室)，并和他的同事们一起发明了<strong>支持向量机理论</strong>。他们为机器学习的许多方法奠定了理论基础。</p>
 <p>现在，他工作于新泽西州普林斯顿的NEC实验室。他同时是哥伦比亚大学的特聘教授。</p>
 <p>2006年，他成为美国国家工程院院士。</p>
-<h3 id="Maximum-Margin-Principle-and-why-support-vector-is-important"><a href="#Maximum-Margin-Principle-and-why-support-vector-is-important" class="headerlink" title="Maximum Margin Principle and why support vector is important?"></a>Maximum Margin Principle and why support vector is important?</h3><p><img src="/Users/seunoboru/Library/Application Support/typora-user-images/image-20190426171218390.png" alt="image-20190426171218390"></p>
+<h3 id="Maximum-Margin-Principle-and-why-support-vector-is-important"><a href="#Maximum-Margin-Principle-and-why-support-vector-is-important" class="headerlink" title="Maximum Margin Principle and why support vector is important?"></a>Maximum Margin Principle and why support vector is important?</h3><p><img src="https://raw.githubusercontent.com/Shiyuang-scu/blog_img/master/perceptron-svm-2.png" alt="perceptron-svm-2"></p>
 <h4 id="Maximum-Margin-Principle"><a href="#Maximum-Margin-Principle" class="headerlink" title="Maximum Margin Principle"></a>Maximum Margin Principle</h4><p>接着上面一个问题，感知机有一个问题，就是无法找到一个最优的决策边界，如图，所有的决策边界都能很好地拟合数据集，那么我们应该去找哪一个呢？</p>
 <p>直观上看，肯定选择两类样本正中间的决策边界，因为这个决策边界没有偏袒任何一方，很公平地站在两类样本的中间。更准切一点，这个决策边界所产生的分类结果会是拥有泛化能力最强的，鲁棒性最好的。</p>
 <p>我们发现，实际上，决策边界应该尽可能远离所有种类的数据样本，这样就会有最好的鲁棒性，我们这个直觉很对，用一条准则来描述我们的直觉，叫最大边界准则（Maximum Margin Principle）。</p>
