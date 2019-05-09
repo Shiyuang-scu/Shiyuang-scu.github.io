@@ -161,6 +161,87 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-BP算法" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/05/26/BP算法/">【机器学习】BP算法</a>
+    </h1>
+  
+
+
+        
+        <a href="/2018/05/26/BP算法/" class="archive-article-date">
+  	<time datetime="2018-05-26T13:17:36.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-26</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>断断续续零零碎碎地学机器学习半年了，不会实践，不会运用，只是粗略地学了理论基础，因为涉及很多数学公式，markdown的数学公式语法又挺麻烦的，所以一直没有写过机器学习算法的文章。最近恰逢创新班、双特生面试，因为我是以机器学习为特点介绍我自己的，所以看了些算法的具体理论和优缺点。今天下午看了2个小时的BP算法，心想不如在近纲课上写一篇BP算法的文章。</p>
+<h1 id="一般思想"><a href="#一般思想" class="headerlink" title="一般思想"></a>一般思想</h1><p>首先，依然是梯度下降法，为了更新$W$和$b$，就要计算出代价函数$J$对两者的偏导数，即</p>
+<p>$\frac{\partial}{\partial W_{ij}^{(l)}} J(W,b; x, y) = a^{(l)}_j \delta_i^{(l+1)}$<br>$\frac{\partial}{\partial b_{i}^{(l)}} J(W,b; x, y) = \delta_i^{(l+1)}$</p>
+<p>其中，</p>
+<p>$\delta^{(l)}_i=\frac{\partial J(W,b;x,y)}{\partial z_i^{(l)}}=\frac{\partial }{\partial z^{(l)}_i}\frac{1}{2} \left|y - h_{W,b}(x)\right|^2 = - (y_i - a^{(l)}_i)\cdot f’(z^{(l)}_i)$</p>
+        
+          <a class="article-more-a" href="/2018/05/26/BP算法/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">世界之内</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/05/26/BP算法/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-宏大的哲学语境" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -853,83 +934,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2018/02/19/《如何高效学习》读后总结/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-《精进》第二章总结" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/02/13/《精进》第二章总结/">《精进》chapter-2读后总结</a>
-    </h1>
-  
-
-
-        
-        <a href="/2018/02/13/《精进》第二章总结/" class="archive-article-date">
-  	<time datetime="2018-02-13T04:06:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-02-13</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>《精进》第二章聚焦于“选择”，从四个方面进行了阐述，分别是“寻找更高的目标”、“寻找更多的选择”、“怎样做正确的选择”、“校正选择、做出改变”。<br>
-        
-          <a class="article-more-a" href="/2018/02/13/《精进》第二章总结/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/02/13/《精进》第二章总结/">展开全文 >></a>
         </p>
       
 
