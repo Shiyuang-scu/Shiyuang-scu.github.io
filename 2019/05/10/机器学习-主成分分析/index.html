@@ -17,14 +17,15 @@
 <meta property="og:site_name" content="ClowNaxcvd">
 <meta property="og:description" content="主成分分析(Principal Component Analysis, PCA)是一种常用的数据分析方法。PCA通过线性变换将原始数据变换为一组各维度线性无关的表示，可用于提取数据的主要特征分量，常用于高维数据的降维。 本文从PCA的目的、思想、原理背后的含义出发，试图清晰地解决几个问题：  为什么用PCA 怎么用PCA 为什么这么用PCA">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://rationalist.me/Users/seunoboru/Desktop/CD1D98D6-E448-4783-8EE0-5E9A75388DFB.png">
-<meta property="og:image" content="http://rationalist.me/Users/seunoboru/Library/Application%20Support/typora-user-images/image-20190510174903234.png">
-<meta property="og:image" content="http://rationalist.me/Users/seunoboru/Library/Application%20Support/typora-user-images/image-20190510175329278.png">
-<meta property="og:updated_time" content="2019-05-11T12:45:57.105Z">
+<meta property="og:image" content="https://raw.githubusercontent.com/Shiyuang-scu/blog_img/master/PCA-1.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Shiyuang-scu/blog_img/master/PCA-2.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Shiyuang-scu/blog_img/master/PCA-3.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Shiyuang-scu/blog_img/master/PCA-4.gif">
+<meta property="og:updated_time" content="2019-05-11T12:57:51.220Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="机器学习|主成分分析">
 <meta name="twitter:description" content="主成分分析(Principal Component Analysis, PCA)是一种常用的数据分析方法。PCA通过线性变换将原始数据变换为一组各维度线性无关的表示，可用于提取数据的主要特征分量，常用于高维数据的降维。 本文从PCA的目的、思想、原理背后的含义出发，试图清晰地解决几个问题：  为什么用PCA 怎么用PCA 为什么这么用PCA">
-<meta name="twitter:image" content="http://rationalist.me/Users/seunoboru/Desktop/CD1D98D6-E448-4783-8EE0-5E9A75388DFB.png">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/Shiyuang-scu/blog_img/master/PCA-1.png">
   
     <link rel="alternative" href="/atom.xml" title="ClowNaxcvd" type="application/atom+xml">
   
@@ -216,7 +217,7 @@
 <p>因此，我们要对一组高维度数据进行分析，最好找出那些最具代表性的维度，来减少我们要分析的维度。请注意，我们不是<strong>选出</strong>，而是<strong>找出</strong>最具代表性的维度。</p>
 <p>还是拿淘宝店的例子来说，下单数和成交数是不同的概念，虽然两者很接近，但是细微的差别还是显示了这家店的特征，比如说，如果下单数比成交数高了100单，那么就说明这家店的货可能有问题，有100个人退货。所以，单纯去掉其中的一个维度，<strong>选择</strong>另一个，是会出问题的。那么，我们是不是可以<strong>创造</strong>一个维度，这个维度即显示了下单数的特征，又显示了成交数的特征呢？我们说”找出维度”，其实就是这个意思。</p>
 <h2 id="1-2-简单实例"><a href="#1-2-简单实例" class="headerlink" title="1.2 简单实例"></a>1.2 简单实例</h2><p>现在，我们有这么一组二维数据 (虽然二维数据没必要做降维，但是超过三维的数据画不出来，所以以二维数据为例)。</p>
-<p><img src="/Users/seunoboru/Desktop/CD1D98D6-E448-4783-8EE0-5E9A75388DFB.png" alt="CD1D98D6-E448-4783-8EE0-5E9A75388DFB"></p>
+<p><img src="https://raw.githubusercontent.com/Shiyuang-scu/blog_img/master/PCA-1.png" alt="PCA-1"></p>
 <p>这组二维数据的维度可以由横坐标和纵坐标所代表，因此每个观测值都有相应于这两个坐标轴的两个坐标值。</p>
 <p>我们看到，这些数据形成一个椭圆形状的点阵，这个椭圆有一个长轴和一个短轴。在短轴方向上，数据变化很少。短轴上的数据都差不多集中在一个部分，说明每一个数据在这个方向上的变化不大。所以，即使<strong>我们把这个椭圆沿着短轴方向往里压，压成一条直线，还是能很好地表示这组数据的变化趋势</strong>。这样，由二维到一维的降维就自然完成了。</p>
 <p>这个长轴的方向叫做<strong>主成分方向</strong>，n个数据在主成分方向的离散程度最大，数据在主成分方向上的投影代表了原始数据的绝大部分信息，即使不考虑短轴，信息损失也不多。</p>
@@ -225,14 +226,16 @@
 <h1 id="2-矩阵乘法的本质——基变换-向量缩放"><a href="#2-矩阵乘法的本质——基变换-向量缩放" class="headerlink" title="2 矩阵乘法的本质——基变换(向量缩放)"></a>2 矩阵乘法的本质——基变换(向量缩放)</h1><p>找到主成分方向是我们最终的目标，我们需要对这个问题进行分析、细化、分解，从而可以将这个问题形式化为数学问题。在进行分析之前，我们首先得回顾一下线性代数的知识。我们回顾线性代数的知识，是为了解决一个问题：怎么把这个椭圆沿着短轴方向往里压，压成一条直线呢？这就涉及到线性变换的问题。</p>
 <p>这里直接给出结论：<strong>矩阵乘法的实质，就是线性变换</strong>。把这些数据压成一条直线，实际上就是把这些数据进行一个特定的拉伸缩放，数学化就是乘上一个特定的矩阵。下面进行简单的阐述。</p>
 <p>向量实际上是由基向量组成的，任何向量都可以分解成基向量的线性组合，我们一般都默认基向量$\vec{i}=(1,0)$$\vec{j}=(0,1)$，向量$A=(3,2)$，其实是$A=3\vec{i}+2\vec{j}$，如图</p>
-<p><img src="/Users/seunoboru/Library/Application Support/typora-user-images/image-20190510174903234.png" alt="image-20190510174903234"></p>
+<p><img src="https://raw.githubusercontent.com/Shiyuang-scu/blog_img/master/PCA-2.png" alt="PCA-2"></p>
 <p>但是，其实只要线性无关，任何一对向量都可以成为一组基，如图就是另一组基。</p>
-<p><img src="/Users/seunoboru/Library/Application Support/typora-user-images/image-20190510175329278.png" alt="image-20190510175329278"></p>
+<p><img src="https://raw.githubusercontent.com/Shiyuang-scu/blog_img/master/PCA-3.png" alt="PCA-3"></p>
 <p>线性变换是什么？</p>
 <p>线性变换实际上是对整个空间的拉伸缩放，而向量的变换只是整个空间变换的体现。我认为，我们的宇宙由一组规则组成，万物从一片寂静构成这个世界，都只是在依照这一组规则。这个想法套用在线性代数里，可以这么想：整个线性空间是由一组基构成的，线性空间实际上是基的另一种表现形式。那么，所谓线性空间的变换，实际上就是基的变换。</p>
 <p>之前我们说过，向量实际上是由基向量组成的，任何向量都可以分解成基向量的线性组合，向量$A=(3,2)$可以表示为：</p>
 <p>$$\begin{pmatrix}   1  &amp; 0 \   0 &amp; 1 \end{pmatrix} \begin{pmatrix}   3 \   2 \end{pmatrix} = \begin{pmatrix}   3 \   2 \end{pmatrix}$$</p>
 <p>我们看到，就是基向量与$(3,2)$的内积运算。可以这样理解：$(3,2)$是某个绝对标尺，表示对某个事物属性的绝对表示，这个表示不受任何外部因素的影响。而为了把这个标尺表现在一个线性空间中，我们需要对这个标尺做一个变换，使得这个标尺能够合理地出现在这个线性空间里，而这个变换，就是与基向量的内积。</p>
+<p>下面是一个形象的例子，描述了$(-1,2)$在基向量$(3,1),(1,2)$作用下的变换：</p>
+<p><img src="https://raw.githubusercontent.com/Shiyuang-scu/blog_img/master/PCA-4.gif" alt="PCA-4"></p>
 <p>如果我们把$\vec{i}=(1,0)$$\vec{j}=(0,1)$这个基向量逆时针旋转45°，那么此时，$\vec{i}=(\frac{1}{\sqrt{2}},\frac{1}{\sqrt{2}})\vec{j}=(-\frac{1}{\sqrt{2}},\frac{1}{\sqrt{2}})$就作为了基向量，此时$(3,2)$在哪儿了呢？我们只要仍然把基向量与$(3,2)$相乘，就可以了:</p>
 <p>$$\begin{pmatrix} 1/\sqrt{2}  &amp; 1/\sqrt{2} \ -1/\sqrt{2} &amp; 1/\sqrt{2} \end{pmatrix} \begin{pmatrix} 3 \ 2 \end{pmatrix} = \begin{pmatrix} 5/\sqrt{2} \ -1/\sqrt{2} \end{pmatrix}$$</p>
 <p>可以画出来看看，这个结果确实是$(3,2)$旋转45°的结果。</p>
