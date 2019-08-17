@@ -9,19 +9,19 @@
   <link rel="dns-prefetch" href="http://rationalist.me">
   <title>机器推理|SLD Resolution | ClowNaxcvd</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Prolog 程序的执行过程是一个（归结）演绎推理过程。其推理方式为反向推理，控制策略是深度优先且有回溯机制，具体实现方法是：自上而下匹配子句；从左向右选择子目标；（归结后）产生的新子目标总是插入被消去的目标处（即目标队列的左部）。 SLD 消解是 Prolog 程序的运行机理，也就是所谓的 Prolog 语言的过程性语义。 本文简略介绍了SLD消解及其原理和思想。 因为时间比较紧张，故没有仔细斟">
+  <meta name="description" content="今年修了四川大学潘无名老师的「AI面向语言编程」课程，这门课程的期末论文要求对SLD消解进行简单叙述，因此我对相关内容进行了粗浅的学习。 此篇为关于SLD消解的学习笔记，简略介绍了SLD消解的原理和思想。 因为时间比较紧张，故没有仔细斟酌行文结构、语法、语言流畅度，读起来十分缺乏user-friendliness，以后如果有时间，会试图讲得更详细、明白些的。">
 <meta name="keywords" content="世界之内">
 <meta property="og:type" content="article">
 <meta property="og:title" content="机器推理|SLD Resolution">
 <meta property="og:url" content="http://rationalist.me/2019/04/06/学习笔记-SLD-Resolution/index.html">
 <meta property="og:site_name" content="ClowNaxcvd">
-<meta property="og:description" content="Prolog 程序的执行过程是一个（归结）演绎推理过程。其推理方式为反向推理，控制策略是深度优先且有回溯机制，具体实现方法是：自上而下匹配子句；从左向右选择子目标；（归结后）产生的新子目标总是插入被消去的目标处（即目标队列的左部）。 SLD 消解是 Prolog 程序的运行机理，也就是所谓的 Prolog 语言的过程性语义。 本文简略介绍了SLD消解及其原理和思想。 因为时间比较紧张，故没有仔细斟">
+<meta property="og:description" content="今年修了四川大学潘无名老师的「AI面向语言编程」课程，这门课程的期末论文要求对SLD消解进行简单叙述，因此我对相关内容进行了粗浅的学习。 此篇为关于SLD消解的学习笔记，简略介绍了SLD消解的原理和思想。 因为时间比较紧张，故没有仔细斟酌行文结构、语法、语言流畅度，读起来十分缺乏user-friendliness，以后如果有时间，会试图讲得更详细、明白些的。">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://github.com/Shiyuang-scu/blog_img/raw/master/SLDresolution-1.png">
-<meta property="og:updated_time" content="2019-04-06T12:08:34.507Z">
+<meta property="og:updated_time" content="2019-08-17T15:05:42.510Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="机器推理|SLD Resolution">
-<meta name="twitter:description" content="Prolog 程序的执行过程是一个（归结）演绎推理过程。其推理方式为反向推理，控制策略是深度优先且有回溯机制，具体实现方法是：自上而下匹配子句；从左向右选择子目标；（归结后）产生的新子目标总是插入被消去的目标处（即目标队列的左部）。 SLD 消解是 Prolog 程序的运行机理，也就是所谓的 Prolog 语言的过程性语义。 本文简略介绍了SLD消解及其原理和思想。 因为时间比较紧张，故没有仔细斟">
+<meta name="twitter:description" content="今年修了四川大学潘无名老师的「AI面向语言编程」课程，这门课程的期末论文要求对SLD消解进行简单叙述，因此我对相关内容进行了粗浅的学习。 此篇为关于SLD消解的学习笔记，简略介绍了SLD消解的原理和思想。 因为时间比较紧张，故没有仔细斟酌行文结构、语法、语言流畅度，读起来十分缺乏user-friendliness，以后如果有时间，会试图讲得更详细、明白些的。">
 <meta name="twitter:image" content="https://github.com/Shiyuang-scu/blog_img/raw/master/SLDresolution-1.png">
   
     <link rel="alternative" href="/atom.xml" title="ClowNaxcvd" type="application/atom+xml">
@@ -186,11 +186,12 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Prolog 程序的执行过程是一个（归结）演绎推理过程。其推理方式为反向推理，控制策略是深度优先且有回溯机制，具体实现方法是：自上而下匹配子句；从左向右选择子目标；（归结后）产生的新子目标总是插入被消去的目标处（即目标队列的左部）。</p>
-<p>SLD 消解是 Prolog 程序的运行机理，也就是所谓的 Prolog 语言的过程性语义。</p>
-<p>本文简略介绍了SLD消解及其原理和思想。</p>
+        <p>今年修了四川大学潘无名老师的「AI面向语言编程」课程，这门课程的期末论文要求对SLD消解进行简单叙述，因此我对相关内容进行了粗浅的学习。</p>
+<p>此篇为关于SLD消解的学习笔记，<strong>简略介绍了SLD消解的原理和思想</strong>。</p>
 <p>因为时间比较紧张，故没有仔细斟酌行文结构、语法、语言流畅度，读起来十分缺乏user-friendliness，以后如果有时间，会试图讲得更详细、明白些的。</p>
 <a id="more"></a>
+<p>Prolog 程序的执行过程是一个（归结）演绎推理过程。其推理方式为反向推理，控制策略是深度优先且有回溯机制，具体实现方法是：自上而下匹配子句；从左向右选择子目标；（归结后）产生的新子目标总是插入被消去的目标处（即目标队列的左部）。</p>
+<p>SLD 消解是 Prolog 程序的运行机理，也就是所谓的 Prolog 语言的过程性语义。</p>
 <h1 id="SLD-Resolution"><a href="#SLD-Resolution" class="headerlink" title="SLD Resolution"></a>SLD Resolution</h1><p>消解法是命题逻辑完备且充分的算法：当且仅当算法报告其不可满足时，分词形式的公式是不可满足的。对于命题逻辑，该算法也是不可满足的决策过程，因为它保证终止。当推广到一阶逻辑时，消解仍然是完备的，但它不是一个决策过程，因为算法可能不会终止。[3]</p>
 <p>消解法最初是作为自动定理证明的方法而开发的。后来，发现受限形式的消解法可以被用来通过编程来实现计算，这种方法称为逻辑编程( logic programming )。程序表示为一组子句，查询表示为可以与一个或多个程序子句冲突的附加子句，先假设与结论相反的命题是成立的，然后根据前提和否定结论的假设（都以子句形式出现），求出一系列中间结论（以归结式的形式出现），如果最后得到两个相互矛盾的命题（以互补句元形式出现的一对单句元子句），即表明与结论相反的假设不能成立，因而原结论的正确性得证，此时归结式是空子句 $\square$ 。可以从理论上证明一阶谓词逻辑的归结原理是完备的，即一个子句集 $S$（前提和结论否定式合取形成的全体子句）不可满足的充要条件是从子句集 $S$ 中能推导出空子句。[4]</p>
 <p>而下面将要讨论的SLD Resolution，就是一种满足上述所描述的，适用于逻辑编程的归结方法之特性的优化归结策略。</p>
@@ -259,12 +260,12 @@
 <p><strong>定义8</strong> $E_1θ=…=E_nθ$, 则称置换θ为${E_1,…,E_n}$的合一子(unifier). 如果对${E_1,…,E_n}$存在这样的合一子, 则称集合${E_1,…,E_n}$可合一.</p>
 <p><strong>定义9</strong> 如果对E的每个合一子θ, 都存在一个置换λ, 使得θ=γ°λ, 则称合一子γ是集合${E_1,…,E_n}$的最一般合一子(most general unifier，mgu)</p>
 <p>如果能够找到一个公式集的合一，特别是最一般合一，则可使互否的文字的形式结构完全一致起来，进而达到消解的目的。</p>
-<h4 id="谓词逻辑中的归结原理"><a href="#谓词逻辑中的归结原理" class="headerlink" title="谓词逻辑中的归结原理"></a>谓词逻辑中的归结原理</h4><p><strong>定义10</strong> 设$C_1$、$C_2$是两个无相同变元的字句，$L_1$、$L_2$分别是$C_1$、$C_2$中的两个文字，如果$L_1$、$L_2$有最一般合一$\sigma$，则子句$(C_{1} \sigma - { L_{1} \sigma }) \cup (C_{2} \sigma - { L_{2} \sigma })$称作$C_1$、$C_2$的二元归结式（二元消解式），$C_1$、$C_2$称作归结式的亲本子句，$L_1$、$L_2​$称作消解文字。</p>
+<h4 id="谓词逻辑中的归结原理"><a href="#谓词逻辑中的归结原理" class="headerlink" title="谓词逻辑中的归结原理"></a>谓词逻辑中的归结原理</h4><p><strong>定义10</strong> 设$C_1$、$C_2$是两个无相同变元的字句，$L_1$、$L_2$分别是$C_1$、$C_2$中的两个文字，如果$L_1$、$L_2$有最一般合一$\sigma$，则子句$(C_{1} \sigma - { L_{1} \sigma }) \cup (C_{2} \sigma - { L_{2} \sigma })$称作$C_1$、$C_2$的二元归结式（二元消解式），$C_1$、$C_2$称作归结式的亲本子句，$L_1$、$L_2$称作消解文字。</p>
 <p><strong>定理3</strong> 谓词逻辑中的消解式是它的亲本子句的逻辑结果。</p>
 <p>由此定理我们即得谓词逻辑中的推理规则：</p>
 <p>$$C_{1} \wedge C_{2} =&gt; (C_{1} \sigma - { L_{1} \sigma }) \cup (C_{2} \sigma - { L_{2} \sigma })$$</p>
 <p>此规则称为谓词逻辑中的消解原理（归结原理）。</p>
-<p><strong>定理4</strong> （归结原理的完备性定理）如果子句集S是不可满足的，那么必存在一个由S推出空子句$\square ​$的消解序列。</p>
+<p><strong>定理4</strong> （归结原理的完备性定理）如果子句集S是不可满足的，那么必存在一个由S推出空子句$\square $的消解序列。</p>
 <h3 id="归结策略"><a href="#归结策略" class="headerlink" title="归结策略"></a>归结策略</h3><p>归结原理如何在机器上实现？下面给出一个一般性算法：</p>
 <p><strong>Input</strong>: 子句集 $S$。<br><strong>Output</strong>: $S$ 是可满足的或不可满足的。</p>
 <p>让S成为子句集并定义 $S_0 =S$. </p>
@@ -305,7 +306,7 @@
 <p>$$\mathrm{C} : \mathrm{P}_{1}, \ldots, \mathrm{P}_{\mathrm{m}} \leftarrow \mathrm{Q}_{1}, \ldots, \mathrm{Q}_{\mathrm{n}}$$</p>
 <p>和</p>
 <p>$$\mathrm{C}^{\prime} : \mathrm{P}_{1}^{\prime}, \ldots, \mathrm{P}_{\mathrm{s}}^{\prime} \leftarrow \mathrm{Q}_{1}^{\prime}, \ldots, \mathrm{Q}_{\mathrm{t}}^{\prime}$$</p>
-<p>其中有$P_i​$和$Q’_j​$可合一，$\sigma​$为它们的MGU，则$C​$和$C’​$的归结式为</p>
+<p>其中有$P_i$和$Q’_j$可合一，$\sigma$为它们的MGU，则$C$和$C’$的归结式为</p>
 <p>$$\mathrm{P}_{1} \sigma, \ldots, \mathrm{P}_{\mathrm{i}-1} \sigma, \mathrm{P}_{\mathrm{i}+1} \sigma, \ldots, \mathrm{P}_{\mathrm{m}} \sigma, \mathrm{P}_{1}^{\prime} \sigma, \ldots, \mathrm{P}_{\mathrm{s}}^{\prime} \sigma \leftarrow \mathrm{Q}_{1} \sigma, \ldots, \mathrm{Q}_{\mathrm{n}} \sigma, \mathrm{Q}_{1}^{\prime} \sigma, \ldots, \mathrm{Q}_{\mathrm{j}-1}^{\prime} \sigma, \mathrm{Q}_{\mathrm{j}+1}^{\prime} \sigma, \ldots, \mathrm{Q}_{\mathrm{t}}^{\prime} \sigma$$</p>
 <h4 id="Horn子句消解"><a href="#Horn子句消解" class="headerlink" title="Horn子句消解"></a>Horn子句消解</h4><p><strong>定义1</strong> <em>至多含有一个正文字的子句称为Horn子句</em></p>
 <p>由定义，蕴含型Horn子句有下列三种形式：</p>
@@ -320,11 +321,11 @@
 <p>从计算机程序的角度看，条件子句都是”过程“，结论P就是过程名，而P的过程体，即条件子句的后件，可以视为一系列子过程。条件子句的消解可以看做是对结论P的调用，而对P的调用又引起了对子过程的调用，就这样层层调用，直到遇到无条件句，即事实(fact)。</p>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>Horn子句是一个至多含有一个正文字的子句，事实( fact )是单位Horn子句的正文字（即无条件句），程序字句是Horn子句的一个正文字和多个负文字（即条件子句），目标子句没有正文字。</p>
 <p>逻辑程序( logic program )由一组条件子句和无条件句组成，给定一个逻辑程序和目标子句，SLD消解能被用于搜索互斥（以便于反证）。如果驳斥存在，那么目标子句的取反就是条件子句和无条件句的结果，然后在驳斥过程中的替换就是逻辑程序的答案。[5]</p>
-<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p>[1]Robert Kowalski <em>Predicate Logic as a Programming Language</em> Memo 70, Department of Artificial Intelligence, Edinburgh University. 1973. Also in Proceedings IFIP Congress, Stockholm, North Holland Publishing Co., 1974, pp. 569-574.</p>
-<p>[2]Robert Kowalski and Donald Kuehner, <em>Linear Resolution with Selection Function</em> Artificial Intelligence, Vol. 2, 1971, pp. 227-60.</p>
-<p>[3]J.W. Lloyd. <em>Mathematical Logic for Computer Science (Third Edition)</em>. Springer, London, 2012, pp. 205</p>
-<p>[4]Schmerl, <em>U.R. Resolution on Formula-Trees.</em> Acta Informatica. 1988, 25: 425–438. doi:10.1007/bf02737109. Summary</p>
-<p>[5]J.W. Lloyd. <em>Mathematical Logic for Computer Science (Third Edition)</em>. Springer, London, 2012, pp. 220</p>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p>[1] Robert Kowalski <em>Predicate Logic as a Programming Language</em> Memo 70, Department of Artificial Intelligence, Edinburgh University. 1973. Also in Proceedings IFIP Congress, Stockholm, North Holland Publishing Co., 1974, pp. 569-574.</p>
+<p>[2] Robert Kowalski and Donald Kuehner, <em>Linear Resolution with Selection Function</em> Artificial Intelligence, Vol. 2, 1971, pp. 227-60.</p>
+<p>[3] J.W. Lloyd. <em>Mathematical Logic for Computer Science (Third Edition)</em>. Springer, London, 2012, pp. 205</p>
+<p>[4] Schmerl, <em>U.R. Resolution on Formula-Trees.</em> Acta Informatica. 1988, 25: 425–438. doi:10.1007/bf02737109. Summary</p>
+<p>[5] J.W. Lloyd. <em>Mathematical Logic for Computer Science (Third Edition)</em>. Springer, London, 2012, pp. 220</p>
 
       
 
@@ -643,11 +644,11 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+                <a href="javascript:void(0)" class="js-tag color5">世界之内</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">世界之内</a>
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
               </li>
              
               <li class="article-tag-list-item">
