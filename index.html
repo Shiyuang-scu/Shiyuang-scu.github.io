@@ -182,7 +182,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>本文是对如下公式的理解：</p>
-<p>$$<br>\min _{\boldsymbol{W}, S} \sum_{m}^{M} \sum_{i}^{N}\left|y_{i}-\boldsymbol{w}_{m}^{T} \boldsymbol{x}_{i}^{m}\right|_{2}^{2}+\lambda|\boldsymbol{W}|_{2,1}+\mu \sum_{i}^{N} \sum_{k \in\left{k | y_{i}=y_{k}\right}}\left(\sum_{m}^{M}\left|\boldsymbol{w}_{m}^{T} \boldsymbol{x}_{i}^{m}-\boldsymbol{w}_{m}^{T} \boldsymbol{x}_{k}^{m}\right|_{2}^{2} s_{i k}+\gamma s_{i k}^{2}\right)<br>$$</p>
+<p>$$<br>\begin{equation}<br>\min _{W, S} \sum_{m}^{N} \sum_{i}^{N}\left|y_{i}-\boldsymbol{w}_{m}^{T} \boldsymbol{x}_{i}^{m}\right|_{2}^{2}+\lambda|\boldsymbol{W}|_{2,1}+\mu \sum_{i}^{N} \sum_{k \in\left{k | y_{i}=y_{k}\right}}\left(\sum_{m}^{M}\left|\boldsymbol{w}_{m}^{T} \boldsymbol{x}_{i}^{m}-\boldsymbol{w}_{m}^{T} \boldsymbol{x}_{k}^{m}\right|_{2}^{2} s_{i k}+\gamma s_{i k}^{2}\right)<br>\end{equation}<br>$$</p>
 <p>$$<br>s . t \sum_{k}^{N} s_{i j}=1<br>$$</p>
 <p>$$<br>0 \leq s_{i j} \leq 1<br>$$</p>
         
