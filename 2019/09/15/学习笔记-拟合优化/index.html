@@ -7,15 +7,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://rationalist.me">
-  <title>Archives: 2019 | ClowNaxcvd</title>
+  <title>学习笔记|拟合优化 | ClowNaxcvd</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="ClowNaxcvd">
-<meta property="og:url" content="http://rationalist.me/archives/2019/page/3/index.html">
+  <meta name="description" content="本文是对如下公式的理解： $$\begin{array}{c}{\min _{\boldsymbol{W}, S} \sum_{m}^{N} \sum_{i}^{N}\left|y_{i}-\boldsymbol{w}_{m}^{T} \boldsymbol{x}_{i}^{m}\right|_{2}^{2}+\lambda|\boldsymbol{W}|_{2,1}+\mu \sum_{i}^{">
+<meta name="keywords" content="世界之内">
+<meta property="og:type" content="article">
+<meta property="og:title" content="学习笔记|拟合优化">
+<meta property="og:url" content="http://rationalist.me/2019/09/15/学习笔记-拟合优化/index.html">
 <meta property="og:site_name" content="ClowNaxcvd">
+<meta property="og:description" content="本文是对如下公式的理解： $$\begin{array}{c}{\min _{\boldsymbol{W}, S} \sum_{m}^{N} \sum_{i}^{N}\left|y_{i}-\boldsymbol{w}_{m}^{T} \boldsymbol{x}_{i}^{m}\right|_{2}^{2}+\lambda|\boldsymbol{W}|_{2,1}+\mu \sum_{i}^{">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-09-15T11:57:19.177Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="ClowNaxcvd">
+<meta name="twitter:title" content="学习笔记|拟合优化">
+<meta name="twitter:description" content="本文是对如下公式的理解： $$\begin{array}{c}{\min _{\boldsymbol{W}, S} \sum_{m}^{N} \sum_{i}^{N}\left|y_{i}-\boldsymbol{w}_{m}^{T} \boldsymbol{x}_{i}^{m}\right|_{2}^{2}+\lambda|\boldsymbol{W}|_{2,1}+\mu \sum_{i}^{">
   
     <link rel="alternative" href="/atom.xml" title="ClowNaxcvd" type="application/atom+xml">
   
@@ -158,380 +163,231 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-学习笔记-拟合优化" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      学习笔记|拟合优化
+    </h1>
+  
+
+
+        
+        <a href="/2019/09/15/学习笔记-拟合优化/" class="archive-article-date">
+  	<time datetime="2019-09-15T11:56:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-15</time>
+</a>
+        
+      </header>
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>本文是对如下公式的理解：</p>
+<p>$$<br>\begin{array}{c}{\min _{\boldsymbol{W}, S} \sum_{m}^{N} \sum_{i}^{N}\left|y_{i}-\boldsymbol{w}_{m}^{T} \boldsymbol{x}_{i}^{m}\right|_{2}^{2}+\lambda|\boldsymbol{W}|_{2,1}+\mu \sum_{i}^{N} \sum_{k \in\left{k | y_{i}=y_{k}\right}}\left(\sum_{m}^{M}\left|\boldsymbol{w}_{m}^{T} \boldsymbol{x}_{i}^{m}-\boldsymbol{w}_{m}^{T} \boldsymbol{x}_{k}^{m}\right|_{2}^{2} s_{i k}+\gamma s_{i k}^{2}\right)} \ {\text { s.t } \sum_{k}^{N} s_{i j}=1} \ {0 \leq s_{i j} \leq 1}\end{array}<br>$$<br><a id="more"></a></p>
+<h1 id="1-基础思想"><a href="#1-基础思想" class="headerlink" title="1 基础思想"></a>1 基础思想</h1><p>用机器学习做分类，机器学习方法本质上是：</p>
+<ol>
+<li>将原点映射到一个高维或者低维空间，以便于使得原本线性不可分的数据，在映射后变得线性可分。这个映射的过程，是通过函数 $ h_{\theta}()$实现的，更具体的，是通过函数中的参数$W$来实现的。</li>
+<li>在将数据映射到另一个空间后，数据变得线性可分了，因此，我们就可以通过一个判断函数 $d()$ ，来判断数据点的类型，实现二分类。</li>
+</ol>
+<p>我们可以看到，机器学习分类的本质，就是将线性不可分的数据变得线性可分（ $h_{\theta}()$ ），然后划一条线（ $d()$ ），实现分类。这个过程需要学习的只有一个变量：$W$。</p>
+<p>而学习参数的过程，可以这样解释。我们为什么要学习参数？因为现在的参数效果不好。具体来说，什么叫效果不好？就是对映射后的数据进行分类，结果是错的。因此，我们可以很直观地看出，可以设置一个函数，来度量在某一个参数$W$下的性能，这个函数的结果是一个成绩，展现的是这个参数的效果有多差，成绩越低，说明参数越好，这个函数的名字叫“代价函数”。</p>
+<p>只要能度量参数好不好，都叫代价函数。我们提供一种方式，是线性回归的代价函数：<br>$$<br>J(\theta)=\frac{1}{m} \sum_{i=1}^{m} \frac{1}{2}\left(h_{\theta}\left(x^{(i)}\right)-y^{(i)}\right)^{2}<br>$$<br>我们看到，这个式子实际上是一个二范式，度量了映射后的值$h_{\theta}(x^{(i)})$和真实值$y^{(i)}$的距离，这个距离，相当于相似度。而前面的$1/m$，可以理解为，每一个数据$x^{(i)}$和真实值的距离之前的距离，地位都是相等的。</p>
+<h1 id="2-自适应近邻学习法"><a href="#2-自适应近邻学习法" class="headerlink" title="2 自适应近邻学习法"></a>2 自适应近邻学习法</h1><p>我们使用相似度矩阵（Similarity Matrix）来度量不同样本间的相似度。计算相似度矩阵，一般来说相似度矩阵是在数据进行映射之前做的，但是有一个问题是，当数据的维度发生变化，样本间的相似度也可能发生不同程度的变化。我们知道，降维实际上是揭示了数据更进一步的特征、本质，所以实际上高维数据的相似度矩阵不能很好刻画降维后的数据之间的相似度。因此，我们提出了自适应近邻学习方法（Similarity Learning）。</p>
+<p>就如我们上面讨论过的，我们需要一个损失函数，来表示参数的好坏，这里也一样，我们定下一个损失函数如下：<br>$$<br>\begin{array}{c}{\min _{s_{i}} \sum_{j}^{n}\left|x_{i}-x_{j}\right|_{2}^{2} s_{i j}} \ {\text { s.t. } \sum_{j}^{n} s_{i j}=1} \ {0 \leq s_{i j} \leq 1}\end{array}<br>$$<br>为什么这么定呢？因为直观来看，如果样本$x_i$和$x_j$之间具有较小的距离$d_{ij}= |x_i-x_j|^2$，那么$x_j$就有较大的概率$s_{ij}$和$x_i$成为近邻。</p>
+<p>$\sum_{j}^{n}|x_{i}-x_{j}|_{2}^{2} s_{i j}$表示的是一个损失，如果两个样本之间有较小的距离，那么他们的概率就会变大，也就是说这个较小的距离所占整个结果的比重就更大，如果有较大的距离，那么概率变小，所占结果的比重就更小。因此，当我们最小化这个式子，直观上理解，就是求得一连串的概率，使得其能够完美满足这个直觉：<strong>如果样本$x_i$和$x_j$之间具有较小的距离$d_{ij}= |x_i-x_j|^2$，那么$x_j$就有较大的概率$s_{ij}$和$x_i$成为近邻。</strong></p>
+<p>但是实际上存在一个平凡解，就是最小距离的那两个样本的概率为1，其他都为0。为了避免这种情况，我们加入一个正则项 $\gamma s_{ij}^2$，使得平凡解消失。<br>$$<br>\begin{array}{c}{\min _{s_{i}} \sum_{j}^{n}\left(\left|x_{i}-x_{j}\right|_{2}^{2} s_{i j}+\gamma s_{i j}^{2}\right)} \ {\text { s.t } \sum_{j}^{n} s_{i j}=1} \ {0 \leq s_{i j} \leq 1}\end{array}<br>$$<br>􏱵􏱶􏰕􏰖􏲊􏴴􏰷􏲇􏱈􏰍􏱨􏱠􏱩􏴵􏱪􏱃􏱪􏰖􏰍􏱾􏱷􏱿􏰾􏳻􏳼􏰮􏲷􏰳􏰴􏰵􏱵􏱶􏰕􏰖􏲊􏴴􏰷􏲇􏱈􏰍􏱨􏱠􏱩􏴵􏱪􏱃􏱪􏰖􏰍􏱾􏱷􏱿􏰾􏳻􏳼􏰮􏲷􏰳􏰴􏰵􏱵􏱶􏰕􏰖􏲊􏴴􏰷􏲇􏱈􏰍􏱨􏱠􏱩􏴵􏱪􏱃􏱪􏰖􏰍􏱾􏱷􏱿􏰾􏳻􏳼􏰮􏲷􏰳􏰴􏰵􏱼􏱵􏱶􏰕􏰖􏲊􏴴􏰷􏲇􏱈􏰍􏱨􏱠􏱩􏴵􏱪􏱃􏱪􏰖􏰍􏱾􏱷􏱿􏰾􏳻􏳼􏰮􏲷􏰳􏰴􏰵􏱼􏱵􏱶􏰕􏰖􏲊􏴴􏰷􏲇􏱈􏰍􏱨􏱠􏱩􏴵􏱪􏱃􏱪􏰖􏰍􏱾􏱷􏱿􏰾􏳻􏳼􏰮􏲷􏰳􏰴􏰵􏱼􏱵􏱶􏰕􏰖􏲊􏴴􏰷􏲇􏱈􏰍􏱨􏱠􏱩􏴵􏱪􏱃􏱪􏰖􏰍􏱾􏱷􏱿􏰾􏳻􏳼􏰮􏲷􏰳􏰴􏰵􏱼􏱵􏱶􏰕􏰖􏲊􏴴􏰷􏲇􏱈􏰍􏱨􏱠􏱩􏴵􏱪􏱃􏱪􏰖􏰍􏱾􏱷􏱿􏰾􏳻􏳼􏰮􏲷􏰳􏰴􏱵􏱶􏰕􏰖􏲊􏴴􏰷􏲇􏱈􏰍􏱨􏱠􏱩􏴵􏱪􏱃􏱪􏰖􏰍􏱾􏱷􏱿􏰾􏳻􏳼􏰮􏲷􏰳􏰴</p>
+<h1 id="3-多模态特征选择"><a href="#3-多模态特征选择" class="headerlink" title="3 多模态特征选择"></a>3 多模态特征选择</h1><p>先上公式：<br>$$<br>\min _{W, S} \sum_{m}^{M} \sum_{i}^{N}\left|y_{i}-\boldsymbol{w}_{m}^{T} \boldsymbol{x}_{i}^{m}\right|_{2}^{2}+\lambda|\boldsymbol{W}|_{2,1}<br>$$<br>假设有$M$个模态数据，其中第$m$个模态的数据矩阵为$\boldsymbol{X}^{m}=\left[\boldsymbol{x}_{1}^{m}, \boldsymbol{x}_{2}^{m}, \ldots, \boldsymbol{x}_{N}^{m}\right]^{T} \in \mathbb{R}^{N \times d_{m}}$，$N$为样本总数，$d_m$为相应的模态数据维度。$\boldsymbol{W}=\left[\boldsymbol{w}_{1}, \boldsymbol{w}_{2}, \ldots, \boldsymbol{w}_{M}\right] \in \mathbb{R}^{d \times M}$为回归系数，而$\lambda|\boldsymbol{W}|_{2,1}$的目的是为了能够对矩阵$W$起到行稀疏的作用，$W$就用做特征选择。</p>
+<blockquote>
+<p>行稀疏：只有每一行的L2范数都最小，才能达到约束问题最小化。而每一行的L2范数取得最小的含义是，当行内尽可能多的元素为0（甚至为全零行）时，约束才可能取得最小。这就实现了行稀疏（使得矩阵出现尽可能多的全零行）。</p>
+</blockquote>
+<p>回到我们第一部分所讲的机器学习的本质，我们解释说，首先我们需要将原点映射到一个高维或者低维空间，以便于使得原本线性不可分的数据，在映射后变得线性可分。这个映射的过程，是通过函数 $ h_{\theta}()$实现的，更具体的，是通过函数中的参数$W$来实现的。而在这里，我们把$W$解释为，特征选择。直观上理解为，使得数据在经过特征选择之后，与其原本的标签更相似。</p>
+<p>回头想想，将数据映射到低维，也可以理解为特征选择。我们之前提到$W$起的作用是降维，但实际上降维本来就是特征选择的结果啊。</p>
+<p>OK我们拉回来。上面这个公式也是一个损失函数，用来选择更好的$W$，来实现更完美的数据降维。</p>
+<h1 id="4-自适应近邻多模态特征选择"><a href="#4-自适应近邻多模态特征选择" class="headerlink" title="4 自适应近邻多模态特征选择"></a>4 自适应近邻多模态特征选择</h1><p>我们在第二部分讲过，当数据的维度发生变化，样本间的相似度也可能发生不同程度的变化。我们知道，降维实际上是揭示了数据更进一步的特征、本质，所以实际上高维数据的相似度矩阵不能很好刻画降维后的数据之间的相似度。</p>
+<p>但是，我们也不能完全确定降维过后的结果真的准确刻画了数据的本质特性，所以，我们可不可以让『降维』和『相似度』来相互约束，使得两者都达到最好的结果呢？</p>
+<p>我们把两个部分的式子结合起来看看：<br>$$<br>\begin{array}{c}{\min _{W, S} \sum_{m}^{N} \sum_{i}^{N}\left|y_{i}-\boldsymbol{w}_{m}^{T} \boldsymbol{x}_{i}^{m}\right|_{2}^{2}+\lambda|\boldsymbol{W}|_{2,1}+\mu \sum_{i}^{N} \sum_{k \in\left{k | y_{i}=y_{k}\right}}\left(\sum_{m}^{M}\left|\boldsymbol{w}_{m}^{T} \boldsymbol{x}_{i}^{m}-\boldsymbol{w}_{m}^{T} \boldsymbol{x}_{k}^{m}\right|_{2}^{2} s_{i k}+\gamma s_{i k}^{2}\right)} \ {\text { s.t } \sum_{k}^{N} s_{i j}=1} \ {0 \leq s_{i j} \leq 1}\end{array}<br>$$<br>针对这个式子的后半部分，我需要提一句，这个实际上，<strong>就是PCA的目标公式</strong>。具体解释如下：</p>
+<p>PCA的目标是寻找$W$，使得投影过后的数据有最大的方差或最小重建误差：<br>$$<br>\boldsymbol{w}=\underset{\boldsymbol{w}^{T} \boldsymbol{w}=1}{\operatorname{argmin}} \boldsymbol{w}^{T} \boldsymbol{C w}<br>$$<br>其中$\boldsymbol{C}=1 / N \sum_{i}^{N}\left(\boldsymbol{x}_{i}-\overline{\boldsymbol{x}}\right)\left(\boldsymbol{x}_{i}-\overline{\boldsymbol{x}}\right)^{T}$ 。那么我们将$1/N$定义为$s_{ij}$，上面的公式就变成了：<br>$$<br>\boldsymbol{w}=\underset{\boldsymbol{w}^{T} \boldsymbol{w}=1}{\operatorname{argmin}} \sum_{i, j}\left(\boldsymbol{w}^{T} \boldsymbol{x}_{i}-\boldsymbol{w}^{T} \boldsymbol{x}_{j}\right)^{2} s_{i j}<br>$$<br>可以这样理解，$1/N=s_{ij}$意味着，对于PCA来说，每一个样本之间的相似性都是一样的，每一个样本都是彼此的近邻。</p>
+<p>所以我们看到了，当固定$s_{ij}$的时候，我们实际上是在用PCA做一个降维问题，求的是$W$。当固定$W$的时候，我们实际上是在做一个自适应近邻学习，求的是$s_{ij}$。这两个参数就这样相互约束，相互学习，使得两者都达到了对彼此来说的最佳。</p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="https://raw.githubusercontent.com/Shiyuang-scu/blog_img/master/alipay.jpg">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="https://raw.githubusercontent.com/Shiyuang-scu/blog_img/master/wepay.jpg">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/03/01/春之积雪/" class="archive-article-date">
-  	<time datetime="2019-03-01T09:11:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-01</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/03/01/春之积雪/">《春之积雪》简媜</a>
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">世界之外</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">世界之内</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://rationalist.me/2019/09/15/学习笔记-拟合优化/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/02/15/周记-逃离/" class="archive-article-date">
-  	<time datetime="2019-02-15T06:05:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-02-15</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2019/09/07/周记-爱人-优秀-芝诺/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">周记|爱人 优秀 芝诺</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/02/15/周记-逃离/">周记|逃离</a>
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-基础思想"><span class="toc-number">1.</span> <span class="toc-text">1 基础思想</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-自适应近邻学习法"><span class="toc-number">2.</span> <span class="toc-text">2 自适应近邻学习法</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-多模态特征选择"><span class="toc-number">3.</span> <span class="toc-text">3 多模态特征选择</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-自适应近邻多模态特征选择"><span class="toc-number">4.</span> <span class="toc-text">4 自适应近邻多模态特征选择</span></a></li></ol>
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/02/11/存在主义是一种人道主义/" class="archive-article-date">
-  	<time datetime="2019-02-11T09:01:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-02-11</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/02/11/存在主义是一种人道主义/">存在主义是一种人道主义</a>
-    </h1>
-  
+        
+    </div>
+</aside>
 
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">世界之外</a>
-        		</li>
-      		
-		</ul>
-	</div>
 
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/02/09/学习笔记-比较文学/" class="archive-article-date">
-  	<time datetime="2019-02-09T09:16:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-02-09</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/02/09/学习笔记-比较文学/">学习笔记|比较文学</a>
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">世界之外</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/02/01/尼采的美学/" class="archive-article-date">
-  	<time datetime="2019-02-01T13:31:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-02-01</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/02/01/尼采的美学/">尼采的美学</a>
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">世界之外</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/02/01/哲学涉猎/" class="archive-article-date">
-  	<time datetime="2019-02-01T09:33:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-02-01</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/02/01/哲学涉猎/">哲学涉猎</a>
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">世界之外</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/01/28/读书笔记-光的诗人——《如何看懂印象派》/" class="archive-article-date">
-  	<time datetime="2019-01-28T02:31:58.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-01-28</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/01/28/读书笔记-光的诗人——《如何看懂印象派》/">读书笔记|光的诗人——《如何看懂印象派》</a>
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">世界之外</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/01/25/叔本华的生命意志哲学/" class="archive-article-date">
-  	<time datetime="2019-01-25T13:31:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-01-25</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/01/25/叔本华的生命意志哲学/">叔本华的生命意志哲学</a>
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">世界之外</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/01/22/再也不要把他们弄丢了/" class="archive-article-date">
-  	<time datetime="2019-01-21T16:34:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-01-22</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/01/22/再也不要把他们弄丢了/">再也不要把他们弄丢了</a>
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
   
-    </div></section>
   
 
-    
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/archives/2019/page/2/">&laquo; Prev</a><a class="page-number" href="/archives/2019/">1</a><a class="page-number" href="/archives/2019/page/2/">2</a><span class="page-number current">3</span>
-    </nav>
+  
+
+  
+    <section id="comments">
+      <div id="disqus_thread"></div>
+        <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'https-shiyuang-scu-github-io'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+      </script>
+      <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </section>
+  
+
   
 
 
@@ -566,8 +422,8 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: true,
