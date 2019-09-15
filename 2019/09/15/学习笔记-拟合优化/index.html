@@ -9,18 +9,21 @@
   <link rel="dns-prefetch" href="http://rationalist.me">
   <title>学习笔记|拟合优化 | ClowNaxcvd</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="本文是对如下公式的理解： $$\begin{equation}\min _{W, S} \sum_{m}^{N} \sum_{i}^{N}\left|y_{i}-\boldsymbol{w}_{m}^{T} \boldsymbol{x}_{i}^{m}\right|_{2}^{2}+\lambda|\boldsymbol{W}|_{2,1}+\mu \sum_{i}^{N} \sum_{k \in">
+  <meta name="description" content="本文是对如下公式的理解：">
 <meta name="keywords" content="世界之内">
 <meta property="og:type" content="article">
 <meta property="og:title" content="学习笔记|拟合优化">
 <meta property="og:url" content="http://rationalist.me/2019/09/15/学习笔记-拟合优化/index.html">
 <meta property="og:site_name" content="ClowNaxcvd">
-<meta property="og:description" content="本文是对如下公式的理解： $$\begin{equation}\min _{W, S} \sum_{m}^{N} \sum_{i}^{N}\left|y_{i}-\boldsymbol{w}_{m}^{T} \boldsymbol{x}_{i}^{m}\right|_{2}^{2}+\lambda|\boldsymbol{W}|_{2,1}+\mu \sum_{i}^{N} \sum_{k \in">
+<meta property="og:description" content="本文是对如下公式的理解：">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-09-15T12:05:45.883Z">
+<meta property="og:image" content="https://raw.githubusercontent.com/Shiyuang-scu/blog_img/master/9.15learningnotes-1.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Shiyuang-scu/blog_img/master/9.15learningnotes-1.png">
+<meta property="og:updated_time" content="2019-09-15T12:11:25.662Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="学习笔记|拟合优化">
-<meta name="twitter:description" content="本文是对如下公式的理解： $$\begin{equation}\min _{W, S} \sum_{m}^{N} \sum_{i}^{N}\left|y_{i}-\boldsymbol{w}_{m}^{T} \boldsymbol{x}_{i}^{m}\right|_{2}^{2}+\lambda|\boldsymbol{W}|_{2,1}+\mu \sum_{i}^{N} \sum_{k \in">
+<meta name="twitter:description" content="本文是对如下公式的理解：">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/Shiyuang-scu/blog_img/master/9.15learningnotes-1.png">
   
     <link rel="alternative" href="/atom.xml" title="ClowNaxcvd" type="application/atom+xml">
   
@@ -185,9 +188,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>本文是对如下公式的理解：</p>
-<p>$$<br>\begin{equation}<br>\min _{W, S} \sum_{m}^{N} \sum_{i}^{N}\left|y_{i}-\boldsymbol{w}_{m}^{T} \boldsymbol{x}_{i}^{m}\right|_{2}^{2}+\lambda|\boldsymbol{W}|_{2,1}+\mu \sum_{i}^{N} \sum_{k \in\left{k | y_{i}=y_{k}\right}}\left(\sum_{m}^{M}\left|\boldsymbol{w}_{m}^{T} \boldsymbol{x}_{i}^{m}-\boldsymbol{w}_{m}^{T} \boldsymbol{x}_{k}^{m}\right|_{2}^{2} s_{i k}+\gamma s_{i k}^{2}\right)<br>\end{equation}<br>$$</p>
-<p>$$<br>s . t \sum_{k}^{N} s_{i j}=1<br>$$</p>
-<p>$$<br>0 \leq s_{i j} \leq 1<br>$$</p>
+<p><img src="https://raw.githubusercontent.com/Shiyuang-scu/blog_img/master/9.15learningnotes-1.png" alt=""></p>
 <a id="more"></a>
 <h1 id="1-基础思想"><a href="#1-基础思想" class="headerlink" title="1 基础思想"></a>1 基础思想</h1><p>用机器学习做分类，机器学习方法本质上是：</p>
 <ol>
@@ -210,9 +211,9 @@
 <p>OK我们拉回来。上面这个公式也是一个损失函数，用来选择更好的$W$，来实现更完美的数据降维。</p>
 <h1 id="4-自适应近邻多模态特征选择"><a href="#4-自适应近邻多模态特征选择" class="headerlink" title="4 自适应近邻多模态特征选择"></a>4 自适应近邻多模态特征选择</h1><p>我们在第二部分讲过，当数据的维度发生变化，样本间的相似度也可能发生不同程度的变化。我们知道，降维实际上是揭示了数据更进一步的特征、本质，所以实际上高维数据的相似度矩阵不能很好刻画降维后的数据之间的相似度。</p>
 <p>但是，我们也不能完全确定降维过后的结果真的准确刻画了数据的本质特性，所以，我们可不可以让『降维』和『相似度』来相互约束，使得两者都达到最好的结果呢？</p>
-<p>我们把两个部分的式子结合起来看看：<br>$$<br>\begin{equation}<br>\min _{W, S} \sum_{m}^{N} \sum_{i}^{N}\left|y_{i}-\boldsymbol{w}_{m}^{T} \boldsymbol{x}_{i}^{m}\right|_{2}^{2}+\lambda|\boldsymbol{W}|_{2,1}+\mu \sum_{i}^{N} \sum_{k \in\left{k | y_{i}=y_{k}\right}}\left(\sum_{m}^{M}\left|\boldsymbol{w}_{m}^{T} \boldsymbol{x}_{i}^{m}-\boldsymbol{w}_{m}^{T} \boldsymbol{x}_{k}^{m}\right|_{2}^{2} s_{i k}+\gamma s_{i k}^{2}\right)<br>\end{equation}<br>$$</p>
-<p>$$<br>s . t \sum_{k}^{N} s_{i j}=1<br>$$</p>
-<p>$$<br>0 \leq s_{i j} \leq 1<br>$$<br>针对这个式子的后半部分，我需要提一句，这个实际上，<strong>就是PCA的目标公式</strong>。具体解释如下：</p>
+<p>我们把两个部分的式子结合起来看看：</p>
+<p><img src="https://raw.githubusercontent.com/Shiyuang-scu/blog_img/master/9.15learningnotes-1.png" alt=""></p>
+<p>针对这个式子的后半部分，我需要提一句，这个实际上，<strong>就是PCA的目标公式</strong>。具体解释如下：</p>
 <p>PCA的目标是寻找$W$，使得投影过后的数据有最大的方差或最小重建误差：<br>$$<br>\boldsymbol{w}=\underset{\boldsymbol{w}^{T} \boldsymbol{w}=1}{\operatorname{argmin}} \boldsymbol{w}^{T} \boldsymbol{C w}<br>$$<br>其中$\boldsymbol{C}=1 / N \sum_{i}^{N}\left(\boldsymbol{x}_{i}-\overline{\boldsymbol{x}}\right)\left(\boldsymbol{x}_{i}-\overline{\boldsymbol{x}}\right)^{T}$ 。那么我们将$1/N$定义为$s_{ij}$，上面的公式就变成了：<br>$$<br>\boldsymbol{w}=\underset{\boldsymbol{w}^{T} \boldsymbol{w}=1}{\operatorname{argmin}} \sum_{i, j}\left(\boldsymbol{w}^{T} \boldsymbol{x}_{i}-\boldsymbol{w}^{T} \boldsymbol{x}_{j}\right)^{2} s_{i j}<br>$$<br>可以这样理解，$1/N=s_{ij}$意味着，对于PCA来说，每一个样本之间的相似性都是一样的，每一个样本都是彼此的近邻。</p>
 <p>所以我们看到了，当固定$s_{ij}$的时候，我们实际上是在用PCA做一个降维问题，求的是$W$。当固定$W$的时候，我们实际上是在做一个自适应近邻学习，求的是$s_{ij}$。这两个参数就这样相互约束，相互学习，使得两者都达到了对彼此来说的最佳。</p>
 
@@ -528,11 +529,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+                <a href="javascript:void(0)" class="js-tag color5">世界之外</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">世界之外</a>
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
               </li>
              
               <li class="article-tag-list-item">
