@@ -19,7 +19,7 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://raw.githubusercontent.com/Shiyuang-scu/blog_img/master/9.15learningnotes-1.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/Shiyuang-scu/blog_img/master/9.15learningnotes-1.png">
-<meta property="og:updated_time" content="2019-09-15T12:11:25.662Z">
+<meta property="og:updated_time" content="2019-09-15T12:14:02.906Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="学习笔记|拟合优化">
 <meta name="twitter:description" content="本文是对如下公式的理解：">
@@ -201,7 +201,7 @@
 <h1 id="2-自适应近邻学习法"><a href="#2-自适应近邻学习法" class="headerlink" title="2 自适应近邻学习法"></a>2 自适应近邻学习法</h1><p>我们使用相似度矩阵（Similarity Matrix）来度量不同样本间的相似度。计算相似度矩阵，一般来说相似度矩阵是在数据进行映射之前做的，但是有一个问题是，当数据的维度发生变化，样本间的相似度也可能发生不同程度的变化。我们知道，降维实际上是揭示了数据更进一步的特征、本质，所以实际上高维数据的相似度矩阵不能很好刻画降维后的数据之间的相似度。因此，我们提出了自适应近邻学习方法（Similarity Learning）。</p>
 <p>就如我们上面讨论过的，我们需要一个损失函数，来表示参数的好坏，这里也一样，我们定下一个损失函数如下：<br>$$<br>\begin{array}{c}{\min _{s_{i}} \sum_{j}^{n}\left|x_{i}-x_{j}\right|_{2}^{2} s_{i j}} \ {\text { s.t. } \sum_{j}^{n} s_{i j}=1} \ {0 \leq s_{i j} \leq 1}\end{array}<br>$$<br>为什么这么定呢？因为直观来看，如果样本$x_i$和$x_j$之间具有较小的距离$d_{ij}= |x_i-x_j|^2$，那么$x_j$就有较大的概率$s_{ij}$和$x_i$成为近邻。</p>
 <p>$\sum_{j}^{n}|x_{i}-x_{j}|_{2}^{2} s_{i j}$表示的是一个损失，如果两个样本之间有较小的距离，那么他们的概率就会变大，也就是说这个较小的距离所占整个结果的比重就更大，如果有较大的距离，那么概率变小，所占结果的比重就更小。因此，当我们最小化这个式子，直观上理解，就是求得一连串的概率，使得其能够完美满足这个直觉：<strong>如果样本$x_i$和$x_j$之间具有较小的距离$d_{ij}= |x_i-x_j|^2$，那么$x_j$就有较大的概率$s_{ij}$和$x_i$成为近邻。</strong></p>
-<p>但是实际上存在一个平凡解，就是最小距离的那两个样本的概率为1，其他都为0。为了避免这种情况，我们加入一个正则项 $\gamma s_{ij}^2$，使得平凡解消失。<br>$$<br>\begin{array}{c}{\min _{s_{i}} \sum_{j}^{n}\left(\left|x_{i}-x_{j}\right|_{2}^{2} s_{i j}+\gamma s_{i j}^{2}\right)} \ {\text { s.t } \sum_{j}^{n} s_{i j}=1} \ {0 \leq s_{i j} \leq 1}\end{array}<br>$$<br>􏱵􏱶􏰕􏰖􏲊􏴴􏰷􏲇􏱈􏰍􏱨􏱠􏱩􏴵􏱪􏱃􏱪􏰖􏰍􏱾􏱷􏱿􏰾􏳻􏳼􏰮􏲷􏰳􏰴􏰵􏱵􏱶􏰕􏰖􏲊􏴴􏰷􏲇􏱈􏰍􏱨􏱠􏱩􏴵􏱪􏱃􏱪􏰖􏰍􏱾􏱷􏱿􏰾􏳻􏳼􏰮􏲷􏰳􏰴􏰵􏱵􏱶􏰕􏰖􏲊􏴴􏰷􏲇􏱈􏰍􏱨􏱠􏱩􏴵􏱪􏱃􏱪􏰖􏰍􏱾􏱷􏱿􏰾􏳻􏳼􏰮􏲷􏰳􏰴􏰵􏱼􏱵􏱶􏰕􏰖􏲊􏴴􏰷􏲇􏱈􏰍􏱨􏱠􏱩􏴵􏱪􏱃􏱪􏰖􏰍􏱾􏱷􏱿􏰾􏳻􏳼􏰮􏲷􏰳􏰴􏰵􏱼􏱵􏱶􏰕􏰖􏲊􏴴􏰷􏲇􏱈􏰍􏱨􏱠􏱩􏴵􏱪􏱃􏱪􏰖􏰍􏱾􏱷􏱿􏰾􏳻􏳼􏰮􏲷􏰳􏰴􏰵􏱼􏱵􏱶􏰕􏰖􏲊􏴴􏰷􏲇􏱈􏰍􏱨􏱠􏱩􏴵􏱪􏱃􏱪􏰖􏰍􏱾􏱷􏱿􏰾􏳻􏳼􏰮􏲷􏰳􏰴􏰵􏱼􏱵􏱶􏰕􏰖􏲊􏴴􏰷􏲇􏱈􏰍􏱨􏱠􏱩􏴵􏱪􏱃􏱪􏰖􏰍􏱾􏱷􏱿􏰾􏳻􏳼􏰮􏲷􏰳􏰴􏱵􏱶􏰕􏰖􏲊􏴴􏰷􏲇􏱈􏰍􏱨􏱠􏱩􏴵􏱪􏱃􏱪􏰖􏰍􏱾􏱷􏱿􏰾􏳻􏳼􏰮􏲷􏰳􏰴</p>
+<p>但是实际上存在一个平凡解，就是最小距离的那两个样本的概率为1，其他都为0。为了避免这种情况，我们加入一个正则项 $\gamma s_{ij}^2$，使得平凡解消失。<br>$$<br>\begin{array}{c}{\min _{s_{i}} \sum_{j}^{n}\left(\left|x_{i}-x_{j}\right|_{2}^{2} s_{i j}+\gamma s_{i j}^{2}\right)} \ {\text { s.t } \sum_{j}^{n} s_{i j}=1} \ {0 \leq s_{i j} \leq 1}\end{array}<br>$$<br>􏱵􏱶􏰕􏰖􏲊􏴴􏰷􏲇􏱈􏰍􏱨􏱠􏱩􏴵􏱪􏱃􏱪􏰖􏰍􏱾􏱷􏱿􏰾􏳻􏳼􏰮􏲷􏰳􏰴􏰵􏱵􏱶􏰕􏰖􏲊􏴴􏰷􏲇􏱈􏰍􏱨􏱠􏱩􏴵􏱪􏱃􏱪􏰖􏰍􏱾􏱷􏱿􏰾􏳻􏳼􏰮􏲷􏰳􏰴􏰵􏱵􏱶􏰕􏰖􏲊􏴴􏰷􏲇􏱈􏰍􏱨􏱠􏱩􏴵􏱪􏱃􏱪􏰖􏰍􏱾􏱷􏱿􏰾􏳻􏳼􏰮􏲷􏰳􏰴􏰵􏱼􏱵􏱶􏰕􏰖􏲊􏴴􏰷􏲇􏱈􏰍􏱨􏱠􏱩􏴵􏱪􏱃􏱪􏰖􏰍􏱾􏱷􏱿􏰾􏳻􏳼􏰮􏲷􏰳􏰴􏰵􏱼􏱵􏱶􏰕􏰖􏲊􏴴􏰷􏲇􏱈􏰍􏱨􏱠􏱩􏴵􏱪􏱃􏱪􏰖􏰍􏱾􏱷􏱿􏰾􏳻􏳼􏰮􏲷􏰳􏰴􏰵􏱼􏱵􏱶􏰕􏰖􏲊􏴴􏰷􏲇􏱈􏰍􏱨􏱠􏱩􏴵􏱪􏱃􏱪􏰖􏰍􏱾􏱷􏱿􏰾􏳻􏳼􏰮􏲷􏰳􏰴􏰵􏱼􏱵􏱶􏰕􏰖􏲊􏴴􏰷􏲇􏱈􏰍􏱨􏱠􏱩􏴵􏱪􏱃􏱪􏰖􏰍􏱾􏱷􏱿􏰾􏳻􏳼􏰮􏲷􏰳􏰴􏱵􏱶􏰕􏰖􏲊􏴴􏰷􏲇􏱈􏰍􏱨􏱠􏱩􏴵􏱪􏱃􏱪􏰖􏰍􏱾􏱷􏱿􏰾􏳻</p>
 <h1 id="3-多模态特征选择"><a href="#3-多模态特征选择" class="headerlink" title="3 多模态特征选择"></a>3 多模态特征选择</h1><p>先上公式：<br>$$<br>\min _{W, S} \sum_{m}^{M} \sum_{i}^{N}\left|y_{i}-\boldsymbol{w}_{m}^{T} \boldsymbol{x}_{i}^{m}\right|_{2}^{2}+\lambda|\boldsymbol{W}|_{2,1}<br>$$<br>假设有$M$个模态数据，其中第$m$个模态的数据矩阵为$\boldsymbol{X}^{m}=\left[\boldsymbol{x}_{1}^{m}, \boldsymbol{x}_{2}^{m}, \ldots, \boldsymbol{x}_{N}^{m}\right]^{T} \in \mathbb{R}^{N \times d_{m}}$，$N$为样本总数，$d_m$为相应的模态数据维度。$\boldsymbol{W}=\left[\boldsymbol{w}_{1}, \boldsymbol{w}_{2}, \ldots, \boldsymbol{w}_{M}\right] \in \mathbb{R}^{d \times M}$为回归系数，而$\lambda|\boldsymbol{W}|_{2,1}$的目的是为了能够对矩阵$W$起到行稀疏的作用，$W$就用做特征选择。</p>
 <blockquote>
 <p>行稀疏：只有每一行的L2范数都最小，才能达到约束问题最小化。而每一行的L2范数取得最小的含义是，当行内尽可能多的元素为0（甚至为全零行）时，约束才可能取得最小。这就实现了行稀疏（使得矩阵出现尽可能多的全零行）。</p>
@@ -529,11 +529,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">世界之外</a>
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+                <a href="javascript:void(0)" class="js-tag color5">世界之外</a>
               </li>
              
               <li class="article-tag-list-item">
