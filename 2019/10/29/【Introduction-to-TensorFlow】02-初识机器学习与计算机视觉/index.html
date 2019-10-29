@@ -7,15 +7,24 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://rationalist.me">
-  <title>Archives: 2019/3 | ClowNaxcvd</title>
+  <title>【Introduction to TensorFlow】02 初识机器学习与计算机视觉 | ClowNaxcvd</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="ClowNaxcvd">
-<meta property="og:url" content="http://rationalist.me/archives/2019/03/index.html">
+  <meta name="description" content="本节内容包括课程week1和week2的内容，week1主要介绍了机器学习的思维逻辑，并以TF中的hello world作为示例，加深理解机器学习的范式。week2将范式的概念运用在真实的应用场景上，基于数据集Fashion MNIST实现了对10种衣物的识别任务，新的操作有：数据加载处理、模型评估、callback。">
+<meta name="keywords" content="世界之内,机器学习">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【Introduction to TensorFlow】02 初识机器学习与计算机视觉">
+<meta property="og:url" content="http://rationalist.me/2019/10/29/【Introduction-to-TensorFlow】02-初识机器学习与计算机视觉/index.html">
 <meta property="og:site_name" content="ClowNaxcvd">
+<meta property="og:description" content="本节内容包括课程week1和week2的内容，week1主要介绍了机器学习的思维逻辑，并以TF中的hello world作为示例，加深理解机器学习的范式。week2将范式的概念运用在真实的应用场景上，基于数据集Fashion MNIST实现了对10种衣物的识别任务，新的操作有：数据加载处理、模型评估、callback。">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://raw.githubusercontent.com/Shiyuang-scu/blog_img/master/tf-02-1.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Shiyuang-scu/blog_img/master/tf-02-2.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Shiyuang-scu/blog_img/master/tf-02-3.png">
+<meta property="og:updated_time" content="2019-10-29T11:52:13.466Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="ClowNaxcvd">
+<meta name="twitter:title" content="【Introduction to TensorFlow】02 初识机器学习与计算机视觉">
+<meta name="twitter:description" content="本节内容包括课程week1和week2的内容，week1主要介绍了机器学习的思维逻辑，并以TF中的hello world作为示例，加深理解机器学习的范式。week2将范式的概念运用在真实的应用场景上，基于数据集Fashion MNIST实现了对10种衣物的识别任务，新的操作有：数据加载处理、模型评估、callback。">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/Shiyuang-scu/blog_img/master/tf-02-1.png">
   
     <link rel="alternative" href="/atom.xml" title="ClowNaxcvd" type="application/atom+xml">
   
@@ -158,76 +167,120 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-【Introduction-to-TensorFlow】02-初识机器学习与计算机视觉" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/03/31/第五代计算机/" class="archive-article-date">
-  	<time datetime="2019-03-31T13:45:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-31</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/03/31/第五代计算机/">第五代计算机</a>
+    <h1 class="article-title" itemprop="name">
+      【Introduction to TensorFlow】02 初识机器学习与计算机视觉
     </h1>
   
 
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">世界之内</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/03/31/学习笔记-Volume-Rendering/" class="archive-article-date">
-  	<time datetime="2019-03-31T13:38:18.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-31</time>
+        
+        <a href="/2019/10/29/【Introduction-to-TensorFlow】02-初识机器学习与计算机视觉/" class="archive-article-date">
+  	<time datetime="2019-10-29T11:41:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-29</time>
 </a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>本节内容包括课程week1和week2的内容，week1主要介绍了机器学习的思维逻辑，并以TF中的hello world作为示例，加深理解机器学习的范式。week2将范式的概念运用在真实的应用场景上，基于数据集Fashion MNIST实现了对10种衣物的识别任务，新的操作有：数据加载处理、模型评估、callback。</p>
+<a id="more"></a>
+<h1 id="A-New-Programming-Paradigm"><a href="#A-New-Programming-Paradigm" class="headerlink" title="A New Programming Paradigm"></a>A New Programming Paradigm</h1><h2 id="主要内容"><a href="#主要内容" class="headerlink" title="主要内容"></a>主要内容</h2><ul>
+<li>两种不同的范式paradigm</li>
+<li>hello world demo</li>
+</ul>
+<h2 id="独特的范式"><a href="#独特的范式" class="headerlink" title="独特的范式"></a>独特的范式</h2><p>程序编码的范式：</p>
+<p><img src="https://raw.githubusercontent.com/Shiyuang-scu/blog_img/master/tf-02-1.png" alt="programmingParadigm"></p>
+<p>机器学习的范式：</p>
+<p><img src="https://raw.githubusercontent.com/Shiyuang-scu/blog_img/master/tf-02-2.png" alt="machineLearningParadign"></p>
+<p>两者有截然不同的范式，机器学习的有趣之处就是我们能让计算机自己学习rules。机器学习就是计算机学习 「区分事物的模式」。</p>
+<h2 id="Hello-World"><a href="#Hello-World" class="headerlink" title="Hello World"></a>Hello World</h2><p>学习了理论，开始coding来加深机器学习范式的理解。</p>
+<p>现在我知道x=[-1,0,1,2,3,4]时对应的y=[-3,-1,1,3,5,7]，那么当x=10的时候，对应的y等于多少？将这个问题抽象化：已知data（x）和answers（y），求y-&gt;x，即一个映射。这是机器学习的范式。而求解的方法，就可以用神经网络来实现，神经网络只是稍微高级一点的机器学习方法，现在被叫做深度学习。神经网络就是一组能够学习模式的函数集合而已。</p>
+<p>代码如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">model = keras.Sequence([keras.layers.Dense(units=<span class="number">1</span>, input_shape=[<span class="number">1</span>])])</span><br><span class="line"><span class="comment"># Sequence，神经网络层在这里定义，好几层网络连在一起，所以才称之为sequence。</span></span><br><span class="line"><span class="comment"># dense，定义了1层相连的神经元，这里只有1个dense，即1层。units表示这一层中有几个神经元，这里只有1个。所以整个结构只有1层神经元，这一层里只1个神经元。然后，input_shape定义了input的形状，这里只有一个值。</span></span><br><span class="line"></span><br><span class="line">model.compile(optimizer=<span class="string">'sgd'</span>, loss=<span class="string">'mean_squared_error'</span>)</span><br><span class="line"><span class="comment"># Compile，内部参数是损失函数和优化器。</span></span><br><span class="line"><span class="comment"># 损失函数：神经网络不知道x和y的关系，所以瞎猜。损失函数来衡量它猜测的好坏。</span></span><br><span class="line"><span class="comment"># 优化器：损失函数把好坏的结果给优化器，然后优化器使得神经网络下一次瞎猜的结果变得更好。这样一轮轮地瞎猜-评价-改正下去，最终正确率会变成接近100%，这就叫收敛（Converge）。</span></span><br><span class="line"></span><br><span class="line">xs = np.array([<span class="number">-1.0</span>, <span class="number">0.0</span>, <span class="number">1.0</span>, <span class="number">2.0</span>, <span class="number">3.0</span>, <span class="number">4.0</span>], dtype=float)</span><br><span class="line">ys = np.array([<span class="number">-3.0</span>, <span class="number">-1.0</span>, <span class="number">1.0</span>, <span class="number">3.0</span>, <span class="number">5.0</span>, <span class="number">7.0</span>], dtype=float)</span><br><span class="line"></span><br><span class="line">model.fit(xs, ys, epochs=<span class="number">10</span>)</span><br><span class="line"><span class="comment"># fit，开始模型的训练，epoch表示训练几次，也就是上面所说的，瞎猜-评价-改正多少次。</span></span><br><span class="line"></span><br><span class="line">print(model.predict([<span class="number">10.0</span>]))</span><br><span class="line"><span class="comment"># predict，模型已经训练好，rule已经解出来了，所以接下来的预测就是一个rule+data、得到output的过程。</span></span><br></pre></td></tr></table></figure>
+<p>实际上，当我们输入10，结果不是19，是一个和19很接近的数。比如18.72。为什么？</p>
+<ul>
+<li>我们只给了6个点，虽然目前来看是线性的，但是实际上，不能确保之后的点都是线性的。</li>
+<li>神经网络不确定之后的解是否也是线性的，只能说x=10时，y=19的可能性很大，但是不一定。</li>
+</ul>
+<h1 id="Introduction-to-Computer-Vision"><a href="#Introduction-to-Computer-Vision" class="headerlink" title="Introduction to Computer Vision"></a>Introduction to Computer Vision</h1><h2 id="主要内容-1"><a href="#主要内容-1" class="headerlink" title="主要内容"></a>主要内容</h2><ul>
+<li>Fashion MNIST介绍</li>
+<li>训练神经网络，使得计算机可以识别Fashion MNIS中的10中衣物。</li>
+</ul>
+<p>上一节学习了机器学习的范式，并学会用TF通过数据和答案得到两者之间的rules。本节课的目的是将这种行为运用在实际应用中——计算机视觉。上一节我们说到，机器学习就是计算机学习 「区分事物的模式」，本节我们就想要用数据+答案的方式，使得计算机能够学习到区分某一个事物的模式。</p>
+<p>具体来说，我们有一个数据集Fashion MNIST：</p>
+<ul>
+<li>70k images</li>
+<li>10 categories</li>
+<li>Images are 28X28 in gray scale *</li>
+<li>Can train a neural net</li>
+</ul>
+<p>数据集中有10种不同的物品，衣服、鞋子、裤子……我们的目的就是，数据（images）+答案（是衣服还是鞋子还是……），来让计算机学习到区分这10样东西的模式。</p>
+<h2 id="加载数据集"><a href="#加载数据集" class="headerlink" title="加载数据集"></a>加载数据集</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">fashion_mnist = keras.datasets.fashion_mnist</span><br><span class="line">(train_images,train_labels),(test_images,test_labels)=fashion_minist.load_data()</span><br></pre></td></tr></table></figure>
+<p>load_data，返回四个列表</p>
+<p>60k用来训练，10k测试</p>
+<p>为什么用数字作为标识，而不是直接用文字比如 ”ankle boot“？</p>
+<ul>
+<li>计算机适合处理数字</li>
+<li>帮助我们减少偏见</li>
+</ul>
+<h2 id="Normalizing"><a href="#Normalizing" class="headerlink" title="Normalizing"></a>Normalizing</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">training_images  = training_images / <span class="number">255.0</span></span><br><span class="line">test_images = test_images / <span class="number">255.0</span></span><br></pre></td></tr></table></figure>
+<p>normalizing，使得每个pixel保持在0-1之间，有利于训练。如果仍在0-255，那么造成的loss会很大。</p>
+<h2 id="定义神经网络"><a href="#定义神经网络" class="headerlink" title="定义神经网络"></a>定义神经网络</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">model = keras.Sequence([</span><br><span class="line">    keras.layers.Flatten(input_shape(<span class="number">28</span>,<span class="number">28</span>)),</span><br><span class="line">  <span class="comment"># flatten，讲一个28*28的二维矩阵编程一维的简单线性数组</span></span><br><span class="line">    keras.layers.Dense(<span class="number">128</span>,activation=tf.nn.relu), </span><br><span class="line">  <span class="comment">#middle layer/ hidden layer#</span></span><br><span class="line">    keras.layers.Dense(<span class="number">10</span>,activation=tf.nn.softmax)</span><br><span class="line">  <span class="comment"># output layer，有十个物品需要识别，对应就是10个神经元</span></span><br><span class="line">])</span><br></pre></td></tr></table></figure>
+<p>middle/ hidden layer，实现的其实是一个映射，如下图：</p>
+<p><img src="https://raw.githubusercontent.com/Shiyuang-scu/blog_img/master/tf-02-3.png" alt="cv-nueral"></p>
+<p>就像我们上一节的内容，我们还是可以把它简单理解成一个求函数的过程。这里有128个神经元，每一个神经元相当于一个系数，可以称呼它们为$w_1,w_2,w_3,…,w_{128}$</p>
+<p>这次求的不是y=2x-1，而是更复杂的，使得当x=一张靴子的图片时，y=9。其实神经网络做的本质上就是一种映射。</p>
+<h2 id="训练评估"><a href="#训练评估" class="headerlink" title="训练评估"></a>训练评估</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">model.compile(optimizer = tf.train.AdamOptimizer(),</span><br><span class="line">              loss = <span class="string">'sparse_categorical_crossentropy'</span>,</span><br><span class="line">              metrics=[<span class="string">'accuracy'</span>])</span><br><span class="line"></span><br><span class="line">model.fit(training_images, training_labels, epochs=<span class="number">9</span>)</span><br><span class="line"><span class="comment"># epoch如果太多，会造成过拟合。</span></span><br><span class="line"></span><br><span class="line">model.evaluate(test_images, test_labels)</span><br></pre></td></tr></table></figure>
+<h2 id="Callback"><a href="#Callback" class="headerlink" title="Callback"></a>Callback</h2><p>准确率不需要太高，如果太高不一定是一件好事，也许是overfiting。因此，可以使用callback，当模型准确率达到我们要求的值时，就停止训练。</p>
+<p>首先定义一个callback类</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">myCallback</span><span class="params">(tf.keras.callbacks.Callback)</span>:</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">on_epoch_end</span><span class="params">(self, epoch, logs=&#123;&#125;)</span>:</span></span><br><span class="line">    <span class="keyword">if</span>(logs.get(<span class="string">'loss'</span>)&lt;<span class="number">0.4</span>): <span class="comment"># 当准确率到0.6时停止</span></span><br><span class="line">      print(<span class="string">"\nReached 60% accuracy so cancelling training!"</span>)</span><br><span class="line">      self.model.stop_training = <span class="keyword">True</span></span><br></pre></td></tr></table></figure>
+<p>作为变量放入在model.fit中</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">callbacks = myCallback()</span><br><span class="line"></span><br><span class="line">model = keras.Sequence(...)</span><br><span class="line">model.compile(...)</span><br><span class="line">model.fit(...)</span><br><span class="line">model.fit(training_images, training_labels, epochs=<span class="number">9</span>, callbacks=[callbacks])</span><br></pre></td></tr></table></figure>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="https://raw.githubusercontent.com/Shiyuang-scu/blog_img/master/alipay.jpg">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="https://raw.githubusercontent.com/Shiyuang-scu/blog_img/master/wepay.jpg">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/03/31/学习笔记-Volume-Rendering/">学习笔记|Volume Rendering</a>
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -237,220 +290,141 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">图像处理</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">机器学习</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://rationalist.me/2019/10/29/【Introduction-to-TensorFlow】02-初识机器学习与计算机视觉/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/03/28/周记-三月驼云/" class="archive-article-date">
-  	<time datetime="2019-03-28T10:31:54.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-28</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2019/10/29/【TF-in-Practice】01-TF-快速入门/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">【Introduction to TensorFlow】01 TF 快速入门</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/03/28/周记-三月驼云/">周记|三月驼云</a>
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#A-New-Programming-Paradigm"><span class="toc-number">1.</span> <span class="toc-text">A New Programming Paradigm</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#主要内容"><span class="toc-number">1.1.</span> <span class="toc-text">主要内容</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#独特的范式"><span class="toc-number">1.2.</span> <span class="toc-text">独特的范式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Hello-World"><span class="toc-number">1.3.</span> <span class="toc-text">Hello World</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Introduction-to-Computer-Vision"><span class="toc-number">2.</span> <span class="toc-text">Introduction to Computer Vision</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#主要内容-1"><span class="toc-number">2.1.</span> <span class="toc-text">主要内容</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#加载数据集"><span class="toc-number">2.2.</span> <span class="toc-text">加载数据集</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Normalizing"><span class="toc-number">2.3.</span> <span class="toc-text">Normalizing</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#定义神经网络"><span class="toc-number">2.4.</span> <span class="toc-text">定义神经网络</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#训练评估"><span class="toc-number">2.5.</span> <span class="toc-text">训练评估</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Callback"><span class="toc-number">2.6.</span> <span class="toc-text">Callback</span></a></li></ol></li></ol>
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/03/11/GAN-RL-文本生成的方法/" class="archive-article-date">
-  	<time datetime="2019-03-11T13:47:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-11</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/03/11/GAN-RL-文本生成的方法/">生成对抗网络与强化学习:文本生成的方法</a>
-    </h1>
-  
+        
+    </div>
+</aside>
 
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">世界之内</a>
-        		</li>
-      		
-		</ul>
-	</div>
 
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/03/09/桨声灯影里的秦淮河/" class="archive-article-date">
-  	<time datetime="2019-03-09T09:14:18.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-09</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/03/09/桨声灯影里的秦淮河/">《桨声灯影里的秦淮河》俞平伯</a>
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">世界之外</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/03/09/周记-雨/" class="archive-article-date">
-  	<time datetime="2019-03-09T09:07:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-09</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/03/09/周记-雨/">周记|雨</a>
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/03/01/春之积雪/" class="archive-article-date">
-  	<time datetime="2019-03-01T09:11:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-01</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/03/01/春之积雪/">《春之积雪》简媜</a>
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">世界之外</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
   
-    </div></section>
   
 
-    
+  
+
+  
+    <section id="comments">
+      <div id="disqus_thread"></div>
+        <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'https-shiyuang-scu-github-io'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+      </script>
+      <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </section>
+  
+
+  
 
 
           </div>
@@ -484,8 +458,8 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: true,
