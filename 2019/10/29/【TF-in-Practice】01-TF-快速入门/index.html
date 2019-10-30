@@ -20,7 +20,7 @@
 <meta property="og:image" content="https://lh3.googleusercontent.com/p1NjrScNzsleXk3BSrD4JmNLZvRaL1VipO_pWBm0SCoJO-hJXDV2xdsFSdWXhDHOI-a-I_Zk6faBC_lMotvT9zU_esNdWToJwvAvgJumk7yWoHODUI3dlzhaOOo2fCveQTAz0xTOiIE">
 <meta property="og:image" content="https://lh6.googleusercontent.com/oLEKzrdeaeSrgOcHFgWyxW2eaoHXqMUQet00CfGPitoDqxGQirDR4S84JojiQPMRrimhUXFecJDWpzBCmGu-sw1ULAglyinPfHU7ldm2dVG5DoNuUJWq8vXa4utay_l06jwUcjSKLnQ">
 <meta property="og:image" content="https://lh3.googleusercontent.com/hC0XsNqxHqMcTT3Bqz-_Omu-xp9ZFjwiWej2RygzE0wy90ws1QQpme5SZYly3fLg-XdS5N5uBN7HqegCo3MZd-eJQJRd1ycpGMqBWbhOcE_x0O_LsAVRPzx4DMteAbmNs5FjFV1QNR8">
-<meta property="og:updated_time" content="2019-10-29T11:51:43.340Z">
+<meta property="og:updated_time" content="2019-10-29T12:12:36.448Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【Introduction to TensorFlow】01 TF 快速入门">
 <meta name="twitter:description" content="本文内容不包括在课程《Introduction to TensorFlow》中，但是因为学习任何东西，首先都得学习其基本概念，所以本文介绍了TensorFlow的基本概念，主要介绍了Graph、Session两个概念。 本文极大程度借鉴了小土刀的《【CS20-TF4DL】01 Tensorflow 快速入门》  原文文作者： wdxtub 原文链接： http://wdxmzy.com/cours">
@@ -199,8 +199,7 @@
 <p>什么是TensorFlow？</p>
 </blockquote>
 <p>在TensorFlow的官网，可以看到如下定义：</p>
-<center>TensorFlow is an open source software library for numerical computational using data flow graphs</center>
-
+<p>TensorFlow is an open source software library for numerical computational using data flow graphs</p>
 <blockquote>
 <p>为什么用TensorFlow？</p>
 </blockquote>
@@ -215,19 +214,25 @@
 <blockquote>
 <p>学习TensorFlow有何参考书？</p>
 </blockquote>
-<p>TensorFlow一直在更新，所以出版的书都跟不上最新版本，但是可以参考如下书目：</p>
+<p>TensorFlow一直在更新，出版的书跟不上最新版本，但是有如下参考书目：</p>
 <ul>
 <li>Aurélien Géron’s Hands-On Machine Learning with Scikit-Learn and TensorFlow (O’Reilly,March 2017)</li>
 <li>François Chollet’s Deep Learning with Python (Manning Publications, November 2017)</li>
 <li>Nishant Shukla’s Machine Learning with TensorFlow (Manning Publications, January 2018)</li>
 <li>Lieder et al.’s Learning TensorFlow A Guide to Building Deep Learning Systems (O’Reilly, August 2017)</li>
 </ul>
+<p>开始正式学习。</p>
 <hr>
 <p>宇宙之初：</p>
-<center>import tensorflow as tf</center>
-
-<p>lol </p>
-<h1 id="Graph-and-Sessions"><a href="#Graph-and-Sessions" class="headerlink" title="Graph and Sessions"></a>Graph and Sessions</h1><p>首先介绍一个TensorFlow最重要的概念，Data Flwo Graph，数据流图。通过数据流图，计算（computation）被分离为定义和计算，Graph负责定义整个计算框架，Session负责真正执行这个计算。</p>
+<p><center>import tensorflow as tf</center><br>lol </p>
+<h1 id="Tensor"><a href="#Tensor" class="headerlink" title="Tensor"></a>Tensor</h1><p>Tensor 张量，可以理解为一个 n 维的数组，其中低维的张量有另外的名字：</p>
+<ul>
+<li>0 维张量称为标量 Scalar，也就是数字</li>
+<li>1 维张量称为向量 Vector</li>
+<li>2 维张量称为矩阵 Matrix</li>
+<li>再高维的就叫张量</li>
+</ul>
+<h1 id="Graph-and-Sessions"><a href="#Graph-and-Sessions" class="headerlink" title="Graph and Sessions"></a>Graph and Sessions</h1><p>首先介绍一个TensorFlow最重要的概念，Data Flow Graph，数据流图。通过数据流图，计算（computation）被分离为定义和计算，Graph负责定义整个计算框架，Session负责真正执行这个计算。</p>
 <p>举一个例子便于理解，如图：</p>
 <p><img src="https://lh3.googleusercontent.com/p1NjrScNzsleXk3BSrD4JmNLZvRaL1VipO_pWBm0SCoJO-hJXDV2xdsFSdWXhDHOI-a-I_Zk6faBC_lMotvT9zU_esNdWToJwvAvgJumk7yWoHODUI3dlzhaOOo2fCveQTAz0xTOiIE" alt="img"></p>
 <p>我们要计算$(a+b)+a \times b$，可以构建一个这样的框架，也就是计算流图。</p>
@@ -416,7 +421,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#基本概念"><span class="toc-number">1.</span> <span class="toc-text">基本概念</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Graph-and-Sessions"><span class="toc-number">2.</span> <span class="toc-text">Graph and Sessions</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#基本概念"><span class="toc-number">1.</span> <span class="toc-text">基本概念</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Tensor"><span class="toc-number">2.</span> <span class="toc-text">Tensor</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Graph-and-Sessions"><span class="toc-number">3.</span> <span class="toc-text">Graph and Sessions</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -582,11 +587,11 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">世界之内</a>
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+                <a href="javascript:void(0)" class="js-tag color5">世界之内</a>
               </li>
              
               <li class="article-tag-list-item">
