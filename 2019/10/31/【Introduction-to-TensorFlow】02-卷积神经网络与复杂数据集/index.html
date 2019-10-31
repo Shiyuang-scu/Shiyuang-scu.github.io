@@ -7,24 +7,28 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://rationalist.me">
-  <title>【Introduction to TensorFlow】01 TF 快速入门 | ClowNaxcvd</title>
+  <title>【Introduction to TensorFlow】02 卷积神经网络与复杂数据集 | ClowNaxcvd</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="本文内容不包括在课程《Introduction to TensorFlow》中，但是因为学习任何东西，首先都得学习其基本概念，所以本文介绍了TensorFlow的基本概念，主要介绍了Graph、Session两个概念。 本文极大程度借鉴了小土刀的《【CS20-TF4DL】01 Tensorflow 快速入门》  原文文作者： wdxtub 原文链接： http://wdxmzy.com/cours">
+  <meta name="description" content="上一节使用了几层简单的神经网络实现了对Fashion MNIST数据集中10种衣物的识别。我们将一张图的每一个像素都作为一个参考因素，来训练我们的模型，但是其实一张图有很多没有用的地方，这就给训练模型增加了负担。那么接下来要学习的，就是一种能够少注意图像冗余信息，多注意图像重要信息的模型。 本节包括week3和week4的内容。week3讲述了CNN，卷积神经网络，一种压缩图像、获取图像特征的模型">
 <meta name="keywords" content="世界之内,机器学习">
 <meta property="og:type" content="article">
-<meta property="og:title" content="【Introduction to TensorFlow】01 TF 快速入门">
-<meta property="og:url" content="http://rationalist.me/2019/10/29/【TF-in-Practice】01-TF-快速入门/index.html">
+<meta property="og:title" content="【Introduction to TensorFlow】02 卷积神经网络与复杂数据集">
+<meta property="og:url" content="http://rationalist.me/2019/10/31/【Introduction-to-TensorFlow】02-卷积神经网络与复杂数据集/index.html">
 <meta property="og:site_name" content="ClowNaxcvd">
-<meta property="og:description" content="本文内容不包括在课程《Introduction to TensorFlow》中，但是因为学习任何东西，首先都得学习其基本概念，所以本文介绍了TensorFlow的基本概念，主要介绍了Graph、Session两个概念。 本文极大程度借鉴了小土刀的《【CS20-TF4DL】01 Tensorflow 快速入门》  原文文作者： wdxtub 原文链接： http://wdxmzy.com/cours">
+<meta property="og:description" content="上一节使用了几层简单的神经网络实现了对Fashion MNIST数据集中10种衣物的识别。我们将一张图的每一个像素都作为一个参考因素，来训练我们的模型，但是其实一张图有很多没有用的地方，这就给训练模型增加了负担。那么接下来要学习的，就是一种能够少注意图像冗余信息，多注意图像重要信息的模型。 本节包括week3和week4的内容。week3讲述了CNN，卷积神经网络，一种压缩图像、获取图像特征的模型">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://lh3.googleusercontent.com/p1NjrScNzsleXk3BSrD4JmNLZvRaL1VipO_pWBm0SCoJO-hJXDV2xdsFSdWXhDHOI-a-I_Zk6faBC_lMotvT9zU_esNdWToJwvAvgJumk7yWoHODUI3dlzhaOOo2fCveQTAz0xTOiIE">
-<meta property="og:image" content="https://lh6.googleusercontent.com/oLEKzrdeaeSrgOcHFgWyxW2eaoHXqMUQet00CfGPitoDqxGQirDR4S84JojiQPMRrimhUXFecJDWpzBCmGu-sw1ULAglyinPfHU7ldm2dVG5DoNuUJWq8vXa4utay_l06jwUcjSKLnQ">
-<meta property="og:image" content="https://lh3.googleusercontent.com/hC0XsNqxHqMcTT3Bqz-_Omu-xp9ZFjwiWej2RygzE0wy90ws1QQpme5SZYly3fLg-XdS5N5uBN7HqegCo3MZd-eJQJRd1ycpGMqBWbhOcE_x0O_LsAVRPzx4DMteAbmNs5FjFV1QNR8">
-<meta property="og:updated_time" content="2019-10-29T12:12:36.448Z">
+<meta property="og:image" content="https://raw.githubusercontent.com/Shiyuang-scu/blog_img/master/tf-02-1.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Shiyuang-scu/blog_img/master/tf-02-2.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Shiyuang-scu/blog_img/master/tf-02-3.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/Shiyuang-scu/blog_img/master/tf-02-4.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Shiyuang-scu/blog_img/master/tf-02-5.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Shiyuang-scu/blog_img/master/tf-02-6.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Shiyuang-scu/blog_img/master/tf-02-7.png">
+<meta property="og:updated_time" content="2019-10-31T15:42:54.772Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="【Introduction to TensorFlow】01 TF 快速入门">
-<meta name="twitter:description" content="本文内容不包括在课程《Introduction to TensorFlow》中，但是因为学习任何东西，首先都得学习其基本概念，所以本文介绍了TensorFlow的基本概念，主要介绍了Graph、Session两个概念。 本文极大程度借鉴了小土刀的《【CS20-TF4DL】01 Tensorflow 快速入门》  原文文作者： wdxtub 原文链接： http://wdxmzy.com/cours">
-<meta name="twitter:image" content="https://lh3.googleusercontent.com/p1NjrScNzsleXk3BSrD4JmNLZvRaL1VipO_pWBm0SCoJO-hJXDV2xdsFSdWXhDHOI-a-I_Zk6faBC_lMotvT9zU_esNdWToJwvAvgJumk7yWoHODUI3dlzhaOOo2fCveQTAz0xTOiIE">
+<meta name="twitter:title" content="【Introduction to TensorFlow】02 卷积神经网络与复杂数据集">
+<meta name="twitter:description" content="上一节使用了几层简单的神经网络实现了对Fashion MNIST数据集中10种衣物的识别。我们将一张图的每一个像素都作为一个参考因素，来训练我们的模型，但是其实一张图有很多没有用的地方，这就给训练模型增加了负担。那么接下来要学习的，就是一种能够少注意图像冗余信息，多注意图像重要信息的模型。 本节包括week3和week4的内容。week3讲述了CNN，卷积神经网络，一种压缩图像、获取图像特征的模型">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/Shiyuang-scu/blog_img/master/tf-02-1.png">
   
     <link rel="alternative" href="/atom.xml" title="ClowNaxcvd" type="application/atom+xml">
   
@@ -167,104 +171,96 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-【TF-in-Practice】01-TF-快速入门" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-【Introduction-to-TensorFlow】02-卷积神经网络与复杂数据集" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      【Introduction to TensorFlow】01 TF 快速入门
+      【Introduction to TensorFlow】02 卷积神经网络与复杂数据集
     </h1>
   
 
 
         
-        <a href="/2019/10/29/【TF-in-Practice】01-TF-快速入门/" class="archive-article-date">
-  	<time datetime="2019-10-29T07:38:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-29</time>
+        <a href="/2019/10/31/【Introduction-to-TensorFlow】02-卷积神经网络与复杂数据集/" class="archive-article-date">
+  	<time datetime="2019-10-31T15:30:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-31</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>本文内容不包括在课程《Introduction to TensorFlow》中，但是因为学习任何东西，首先都得学习其基本概念，所以本文介绍了TensorFlow的基本概念，主要介绍了Graph、Session两个概念。</p>
-<p>本文极大程度借鉴了小土刀的《【CS20-TF4DL】01 Tensorflow 快速入门》</p>
-<ul>
-<li><strong>原文文作者：</strong> wdxtub</li>
-<li><strong>原文链接：</strong> <a href="http://wdxmzy.com/course/cs20-01/2019/08/03/" target="_blank" rel="noopener">http://wdxmzy.com/course/cs20-01/2019/08/03/</a></li>
-</ul>
+        <p>上一节使用了几层简单的神经网络实现了对Fashion MNIST数据集中10种衣物的识别。我们将一张图的每一个像素都作为一个参考因素，来训练我们的模型，但是其实一张图有很多没有用的地方，这就给训练模型增加了负担。那么接下来要学习的，就是一种能够少注意图像冗余信息，多注意图像重要信息的模型。</p>
+<p>本节包括week3和week4的内容。week3讲述了CNN，卷积神经网络，一种压缩图像、获取图像特征的模型。本节首先概述CNN的重要概念：卷积，池化，然后使用TF实现这两个概念，搭建一个卷积神经网络，在Fashion MNIST中训练。</p>
+<p>Fashion MNIST的图片时28*28的小图，且所有的物体都居中展示。week4则将进一步学习如何使用TF的API对更大、更复杂、更不整齐的图像进行预处理，并且在预处理后的图像上施展CNN的魔法。</p>
 <a id="more"></a>
-<h1 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h1><blockquote>
-<p>什么是TensorFlow？</p>
-</blockquote>
-<p>在TensorFlow的官网，可以看到如下定义：</p>
-<p>TensorFlow is an open source software library for numerical computational using data flow graphs</p>
+<h1 id="Enhancing-Vision-with-Convolutional-Neural-Networks"><a href="#Enhancing-Vision-with-Convolutional-Neural-Networks" class="headerlink" title="Enhancing Vision with Convolutional Neural Networks"></a>Enhancing Vision with Convolutional Neural Networks</h1><h2 id="主要内容"><a href="#主要内容" class="headerlink" title="主要内容"></a>主要内容</h2><ul>
+<li>卷积与池化</li>
+<li>使用卷积神经网络，提高上一节中仅使用两层神经网络识别Fashion MNIST 中10种衣物的准确率</li>
+</ul>
+<h2 id="Convolution"><a href="#Convolution" class="headerlink" title="Convolution"></a>Convolution</h2><p>对于每一个像素，我们要求不仅关注这个像素，还要关注这个像素周围的像素。如果我们有一个filter 大小为3*3，那么我们就会关注这个像素上下左右一圈的8个像素，我们关注它们的方法就是将每个像素和filter中对应的值相乘，最后再一起相加。</p>
+<p>上例子：</p>
+<p><img src="https://raw.githubusercontent.com/Shiyuang-scu/blog_img/master/tf-02-1.png" alt="tf-02-1"></p>
+<p>filter就这样一直滑动，每一次滑动得到一个值，每个值拼在一起，形成一张新的图像。filter还有滑动步长，stride，一次走一步，还是两步，得到的结果也会不一样。</p>
+<p>filter滑动后的新图像大小有一个公式：</p>
+<p>$$OutputSize=(N-F)/stride+1$$</p>
+<p>where N 是原始图像宽度，F是filter的大小。这里默认padding=0。</p>
+<p>卷积是一种神奇的方法，就是通过filter的过滤，能够使得图片的某些特征得到强调，filter的值不同，提取的特征就会不同。</p>
+<p>如下图，就通过一个简单的filter得到了事物的轮廓。</p>
+<p><img src="https://raw.githubusercontent.com/Shiyuang-scu/blog_img/master/tf-02-2.png" alt="tf-02-2"></p>
+<p>这就是卷积，一种提取图片特征的方法。</p>
 <blockquote>
-<p>为什么用TensorFlow？</p>
-</blockquote>
-<p>选择TensorFlow，是因为：</p>
-<ul>
-<li>拥有Python API</li>
-<li>可使用单个API就能将计算部署在多个CPU、GPU、服务器或者移动设备上</li>
-<li>可视化，使用TensorBoard</li>
-<li>拥有庞大的社区</li>
-<li>自动微分</li>
-</ul>
-<blockquote>
-<p>学习TensorFlow有何参考书？</p>
-</blockquote>
-<p>TensorFlow一直在更新，出版的书跟不上最新版本，但是有如下参考书目：</p>
-<ul>
-<li>Aurélien Géron’s Hands-On Machine Learning with Scikit-Learn and TensorFlow (O’Reilly,March 2017)</li>
-<li>François Chollet’s Deep Learning with Python (Manning Publications, November 2017)</li>
-<li>Nishant Shukla’s Machine Learning with TensorFlow (Manning Publications, January 2018)</li>
-<li>Lieder et al.’s Learning TensorFlow A Guide to Building Deep Learning Systems (O’Reilly, August 2017)</li>
-</ul>
-<p>开始正式学习。</p>
-<hr>
-<p>宇宙之初：</p>
-<p><center>import tensorflow as tf</center><br>lol </p>
-<h1 id="Tensor"><a href="#Tensor" class="headerlink" title="Tensor"></a>Tensor</h1><p>Tensor 张量，可以理解为一个 n 维的数组，其中低维的张量有另外的名字：</p>
-<ul>
-<li>0 维张量称为标量 Scalar，也就是数字</li>
-<li>1 维张量称为向量 Vector</li>
-<li>2 维张量称为矩阵 Matrix</li>
-<li>再高维的就叫张量</li>
-</ul>
-<h1 id="Graph-and-Sessions"><a href="#Graph-and-Sessions" class="headerlink" title="Graph and Sessions"></a>Graph and Sessions</h1><p>首先介绍一个TensorFlow最重要的概念，Data Flow Graph，数据流图。通过数据流图，计算（computation）被分离为定义和计算，Graph负责定义整个计算框架，Session负责真正执行这个计算。</p>
-<p>举一个例子便于理解，如图：</p>
-<p><img src="https://lh3.googleusercontent.com/p1NjrScNzsleXk3BSrD4JmNLZvRaL1VipO_pWBm0SCoJO-hJXDV2xdsFSdWXhDHOI-a-I_Zk6faBC_lMotvT9zU_esNdWToJwvAvgJumk7yWoHODUI3dlzhaOOo2fCveQTAz0xTOiIE" alt="img"></p>
-<p>我们要计算$(a+b)+a \times b$，可以构建一个这样的框架，也就是计算流图。</p>
-<p>这个构建不需要真的数据，我们只是定义了一个规则。当我们需要计算$(5+3)+5 \times 3$时，就通过session 来执行这个计算过程。5和3通过session的帮助，像两股水流，流入我们之前定义的河道中，最终经过一系列的节点，流出结果。</p>
-<p>因此，由上面的例子可以总结出，TensorFlow的计算有两个基本步骤：</p>
+<p>这种做法的两个关键启发：</p>
 <ol>
-<li>构建一个Graph</li>
-<li>使用Session执行由Graph定义的操作</li>
+<li>Features are <strong>hierarchical</strong>。从低复杂度的特征中组合出高复杂度的特征，比直接学习高复杂度的特征更加有效。比如我可以先学习识别直线、圆形之类的分类器，再训练一个组合圆形、直线这些基本图形的分类器</li>
+<li>Features are translationally invariant。可以保证特征的平移不变性（一定程度），可以提高模型的泛化效果。</li>
 </ol>
-<p>概念讲完，就开始coding了。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</span><br><span class="line">a = tf.add(<span class="number">3</span>, <span class="number">5</span>)</span><br><span class="line"><span class="comment"># 在 Tensorboard 的显示里，节点表示操作、变量和常量，边表示张量</span></span><br><span class="line">print(a)</span><br><span class="line"><span class="comment"># 显示 Tensor("Add:0", shape=(), dtype=int32)</span></span><br><span class="line"><span class="comment"># 那么我们如何得到 a 的值呢，需要创建一个 session，然后对图进行计算，像这样</span></span><br><span class="line">sess = tf.Session()</span><br><span class="line">print(sess.run(a)) <span class="comment"># run 之后就得到 a 实际的值</span></span><br><span class="line">sess.close() <span class="comment"># 注意要关闭</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 每次都关闭太麻烦，建议用 with 来进行</span></span><br><span class="line"><span class="keyword">with</span> tf.Session() <span class="keyword">as</span> sess:</span><br><span class="line">    print(sess.run(a))</span><br><span class="line"><span class="comment"># session 对象封装了用于处理 Operation 和 Tensor 的环境（分配内存、处理计算等）</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 一个更复杂的图，结构如下图所示</span></span><br><span class="line">x = <span class="number">2</span></span><br><span class="line">y = <span class="number">3</span></span><br><span class="line">add_op = tf.add(x, y)</span><br><span class="line">mul_op = tf.multiply(x, y)</span><br><span class="line">useless = tf.multiply(x, add_op)</span><br><span class="line">pow_op = tf.pow(add_op, mul_op)</span><br><span class="line"><span class="keyword">with</span> tf.Session() <span class="keyword">as</span> sess:</span><br><span class="line">    z = sess.run(pow_op) <span class="comment"># 只计算 pow_op，useless 节点不会进行计算</span></span><br><span class="line">    <span class="comment"># 我们也可以同时计算多个，因为本质上我们传入的是需要获取的操作列表，也就是 fetches，是一个 List</span></span><br><span class="line">    <span class="comment"># tf.Session.run(fetches, feed_dict=None, options=None, run_metadata=None)</span></span><br><span class="line">    z, not_useless = sess.run([pow_op, useless])</span><br></pre></td></tr></table></figure>
-<p>上述代码在TensorFlow的Graph如下：</p>
-<p><img src="https://lh6.googleusercontent.com/oLEKzrdeaeSrgOcHFgWyxW2eaoHXqMUQet00CfGPitoDqxGQirDR4S84JojiQPMRrimhUXFecJDWpzBCmGu-sw1ULAglyinPfHU7ldm2dVG5DoNuUJWq8vXa4utay_l06jwUcjSKLnQ" alt="img"></p>
-<p>TensorFlow将计算过程表示为Graph，有一个重要的优势，可以知道每一个计算的关系，TF 就可以充分利用计算资源，有效地分配计算任务。</p>
-<p>我知道计算Pow需要Add和Mul，那么我可以同时计算Add和Mul，而不是随着代码的顺序执行计算。此外，因为我只需要Pow，所以Mul_1(useless节点)就不会进行计算。</p>
-<p>以上的计算都是在同一个 Graph 进行的，那么如果想要创建多个 Graph 可以吗？可以，但没必要，也不推荐，原因如下：</p>
-<ul>
-<li>没必要：多个 Graph 就需要多个 session，每个 session 默认是会占用所有可用资源</li>
-<li>不推荐：多个 Graph 之前只能通过 python/numpy 传输数据，这是无法进行分布式计算的</li>
-<li>没必要：如果需要多个 subgraph，放到一个 graph 中，然后不要相连就好</li>
+</blockquote>
+<p>from <a href="http://wdxmzy.com/course/cs20-06/2019/08/13/" target="_blank" rel="noopener">【CS20-TF4DL】06 Convnet 简介</a></p>
+<h2 id="Pooling"><a href="#Pooling" class="headerlink" title="Pooling"></a>Pooling</h2><p>池化的目的是为了缩小图像，将一些冗余的信息直截了当的去掉。</p>
+<p>这里只讲Max Pooling，简单来说就是在一定区域中，比如2 * 2的像素中，选择像素值最大的像素，其他全部抛弃。</p>
+<p><img src="https://raw.githubusercontent.com/Shiyuang-scu/blog_img/master/tf-02-3.jpg" alt="tf-02-3"></p>
+<p>也可以把max pooling想象成有一个filter，在图像上滑动，滑动的步伐大小叫stride。</p>
+<p>一般来说，stride会和filter一样大小，上图中，filter=2 * 2，stride=2。图像小了一半。</p>
+<p>我们接着看例子，下图是一个经过卷积的图片：</p>
+<p><img src="https://raw.githubusercontent.com/Shiyuang-scu/blog_img/master/tf-02-4.png" alt="tf-02-4"></p>
+<p>我们使用filter大小为2*2的max pooling，使图片变成了原来的一半，非常神奇的是，缩小了一半的图片不仅没有失去原来的特征，反而更加明显了，这说明池化使得图片的冗余信息减少了。</p>
+<p><img src="https://raw.githubusercontent.com/Shiyuang-scu/blog_img/master/tf-02-5.png" alt="tf-02-5"></p>
+<p>从上面这个例子看，pooling能够有效地减少冗余信息。</p>
+<h2 id="Convolution-amp-Pooling-in-TF"><a href="#Convolution-amp-Pooling-in-TF" class="headerlink" title="Convolution &amp; Pooling in TF"></a>Convolution &amp; Pooling in TF</h2><p>讲完了理论，接下来看代码。我们在上一节的全连接神经网络上增加了卷积和池化层：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">model = tf.keras.models.Sequential([</span><br><span class="line">	tf.keras.layers.Conv2D(<span class="number">64</span>, (<span class="number">3</span>,<span class="number">3</span>), activation=<span class="string">'relu'</span>, input_shape=(<span class="number">28</span>,<span class="number">28</span>,<span class="number">1</span>)),</span><br><span class="line">  <span class="comment"># 第一个参数是filter的个数，这里有64个filter。第二个参数是filter的大小，这里是3*3，stride默认为1.input_shape大小是28*28*1，这里1的意思是只有一个颜色通道，就是灰度图，如果是rgb图，就有三种颜色通道，就是28*28*3.</span></span><br><span class="line">	tf.keras.layers.MaxPooling2D(<span class="number">2</span>, <span class="number">2</span>),</span><br><span class="line">  <span class="comment"># max pooling，filter的大小是2*2，stride默认为1.</span></span><br><span class="line">	tf.keras.layers.Conv2D(<span class="number">64</span>, (<span class="number">3</span>,<span class="number">3</span>), activation=<span class="string">'relu'</span>, input_shape=(<span class="number">28</span>,<span class="number">28</span>,<span class="number">1</span>)),</span><br><span class="line">  <span class="comment"># 同上</span></span><br><span class="line">	tf.keras.layers.MaxPooling2D(<span class="number">2</span>, <span class="number">2</span>),</span><br><span class="line">  <span class="comment"># 同上</span></span><br><span class="line">	tf.keras.layers.Flatten(),</span><br><span class="line">  <span class="comment"># 然后再把图像展开编程一维数组，不用填参数，TF会自动算出图像大小</span></span><br><span class="line">	tf.keras.layers.Dense(<span class="number">128</span>, activation=<span class="string">'relu'</span>),</span><br><span class="line">	tf.keras.layers.Dense(<span class="number">10</span>, activation=<span class="string">'softmax'</span>)</span><br><span class="line">])</span><br></pre></td></tr></table></figure>
+<h3 id="model-summary"><a href="#model-summary" class="headerlink" title="model.summary"></a>model.summary</h3><p><code>model.summary</code>能够显示模型的网络结构，下图是我们的网络结构：</p>
+<p><img src="https://raw.githubusercontent.com/Shiyuang-scu/blog_img/master/tf-02-6.png" alt="tf-02-6"></p>
+<p>一层层看，第一层卷积层，输出的shape由原来的(28, 28, 1)变成了(26，26，64)，第二层pooling后，因为filter为2*2，所以之间变为原来的一半(13, 13, 64)，再经过一层卷积核池化，到最后输出为(5, 5, 64)。</p>
+<p>一张28*28的图片，在经过卷积池化后，变成了64张5*5的图片，我们可以直观地理解为，提取了64个这张图片的特征，每个特征大小为5*5。</p>
+<h1 id="Using-Real-world-Images"><a href="#Using-Real-world-Images" class="headerlink" title="Using Real-world Images"></a>Using Real-world Images</h1><h2 id="主要内容-1"><a href="#主要内容-1" class="headerlink" title="主要内容"></a>主要内容</h2><ul>
+<li>处理复杂、不统一的数据集：image generator</li>
+<li>使用处理后的数据集训练：fit generator</li>
 </ul>
-<p>最后总结一下为什么要用 Graph 机制来处理计算，因为：</p>
-<ul>
-<li>节省计算资源。通过图结构的最短路径来执行计算，获取所需的值</li>
-<li>能够把计算分成小块且可微的任务，更好的利用自动微分</li>
-<li>可以利用分布式计算，把计算任务放到多个 CPU/GPU/TPU 上</li>
-<li>很多机器学习模型是通过有向图来进行训练和可视化的，非常契合，如下图：</li>
-</ul>
-<p><img src="https://lh3.googleusercontent.com/hC0XsNqxHqMcTT3Bqz-_Omu-xp9ZFjwiWej2RygzE0wy90ws1QQpme5SZYly3fLg-XdS5N5uBN7HqegCo3MZd-eJQJRd1ycpGMqBWbhOcE_x0O_LsAVRPzx4DMteAbmNs5FjFV1QNR8" alt="img"></p>
-<ul>
-<li>A neural net graph from Stanford’s CS224N course</li>
-</ul>
+<h2 id="Image-Generator"><a href="#Image-Generator" class="headerlink" title="Image Generator"></a>Image Generator</h2><p>我们之前使用的都是非常完美的数据集，图片大小相同、物体居中且清晰，但是当我们有一个数据集，里面的图片大小不同，且物体的位置并不居中，图中有不止一个物体，而且更糟糕的是，我们还没做label，该怎么办？别怕，用TF的API：image generator。</p>
+<p>只要我们把同一类的图片放在同一个文件夹下，我们就能用这个API来自动打标签，标签就是这个文件夹的名字。</p>
+<p>如图，我的图片都没打标签，但是都放在了文件夹里，那么就可以放心地用image generator了。</p>
+<p><img src="https://raw.githubusercontent.com/Shiyuang-scu/blog_img/master/tf-02-7.png" alt="tf-02-7"></p>
+<p>实现的代码如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> tensorflow.keras.preprocessing.image <span class="keyword">import</span> ImageDataGenerator</span><br><span class="line"></span><br><span class="line">train_datagen = ImageDataGenerator(rescale=<span class="number">1.0</span>/<span class="number">255.0</span>)</span><br><span class="line"></span><br><span class="line">train_generator = train_datagen.flow_from_directory(</span><br><span class="line">	train_dir,</span><br><span class="line">  <span class="comment"># 这个表示训练集的文件夹名称</span></span><br><span class="line">  target_size = (<span class="number">300</span>, <span class="number">300</span>),</span><br><span class="line">  <span class="comment"># 图片大小不一，但是训练神经网络，数据大小一定要相同，target_size就设定了我们想要的大小，使得每一个图片都变成这个大小</span></span><br><span class="line">  batch_size = <span class="number">128</span>,</span><br><span class="line">  <span class="comment"># 我们不是一张张训练，而是一个batch训练，这样的效果会比一张张训练更好</span></span><br><span class="line">  class_mode = <span class="string">'binary'</span></span><br><span class="line">  <span class="comment"># 我们这里是一个二分类问题，这个参数是为了给图片打标签</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<h2 id="CNN-on-Complex-Images"><a href="#CNN-on-Complex-Images" class="headerlink" title="CNN on Complex Images"></a>CNN on Complex Images</h2><h3 id="Model"><a href="#Model" class="headerlink" title="Model"></a>Model</h3><p>对于更复杂的数据集，我们定义了一个更大的卷积神经网络，代码如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">model = tf.keras.models.Sequential([</span><br><span class="line">    <span class="comment"># Note the input shape is the desired size of the image 300x300 with 3 bytes color</span></span><br><span class="line">    <span class="comment"># This is the first convolution</span></span><br><span class="line">    tf.keras.layers.Conv2D(<span class="number">64</span>, (<span class="number">3</span>,<span class="number">3</span>), activation=<span class="string">'relu'</span>),</span><br><span class="line">    tf.keras.layers.MaxPooling2D(<span class="number">2</span>,<span class="number">2</span>),</span><br><span class="line">    tf.keras.layers.Conv2D(<span class="number">64</span>, (<span class="number">3</span>,<span class="number">3</span>), activation=<span class="string">'relu'</span>),</span><br><span class="line">    tf.keras.layers.MaxPooling2D(<span class="number">2</span>,<span class="number">2</span>),</span><br><span class="line">    tf.keras.layers.Conv2D(<span class="number">64</span>, (<span class="number">3</span>,<span class="number">3</span>), activation=<span class="string">'relu'</span>),</span><br><span class="line">    tf.keras.layers.MaxPooling2D(<span class="number">2</span>,<span class="number">2</span>),</span><br><span class="line">    <span class="comment"># Flatten the results to feed into a DNN</span></span><br><span class="line">    tf.keras.layers.Flatten(),</span><br><span class="line">    <span class="comment"># 512 neuron hidden layer</span></span><br><span class="line">    tf.keras.layers.Dense(<span class="number">512</span>, activation=<span class="string">'relu'</span>),</span><br><span class="line">    <span class="comment"># Only 1 output neuron. It will contain a value from 0-1 where 0 for 1 class ('horses') and 1 for the other ('humans')</span></span><br><span class="line">    tf.keras.layers.Dense(<span class="number">1</span>, activation=<span class="string">'sigmoid'</span>)</span><br><span class="line">])</span><br></pre></td></tr></table></figure>
+<p>和上一节差不多，多了两组卷积池化层，就不解释了。</p>
+<h3 id="Compile"><a href="#Compile" class="headerlink" title="Compile"></a>Compile</h3><p>上一节compile的optimizer是adam，loss是“sparse_categorical_crossentropy”，这次optimizer换成“RMSprop”，loss换成“binary_crossentropy”。RMSprop使得梯度下降变得更加稳定，且能容忍更大的学习率。</p>
+<p>代码如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> tensorflow.keras.optimizers <span class="keyword">import</span> RMSprop</span><br><span class="line"></span><br><span class="line">model.compile(loss=<span class="string">'binary_crossentropy'</span>,</span><br><span class="line">             optimizer=RMSprop(lr=<span class="number">0.001</span>),</span><br><span class="line">             metrics=[<span class="string">'acc'</span>])</span><br></pre></td></tr></table></figure>
+<h3 id="Training"><a href="#Training" class="headerlink" title="Training"></a>Training</h3><p>还记得之前的fit吗？</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">model.fit(x_train, y_train, epochs=<span class="number">10</span>)</span><br></pre></td></tr></table></figure>
+<p>因为这次我们的x_train不是直接从数据集里拿的，而是使用ImageDataGenerator这个API对数据进行预处理，所以相应的fit也要改。</p>
+<p>名字和ImageDataGenerator 很般配：fit_generator。是这样用的：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">history = model.fit_generator(</span><br><span class="line">			train_generator,</span><br><span class="line">  <span class="comment"># 这就是之前我们写过的</span></span><br><span class="line">			steps_per_epoch = <span class="number">8</span>,</span><br><span class="line">  <span class="comment"># 每个epoch训练几次batch。我们在train_generator中定义了一个batch大小是128，我们一共有1024张图片，所以这里设置为8</span></span><br><span class="line">			epochs = <span class="number">10</span>,</span><br><span class="line">			verbose = <span class="number">2</span></span><br><span class="line">  <span class="comment"># verbose：日志显示</span></span><br><span class="line">  <span class="comment"># verbose = 0 为不在标准输出流输出日志信息</span></span><br><span class="line">  <span class="comment"># verbose = 1 为输出进度条记录</span></span><br><span class="line">  <span class="comment"># verbose = 2 为每个epoch输出一行记录</span></span><br><span class="line">  <span class="comment"># verbose默认为 1</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<h3 id="Validation"><a href="#Validation" class="headerlink" title="Validation"></a>Validation</h3><p>我们可以在训练的时候，增加一组验证集。</p>
+<p>验证集的预处理和训练集的预处理一样：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> tensorflow.keras.preprocessing.image <span class="keyword">import</span> ImageDataGenerator</span><br><span class="line"></span><br><span class="line">validate_datagen = ImageDataGenerator(rescale=<span class="number">1.0</span>/<span class="number">255.0</span>)</span><br><span class="line"></span><br><span class="line">validate_generator = validate_datagen.flow_from_directory(</span><br><span class="line">		validate_dir,</span><br><span class="line">		target_size = (<span class="number">300</span>, <span class="number">300</span>),</span><br><span class="line">		batch_size = <span class="number">32</span>,</span><br><span class="line">		class_mode = <span class="string">'binary'</span></span><br><span class="line">	)</span><br></pre></td></tr></table></figure>
+<p>在原来的fit_generator中加入validate_generator即可：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">history = model.fit_generator(</span><br><span class="line">			train_generator,</span><br><span class="line">			steps_per_epoch=<span class="number">8</span>,</span><br><span class="line">			epochs=<span class="number">10</span>,</span><br><span class="line">			validation_data=validate_generator,</span><br><span class="line">	<span class="comment"># 我们加在了这里</span></span><br><span class="line">			validation_steps=<span class="number">8</span>,</span><br><span class="line">  <span class="comment"># 同steps_per_epoch</span></span><br><span class="line">			verbose=<span class="number">2</span>)</span><br></pre></td></tr></table></figure>
 
       
 
@@ -310,7 +306,7 @@
         
         <br>
         <strong>本文链接：</strong>
-        http://rationalist.me/2019/10/29/【TF-in-Practice】01-TF-快速入门/
+        http://rationalist.me/2019/10/31/【Introduction-to-TensorFlow】02-卷积神经网络与复杂数据集/
         <br>
         <strong>版权声明：</strong>
         本博客所有文章除特别声明外，均采用
@@ -389,7 +385,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://rationalist.me/2019/10/29/【TF-in-Practice】01-TF-快速入门/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://rationalist.me/2019/10/31/【Introduction-to-TensorFlow】02-卷积神经网络与复杂数据集/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -403,18 +399,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2019/10/29/【Introduction-to-TensorFlow】02-初识机器学习与计算机视觉/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          【Introduction to TensorFlow】02 初识机器学习与计算机视觉
-        
-      </div>
-    </a>
   
-  
-    <a href="/2019/10/29/【TF-in-Practice】00-课程概览/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">【Introduction to TensorFlow】00 课程概览</div>
+    <a href="/2019/10/29/【Introduction-to-TensorFlow】02-初识机器学习与计算机视觉/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">【Introduction to TensorFlow】02 初识机器学习与计算机视觉</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -441,7 +428,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#基本概念"><span class="toc-number">1.</span> <span class="toc-text">基本概念</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Tensor"><span class="toc-number">2.</span> <span class="toc-text">Tensor</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Graph-and-Sessions"><span class="toc-number">3.</span> <span class="toc-text">Graph and Sessions</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Enhancing-Vision-with-Convolutional-Neural-Networks"><span class="toc-number">1.</span> <span class="toc-text">Enhancing Vision with Convolutional Neural Networks</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#主要内容"><span class="toc-number">1.1.</span> <span class="toc-text">主要内容</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Convolution"><span class="toc-number">1.2.</span> <span class="toc-text">Convolution</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Pooling"><span class="toc-number">1.3.</span> <span class="toc-text">Pooling</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Convolution-amp-Pooling-in-TF"><span class="toc-number">1.4.</span> <span class="toc-text">Convolution &amp; Pooling in TF</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#model-summary"><span class="toc-number">1.4.1.</span> <span class="toc-text">model.summary</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Using-Real-world-Images"><span class="toc-number">2.</span> <span class="toc-text">Using Real-world Images</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#主要内容-1"><span class="toc-number">2.1.</span> <span class="toc-text">主要内容</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Image-Generator"><span class="toc-number">2.2.</span> <span class="toc-text">Image Generator</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CNN-on-Complex-Images"><span class="toc-number">2.3.</span> <span class="toc-text">CNN on Complex Images</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Model"><span class="toc-number">2.3.1.</span> <span class="toc-text">Model</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Compile"><span class="toc-number">2.3.2.</span> <span class="toc-text">Compile</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Training"><span class="toc-number">2.3.3.</span> <span class="toc-text">Training</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Validation"><span class="toc-number">2.3.4.</span> <span class="toc-text">Validation</span></a></li></ol></li></ol></li></ol>
                     </div>
                 </span>
             </div>

@@ -160,6 +160,95 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-【Introduction-to-TensorFlow】02-卷积神经网络与复杂数据集" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/10/31/【Introduction-to-TensorFlow】02-卷积神经网络与复杂数据集/">【Introduction to TensorFlow】02 卷积神经网络与复杂数据集</a>
+    </h1>
+  
+
+
+        
+        <a href="/2019/10/31/【Introduction-to-TensorFlow】02-卷积神经网络与复杂数据集/" class="archive-article-date">
+  	<time datetime="2019-10-31T15:30:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-31</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>上一节使用了几层简单的神经网络实现了对Fashion MNIST数据集中10种衣物的识别。我们将一张图的每一个像素都作为一个参考因素，来训练我们的模型，但是其实一张图有很多没有用的地方，这就给训练模型增加了负担。那么接下来要学习的，就是一种能够少注意图像冗余信息，多注意图像重要信息的模型。</p>
+<p>本节包括week3和week4的内容。week3讲述了CNN，卷积神经网络，一种压缩图像、获取图像特征的模型。本节首先概述CNN的重要概念：卷积，池化，然后使用TF实现这两个概念，搭建一个卷积神经网络，在Fashion MNIST中训练。</p>
+<p>Fashion MNIST的图片时28*28的小图，且所有的物体都居中展示。week4则将进一步学习如何使用TF的API对更大、更复杂、更不整齐的图像进行预处理，并且在预处理后的图像上施展CNN的魔法。</p>
+        
+          <a class="article-more-a" href="/2019/10/31/【Introduction-to-TensorFlow】02-卷积神经网络与复杂数据集/#more">more >></a>
+        
+      
+
+      
+
+      
+    
+      <div class="declare" hidden="hidden"></div>
+    
+
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">世界之内</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">机器学习</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/10/31/【Introduction-to-TensorFlow】02-卷积神经网络与复杂数据集/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-【Introduction-to-TensorFlow】02-初识机器学习与计算机视觉" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -247,20 +336,20 @@
 
 
   
-    <article id="post-【TF-in-Practice】01-TF-快速入门" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-【Introduction-to-TensorFlow】01-TF-快速入门" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/10/29/【TF-in-Practice】01-TF-快速入门/">【Introduction to TensorFlow】01 TF 快速入门</a>
+      <a class="article-title" href="/2019/10/29/【Introduction-to-TensorFlow】01-TF-快速入门/">【Introduction to TensorFlow】01 TF 快速入门</a>
     </h1>
   
 
 
         
-        <a href="/2019/10/29/【TF-in-Practice】01-TF-快速入门/" class="archive-article-date">
+        <a href="/2019/10/29/【Introduction-to-TensorFlow】01-TF-快速入门/" class="archive-article-date">
   	<time datetime="2019-10-29T07:38:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-29</time>
 </a>
         
@@ -275,7 +364,7 @@
 <li><strong>原文链接：</strong> <a href="http://wdxmzy.com/course/cs20-01/2019/08/03/" target="_blank" rel="noopener">http://wdxmzy.com/course/cs20-01/2019/08/03/</a></li>
 </ul>
         
-          <a class="article-more-a" href="/2019/10/29/【TF-in-Practice】01-TF-快速入门/#more">more >></a>
+          <a class="article-more-a" href="/2019/10/29/【Introduction-to-TensorFlow】01-TF-快速入门/#more">more >></a>
         
       
 
@@ -309,7 +398,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2019/10/29/【TF-in-Practice】01-TF-快速入门/">展开全文 >></a>
+          <a class="article-more-a" href="/2019/10/29/【Introduction-to-TensorFlow】01-TF-快速入门/">展开全文 >></a>
         </p>
       
 
@@ -919,99 +1008,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2019/08/23/虚无-纵欲/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-周记-尘埃落定" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/06/29/周记-尘埃落定/">周记|尘埃落定</a>
-    </h1>
-  
-
-
-        
-        <a href="/2019/06/29/周记-尘埃落定/" class="archive-article-date">
-  	<time datetime="2019-06-29T14:02:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-06-29</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <blockquote>
-<p>有海涅的悲歌为证：</p>
-<blockquote>
-<p>在我的记忆之中，</p>
-<p>有一朵紫罗兰熠熠生辉。</p>
-<p>这轻狂的姑娘！我竟未染指！！</p>
-<p>妈的，我好不后悔！！</p>
-</blockquote>
-<p>-王小波《似水流年》</p>
-</blockquote>
-<p>
-        
-          <a class="article-more-a" href="/2019/06/29/周记-尘埃落定/#more">more >></a>
-        
-      
-
-      
-
-      
-    
-      <div class="declare" hidden="hidden"></div>
-    
-
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/06/29/周记-尘埃落定/">展开全文 >></a>
         </p>
       
 
