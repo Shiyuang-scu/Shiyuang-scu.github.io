@@ -7,13 +7,13 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://rationalist.me">
-  <title>【Introduction to TensorFlow】02 卷积神经网络与复杂数据集 | ClowNaxcvd</title>
+  <title>【Introduction to TensorFlow】03 卷积神经网络与复杂数据集 | ClowNaxcvd</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="上一节使用了几层简单的神经网络实现了对Fashion MNIST数据集中10种衣物的识别。我们将一张图的每一个像素都作为一个参考因素，来训练我们的模型，但是其实一张图有很多没有用的地方，这就给训练模型增加了负担。那么接下来要学习的，就是一种能够少注意图像冗余信息，多注意图像重要信息的模型。 本节包括week3和week4的内容。week3讲述了CNN，卷积神经网络，一种压缩图像、获取图像特征的模型">
 <meta name="keywords" content="世界之内,机器学习">
 <meta property="og:type" content="article">
-<meta property="og:title" content="【Introduction to TensorFlow】02 卷积神经网络与复杂数据集">
-<meta property="og:url" content="http://rationalist.me/2019/10/31/【Introduction-to-TensorFlow】02-卷积神经网络与复杂数据集/index.html">
+<meta property="og:title" content="【Introduction to TensorFlow】03 卷积神经网络与复杂数据集">
+<meta property="og:url" content="http://rationalist.me/2019/10/31/【Introduction-to-TensorFlow】03-卷积神经网络与复杂数据集/index.html">
 <meta property="og:site_name" content="ClowNaxcvd">
 <meta property="og:description" content="上一节使用了几层简单的神经网络实现了对Fashion MNIST数据集中10种衣物的识别。我们将一张图的每一个像素都作为一个参考因素，来训练我们的模型，但是其实一张图有很多没有用的地方，这就给训练模型增加了负担。那么接下来要学习的，就是一种能够少注意图像冗余信息，多注意图像重要信息的模型。 本节包括week3和week4的内容。week3讲述了CNN，卷积神经网络，一种压缩图像、获取图像特征的模型">
 <meta property="og:locale" content="zh-Hans">
@@ -24,9 +24,9 @@
 <meta property="og:image" content="https://raw.githubusercontent.com/Shiyuang-scu/blog_img/master/tf-02-5.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/Shiyuang-scu/blog_img/master/tf-02-6.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/Shiyuang-scu/blog_img/master/tf-02-7.png">
-<meta property="og:updated_time" content="2019-10-31T15:42:54.772Z">
+<meta property="og:updated_time" content="2019-10-31T15:45:34.214Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="【Introduction to TensorFlow】02 卷积神经网络与复杂数据集">
+<meta name="twitter:title" content="【Introduction to TensorFlow】03 卷积神经网络与复杂数据集">
 <meta name="twitter:description" content="上一节使用了几层简单的神经网络实现了对Fashion MNIST数据集中10种衣物的识别。我们将一张图的每一个像素都作为一个参考因素，来训练我们的模型，但是其实一张图有很多没有用的地方，这就给训练模型增加了负担。那么接下来要学习的，就是一种能够少注意图像冗余信息，多注意图像重要信息的模型。 本节包括week3和week4的内容。week3讲述了CNN，卷积神经网络，一种压缩图像、获取图像特征的模型">
 <meta name="twitter:image" content="https://raw.githubusercontent.com/Shiyuang-scu/blog_img/master/tf-02-1.png">
   
@@ -171,20 +171,20 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-【Introduction-to-TensorFlow】02-卷积神经网络与复杂数据集" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-【Introduction-to-TensorFlow】03-卷积神经网络与复杂数据集" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      【Introduction to TensorFlow】02 卷积神经网络与复杂数据集
+      【Introduction to TensorFlow】03 卷积神经网络与复杂数据集
     </h1>
   
 
 
         
-        <a href="/2019/10/31/【Introduction-to-TensorFlow】02-卷积神经网络与复杂数据集/" class="archive-article-date">
+        <a href="/2019/10/31/【Introduction-to-TensorFlow】03-卷积神经网络与复杂数据集/" class="archive-article-date">
   	<time datetime="2019-10-31T15:30:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-31</time>
 </a>
         
@@ -306,7 +306,7 @@
         
         <br>
         <strong>本文链接：</strong>
-        http://rationalist.me/2019/10/31/【Introduction-to-TensorFlow】02-卷积神经网络与复杂数据集/
+        http://rationalist.me/2019/10/31/【Introduction-to-TensorFlow】03-卷积神经网络与复杂数据集/
         <br>
         <strong>版权声明：</strong>
         本博客所有文章除特别声明外，均采用
@@ -385,7 +385,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://rationalist.me/2019/10/31/【Introduction-to-TensorFlow】02-卷积神经网络与复杂数据集/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://rationalist.me/2019/10/31/【Introduction-to-TensorFlow】03-卷积神经网络与复杂数据集/" alt="微信分享二维码">
     </div>
 </div>
 
