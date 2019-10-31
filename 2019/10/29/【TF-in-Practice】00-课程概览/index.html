@@ -9,19 +9,19 @@
   <link rel="dns-prefetch" href="http://rationalist.me">
   <title>【Introduction to TensorFlow】00 课程概览 | ClowNaxcvd</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="《Introduction to TensorFlow for Artificial Intelligence, Machine Learning, and Deep Learning》这门课是 《TensorFlow in Practice 专项课程》的第一部分，主要教授如何使用TensorFlow搭建模型。 学了很多理论，常常胸有成竹，但是一遇到复现，就各种问题都跳了出来。所以静下心来，好好学">
+  <meta name="description" content="课程内容为《TensorFlow in Practice 专项课程》，主要教授如何使用TensorFlow搭建深度学习模型。 学了很多理论，常常胸有成竹，但是一遇到复现，就各种问题都跳了出来。所以静下心来，好好学习一门工具是非常有必要的，所谓工欲善其事必先利其器。网上的资料很分散，而且常常带有个人的代码风格，TF的版本也不统一，因此跟着Coursera的课走，会省心很多。 之所以会下定决心好好学学">
 <meta name="keywords" content="世界之内,机器学习">
 <meta property="og:type" content="article">
 <meta property="og:title" content="【Introduction to TensorFlow】00 课程概览">
 <meta property="og:url" content="http://rationalist.me/2019/10/29/【TF-in-Practice】00-课程概览/index.html">
 <meta property="og:site_name" content="ClowNaxcvd">
-<meta property="og:description" content="《Introduction to TensorFlow for Artificial Intelligence, Machine Learning, and Deep Learning》这门课是 《TensorFlow in Practice 专项课程》的第一部分，主要教授如何使用TensorFlow搭建模型。 学了很多理论，常常胸有成竹，但是一遇到复现，就各种问题都跳了出来。所以静下心来，好好学">
+<meta property="og:description" content="课程内容为《TensorFlow in Practice 专项课程》，主要教授如何使用TensorFlow搭建深度学习模型。 学了很多理论，常常胸有成竹，但是一遇到复现，就各种问题都跳了出来。所以静下心来，好好学习一门工具是非常有必要的，所谓工欲善其事必先利其器。网上的资料很分散，而且常常带有个人的代码风格，TF的版本也不统一，因此跟着Coursera的课走，会省心很多。 之所以会下定决心好好学学">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://raw.githubusercontent.com/Shiyuang-scu/blog_img/master/tf-02-8.jpg">
-<meta property="og:updated_time" content="2019-10-31T15:40:42.798Z">
+<meta property="og:updated_time" content="2019-10-31T15:57:16.058Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【Introduction to TensorFlow】00 课程概览">
-<meta name="twitter:description" content="《Introduction to TensorFlow for Artificial Intelligence, Machine Learning, and Deep Learning》这门课是 《TensorFlow in Practice 专项课程》的第一部分，主要教授如何使用TensorFlow搭建模型。 学了很多理论，常常胸有成竹，但是一遇到复现，就各种问题都跳了出来。所以静下心来，好好学">
+<meta name="twitter:description" content="课程内容为《TensorFlow in Practice 专项课程》，主要教授如何使用TensorFlow搭建深度学习模型。 学了很多理论，常常胸有成竹，但是一遇到复现，就各种问题都跳了出来。所以静下心来，好好学习一门工具是非常有必要的，所谓工欲善其事必先利其器。网上的资料很分散，而且常常带有个人的代码风格，TF的版本也不统一，因此跟着Coursera的课走，会省心很多。 之所以会下定决心好好学学">
 <meta name="twitter:image" content="https://raw.githubusercontent.com/Shiyuang-scu/blog_img/master/tf-02-8.jpg">
   
     <link rel="alternative" href="/atom.xml" title="ClowNaxcvd" type="application/atom+xml">
@@ -186,34 +186,42 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>《Introduction to TensorFlow for Artificial Intelligence, Machine Learning, and Deep Learning》这门课是 《TensorFlow in Practice 专项课程》的第一部分，主要教授如何使用TensorFlow搭建模型。</p>
+        <p>课程内容为《TensorFlow in Practice 专项课程》，主要教授如何使用TensorFlow搭建深度学习模型。</p>
 <p>学了很多理论，常常胸有成竹，但是一遇到复现，就各种问题都跳了出来。所以静下心来，好好学习一门工具是非常有必要的，所谓工欲善其事必先利其器。网上的资料很分散，而且常常带有个人的代码风格，TF的版本也不统一，因此跟着Coursera的课走，会省心很多。</p>
 <p>之所以会下定决心好好学学基础，是因为看到 <a href="https://wdxmzy.com/" target="_blank" rel="noopener">小土刀</a> 写了Stanford cs20 的学习笔记，他都肯静下心来好好学习，我为什么不呢？所以，我想以他为榜样，模仿他的风格，来记录我的学习过程。因为是模仿，所以肯定会有很多借鉴。</p>
-<p>我对这一系列的学习笔记，定位是<strong>学习记录</strong>，而非有价值的学习资料。所以不求能够帮助到别人，只为能够帮助自己将所学总结起来而已。</p>
+<p>我对这一系列的学习笔记，定位是<strong>学习记录</strong>，而不是有价值的学习资料。所以不求能够帮助到别人，只为能够帮助自己将所学总结起来而已。</p>
 <a id="more"></a>
 <hr>
 <p>更新历史</p>
 <ul>
-<li>2019.10.29 完成初稿，增加「01 TensorFlow快速入门」 和 「02 初识机器学习与计算机视觉」</li>
-<li>2019.10.31 增加「03 卷积神经网络与复杂数据集」</li>
+<li>2019.10.29 完成初稿，增加「TF01-01 TensorFlow快速入门」 和 「TF01-02 初识机器学习与计算机视觉」</li>
+<li>2019.10.31 增加「TF01-03 卷积神经网络与复杂数据集」，完成Course 1</li>
 </ul>
 <h1 id="文章索引"><a href="#文章索引" class="headerlink" title="文章索引"></a>文章索引</h1><ul>
-<li><a href="http://rationalist.me/2019/10/29/[TF-in-Practice]01-TF-快速入门/">01 TensorFlow快速入门</a></li>
-<li><a href="http://rationalist.me/2019/10/29/[TF-in-Practice]02-初识机器学习与计算机视觉/">02 初识机器学习与计算机视觉</a></li>
-<li><a href="http://rationalist.me/2019/10/31/[Introduction-to-TensorFlow]03 卷积神经网络与复杂数据集/">03 卷积神经网络与复杂数据集</a></li>
+<li>Course1 - Introduction to TensorFlow for Artificial Intelligence, Machine Learning, and Deep Learning<ul>
+<li><a href="http://rationalist.me/2019/10/29/[Introduction-to-TensorFlow]01-TF-快速入门/">TF01-01 TensorFlow快速入门</a></li>
+<li><a href="http://rationalist.me/2019/10/29/[Introduction-to-TensorFlow]02-初识机器学习与计算机视觉/">TF01-02 初识机器学习与计算机视觉</a></li>
+<li><a href="http://rationalist.me/2019/10/31/[Introduction-to-TensorFlow]03-卷积神经网络与复杂数据集/">TF01-03 卷积神经网络与复杂数据集</a></li>
+</ul>
+</li>
 </ul>
 <h1 id="本课程会带来什么收获"><a href="#本课程会带来什么收获" class="headerlink" title="本课程会带来什么收获"></a>本课程会带来什么收获</h1><ul>
+<li><p>Course1 - Introduction to TensorFlow for Artificial Intelligence, Machine Learning, and Deep Learning</p>
+<ul>
 <li>Learn best practices for using TensorFlow, a popular open-source machine learning framework</li>
 <li>Build a basic neural network in TensorFlow</li>
 <li>Train a neural network for a computer vision application</li>
 <li>Understand how to use convolutions to improve your neural network</li>
 </ul>
+</li>
+</ul>
 <h1 id="课程大纲"><a href="#课程大纲" class="headerlink" title="课程大纲"></a>课程大纲</h1><ul>
+<li><p>Course1 - Introduction to TensorFlow for Artificial Intelligence, Machine Learning, and Deep Learning</p>
+<ul>
 <li><p>Week1 A New Programming Paradigm</p>
 <ul>
 <li>A primer in machine learning</li>
 <li>The ‘Hello World’ of neural networks</li>
-<li>Working through ‘Hello World’ in TensorFlow and Python</li>
 </ul>
 </li>
 <li><p>Week2 Introduction to Computer Vision</p>
@@ -221,9 +229,7 @@
 <li>An Introduction to computer vision</li>
 <li>Writing code to load training data</li>
 <li>Coding a Computer Vision Neural Network</li>
-<li>Walk through a Notebook for computer vision</li>
 <li>Using Callbacks to control training</li>
-<li>Walk through a notebook with Callbacks</li>
 </ul>
 </li>
 <li><p>Week3 Enhancing Vision with Convolutional Neural Networks</p>
@@ -232,7 +238,6 @@
 <li>Implementing convolutional layers</li>
 <li>Implementing pooling layers</li>
 <li>Improving the Fashion classifier with convolutions</li>
-<li>Walking through convolutions</li>
 </ul>
 </li>
 <li><p>Week4 Using Real-world Images</p>
@@ -240,13 +245,13 @@
 <li>Understanding ImageGenerator</li>
 <li>Defining a ConvNet to use complex images</li>
 <li>Training the ConvNet with fit_generator</li>
-<li>Walking through developing a ConvNet</li>
-<li>Walking through training the ConvNet with fit_generator</li>
 <li>Adding automatic validation to test accuracy</li>
 <li>Exploring the impact of compressing images</li>
 </ul>
 </li>
 <li><p>结课证书</p>
+</li>
+</ul>
 </li>
 </ul>
 <p><img src="https://raw.githubusercontent.com/Shiyuang-scu/blog_img/master/tf-02-8.jpg" alt="certification"></p>
@@ -598,11 +603,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+                <a href="javascript:void(0)" class="js-tag color5">世界之外</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">世界之外</a>
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
               </li>
              
               <li class="article-tag-list-item">
