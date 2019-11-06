@@ -21,7 +21,7 @@
 <meta property="og:image" content="http://www.gwylab.com/files/Flow-based%20Model%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.files/image056.jpg">
 <meta property="og:image" content="http://www.gwylab.com/files/Flow-based%20Model%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.files/image072.jpg">
 <meta property="og:image" content="http://www.gwylab.com/files/Flow-based%20Model%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.files/image073.jpg">
-<meta property="og:updated_time" content="2019-11-06T11:23:28.044Z">
+<meta property="og:updated_time" content="2019-11-06T11:26:29.594Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="机器学习|Flow-based Model学习笔记">
 <meta name="twitter:description" content="本文简单记录了我在学习Flow-based Model时的笔记，阐述了对模型概念、思路的模糊且不准确的理解。">
@@ -215,7 +215,7 @@
 <li>$f(x)$可逆，且容易计算。</li>
 </ol>
 <p>两个要求，都提出了一个问题：如何设计$f(x)$？</p>
-<p>这就是Flow的厉害之处，也是它的核心。为了满足上述要求，Flow-based Model采用了一种称为耦合层（Coupling Layer）的设计来实现，它将$D$维的$x$分为两个部分$x_1$和$x_2$，并取以下变换：<br>$$<br>z_1=x_1\z_2=F(x_1) \odot x_2+H(x_1)<br>$$<br>计算过程如下图：</p>
+<p>这就是Flow的厉害之处，也是它的核心。为了满足上述要求，Flow-based Model采用了一种称为耦合层（Coupling Layer）的设计来实现，它将$D$维的$x$分为两个部分$x_1$和$x_2$，并取以下变换：<br>$$<br>z_1=x_1 \<br>z_2=F(x_1) \odot x_2+H(x_1)<br>$$<br>计算过程如下图：</p>
 <p><img src="http://www.gwylab.com/files/Flow-based%20Model%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.files/image056.jpg" alt="img"></p>
 <p>这样一来，Jacobian非常好算：<br>$$<br>\left[\frac{\partial \boldsymbol{z}}{\partial \boldsymbol{x}}\right]=\begin{pmatrix}\mathbb{I}_d &amp; \mathbb{O} \ \left[\frac{\partial \boldsymbol{F}}{\partial \boldsymbol{x}_1}\otimes \boldsymbol{x}_2+\frac{\partial \boldsymbol{H}}{\partial \boldsymbol{x}_1}\right] &amp; \boldsymbol{F}\end{pmatrix}\tag{2}<br>$$<br>因为右上角是0，所以不管左下角是什么都无所谓，Jacobian的结果只是对角线上的行列式，也就是$F$各个元素之积。所以直接用一层神经网络建模输出$F$就好了。</p>
 <p>然后很自然地会想到，为了增加$f(x)$非线性拟合能力，我们多加几层映射：</p>
@@ -556,11 +556,11 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+                <a href="javascript:void(0)" class="js-tag color5">世界之内</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">世界之内</a>
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
               </li>
              
               <li class="article-tag-list-item">
