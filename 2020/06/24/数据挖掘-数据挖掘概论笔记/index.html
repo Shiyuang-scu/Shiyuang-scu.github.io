@@ -7,25 +7,35 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://rationalist.me">
-  <title>《自控力》读书笔记 | ClowNaxcvd</title>
+  <title>数据挖掘|数据挖掘概论笔记 | ClowNaxcvd</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="在寒假看了《自控力》，怎么说呢，结合了最新的科学发现，昭示的是人尽皆知的道理。对于我这种没有自控力的人来说，挺有帮助的。 下面是我的读书笔记（拙劣的思维导图），依旧只是记了我觉得对我有帮助的几章。 因为我懒，就只附带一点文字说明吧= = Chapter 4 善导致了恶，所谓的道德许可效应普林斯顿大学的心理学家通过一项关于性别歧视的测试，发现强烈驳斥了性别歧视言论的学生，因经过“驳斥”后感觉良好，所">
-<meta name="keywords" content="随笔">
+  <meta name="description" content="本文简单记录了数据挖掘的基本概念和基础算法，主要起记录作用。">
+<meta name="keywords" content="世界之内,数据挖掘">
 <meta property="og:type" content="article">
-<meta property="og:title" content="《自控力》读书笔记">
-<meta property="og:url" content="http://rationalist.me/2018/04/22/《自控力》读书笔记/index.html">
+<meta property="og:title" content="数据挖掘|数据挖掘概论笔记">
+<meta property="og:url" content="http://rationalist.me/2020/06/24/数据挖掘-数据挖掘概论笔记/index.html">
 <meta property="og:site_name" content="ClowNaxcvd">
-<meta property="og:description" content="在寒假看了《自控力》，怎么说呢，结合了最新的科学发现，昭示的是人尽皆知的道理。对于我这种没有自控力的人来说，挺有帮助的。 下面是我的读书笔记（拙劣的思维导图），依旧只是记了我觉得对我有帮助的几章。 因为我懒，就只附带一点文字说明吧= = Chapter 4 善导致了恶，所谓的道德许可效应普林斯顿大学的心理学家通过一项关于性别歧视的测试，发现强烈驳斥了性别歧视言论的学生，因经过“驳斥”后感觉良好，所">
+<meta property="og:description" content="本文简单记录了数据挖掘的基本概念和基础算法，主要起记录作用。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://raw.githubusercontent.com/Shiyuang-scu/blog_img/master/zkl4.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/Shiyuang-scu/blog_img/master/zkl5.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/Shiyuang-scu/blog_img/master/zkl6.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/Shiyuang-scu/blog_img/master/zkl8.png">
-<meta property="og:updated_time" content="2018-11-21T22:54:27.160Z">
+<meta property="og:image" content="https://gitee.com/clownaxcvd/blogimg/raw/master/img/image-20200620231230474.png">
+<meta property="og:image" content="https://gitee.com/clownaxcvd/blogimg/raw/master/img/unsupervised-learning.png">
+<meta property="og:image" content="https://gitee.com/clownaxcvd/blogimg/raw/master/img/overfitting.png">
+<meta property="og:image" content="https://gitee.com/clownaxcvd/blogimg/raw/master/img/boost-learning.png">
+<meta property="og:image" content="https://gitee.com/clownaxcvd/blogimg/raw/master/img/equation">
+<meta property="og:image" content="https://www.zhihu.com/equation?tex=%5Csigma">
+<meta property="og:image" content="https://www.zhihu.com/equation?tex=P(|x-\mu|>3\sigma">
+<meta property="og:image" content="https://www.zhihu.com/equation?tex=\Sigma%3D\mathbf{I}">
+<meta property="og:image" content="https://gitee.com/clownaxcvd/blogimg/raw/master/img/semisupervised-learning.png">
+<meta property="og:image" content="https://gitee.com/clownaxcvd/blogimg/raw/master/img/pulu-learning.png">
+<meta property="og:image" content="https://gitee.com/clownaxcvd/blogimg/raw/master/img/apriori-rule.png">
+<meta property="og:image" content="https://gitee.com/clownaxcvd/blogimg/raw/master/img/007S8ZIlly1gg3ao52y9sj30j506e0v2.jpg">
+<meta property="og:image" content="https://gitee.com/clownaxcvd/blogimg/raw/master/img/gsp.png">
+<meta property="og:image" content="https://gitee.com/clownaxcvd/blogimg/raw/master/img/em-algorithm.png">
+<meta property="og:updated_time" content="2020-06-24T06:09:14.483Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="《自控力》读书笔记">
-<meta name="twitter:description" content="在寒假看了《自控力》，怎么说呢，结合了最新的科学发现，昭示的是人尽皆知的道理。对于我这种没有自控力的人来说，挺有帮助的。 下面是我的读书笔记（拙劣的思维导图），依旧只是记了我觉得对我有帮助的几章。 因为我懒，就只附带一点文字说明吧= = Chapter 4 善导致了恶，所谓的道德许可效应普林斯顿大学的心理学家通过一项关于性别歧视的测试，发现强烈驳斥了性别歧视言论的学生，因经过“驳斥”后感觉良好，所">
-<meta name="twitter:image" content="https://raw.githubusercontent.com/Shiyuang-scu/blog_img/master/zkl4.png">
+<meta name="twitter:title" content="数据挖掘|数据挖掘概论笔记">
+<meta name="twitter:description" content="本文简单记录了数据挖掘的基本概念和基础算法，主要起记录作用。">
+<meta name="twitter:image" content="https://gitee.com/clownaxcvd/blogimg/raw/master/img/image-20200620231230474.png">
   
     <link rel="alternative" href="/atom.xml" title="ClowNaxcvd" type="application/atom+xml">
   
@@ -168,52 +178,536 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-《自控力》读书笔记" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-数据挖掘-数据挖掘概论笔记" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      《自控力》读书笔记
+      数据挖掘|数据挖掘概论笔记
     </h1>
   
 
 
         
-        <a href="/2018/04/22/《自控力》读书笔记/" class="archive-article-date">
-  	<time datetime="2018-04-21T16:11:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-22</time>
+        <a href="/2020/06/24/数据挖掘-数据挖掘概论笔记/" class="archive-article-date">
+  	<time datetime="2020-06-24T06:01:37.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-24</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>在寒假看了《自控力》，怎么说呢，结合了最新的科学发现，昭示的是人尽皆知的道理。对于我这种没有自控力的人来说，挺有帮助的。</p>
-<p>下面是我的读书笔记（拙劣的思维导图），依旧只是记了我觉得对我有帮助的几章。</p>
-<p>因为我懒，就只附带一点文字说明吧= =</p>
-<h1 id="Chapter-4"><a href="#Chapter-4" class="headerlink" title="Chapter 4"></a>Chapter 4</h1><p><img src="https://raw.githubusercontent.com/Shiyuang-scu/blog_img/master/zkl4.png" alt="image"></p>
-<h2 id="善导致了恶，所谓的道德许可效应"><a href="#善导致了恶，所谓的道德许可效应" class="headerlink" title="善导致了恶，所谓的道德许可效应"></a>善导致了恶，所谓的道德许可效应</h2><p>普林斯顿大学的心理学家通过一项关于性别歧视的测试，发现强烈驳斥了性别歧视言论的学生，因经过“驳斥”后感觉良好，所以放松警惕，以致后面得测试中更容易作出有歧视色彩的决定。他们称这种现象为“道德许可效应”。</p>
+        <p>本文简单记录了数据挖掘的基本概念和基础算法，主要起记录作用。</p>
 <a id="more"></a>
-<p>我们其实一直都知道，我们会沦陷于诱惑。我们为自己编造无数的理由和谎言，来为恶性辩解，其实，真实的我们只不过是想做坏事，单纯想做坏事而已。</p>
-<p>要牢记啊，那个善良的自己，真正想要变好的自己，才是正确的自己！</p>
-<h2 id="对未来的想象与寄托"><a href="#对未来的想象与寄托" class="headerlink" title="对未来的想象与寄托"></a>对未来的想象与寄托</h2><p>我们都会努力说服自己，明天的我会做得更好，今天就暂时放纵一下吧。</p>
-<h2 id="减少对未来的想象与寄托：减少行为的变化性"><a href="#减少对未来的想象与寄托：减少行为的变化性" class="headerlink" title="减少对未来的想象与寄托：减少行为的变化性"></a>减少对未来的想象与寄托：减少行为的变化性</h2><p>倒逼自己。在变化性减少的情况下，一方面让自己愧疚，另一方面，由于大幅的减少会导致反弹，适当的减少才是最好的解决方法。</p>
-<h1 id="Chapter-5"><a href="#Chapter-5" class="headerlink" title="Chapter 5"></a>Chapter 5</h1><p><img src="https://raw.githubusercontent.com/Shiyuang-scu/blog_img/master/zkl5.png" alt="image"></p>
-<h2 id="多巴胺"><a href="#多巴胺" class="headerlink" title="多巴胺"></a>多巴胺</h2><p>我们就像巴甫洛夫的狗，听到铃声就会流口水。</p>
-<p>我们就像自己控制电击器的小白鼠，不停地电击自己以求获得快感，即使筋疲力竭也在所不辞。</p>
-<p>QQ、微信、微博，就是现代版的电击器。</p>
-<h2 id="多巴胺也许是好的"><a href="#多巴胺也许是好的" class="headerlink" title="多巴胺也许是好的"></a>多巴胺也许是好的</h2><p>给自己做的正确的事情，一些小奖励。</p>
-<h2 id="多巴胺也许是坏的"><a href="#多巴胺也许是坏的" class="headerlink" title="多巴胺也许是坏的"></a>多巴胺也许是坏的</h2><h3 id="奖励的承诺而非奖励"><a href="#奖励的承诺而非奖励" class="headerlink" title="奖励的承诺而非奖励"></a>奖励的承诺而非奖励</h3><p>多巴胺给人奖励的承诺，而不是奖励。</p>
-<p>通俗地说，多巴胺使人产生追逐某一样事物的强烈的欲望，使人相信，这样做会给自己带来快感、带来快乐。它并没有直接给人快乐，而是给人追求快乐的动力。但实际上，结果快不快乐并不重要。</p>
-<h3 id="增加了压力和焦虑"><a href="#增加了压力和焦虑" class="headerlink" title="增加了压力和焦虑"></a>增加了压力和焦虑</h3><p>在放慢的过程中，大脑会意识到正在追求的东西反而带来了痛苦。<br>为了使人追逐快乐，多巴胺会增加压力，以便让人更歇斯底里地追求虚无的快乐。</p>
-<h2 id="放慢追求的脚步"><a href="#放慢追求的脚步" class="headerlink" title="放慢追求的脚步"></a>放慢追求的脚步</h2><p>在放慢的过程中，大脑会意识到正在追求的东西反而带来了痛苦。</p>
-<p><strong>区分让我们生活有意义的真实的奖励，与让我们生活更糟糕的奖励承诺</strong></p>
-<h1 id="Chapter-6"><a href="#Chapter-6" class="headerlink" title="Chapter 6"></a>Chapter 6</h1><p><img src="https://raw.githubusercontent.com/Shiyuang-scu/blog_img/master/zkl6.png" alt="image"></p>
-<h2 id="改变的承诺"><a href="#改变的承诺" class="headerlink" title="改变的承诺"></a>改变的承诺</h2><p>我要改变！！！<br>想象得过于美好，过于乐观，沉浸其中无法自拔。</p>
-<h1 id="Chapter-8"><a href="#Chapter-8" class="headerlink" title="Chapter 8"></a>Chapter 8</h1><p><img src="https://raw.githubusercontent.com/Shiyuang-scu/blog_img/master/zkl8.png" alt="image"></p>
-<h2 id="利用自己的情绪"><a href="#利用自己的情绪" class="headerlink" title="利用自己的情绪"></a>利用自己的情绪</h2><p>人脑情绪的生理基础比理性的生理基础更加原始，更接近底层，因此也就更有效。</p>
-
+<h1 id="一、概念问题（了解就好）"><a href="#一、概念问题（了解就好）" class="headerlink" title="一、概念问题（了解就好）"></a>一、概念问题（了解就好）</h1><h2 id="（一）数据挖掘"><a href="#（一）数据挖掘" class="headerlink" title="（一）数据挖掘"></a>（一）数据挖掘</h2><p>它是数据库知识发现（Knowledge-Discovery in Databases KDD）中的一个步骤。</p>
+<p>数据挖掘一般是指从大量的数据中通过算法搜索隐藏于其中信息的过程。</p>
+<p>数据挖掘通常与计算机科学有关，并通过统计、在线分析处理、情报检索、机器学习、专家系统（依靠过去的经验法则）和模式识别等诸多方法来实现上述目标。</p>
+<h2 id="（二）机器学习"><a href="#（二）机器学习" class="headerlink" title="（二）机器学习"></a>（二）机器学习</h2><p>机器学习这门学科所关注的问题是：计算机程序如何随着经验积累，自动提高性能。——Tom Mitchell</p>
+<h2 id="（三）有监督学习"><a href="#（三）有监督学习" class="headerlink" title="（三）有监督学习"></a>（三）有监督学习</h2><p><img src="https://gitee.com/clownaxcvd/blogimg/raw/master/img/image-20200620231230474.png" alt="supervised-learning" style="zoom:50%;"></p>
+<h2 id="（四）无监督学习"><a href="#（四）无监督学习" class="headerlink" title="（四）无监督学习"></a>（四）无监督学习</h2><p><img src="https://gitee.com/clownaxcvd/blogimg/raw/master/img/unsupervised-learning.png" alt="unsupervised-learning" style="zoom:50%;"></p>
+<p>聚类就是无监督学习。</p>
+<p>聚类是一种发现数据集之中的<strong>内在结构的技术</strong>，聚类是一个将数据集中某些方面相似的数据成员<strong>进行分类组织的过程</strong>。</p>
+<h2 id="（五）分类"><a href="#（五）分类" class="headerlink" title="（五）分类"></a>（五）分类</h2><p>分类是数据挖掘中的一种主要分析手段，分类的任务是对数据集进行学习并构造一个拥有预测功能的分类模型，用于预测未知样本的类标号。</p>
+<h2 id="（六）回归"><a href="#（六）回归" class="headerlink" title="（六）回归"></a>（六）回归</h2><p>回归是Frances Galton提出的一种统计方法。回归分析可以对<strong>预测变量</strong>和<strong>响应变量</strong>之间的联系建模。</p>
+<p>在数据挖掘环境下：</p>
+<p><strong>预测变量</strong>是描述样本的感兴趣的属性，一般，预测变量的值是已知的，<strong>响应变量</strong>是我们要预测的那个。</p>
+<hr>
+<p>分类和回归都有预测的功能，但是：</p>
+<ul>
+<li><p>分类预测的输出为离散或标称的属性；</p>
+</li>
+<li><p>回归预测的输出为连续属性值；</p>
+</li>
+</ul>
+<h2 id="（七）关联规则、序列模式"><a href="#（七）关联规则、序列模式" class="headerlink" title="（七）关联规则、序列模式"></a>（七）关联规则、序列模式</h2><ul>
+<li>关联规则</li>
+</ul>
+<p>关联规则是形如X→Y的蕴涵式，其中， X和Y分别称为关联规则的先导(antecedent或left-hand-side, LHS)和后继(consequent或right-hand-side, RHS) 。其中，关联规则XY，存在支持度和信任度。</p>
+<ul>
+<li>序列模式</li>
+</ul>
+<p>假定有一个数据集D，它含有n个序列Sequence，Sequence由多个事件组成，Sequence中的多个事件是时间有序的。可以认为事件号（eventid）更大的事件在eventid小的事件之后发生。</p>
+<p>如果有一个序列S，它是数据集D的序列的子序列，那么它的支持度的计算方式为：</p>
+<pre><code>support(s) = s在n个序列中出现的次数
+</code></pre><p>如果spport(s)&gt;min_support，则我们可以把它称为频繁序列，或者<strong>序列模式</strong>。</p>
+<h2 id="（八）关联规则的支持度、序列模式的支持度"><a href="#（八）关联规则的支持度、序列模式的支持度" class="headerlink" title="（八）关联规则的支持度、序列模式的支持度"></a>（八）关联规则的支持度、序列模式的支持度</h2><ul>
+<li>关联规则的支持度</li>
+</ul>
+<p>关联规则在D中的支持度(support)是D中事务同时包含X、Y的百分比，即<strong>概率</strong>；</p>
+<ul>
+<li>序列模式的支持度</li>
+</ul>
+<p>序列s的支持度指包含s的所有<strong>数据序列</strong>（与单个数据对象（上例中的A/B/C）相关联的事件的有序列表）所占的比例</p>
+<h2 id="（九）关联规则的置信度"><a href="#（九）关联规则的置信度" class="headerlink" title="（九）关联规则的置信度"></a>（九）关联规则的置信度</h2><p>置信度(confidence)是D中事务已经包含X的情况下，包含Y的百分比，即<strong>条件概率</strong>。</p>
+<h2 id="（十）分类器的准确率"><a href="#（十）分类器的准确率" class="headerlink" title="（十）分类器的准确率"></a>（十）分类器的准确率</h2><p>$$<br>Accucacy = \frac{TP+TN}{TP+TN+FP+FN}​<br>$$</p>
+<h2 id="（十一）分类器的精确率"><a href="#（十一）分类器的精确率" class="headerlink" title="（十一）分类器的精确率"></a>（十一）分类器的精确率</h2><p>$$<br>Precision = \frac{TP}{TP+FP}<br>$$</p>
+<h2 id="（十二）分类器的召回率"><a href="#（十二）分类器的召回率" class="headerlink" title="（十二）分类器的召回率"></a>（十二）分类器的召回率</h2><p>$$<br>Recall = \frac{TP}{TP+FN}<br>$$</p>
+<hr>
+<p>Precision和Recall的区别：</p>
+<p>实际上非常简单，<strong>精确率</strong>是针对我们<strong>预测结果</strong>而言的，它表示的是预测为正的样本中有多少是真正的正样本。那么预测为正就有两种可能了，一种就是把正类预测为正类(TP)，另一种就是把负类预测为正类(FP)，也就是</p>
+<p>$$<br>P=\frac{T P}{T P+F P}<br>$$<br>而<strong>召回率</strong>是针对我们原来的<strong>样本</strong>而言的，它表示的是样本中的正例有多少被预测正确了。那也有两种可能，一种是把原来的正类预测成正类(TP)，另一种就是把原来的正类预测为负类(FN)。</p>
+<p>$$<br>R=\frac{T P}{T P+F N}<br>$$</p>
+<p>在信息检索领域，精确率和召回率又被称为<strong>查准率</strong>和<strong>查全率</strong>，</p>
+<p>查准率＝检索出的相关信息量 / 检索出的信息总量</p>
+<p>查全率＝检索出的相关信息量 / 系统中的相关信息总量</p>
+<h2 id="（十三）过拟合、欠拟合"><a href="#（十三）过拟合、欠拟合" class="headerlink" title="（十三）过拟合、欠拟合"></a>（十三）过拟合、欠拟合</h2><p><img src="https://gitee.com/clownaxcvd/blogimg/raw/master/img/overfitting.png" alt="overfitting" style="zoom:50%;"></p>
+<ul>
+<li>过拟合</li>
+</ul>
+<p>当模型把训练样本自身的一些特点。当做所有潜在样本的共同性质时，学习器的泛化性能下降。这种现象被称为<strong>过拟合</strong>。</p>
+<ul>
+<li>欠拟合</li>
+</ul>
+<p>当模型没有捕捉、学习到训练样本的一般性质、特征时，不能很好地拟合数据。这种现象被称为<strong>欠拟合</strong>。</p>
+<h2 id="（十四）n折交叉验证"><a href="#（十四）n折交叉验证" class="headerlink" title="（十四）n折交叉验证"></a>（十四）n折交叉验证</h2><p>n折交叉验证（<strong>n-fold</strong> <strong>cross validation</strong>）。</p>
+<p>在机器学习中，将数据集A分为训练集B（training set）和测试集C（test set），在样本量不充足的情况下，为了充分利用数据集对模型进行测试，把样本集S分成n份，分别使用其中的(n-1)份作为训练集，剩下的1份作为交叉验证集。取n次结果的平均误差，来评估这个模型。</p>
+<h2 id="（十五）集成学习"><a href="#（十五）集成学习" class="headerlink" title="（十五）集成学习"></a>（十五）集成学习</h2><p><img src="https://gitee.com/clownaxcvd/blogimg/raw/master/img/boost-learning.png" alt="boost-learning" style="zoom:50%;"></p>
+<ul>
+<li>同质的集成<ul>
+<li>基学习器</li>
+</ul>
+</li>
+<li>异质的集成<ul>
+<li>组件学习器</li>
+</ul>
+</li>
+</ul>
+<h2 id="（十六）离群点"><a href="#（十六）离群点" class="headerlink" title="（十六）离群点"></a>（十六）离群点</h2><p>nHawkins的定义：离群点是在数据集中<strong>偏离大部分数据的数据</strong>，使人怀疑这些数据的偏离并非由随机因素产生，而是产生于完全不同的机制。</p>
+<p>nWeisberg的定义：离群点是与数据集中其余部分不服从相同统计模型的数据。</p>
+<p>nSamuels的定义：离群点是足够地不同于数据集中其余部分的数据。</p>
+<p>nPorkess的定义：离群点是远离数据集中其余部分的数据</p>
+<h1 id="二、原理性问题"><a href="#二、原理性问题" class="headerlink" title="二、原理性问题"></a>二、原理性问题</h1><h2 id="（一）数据预处理的任务（数据清洗、数据转换、……）、目的，数据缺失的原因"><a href="#（一）数据预处理的任务（数据清洗、数据转换、……）、目的，数据缺失的原因" class="headerlink" title="（一）数据预处理的任务（数据清洗、数据转换、……）、目的，数据缺失的原因"></a>（一）数据预处理的任务（数据清洗、数据转换、……）、目的，数据缺失的原因</h2><h3 id="a、数据预处理任务"><a href="#a、数据预处理任务" class="headerlink" title="a、数据预处理任务"></a>a、数据预处理任务</h3><ul>
+<li>数据清理</li>
+</ul>
+<p>填写空缺数据，平滑噪声数据，识别、删除孤立点，解决不一致性</p>
+<ul>
+<li>数据集成</li>
+</ul>
+<p>集成多个数据库，数据立方体或文件</p>
+<ul>
+<li>数据变换</li>
+</ul>
+<p>规范化和特征构造</p>
+<ul>
+<li>数据归约</li>
+</ul>
+<p>得到数据集的压缩表示及特征选择</p>
+<ul>
+<li>数据离散化</li>
+</ul>
+<p>通过概念分层和数据离散化来规约数据，对数值数据特别重要</p>
+<h3 id="b、数据预处理目的"><a href="#b、数据预处理目的" class="headerlink" title="b、数据预处理目的"></a>b、数据预处理目的</h3><p>数据挖掘的目的是在大量的、潜在有用的数据中挖掘出有用的模式或信息，挖掘的效果直接受到源数据质量的影响。</p>
+<p>高质量的数据是进行有效挖掘的前提，高质量的决定必须建立在高质量的数据上。</p>
+<h3 id="c、数据缺失原因"><a href="#c、数据缺失原因" class="headerlink" title="c、数据缺失原因"></a>c、数据缺失原因</h3><ul>
+<li>引起空缺值的原因<ul>
+<li>设备异常</li>
+<li>与其它已有数据不一致而被删除</li>
+<li>因为误解而没有被输入的数据</li>
+<li>在输入数据时，有些数据认为得不到重视而没有被输入</li>
+<li>对数据的改变没有进行日志记载</li>
+</ul>
+</li>
+</ul>
+<h2 id="（二）数据清洗的任务（噪声过滤、缺失值处理、…）、目的和方法"><a href="#（二）数据清洗的任务（噪声过滤、缺失值处理、…）、目的和方法" class="headerlink" title="（二）数据清洗的任务（噪声过滤、缺失值处理、…）、目的和方法"></a>（二）数据清洗的任务（噪声过滤、缺失值处理、…）、目的和方法</h2><h3 id="a、任务"><a href="#a、任务" class="headerlink" title="a、任务"></a>a、任务</h3><ul>
+<li>填补缺失值</li>
+<li>光滑噪声数据</li>
+<li>平滑或删除离群点</li>
+<li>解决数据的不一致性</li>
+</ul>
+<h3 id="b目的"><a href="#b目的" class="headerlink" title="b目的"></a>b目的</h3><ul>
+<li><p>现实世界的数据是“肮脏的”</p>
+<ul>
+<li>不完整的：有感兴趣的属性缺少属性值（缺失值）</li>
+<li>含噪声的：包含错误的或是“孤立点”（噪声数据、离群点）</li>
+<li>不一致的：在命名或是编码上存在差异（不一致性）</li>
+</ul>
+</li>
+<li><p>意义：</p>
+<ul>
+<li>数据清理的目的就是试图填充缺失值、去除噪声并识别离群点、纠正数据中的不一致值。</li>
+</ul>
+</li>
+</ul>
+<h3 id="c、方法"><a href="#c、方法" class="headerlink" title="c、方法"></a>c、方法</h3><ul>
+<li><p>缺失值处理</p>
+<ul>
+<li>忽略元组：当缺少类标号时通常这样处理(在分类任务中)。除非同一记录中有多个属性缺失值，否则该方法不是很有效。</li>
+<li>忽略属性列：如果该属性的缺失值太多，如超过80%，则在整个数据集中忽略该属性。</li>
+<li>人工填写缺失值：通常情况下，该方法费时费力，并且当数据集很大或缺少很多值时，该方法可能行不通。</li>
+<li>自动填充缺失值<ul>
+<li>策略一：使用一个全局常量填充缺失值，将缺失的属性值用同一个常数替换。</li>
+<li>策略二：使用与给定记录属同一类的所有样本的均值或众数填充缺省值。</li>
+<li>策略三：用可能值来代替缺失值：可以用回归、基于推理的工具或决策树归纳确定。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>噪声数据处理</p>
+<ul>
+<li>分箱：分箱方法通过考察“邻居”(即周围的值)来平滑有序数据的值。</li>
+<li>聚类：聚类将类似的值组织成群或“簇”。</li>
+<li>回归：让数据适合一个函数来平滑数据。</li>
+</ul>
+</li>
+<li>离群点检测<ul>
+<li><strong>简单统计分析</strong>：根据箱线图、各分位点判断是否存在异常，例如pandas的describe函数可以快速发现异常值。</li>
+<li>3 <img src="https://gitee.com/clownaxcvd/blogimg/raw/master/img/equation" alt="[公式]"> 原则：若数据存在正态分布，偏离均值的3 <img src="https://www.zhihu.com/equation?tex=%5Csigma" alt="[公式]"> 之外. 通常定义 <img src="https://www.zhihu.com/equation?tex=P(|x-\mu|&gt;3\sigma" alt="[公式]">&lt;%3D0.003) 范围内的点为离群点。</li>
+<li><strong>基于绝对离差中位数（MAD）</strong>：这是一种稳健对抗离群数据的距离值方法，采用计算各观测值与平均值的距离总和的方法。放大了离群值的影响。</li>
+<li>基于距离：通过定义对象之间的临近性度量，根据距离判断异常对象是否远离其他对象，缺点是计算复杂度较高，不适用于大数据集和存在不同密度区域的数据集</li>
+<li>基于密度：离群点的局部密度显著低于大部分近邻点，适用于非均匀的数据集</li>
+<li>基于聚类：利用聚类算法，丢弃远离其他簇的小簇。</li>
+</ul>
+</li>
+</ul>
+<h2 id="（三）数据转换的任务（离散化、数据规约（抽样、属性选择）、……）、目的和方法"><a href="#（三）数据转换的任务（离散化、数据规约（抽样、属性选择）、……）、目的和方法" class="headerlink" title="（三）数据转换的任务（离散化、数据规约（抽样、属性选择）、……）、目的和方法"></a>（三）数据转换的任务（离散化、数据规约（抽样、属性选择）、……）、目的和方法</h2><h3 id="a、数据规约"><a href="#a、数据规约" class="headerlink" title="a、数据规约"></a>a、数据规约</h3><p>从记录和维度两个方面减少数据量</p>
+<ul>
+<li><p>维度规约：维度(数据特征的数目)归约是指通过使用数据编码或变换，得到原始数据的归约或“压缩”表示。</p>
+<ul>
+<li>如果维度较低，许多数据挖掘算法效果会更好。</li>
+<li>维归约使模型涉及更少的特征，因而可以产生更容易理解的模型。</li>
+<li>使用维归约可以降低数据挖掘算法的时间和空间复杂度。</li>
+</ul>
+</li>
+<li><p>抽样：用数据较小的随机样本表示大的数据集</p>
+<ul>
+<li>有效抽样原理<ul>
+<li>如果样本是有代表性的，则使用样本与使用整个数据集的效果几乎一样</li>
+<li>如果数据对象的均值是感兴趣的性质，而样本具有近似于原数据集的均值，则样本是有代表性的</li>
+<li>抽样是一个统计过程，特定样本的代表性是变化的</li>
+</ul>
+</li>
+<li>简单随机抽样<ul>
+<li>无放回抽样 <ul>
+<li>随着每个项被抽出，它被从构成总体的所有对象集中删除 </li>
+</ul>
+</li>
+<li>有放回的抽样 <ul>
+<li>对象被选中时不从总体中删除</li>
+</ul>
+</li>
+<li>分层抽样<ul>
+<li>特点<ul>
+<li>总体由不同类别的对象组成</li>
+<li>每种类型的对象数量差别很大</li>
+</ul>
+</li>
+<li>先对数据集进行分组：数据集D被划分为互不相交的“层”，则可通过对每一层按一定比例简单随机选样得到D的分层选样</li>
+<li>利用聚类实现分层抽样：将数据集D划分成m个不相交的簇，再在聚类结果的簇上进行简单随机抽样</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>特征选择</p>
+<p>从一组已知特征集合中选择最具代表性的特征子集，使其保留原有数据的大部分信息，即所选特征子集可以像原来的特征全集一样用来正确区分数据集的每个数据对象。通过特征选择，一些和任务无关或是冗余的特征被删除，从而提高数据处理的效率。</p>
+<p>理想的特征子集：每个有价值的非目标特征与目标特征强相关，而非目标特征之间不相关或是弱相关</p>
+<ul>
+<li>通过删除不相干的属性或维减少数据量</li>
+<li>属性子集选择<ul>
+<li>找出最小属性集，使得数据类的概率分布尽可能的接近使用所有属性的原分布</li>
+<li>减少出现在发现模式上的属性的数目，使得模式更易于理解</li>
+</ul>
+</li>
+<li>启发式（探索式）搜索方法<ul>
+<li>逐步向前选择</li>
+<li>逐步向后删除</li>
+<li>向前选择和向后删除相结合</li>
+<li>判定归纳树</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>数据压缩</p>
+<ul>
+<li>有损压缩<ul>
+<li>小波变换</li>
+<li>主成分分析</li>
+</ul>
+</li>
+<li>无损压缩</li>
+</ul>
+</li>
+</ul>
+<h3 id="b、数据变换"><a href="#b、数据变换" class="headerlink" title="b、数据变换"></a>b、数据变换</h3><ul>
+<li>平滑：去除数据中的噪声数据</li>
+<li>聚集：汇总，数据立方体的构建</li>
+<li>离散化于概念分层<ul>
+<li>离散化：通过将属性域划分为区间，减少给定连续属性值的个数。区间标号可以代替实际的数据值。</li>
+<li>概念分层：通过使用高层的概念（比如：老年，中年，青年）来替代底层的属性值（比如：实际的年龄数据值）来规约数据</li>
+</ul>
+</li>
+<li>规范化：将数据按比例缩放，使之落入一个小的特定区间（消除量纲的影响）<ul>
+<li>最小-最大规范化</li>
+<li>Z-score规范化</li>
+<li>小数定标规范化</li>
+</ul>
+</li>
+<li>属性构造：通过现有属性构造新的属性，并添加到数据集中<ul>
+<li>特征提取(Feature Extraction)：由原始数据创建新的特征集</li>
+<li>映射数据到新的空间：从不同视角提示重要和有趣的特征<ul>
+<li>傅里叶变换(Fourier Transform)</li>
+<li>小波变换(Wavelet Transform)</li>
+</ul>
+</li>
+<li>特征构造：由一个或多个原始特征共同构造新的特征</li>
+</ul>
+</li>
+</ul>
+<h2 id="（四）距离或者相似度的度量方法"><a href="#（四）距离或者相似度的度量方法" class="headerlink" title="（四）距离或者相似度的度量方法"></a>（四）距离或者相似度的度量方法</h2><h3 id="a、距离（相异度）度量"><a href="#a、距离（相异度）度量" class="headerlink" title="a、距离（相异度）度量"></a>a、距离（相异度）度量</h3><ul>
+<li><p>类间距离（欧氏、马氏距离）</p>
+<ul>
+<li><p>欧氏距离</p>
+<p>定义在两个向量（两个点）上：点$x$和点$y$的欧氏距离为：</p>
+<p>$$<br>d_{\text {Euclidean }}=\sqrt{(\mathbf{x}-\mathbf{y})^{\top}(\mathbf{x}-\mathbf{y})}<br>$$</p>
+</li>
+<li><p>闵可夫斯基距离</p>
+<p>Minkowski distance， 两个向量（点）的$p$阶距离：</p>
+<p>$$<br>d_{\text {Minkowski}}=\left(|\mathbf{x}-\mathbf{y}|^{p}\right)^{1 / p}<br>$$</p>
+</li>
+<li><p>曼哈顿距离</p>
+<p>当$p=1$时就是曼哈顿距离，</p>
+</li>
+<li><p>切比雪夫距离</p>
+<p>当$p=\infin$时就是欧氏距离。</p>
+</li>
+<li><p>马氏距离</p>
+<p>定义在两个向量（两个点）上，这两个点在同一个分布里。点$x$和点$y$的马氏距离为：</p>
+<p>$$<br>d_{\text {Mahalanobis}}=\sqrt{(\mathbf{x}-\mathbf{y})^{\top} \Sigma^{-1}(\mathbf{x}-\mathbf{y})}<br>$$<br>其中，$\Sigma$是这个分布的协方差。</p>
+<p>当<img src="https://www.zhihu.com/equation?tex=\Sigma%3D\mathbf{I}" alt="[公式]">时，马氏距离退化为欧氏距离。</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="b、相似度度量"><a href="#b、相似度度量" class="headerlink" title="b、相似度度量"></a>b、相似度度量</h3><ul>
+<li><p>连续属性的相关度计算</p>
+<ul>
+<li>线性相关系数</li>
+</ul>
+</li>
+</ul>
+<p>$$<br>r=\frac{\sum{i}\left(x{i}-\overline{x{i}}\right)\left(y{i}-\overline{y{i}}\right)}{\sqrt{\sum{i}\left(x{i}-\overline{x{i}}\right)^{2}} \sqrt{\sum{i}\left(y{i}-\overline{y_{i}}\right)^{2}}}<br>$$</p>
+<ul>
+<li>余弦相似度</li>
+</ul>
+<ul>
+<li><p>离散属性的相关度计算</p>
+<ul>
+<li>信息增益<ul>
+<li>$I G(X | Y)=H(X)-H(X | Y)$</li>
+<li>其中，x的信息熵$H(X)=-\sum_{i} P\left(x_{i}\right) \log _{2}\left(P\left(x_{i}\right)\right)$；已知y后x的条件信息熵$H(X | Y)=-\sum_{j} P\left(y_{j}\right) \sum_{i} P\left(x_{i} | y_{j}\right) \log _{2}\left(P\left(x_{i} | y_{j}\right)\right)$</li>
+</ul>
+</li>
+<li>互信息<ul>
+<li>$S U(X, Y)=2\left[\frac{I G(X | Y)}{H(X)+H(Y)}\right]$</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>二值属性的相关度计算</p>
+<ul>
+<li><p>简单匹配系数(Simple Matching Coefficient,SMC)</p>
+<ul>
+<li>SMC = 值匹配的属性个数 /属性个数 = (M11 + M00) / (M01 + M10 + M11 + M00)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="（五）决策树算法的基本思想，需要剪枝的原因，剪枝的方法"><a href="#（五）决策树算法的基本思想，需要剪枝的原因，剪枝的方法" class="headerlink" title="（五）决策树算法的基本思想，需要剪枝的原因，剪枝的方法"></a>（五）决策树算法的基本思想，需要剪枝的原因，剪枝的方法</h2><h3 id="a、基本思想"><a href="#a、基本思想" class="headerlink" title="a、基本思想"></a>a、基本思想</h3><p>决策树的构建过程就是不断对训练集进行划分，使得划分后的各个子集尽可能纯。所谓纯的子集，指的是子集内所有数据的类标相同。</p>
+<p>不断的划分，遵循了分而治之的思想。</p>
+<p>决策树的生成是一个递归的过程。</p>
+<p>信息熵就是度量子集纯度的指标。</p>
+<h3 id="b、剪枝的原因"><a href="#b、剪枝的原因" class="headerlink" title="b、剪枝的原因"></a>b、剪枝的原因</h3><p>在构造决策树的过程中，为了更好地进行划分，往往会造成决策树的分支过多、过深，从而导致过拟合。</p>
+<p>为了解决过拟合问题，就对决策树进行剪枝，将决策树的子树或者分支删除。</p>
+<h3 id="c、剪枝的方法"><a href="#c、剪枝的方法" class="headerlink" title="c、剪枝的方法"></a>c、剪枝的方法</h3><h4 id="预剪枝"><a href="#预剪枝" class="headerlink" title="预剪枝"></a>预剪枝</h4><p>在构建决策树的过程正进行评估，评估的方法是留出法、交叉验证法、自检法等等。</p>
+<h4 id="后剪枝"><a href="#后剪枝" class="headerlink" title="后剪枝"></a>后剪枝</h4><p>在构建决策树之后，对各子节点进行评估，评估的方法是留出法、交叉验证法、自检法等等。</p>
+<h2 id="（六）信息增益作为衡量属性分类能力的指标，优点和缺点"><a href="#（六）信息增益作为衡量属性分类能力的指标，优点和缺点" class="headerlink" title="（六）信息增益作为衡量属性分类能力的指标，优点和缺点"></a>（六）信息增益作为衡量属性分类能力的指标，优点和缺点</h2><h3 id="a、优点"><a href="#a、优点" class="headerlink" title="a、优点"></a>a、优点</h3><p>信息增益使用信息熵，度量了在某个条件下，信息复杂度减少的程度。这种衡量标准能够帮助决策树选择枝干，即更重要的特征。</p>
+<h3 id="b、缺点"><a href="#b、缺点" class="headerlink" title="b、缺点"></a>b、缺点</h3><p>信息增益对可取值较多的属性有所偏好。信息增益在类别值多的属性上计算结果大于类别值少的属性上计算结果，这将导致决策树算法偏向选择具有较多分枝的属性，因而可能导致过度拟合。在极端的情况下，如果某个属性对于训练集中的每个元组都有唯一的一个值，则认为该属性是最好的，这是因为对于每个划分都只有一个元组(因此也是一类)。</p>
+<h2 id="（七）朴素贝叶斯方法的基本思想，朴素性的体现-–-独立性假设"><a href="#（七）朴素贝叶斯方法的基本思想，朴素性的体现-–-独立性假设" class="headerlink" title="（七）朴素贝叶斯方法的基本思想，朴素性的体现 – 独立性假设"></a>（七）朴素贝叶斯方法的基本思想，朴素性的体现 – 独立性假设</h2><h3 id="a、基本思想-1"><a href="#a、基本思想-1" class="headerlink" title="a、基本思想"></a>a、基本思想</h3><p>用概率的视角分析分类任务，分类任务变成了求关于测试样例$d$对于类别$c$的后验概率：已知测试样例$d$，求$d$关于类别$c$的后验概率。哪个类别对应的后验概率大，则将该样例分类为该类别。<br>$$<br>\begin{array}{c}<br>\operatorname{Pr}\left(C=c_{j} | A_{1}=a_{1}, \cdots, A_{|A|} = a_{|A|}\right) \<br>=\frac{\operatorname{Pr}\left(A_{1}=a_{1}, \cdots, A_{|A|} a_{|A|} | C=c_{j}\right) \operatorname{Pr}\left(C=c_{j}\right)}{\operatorname{Pr}\left(A_{1}=a_{1}, \cdots, A_{|A|}=a_{|A|}\right)}<br>\end{array}<br>$$<br>问题变成了，如何求得$\operatorname{Pr}(A_{1}=a_{1}, \cdots, A_{|A|} = a_{|A|} | C=c_{j})$</p>
+<h3 id="b朴素性体现"><a href="#b朴素性体现" class="headerlink" title="b朴素性体现"></a>b朴素性体现</h3><p>为了计算该概率，提出独立性假设。</p>
+<p>独立性假设，即假设所有类别都条件独立于分类结果。</p>
+<p>因此，上式就可以变成：<br>$$<br>\begin{aligned}<br>&amp; \operatorname{Pr}\left(A_{1}=a_{1}, \cdots, A_{|A|}=a_{|A|} | C=c_{j}\right) \<br>=&amp; \prod_{i=1}^{|A|} \operatorname{Pr}\left(A_{i}=a_{i} | C=c_{j}\right)<br>\end{aligned}<br>$$</p>
+<h2 id="（八）基于划分的聚类，基于密度的聚类分别有哪些具体的算法"><a href="#（八）基于划分的聚类，基于密度的聚类分别有哪些具体的算法" class="headerlink" title="（八）基于划分的聚类，基于密度的聚类分别有哪些具体的算法"></a>（八）基于划分的聚类，基于密度的聚类分别有哪些具体的算法</h2><p><strong>聚类</strong>(Clustering)是将数据集划分为若干相似对象组成的多个组(group)或簇(cluster)的过程，使得<strong>同一组中对象间的相似度最大化，不同组中对象间的相似度最小化</strong>。</p>
+<h3 id="a、基于划分的聚类"><a href="#a、基于划分的聚类" class="headerlink" title="a、基于划分的聚类"></a>a、基于划分的聚类</h3><h4 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h4><p>给定一个 n 个对象或元组的数据库，一个划分方法构建数据的k个划分，每个划分表示一个聚类，并且k&lt;=n。也就是说，它将数据划分为k个组，同时满足如下的要求：</p>
+<p>  (1)每个组至少包含一个对象；</p>
+<p>  (2)每个对象必须属于且只属于一个组。</p>
+<p>划分式聚类算法需要预先指定簇数目或簇中心，通过反复迭代运算，逐步降低目标函数的误差值，当目标函数值收敛时，得到最终聚类结果。这类方法分为<strong>基于质心的(Centroid-based)划分方法</strong>和<strong>基于中心的(Medoid-based)划分方法</strong>。</p>
+<h4 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h4><ul>
+<li>k-means</li>
+<li>二分k-means</li>
+<li>k-summary</li>
+<li>K-medoids</li>
+</ul>
+<h3 id="b、基于密度的聚类"><a href="#b、基于密度的聚类" class="headerlink" title="b、基于密度的聚类"></a>b、基于密度的聚类</h3><p>通常将簇看作是数据空间中被低密度区域(代表噪声)分割开的稠密对象区域。</p>
+<p>基于密度的方法典型的包括</p>
+<ul>
+<li><strong>DBSCAN</strong> (Density-Based Spatial Clustering of Applications with Noise)</li>
+<li><strong>OPTICS</strong>(Ordering Points to Identify the Clustering Structure)</li>
+</ul>
+<h3 id="（九）不带类标的数据为什么对分类模型的训练会有帮助？"><a href="#（九）不带类标的数据为什么对分类模型的训练会有帮助？" class="headerlink" title="（九）不带类标的数据为什么对分类模型的训练会有帮助？"></a>（九）不带类标的数据为什么对分类模型的训练会有帮助？</h3><p>半监督学习</p>
+<p><img src="https://gitee.com/clownaxcvd/blogimg/raw/master/img/semisupervised-learning.png" alt="1semisupervised-learning" style="zoom:50%;"></p>
+<p>未标签数据与有标签数据都是从同样的数据源<strong>独立同分布</strong>采样出来的，他们所包含的关于<strong>数据分布的信息</strong>对于模型学习大有裨益。</p>
+<h3 id="（十）什么是PU学习？什么是LU学习？"><a href="#（十）什么是PU学习？什么是LU学习？" class="headerlink" title="（十）什么是PU学习？什么是LU学习？"></a>（十）什么是PU学习？什么是LU学习？</h3><p><img src="https://gitee.com/clownaxcvd/blogimg/raw/master/img/pulu-learning.png" alt="pulu-learning" style="zoom:40%;"></p>
+<h3 id="a、PU学习"><a href="#a、PU学习" class="headerlink" title="a、PU学习"></a>a、PU学习</h3><p>模型通过有标签数据和无标签数据学习。在这个学习任务中，数据集包含少量的有标签数据和大量的无标签数据，目的在于利用无标注数据，提高模型的能力。</p>
+<h3 id="b、LU学习"><a href="#b、LU学习" class="headerlink" title="b、LU学习"></a>b、LU学习</h3><p>在二分类任务中，模型通过正例和无标签数据学习。在这个学习任务中，数据集包含少量的正例数据和大量的无标签数据。目的是，在没有反例的情况下，得到一个精确的二分类器。</p>
+<h3 id="（十一）集成学习在什么情况下有效？"><a href="#（十一）集成学习在什么情况下有效？" class="headerlink" title="（十一）集成学习在什么情况下有效？"></a>（十一）集成学习在什么情况下有效？</h3><p>个体学习器应该“好而不同”，即不同的个体学习器，不仅要保持一定的准确率，还要保持多样性，学习到的特征各具差异。</p>
+<h1 id="三、算法"><a href="#三、算法" class="headerlink" title="三、算法"></a>三、算法</h1><h2 id="（一）决策树-–-ID3、C4-5-–-分类"><a href="#（一）决策树-–-ID3、C4-5-–-分类" class="headerlink" title="（一）决策树 – ID3、C4.5 – 分类"></a>（一）决策树 – ID3、C4.5 – 分类</h2><h3 id="a、ID3"><a href="#a、ID3" class="headerlink" title="a、ID3"></a>a、ID3</h3><p>ID3算法的核心是在决策树各级结点上选择属性，用信息增益作为属性选择的标准，使得在每个非叶节点进行测试时能获得关于被测数据最大的类别信息，使得该属性将数据集分成子集后，系统的熵值最小。</p>
+<p>信息增益：<br>$$<br>\operatorname{Gain}(D, a)=\operatorname{Ent}(D)-\sum_{v=1}^{V} \frac{\left|D^{v}\right|}{|D|} \operatorname{Ent}\left(D^{v}\right)<br>$$<br>其中：<br>$$<br>\operatorname{Ent}(D)=-\sum_{k=1}^{|\mathcal{Y}|} p_{k} \log _{2} p_{k}<br>$$</p>
+<ul>
+<li>优点<ul>
+<li>理论清晰，方法简单，学习能力较强。</li>
+</ul>
+</li>
+<li>缺点<ul>
+<li>(1)算法<strong>只能处理分类属性数据</strong>，无法处理连续型数据；</li>
+<li>(2)算法<strong>对测试属性的每个取值相应产生一个分支</strong>，且划分相应的数据样本集，这样的划分会导致产生许多小的子集。随着子集被划分得越来越小，划分过程将会由于子集规模过小所造成的统计特征不充分而停止；</li>
+<li>(3)ID3算法中<strong>使用信息增益作为决策树节点属性选择的标准</strong>，由于信息增益在类别值多的属性上计算结果大于类别值少的属性上计算结果，这将导致决策树算法偏向选择具有较多分枝的属性，因而可能导致过度拟合。在极端的情况下，如果某个属性对于训练集中的每个元组都有唯一的一个值，则认为该属性是最好的，这是因为对于每个划分都只有一个元组(因此也是一类)。</li>
+</ul>
+</li>
+</ul>
+<h3 id="b、C4-5"><a href="#b、C4-5" class="headerlink" title="b、C4.5"></a>b、C4.5</h3><p>基于ID3算法中存在的不足，Quinlan提出了改进的决策树分类算法C4.5，该算法继承了ID3算法的优点，并在以下几个方面对ID3算法进行了改进：</p>
+<ul>
+<li>能够处理连续型属性数据和离散型属性数据；</li>
+<li>能够处理具有缺失值的数据；</li>
+<li>使用信息增益率作为决策树的属性选择标准；</li>
+<li>对生成的树进行剪枝处理，以获取简略的决策树；</li>
+<li>从决策树到规则的自动产生。</li>
+</ul>
+<h4 id="对于连续值的处理"><a href="#对于连续值的处理" class="headerlink" title="对于连续值的处理"></a>对于连续值的处理</h4><p>如果属性A为连续型数据，则按属性A的取值递增排序，将每对相邻值的中点看作可能的分裂点，对每个可能的分裂点，计算：<br>$$<br>\text {Entropy}_{A}(S)=\frac{\left|S_{L}\right|}{|S|} \operatorname{Entropy}\left(S_{L}\right)+\frac{\left|S_{R}\right|}{|S|} \operatorname{Entropy}\left(S_{R}\right)<br>$$<br>其中$S_L$和$S_R$分别对应于该分裂点划分的左右两部分子集，选择EntropyA(S)值最小的分裂点作为属性A的最佳分裂点，并以该最佳分裂点按属性A对集合S的划分熵值作为属性A划分S的熵值。</p>
+<h4 id="信息增益率"><a href="#信息增益率" class="headerlink" title="信息增益率"></a>信息增益率</h4><p>将ID3的信息增益改为信息增益率：<br>$$<br>\begin{array}{l}<br>\text { Gain_ratio }(D, a)=\frac{\operatorname{Gain}(D, a)}{\mathrm{IV}(a)} \<br>\mathrm{IV}(a)=-\sum_{v=1}^{V} \frac{\left|D^{v}\right|}{|D|} \log _{2} \frac{\left|D^{v}\right|}{|D|}<br>\end{array}<br>$$<br>虽然属性$a$的取值越多，信息增益越大，但是$IV(a)$同时也在增大，能够约束其信息增益的变化。</p>
+<ul>
+<li>优点：<ul>
+<li>产生的分类规则易于理解，准确率较高。</li>
+</ul>
+</li>
+<li>缺点：<ul>
+<li>在构造树的过程中，需要对数据集进行多次的顺序扫描和排序（计算信息增益率时，需要扫描两次），因而导致算法的低效。</li>
+<li>C4.5只适合于能够驻留与内存的数据集，当训练集大得无法在内存容纳时程序无法运行。</li>
+</ul>
+</li>
+</ul>
+<h2 id="（二）朴素贝叶斯-–-分类"><a href="#（二）朴素贝叶斯-–-分类" class="headerlink" title="（二）朴素贝叶斯 – 分类"></a>（二）朴素贝叶斯 – 分类</h2><p>$$<br>c=\underset{\epsilon_{j}}{\operatorname{argmax}} \operatorname{Pr}\left(C=c_{j}\right) \prod_{i=1}^{|A|} \operatorname{Pr}\left(A_{i}=a_{i} | C=c_{j}\right)<br>$$</p>
+<h3 id="a、小概率相乘"><a href="#a、小概率相乘" class="headerlink" title="a、小概率相乘"></a>a、小概率相乘</h3><p>朴素贝叶斯分类算法在计算概率的时候存在概率为0及概率值可能很小的情况，因此在某些情况下需要考虑条件概率的Laplace估计以及解决小概率相乘溢出问题。<br>$$<br>P\left(X_{i} | Y_{j}\right)=\frac{n_{c}+l \times p}{n+l}<br>$$<br>其中$n$是类$Y_j$中的实例总数，$n_c$是类$Y_j$的训练样例中取值为$X_i$的样例数，$l$是称为等价样本大小的参数，而$p$是用户指定的参数。如果没有训练集(即n=0)，则$P(X_i|Y_j)=p$。因此$p$可以看作是在类$Y_j$的记录中观察属性值$X_i$的先验概率。等价样本大小$l$决定先验概率$p$和观测概率$n_c/n$之间的概率。</p>
+<p>或者：<br>$$<br>\begin{aligned}<br>\hat{P}(c) &amp;=\frac{\left|D_{c}\right|+1}{|D|+N} \<br>\hat{P}\left(x_{i} | c\right) &amp;=\frac{\left|D_{c, x_{i}}\right|+1}{\left|D_{c}\right|+N_{i}}<br>\end{aligned}<br>$$<br>其中$N$表示$c$可以取的属性种类数目，$N_i$表示$x_i$可以取得属性种类数目。</p>
+<h3 id="b、溢出问题"><a href="#b、溢出问题" class="headerlink" title="b、溢出问题"></a>b、溢出问题</h3><p>即使每一个乘积因子都不为零，但当$n$较大时也可能几乎为零，此时将难以区分不同类别。</p>
+<p>因此使用log计算，使得相乘变成相加：<br>$$<br>\log P\left(X | C_{i}\right)=\log \left(P\left(C_{i}\right) \prod_{k=1}^{n} P\left(x_{k} | C_{i}\right)\right)=\log P\left(C_{i}\right)+\sum_{k=1}^{n} \log P\left(x_{k} | C_{i}\right)<br>$$</p>
+<ul>
+<li>优点：<ul>
+<li>容易实现</li>
+<li>在大多数情况下所获得的结果比较好</li>
+</ul>
+</li>
+<li>缺点：<ul>
+<li>算法成立的前提是假设各属性之间互相独立</li>
+<li>当数据集满足这种独立性假设时，分类准确度较高</li>
+<li>而实际领域中，数据集可能并不完全满足独立性假设</li>
+</ul>
+</li>
+</ul>
+<h2 id="（三）KNN-分类"><a href="#（三）KNN-分类" class="headerlink" title="（三）KNN  - 分类"></a>（三）KNN  - 分类</h2><ul>
+<li><p>K-最近邻算法的基本思想是：</p>
+<ul>
+<li>对于未知类标号的样本，按照欧几里得距离找出它在训练集中的k个最近邻，将未知样本赋予k最近邻中出现次数最多的类别号。</li>
+</ul>
+</li>
+<li><p>优点：</p>
+<ul>
+<li>算法思想简单，易于实现。</li>
+</ul>
+</li>
+<li>缺点：<ul>
+<li>最近邻分类对每个属性指定相同的权重。</li>
+<li>而数据集中的不同属性可能需要赋予不同的权值；</li>
+<li>由于K-NN存放所有的训练样本，直到有新的样本需要分类时才建立分类，因此当训练样本数量很大时，该学习算法的时间复杂度为n2。</li>
+</ul>
+</li>
+</ul>
+<h2 id="（四）前馈神经网络、反向传播算法（BP算法）、交叉熵损耗、均方误差损耗"><a href="#（四）前馈神经网络、反向传播算法（BP算法）、交叉熵损耗、均方误差损耗" class="headerlink" title="（四）前馈神经网络、反向传播算法（BP算法）、交叉熵损耗、均方误差损耗"></a>（四）前馈神经网络、反向传播算法（BP算法）、交叉熵损耗、均方误差损耗</h2><h3 id="a、BP算法"><a href="#a、BP算法" class="headerlink" title="a、BP算法"></a>a、BP算法</h3><ul>
+<li>优点：<ul>
+<li>理论基础牢固，推导过程严谨，物理概念清晰，通用性好等。所以，它是目前用来训练前向多层网络较好的算法。</li>
+</ul>
+</li>
+<li>缺点：<ul>
+<li>1)学习算法的收敛速度慢；</li>
+<li>2)网络中隐含节点个数的选取尚无理论上的指导；</li>
+<li>3)从数学角度看，BP算法是一种梯度最速下降法，这就可能出现局部极小的问题。所以BP算法是不完备的。</li>
+</ul>
+</li>
+</ul>
+<h3 id="b、交叉熵损耗"><a href="#b、交叉熵损耗" class="headerlink" title="b、交叉熵损耗"></a>b、交叉熵损耗</h3><p>$$<br>L=-\sum_{i=1}^{N} y^{(i)} \log \hat{y}^{(i)}+\left(1-y^{(i)}\right) \log \left(1-\hat{y}^{(i)}\right)<br>$$</p>
+<h3 id="c、均方误差损耗"><a href="#c、均方误差损耗" class="headerlink" title="c、均方误差损耗"></a>c、均方误差损耗</h3><p>$$<br>E=\frac{1}{2} \sum_{k=1}^{l}\left(y^{(i)}-\hat{y}^{(i)}\right)^{2}<br>$$</p>
+<h2 id="（五）K-均值-聚类"><a href="#（五）K-均值-聚类" class="headerlink" title="（五）K-均值  - 聚类"></a>（五）K-均值  - 聚类</h2><p>简单</p>
+<p>也是一种EM算法</p>
+<h2 id="（六）Apriori-–-关联规则"><a href="#（六）Apriori-–-关联规则" class="headerlink" title="（六）Apriori – 关联规则"></a>（六）Apriori – 关联规则</h2><h3 id="a、关联规则的任务"><a href="#a、关联规则的任务" class="headerlink" title="a、关联规则的任务"></a>a、关联规则的任务</h3><p>给定一个事务集合T，关联规则挖掘的目标是寻找所有满足下面条件的规则</p>
+<p><strong>支持度 ≥ minsup（支持度阈值）</strong></p>
+<p><strong>置信度 ≥ minconf（置信度阈值）</strong></p>
+<h3 id="b、两步方法"><a href="#b、两步方法" class="headerlink" title="b、两步方法"></a>b、两步方法</h3><ol>
+<li>频繁项集的产生</li>
+</ol>
+<p>产生 支持度 ≥ minsup 的所有项集</p>
+<ol start="2">
+<li>规则的产生</li>
+</ol>
+<p>由每个频繁项集产生 置信度 ≥ minconf 的规则</p>
+<h3 id="c、产生频繁项集的Apriori算法流程"><a href="#c、产生频繁项集的Apriori算法流程" class="headerlink" title="c、产生频繁项集的Apriori算法流程"></a>c、产生频繁项集的Apriori算法流程</h3><ul>
+<li>设定k=1</li>
+<li>扫描事务数据库一次，生成频繁的1-项集</li>
+<li>如果存在两个或以上频繁k-项集，重复下面过程：<ul>
+<li>[<strong>候选产生]</strong> 由长度为k的频繁项集生成长度为k+1的候选项集</li>
+<li>[<strong>候选前剪枝]</strong> 对每个候选项集，若其具有非频繁的长度为k的子集，则删除该候选项集</li>
+<li>[<strong>支持度计算]</strong> 扫描事务数据库一次，统计每个余下的候选项集的支持度</li>
+<li>[<strong>候选后剪枝]</strong> 删除非频繁的候选项集，仅保留频繁的(k+1)-项集</li>
+<li>设定k = k+1</li>
+</ul>
+</li>
+</ul>
+<h3 id="d、产生规则的Apriori算法流程"><a href="#d、产生规则的Apriori算法流程" class="headerlink" title="d、产生规则的Apriori算法流程"></a>d、产生规则的Apriori算法流程</h3><p>同上，只是计算置信度，而不是支持度</p>
+<p><img src="https://gitee.com/clownaxcvd/blogimg/raw/master/img/apriori-rule.png" alt="apriori-rule" style="zoom:40%;"></p>
+<h3 id="e、强关联规则"><a href="#e、强关联规则" class="headerlink" title="e、强关联规则"></a>e、强关联规则</h3><ol>
+<li><p>由Apriori算法（当然别的也可以）产生频繁项集</p>
+</li>
+<li><p>根据选定的频繁项集，找到它所有的非空子集</p>
+</li>
+<li><p>强关联规则需要满足最小支持度和最小置性度  （假设关联规则是：A=&gt;B ， support（A=&gt;B）= { P(AUB) }   confidence（A=&gt;B）=P(B|A)={ P(AUB)/P(A) } 。这里求概率都可以替换为求支持度计数（就是统计在源数据表中各个出现的次数，例如:P(AUB) 就找A和B在源数据表中同时发生了多少次)</p>
+</li>
+<li><p>找到所有可能性的关联规则（一个关联规则的reverse是不同的关联规则，比如A=&gt;B和B=&gt;A是不同的）。例如：频繁项集为：{1,2,3} ——–&gt;非空子集则为：{1,2},{1,3},{2,3},{1},{2},{3}———-&gt;可能的关联规则为：{1,2}=&gt;3 , {1,3}=&gt;2 , {1,3}=&gt;2 , 1=&gt;{2,3},2=&gt;{1,3},3=&gt;{1,2}</p>
+</li>
+<li><p>最后计算所有可能的关联规则的置信度，找到符合最小置信度（会给出）的规则，它们则为强关联规则。</p>
+</li>
+</ol>
+<p><img src="https://gitee.com/clownaxcvd/blogimg/raw/master/img/007S8ZIlly1gg3ao52y9sj30j506e0v2.jpg" alt="img" style="zoom:50%;"></p>
+<h2 id="（七）GSP算法-–-挖掘序列模式"><a href="#（七）GSP算法-–-挖掘序列模式" class="headerlink" title="（七）GSP算法 – 挖掘序列模式"></a>（七）GSP算法 – 挖掘序列模式</h2><p>和apriori算法步骤相同，特殊的一点是“合并”步骤，即，将<strong>k-频繁序列</strong>中的各序列合并为<strong>候选(k+1)-频繁序列</strong>的步骤，如下：</p>
+<p><img src="https://gitee.com/clownaxcvd/blogimg/raw/master/img/gsp.png" alt="gsp" style="zoom:50%;"></p>
+<h2 id="（八）Bagging算法、AdaBoost算法"><a href="#（八）Bagging算法、AdaBoost算法" class="headerlink" title="（八）Bagging算法、AdaBoost算法"></a>（八）Bagging算法、AdaBoost算法</h2><h3 id="a、Bagging"><a href="#a、Bagging" class="headerlink" title="a、Bagging"></a>a、Bagging</h3><h4 id="基本思想"><a href="#基本思想" class="headerlink" title="基本思想"></a>基本思想</h4><p>装袋又称自助聚集，是一种根据均匀概率分布从数据中重复抽样(有放回)的技术。</p>
+<p>每个自助样本集都和原数据集一样大。由于抽样过程是有放回的，因此一些样本可能在同一个训练集中出现多次，而其它一些却可能被忽略。在每一个抽样生成的自助样本集上训练一个基分类器，对训练过的<em>k</em>个基分类器投票，将测试样本指派到得票最高的类。</p>
+<h4 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h4><ul>
+<li>装袋通过降低基分类器的方差改善了泛化误差。</li>
+<li>装袋的性能依赖于基分类器的稳定性。<ul>
+<li>如果基分类器是不稳定的，装袋有助于降低训练数据的随机波动导致的误差；</li>
+<li>如果基分类器是稳定的，则集成分类器的误差主要是由基分类器的偏倚所引起的。</li>
+<li>另外由于每一个样本被选中的概率相同，因此装袋并不侧重于训练数据集中的任何特定实例。因此对于噪声数据，装袋不太受过分拟合的影响。</li>
+</ul>
+</li>
+</ul>
+<h3 id="b、AdaBoost"><a href="#b、AdaBoost" class="headerlink" title="b、AdaBoost"></a>b、AdaBoost</h3><p><a href="https://blog.csdn.net/px_528/article/details/72963977" target="_blank" rel="noopener">https://blog.csdn.net/px_528/article/details/72963977</a></p>
+<h4 id="基本思想-1"><a href="#基本思想-1" class="headerlink" title="基本思想"></a>基本思想</h4><p>Adaboost算法基本原理就是将多个弱分类器（弱分类器一般选用单层决策树）进行合理的结合，使其成为一个强分类器。</p>
+<p>Adaboost采用迭代的思想，每次迭代只训练一个弱分类器，训练好的弱分类器将参与下一次迭代的使用。也就是说，在第N次迭代中，一共就有N个弱分类器，其中N-1个是以前训练好的，其各种参数都不再改变，本次训练第N个分类器。其中弱分类器的关系是<strong>第N个弱分类器更可能分对前N-1个弱分类器没分对的数据</strong>，最终分类输出要看这N个分类器的综合效果。</p>
+<h4 id="两个权重"><a href="#两个权重" class="headerlink" title="两个权重"></a>两个权重</h4><p>Adaboost算法中有两种权重，一种是<strong>数据的权重</strong>，另一种是<strong>弱分类器的权重</strong>。</p>
+<p>其中，数据的权重主要用于弱分类器寻找其分类误差最小的决策点，找到之后用这个最小误差计算出该弱分类器的权重（发言权）。分类器权重越大说明该弱分类器在最终决策时拥有更大的发言权。</p>
+<h4 id="数据权重"><a href="#数据权重" class="headerlink" title="数据权重"></a>数据权重</h4><p>所谓“数据的权重主要用于弱分类器寻找其分类误差最小的点”，其实，在<strong>单层决策树（一般使用单层决策树作为弱分类器）</strong>计算误差时，Adaboost要求其乘上权重，即计算带权重的误差。</p>
+<p>举个例子，在以前没有权重时（其实是平局权重时），一共10个点时，对应每个点的权重都是0.1，分错1个，错误率就加0.1；分错3个，错误率就是0.3。现在，每个点的权重不一样了，还是10个点，权重依次是[0.01,0.01,0.01,0.01,0.01,0.01, 0.01,0.01,0.01,0.91]，如果分错了第1一个点，那么错误率是0.01，如果分错了第3个点，那么错误率是0.01，要是分错了最后一个点，那么错误率就是0.91。这样，在选择决策点的时候自然是要尽量把权重大的点（本例中是最后一个点）分对才能降低误差率。由此可见，<strong>权重分布影响着单层决策树决策点的选择，权重大的点得到更多的关注，权重小的点得到更少的关注。</strong></p>
+<p>在Adaboost算法中，每训练完一个弱分类器都就会调整权重，<strong>上一轮训练中被误分类的点的权重会增加</strong>，在本轮训练中，<strong>由于权重影响，本轮的弱分类器将更有可能把上一轮的误分类点分对</strong>，如果还是没有分对，那么分错的点的权重将继续增加，下一个弱分类器将更加关注这个点，尽量将其分对。</p>
+<h4 id="分类器权重"><a href="#分类器权重" class="headerlink" title="分类器权重"></a>分类器权重</h4><p>由于Adaboost中若干个分类器的关系是第N个分类器更可能分对第N-1个分类器没分对的数据，而不能保证以前分对的数据也能同时分对。所以在Adaboost中，每个弱分类器都有各自最关注的点，每个弱分类器都只关注整个数据集的中一部分数据，所以它们必然是共同组合在一起才能发挥出作用。所以最终投票表决时，需要根据弱分类器的权重来进行加权投票，权重大小是根据弱分类器的分类错误率计算得出的，总的规律就是弱分类器错误率越低，其权重就越高。</p>
+<h4 id="如何优化分类器？"><a href="#如何优化分类器？" class="headerlink" title="如何优化分类器？"></a>如何优化分类器？</h4><p>分类器一般为单层决策树。</p>
+<p>遍历所有属性的属性值，得到一个阈值，使得分错率最小，其中分错率通过数据权重计算。</p>
+<h4 id="如何计算分类器权重？"><a href="#如何计算分类器权重？" class="headerlink" title="如何计算分类器权重？"></a>如何计算分类器权重？</h4><p>$$<br>\alpha_{t}=\frac{1}{2} \ln \left(\frac{1-\epsilon_{t}}{\epsilon_{t}}\right)<br>$$</p>
+<p>其中参数$\epsilon_{t}$为第$t$轮的误差，即弱分类器和全体分类器对于训练集中样本$x_i$的预测结果不一样的概率，可以公式化为：<br>$$<br>\epsilon_{t}=P_{\boldsymbol{x} \sim \mathcal{D}_{t}}\left(h_{t}(\boldsymbol{x}) \neq f(\boldsymbol{x})\right)<br>$$</p>
+<h4 id="如何计算数据权重？"><a href="#如何计算数据权重？" class="headerlink" title="如何计算数据权重？"></a>如何计算数据权重？</h4><p>$$<br>\begin{aligned}<br>\mathcal{D}_{t+1}(\boldsymbol{x}) &amp;=\frac{\mathcal{D}(\boldsymbol{x}) e^{-f(\boldsymbol{x}) H_{t}(\boldsymbol{x})}}{\mathbb{E}_{\boldsymbol{x} \sim \mathcal{D}}\left[e^{\left.-f(\boldsymbol{x}) H_{t}(\boldsymbol{x})\right]}\right.} \<br>&amp;=\frac{\mathcal{D}(\boldsymbol{x}) e^{-f(\boldsymbol{x}) H_{t-1}(\boldsymbol{x})} e^{-f(\boldsymbol{x}) \alpha_{t} h_{t}(\boldsymbol{x})}}{\mathbb{E}_{\boldsymbol{x} \sim \mathcal{D}}\left[e^{-f(\boldsymbol{x}) H_{t}(\boldsymbol{x})}\right]} \<br>&amp;=\mathcal{D}_{t}(\boldsymbol{x}) \cdot e^{-f(\boldsymbol{x}) \alpha_{t} h_{t}(\boldsymbol{x})} \frac{\mathbb{E}_{\boldsymbol{x} \sim \mathcal{D}}\left[e^{-f(\boldsymbol{x}) H_{t-1}(\boldsymbol{x})}\right]}{\mathbb{E}_{\boldsymbol{x} \sim \mathcal{D}}\left[e^{\left.-f(\boldsymbol{x}) H_{t}(\boldsymbol{x})\right]}\right.}<br>\end{aligned}<br>$$</p>
+<h2 id="（九）EM半监督学习"><a href="#（九）EM半监督学习" class="headerlink" title="（九）EM半监督学习"></a>（九）EM半监督学习</h2><p><img src="https://gitee.com/clownaxcvd/blogimg/raw/master/img/em-algorithm.png" alt="em-algorithm" style="zoom:50%;"></p>
+<h2 id="（十）规则序列覆盖算法-–-产生决策表"><a href="#（十）规则序列覆盖算法-–-产生决策表" class="headerlink" title="（十）规则序列覆盖算法 – 产生决策表"></a>（十）规则序列覆盖算法 – 产生决策表</h2>
       
 
       
@@ -258,7 +752,7 @@
         
         <br>
         <strong>本文链接：</strong>
-        http://rationalist.me/2018/04/22/《自控力》读书笔记/
+        http://rationalist.me/2020/06/24/数据挖掘-数据挖掘概论笔记/
         <br>
         <strong>版权声明：</strong>
         本博客所有文章除特别声明外，均采用
@@ -277,7 +771,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">世界之内</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数据挖掘</a>
         		</li>
       		
 		</ul>
@@ -333,7 +831,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://rationalist.me/2018/04/22/《自控力》读书笔记/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://rationalist.me/2020/06/24/数据挖掘-数据挖掘概论笔记/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -347,18 +845,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2018/04/30/什么叫梯度（期中考试复习思考）/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          【高等数学】什么是梯度（期中考试复习思考）
-        
-      </div>
-    </a>
   
-  
-    <a href="/2018/04/21/The-Essence-of-Linear-Algebra/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">【线性代数】The Essence of Linear Algebra</div>
+    <a href="/2020/06/19/续写｜美女或野兽/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">续写｜美女或野兽</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -385,7 +874,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Chapter-4"><span class="toc-number">1.</span> <span class="toc-text">Chapter 4</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#善导致了恶，所谓的道德许可效应"><span class="toc-number">1.1.</span> <span class="toc-text">善导致了恶，所谓的道德许可效应</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#对未来的想象与寄托"><span class="toc-number">1.2.</span> <span class="toc-text">对未来的想象与寄托</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#减少对未来的想象与寄托：减少行为的变化性"><span class="toc-number">1.3.</span> <span class="toc-text">减少对未来的想象与寄托：减少行为的变化性</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Chapter-5"><span class="toc-number">2.</span> <span class="toc-text">Chapter 5</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#多巴胺"><span class="toc-number">2.1.</span> <span class="toc-text">多巴胺</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#多巴胺也许是好的"><span class="toc-number">2.2.</span> <span class="toc-text">多巴胺也许是好的</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#多巴胺也许是坏的"><span class="toc-number">2.3.</span> <span class="toc-text">多巴胺也许是坏的</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#奖励的承诺而非奖励"><span class="toc-number">2.3.1.</span> <span class="toc-text">奖励的承诺而非奖励</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#增加了压力和焦虑"><span class="toc-number">2.3.2.</span> <span class="toc-text">增加了压力和焦虑</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#放慢追求的脚步"><span class="toc-number">2.4.</span> <span class="toc-text">放慢追求的脚步</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Chapter-6"><span class="toc-number">3.</span> <span class="toc-text">Chapter 6</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#改变的承诺"><span class="toc-number">3.1.</span> <span class="toc-text">改变的承诺</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Chapter-8"><span class="toc-number">4.</span> <span class="toc-text">Chapter 8</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#利用自己的情绪"><span class="toc-number">4.1.</span> <span class="toc-text">利用自己的情绪</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#一、概念问题（了解就好）"><span class="toc-number">1.</span> <span class="toc-text">一、概念问题（了解就好）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#（一）数据挖掘"><span class="toc-number">1.1.</span> <span class="toc-text">（一）数据挖掘</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#（二）机器学习"><span class="toc-number">1.2.</span> <span class="toc-text">（二）机器学习</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#（三）有监督学习"><span class="toc-number">1.3.</span> <span class="toc-text">（三）有监督学习</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#（四）无监督学习"><span class="toc-number">1.4.</span> <span class="toc-text">（四）无监督学习</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#（五）分类"><span class="toc-number">1.5.</span> <span class="toc-text">（五）分类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#（六）回归"><span class="toc-number">1.6.</span> <span class="toc-text">（六）回归</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#（七）关联规则、序列模式"><span class="toc-number">1.7.</span> <span class="toc-text">（七）关联规则、序列模式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#（八）关联规则的支持度、序列模式的支持度"><span class="toc-number">1.8.</span> <span class="toc-text">（八）关联规则的支持度、序列模式的支持度</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#（九）关联规则的置信度"><span class="toc-number">1.9.</span> <span class="toc-text">（九）关联规则的置信度</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#（十）分类器的准确率"><span class="toc-number">1.10.</span> <span class="toc-text">（十）分类器的准确率</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#（十一）分类器的精确率"><span class="toc-number">1.11.</span> <span class="toc-text">（十一）分类器的精确率</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#（十二）分类器的召回率"><span class="toc-number">1.12.</span> <span class="toc-text">（十二）分类器的召回率</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#（十三）过拟合、欠拟合"><span class="toc-number">1.13.</span> <span class="toc-text">（十三）过拟合、欠拟合</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#（十四）n折交叉验证"><span class="toc-number">1.14.</span> <span class="toc-text">（十四）n折交叉验证</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#（十五）集成学习"><span class="toc-number">1.15.</span> <span class="toc-text">（十五）集成学习</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#（十六）离群点"><span class="toc-number">1.16.</span> <span class="toc-text">（十六）离群点</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#二、原理性问题"><span class="toc-number">2.</span> <span class="toc-text">二、原理性问题</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#（一）数据预处理的任务（数据清洗、数据转换、……）、目的，数据缺失的原因"><span class="toc-number">2.1.</span> <span class="toc-text">（一）数据预处理的任务（数据清洗、数据转换、……）、目的，数据缺失的原因</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#a、数据预处理任务"><span class="toc-number">2.1.1.</span> <span class="toc-text">a、数据预处理任务</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#b、数据预处理目的"><span class="toc-number">2.1.2.</span> <span class="toc-text">b、数据预处理目的</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#c、数据缺失原因"><span class="toc-number">2.1.3.</span> <span class="toc-text">c、数据缺失原因</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#（二）数据清洗的任务（噪声过滤、缺失值处理、…）、目的和方法"><span class="toc-number">2.2.</span> <span class="toc-text">（二）数据清洗的任务（噪声过滤、缺失值处理、…）、目的和方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#a、任务"><span class="toc-number">2.2.1.</span> <span class="toc-text">a、任务</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#b目的"><span class="toc-number">2.2.2.</span> <span class="toc-text">b目的</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#c、方法"><span class="toc-number">2.2.3.</span> <span class="toc-text">c、方法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#（三）数据转换的任务（离散化、数据规约（抽样、属性选择）、……）、目的和方法"><span class="toc-number">2.3.</span> <span class="toc-text">（三）数据转换的任务（离散化、数据规约（抽样、属性选择）、……）、目的和方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#a、数据规约"><span class="toc-number">2.3.1.</span> <span class="toc-text">a、数据规约</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#b、数据变换"><span class="toc-number">2.3.2.</span> <span class="toc-text">b、数据变换</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#（四）距离或者相似度的度量方法"><span class="toc-number">2.4.</span> <span class="toc-text">（四）距离或者相似度的度量方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#a、距离（相异度）度量"><span class="toc-number">2.4.1.</span> <span class="toc-text">a、距离（相异度）度量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#b、相似度度量"><span class="toc-number">2.4.2.</span> <span class="toc-text">b、相似度度量</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#（五）决策树算法的基本思想，需要剪枝的原因，剪枝的方法"><span class="toc-number">2.5.</span> <span class="toc-text">（五）决策树算法的基本思想，需要剪枝的原因，剪枝的方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#a、基本思想"><span class="toc-number">2.5.1.</span> <span class="toc-text">a、基本思想</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#b、剪枝的原因"><span class="toc-number">2.5.2.</span> <span class="toc-text">b、剪枝的原因</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#c、剪枝的方法"><span class="toc-number">2.5.3.</span> <span class="toc-text">c、剪枝的方法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#预剪枝"><span class="toc-number">2.5.3.1.</span> <span class="toc-text">预剪枝</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#后剪枝"><span class="toc-number">2.5.3.2.</span> <span class="toc-text">后剪枝</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#（六）信息增益作为衡量属性分类能力的指标，优点和缺点"><span class="toc-number">2.6.</span> <span class="toc-text">（六）信息增益作为衡量属性分类能力的指标，优点和缺点</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#a、优点"><span class="toc-number">2.6.1.</span> <span class="toc-text">a、优点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#b、缺点"><span class="toc-number">2.6.2.</span> <span class="toc-text">b、缺点</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#（七）朴素贝叶斯方法的基本思想，朴素性的体现-–-独立性假设"><span class="toc-number">2.7.</span> <span class="toc-text">（七）朴素贝叶斯方法的基本思想，朴素性的体现 – 独立性假设</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#a、基本思想-1"><span class="toc-number">2.7.1.</span> <span class="toc-text">a、基本思想</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#b朴素性体现"><span class="toc-number">2.7.2.</span> <span class="toc-text">b朴素性体现</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#（八）基于划分的聚类，基于密度的聚类分别有哪些具体的算法"><span class="toc-number">2.8.</span> <span class="toc-text">（八）基于划分的聚类，基于密度的聚类分别有哪些具体的算法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#a、基于划分的聚类"><span class="toc-number">2.8.1.</span> <span class="toc-text">a、基于划分的聚类</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#基本概念"><span class="toc-number">2.8.1.1.</span> <span class="toc-text">基本概念</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#算法"><span class="toc-number">2.8.1.2.</span> <span class="toc-text">算法</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#b、基于密度的聚类"><span class="toc-number">2.8.2.</span> <span class="toc-text">b、基于密度的聚类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#（九）不带类标的数据为什么对分类模型的训练会有帮助？"><span class="toc-number">2.8.3.</span> <span class="toc-text">（九）不带类标的数据为什么对分类模型的训练会有帮助？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#（十）什么是PU学习？什么是LU学习？"><span class="toc-number">2.8.4.</span> <span class="toc-text">（十）什么是PU学习？什么是LU学习？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#a、PU学习"><span class="toc-number">2.8.5.</span> <span class="toc-text">a、PU学习</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#b、LU学习"><span class="toc-number">2.8.6.</span> <span class="toc-text">b、LU学习</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#（十一）集成学习在什么情况下有效？"><span class="toc-number">2.8.7.</span> <span class="toc-text">（十一）集成学习在什么情况下有效？</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#三、算法"><span class="toc-number">3.</span> <span class="toc-text">三、算法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#（一）决策树-–-ID3、C4-5-–-分类"><span class="toc-number">3.1.</span> <span class="toc-text">（一）决策树 – ID3、C4.5 – 分类</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#a、ID3"><span class="toc-number">3.1.1.</span> <span class="toc-text">a、ID3</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#b、C4-5"><span class="toc-number">3.1.2.</span> <span class="toc-text">b、C4.5</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#对于连续值的处理"><span class="toc-number">3.1.2.1.</span> <span class="toc-text">对于连续值的处理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#信息增益率"><span class="toc-number">3.1.2.2.</span> <span class="toc-text">信息增益率</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#（二）朴素贝叶斯-–-分类"><span class="toc-number">3.2.</span> <span class="toc-text">（二）朴素贝叶斯 – 分类</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#a、小概率相乘"><span class="toc-number">3.2.1.</span> <span class="toc-text">a、小概率相乘</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#b、溢出问题"><span class="toc-number">3.2.2.</span> <span class="toc-text">b、溢出问题</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#（三）KNN-分类"><span class="toc-number">3.3.</span> <span class="toc-text">（三）KNN  - 分类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#（四）前馈神经网络、反向传播算法（BP算法）、交叉熵损耗、均方误差损耗"><span class="toc-number">3.4.</span> <span class="toc-text">（四）前馈神经网络、反向传播算法（BP算法）、交叉熵损耗、均方误差损耗</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#a、BP算法"><span class="toc-number">3.4.1.</span> <span class="toc-text">a、BP算法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#b、交叉熵损耗"><span class="toc-number">3.4.2.</span> <span class="toc-text">b、交叉熵损耗</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#c、均方误差损耗"><span class="toc-number">3.4.3.</span> <span class="toc-text">c、均方误差损耗</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#（五）K-均值-聚类"><span class="toc-number">3.5.</span> <span class="toc-text">（五）K-均值  - 聚类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#（六）Apriori-–-关联规则"><span class="toc-number">3.6.</span> <span class="toc-text">（六）Apriori – 关联规则</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#a、关联规则的任务"><span class="toc-number">3.6.1.</span> <span class="toc-text">a、关联规则的任务</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#b、两步方法"><span class="toc-number">3.6.2.</span> <span class="toc-text">b、两步方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#c、产生频繁项集的Apriori算法流程"><span class="toc-number">3.6.3.</span> <span class="toc-text">c、产生频繁项集的Apriori算法流程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#d、产生规则的Apriori算法流程"><span class="toc-number">3.6.4.</span> <span class="toc-text">d、产生规则的Apriori算法流程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#e、强关联规则"><span class="toc-number">3.6.5.</span> <span class="toc-text">e、强关联规则</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#（七）GSP算法-–-挖掘序列模式"><span class="toc-number">3.7.</span> <span class="toc-text">（七）GSP算法 – 挖掘序列模式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#（八）Bagging算法、AdaBoost算法"><span class="toc-number">3.8.</span> <span class="toc-text">（八）Bagging算法、AdaBoost算法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#a、Bagging"><span class="toc-number">3.8.1.</span> <span class="toc-text">a、Bagging</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#基本思想"><span class="toc-number">3.8.1.1.</span> <span class="toc-text">基本思想</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#特点"><span class="toc-number">3.8.1.2.</span> <span class="toc-text">特点</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#b、AdaBoost"><span class="toc-number">3.8.2.</span> <span class="toc-text">b、AdaBoost</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#基本思想-1"><span class="toc-number">3.8.2.1.</span> <span class="toc-text">基本思想</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#两个权重"><span class="toc-number">3.8.2.2.</span> <span class="toc-text">两个权重</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#数据权重"><span class="toc-number">3.8.2.3.</span> <span class="toc-text">数据权重</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#分类器权重"><span class="toc-number">3.8.2.4.</span> <span class="toc-text">分类器权重</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#如何优化分类器？"><span class="toc-number">3.8.2.5.</span> <span class="toc-text">如何优化分类器？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#如何计算分类器权重？"><span class="toc-number">3.8.2.6.</span> <span class="toc-text">如何计算分类器权重？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#如何计算数据权重？"><span class="toc-number">3.8.2.7.</span> <span class="toc-text">如何计算数据权重？</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#（九）EM半监督学习"><span class="toc-number">3.9.</span> <span class="toc-text">（九）EM半监督学习</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#（十）规则序列覆盖算法-–-产生决策表"><span class="toc-number">3.10.</span> <span class="toc-text">（十）规则序列覆盖算法 – 产生决策表</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>
