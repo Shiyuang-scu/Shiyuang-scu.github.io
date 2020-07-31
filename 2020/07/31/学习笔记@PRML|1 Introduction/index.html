@@ -7,71 +7,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://rationalist.me">
-  <title>Softmax Regression | ClowNaxcvd</title>
+  <title>学习笔记@PRML|1 Introduction | ClowNaxcvd</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="AbstractSoftmax Regression是Logistic Regression的推广 LR能做的是区分两类，而SR则能区分n类，虽然两者的本质都是线性的">
+  <meta name="description" content="Notes of Pattern Recognition and Machine Learning (PRML) 第一章为开篇，讨论了模式识别与机器学习的三个理论基础（从贝叶斯派的角度）：概率论、决策论和信息论。 概率论的目的是量化和利用不确定性，是模式识别的第一阶段：Inference stage。决策论的目的是在概率论的框架下，根据已知的结论和约束，进行决策，是模式识别的第二阶段：Decisi">
 <meta name="keywords" content="世界之内">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Softmax Regression">
-<meta property="og:url" content="http://rationalist.me/2018/09/08/Softmax-Regression/index.html">
+<meta property="og:title" content="学习笔记@PRML|1 Introduction">
+<meta property="og:url" content="http://rationalist.me/2020/07/31/学习笔记@PRML|1 Introduction/index.html">
 <meta property="og:site_name" content="ClowNaxcvd">
-<meta property="og:description" content="AbstractSoftmax Regression是Logistic Regression的推广 LR能做的是区分两类，而SR则能区分n类，虽然两者的本质都是线性的">
+<meta property="og:description" content="Notes of Pattern Recognition and Machine Learning (PRML) 第一章为开篇，讨论了模式识别与机器学习的三个理论基础（从贝叶斯派的角度）：概率论、决策论和信息论。 概率论的目的是量化和利用不确定性，是模式识别的第一阶段：Inference stage。决策论的目的是在概率论的框架下，根据已知的结论和约束，进行决策，是模式识别的第二阶段：Decisi">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://raw.githubusercontent.com/Shiyuang-scu/blog_img/master/Softmax-0.jpg">
-<meta property="og:image" content="http://deeplearning.stanford.edu/wiki/images/math/b/b/3/bb3791d463b832a88731b94f1d8e5279.png">
-<meta property="og:image" content="http://deeplearning.stanford.edu/wiki/images/math/f/a/6/fa6565f1e7b91831e306ec404ccc1156.png">
-<meta property="og:image" content="http://deeplearning.stanford.edu/wiki/images/math/f/6/c/f6c0f8758a1eb9c99c0bbe309ff2c5a5.png">
-<meta property="og:image" content="http://deeplearning.stanford.edu/wiki/images/math/c/1/d/c1d5aaee0724f2183116cb8860f1b9e4.png">
-<meta property="og:image" content="http://deeplearning.stanford.edu/wiki/images/math/f/6/c/f6c0f8758a1eb9c99c0bbe309ff2c5a5.png">
-<meta property="og:image" content="http://deeplearning.stanford.edu/wiki/images/math/b/0/0/b0066e761791cae480158b649e5f5a69.png">
-<meta property="og:image" content="http://deeplearning.stanford.edu/wiki/images/math/b/0/0/b0066e761791cae480158b649e5f5a69.png">
-<meta property="og:image" content="http://deeplearning.stanford.edu/wiki/images/math/8/8/7/887e72d0a7b7eb5083120e23a909a554.png">
-<meta property="og:image" content="http://deeplearning.stanford.edu/wiki/images/math/a/1/b/a1b0d7b40fe624cd8a24354792223a9d.png">
-<meta property="og:image" content="http://deeplearning.stanford.edu/wiki/images/math/f/d/9/fd93be6ab8e2b869691579202d7b4417.png">
-<meta property="og:image" content="http://deeplearning.stanford.edu/wiki/images/math/a/a/b/aab84964dbe1a2f77c9c91327ea0d6d6.png">
-<meta property="og:image" content="http://deeplearning.stanford.edu/wiki/images/math/b/2/7/b279688f53460dc80e6a81235beee14d.png">
-<meta property="og:image" content="http://deeplearning.stanford.edu/wiki/images/math/2/5/4/25481caeef48c5fa12aa22988d931716.png">
-<meta property="og:image" content="http://deeplearning.stanford.edu/wiki/images/math/2/5/4/25481caeef48c5fa12aa22988d931716.png">
-<meta property="og:image" content="http://deeplearning.stanford.edu/wiki/images/math/1/1/2/11274c6dbf36bae0b02acd07555f4ce7.png">
-<meta property="og:image" content="http://deeplearning.stanford.edu/wiki/images/math/6/8/1/68118d4cdfdbe134b420cc4031f3c46e.png">
-<meta property="og:image" content="http://deeplearning.stanford.edu/wiki/images/math/4/5/f/45f90c8f2e9a8d2f00dff993e45c9dbd.png">
-<meta property="og:image" content="http://deeplearning.stanford.edu/wiki/images/math/7/6/3/7634eb3b08dc003aa4591a95824d4fbd.png">
-<meta property="og:image" content="http://deeplearning.stanford.edu/wiki/images/math/5/4/9/5491271f19161f8ea6a6b2a82c83fc3a.png">
-<meta property="og:image" content="http://deeplearning.stanford.edu/wiki/images/math/b/0/0/b0066e761791cae480158b649e5f5a69.png">
-<meta property="og:image" content="http://deeplearning.stanford.edu/wiki/images/math/f/6/c/f6c0f8758a1eb9c99c0bbe309ff2c5a5.png">
-<meta property="og:image" content="http://deeplearning.stanford.edu/wiki/images/math/2/3/5/235c5146ab110558897640c34dad7d97.png">
-<meta property="og:image" content="http://deeplearning.stanford.edu/wiki/images/math/a/2/e/a2e69ec139cdd4828130c175d990d4e3.png">
-<meta property="og:image" content="http://deeplearning.stanford.edu/wiki/images/math/c/e/0/ce027336c1cb3c0cd461406c81369ebf.png">
-<meta property="og:image" content="http://deeplearning.stanford.edu/wiki/images/math/3/7/e/37e2eaf89c7b1f26381f438a0367099a.png">
-<meta property="og:image" content="http://deeplearning.stanford.edu/wiki/images/math/2/0/0/200d05b77b27ed6a0aa466165f660b64.png">
-<meta property="og:image" content="http://deeplearning.stanford.edu/wiki/images/math/3/7/e/37e2eaf89c7b1f26381f438a0367099a.png">
-<meta property="og:image" content="http://deeplearning.stanford.edu/wiki/images/math/9/b/8/9b8020b23b66a91888062b4a9d8902c5.png">
-<meta property="og:image" content="http://deeplearning.stanford.edu/wiki/images/math/8/3/a/83aaa94ba392e98b15d29ed67fdaae12.png">
-<meta property="og:image" content="http://deeplearning.stanford.edu/wiki/images/math/d/8/0/d8076908fb40b49db821dc410b03700f.png">
-<meta property="og:image" content="http://deeplearning.stanford.edu/wiki/images/math/3/7/e/37e2eaf89c7b1f26381f438a0367099a.png">
-<meta property="og:image" content="http://deeplearning.stanford.edu/wiki/images/math/2/0/0/200d05b77b27ed6a0aa466165f660b64.png">
-<meta property="og:image" content="http://deeplearning.stanford.edu/wiki/images/math/3/2/b/32b8c2324fe254830c693b4e9a62cad6.png">
-<meta property="og:image" content="http://deeplearning.stanford.edu/wiki/images/math/6/b/8/6b8d6eff611b23105ff5876c348e19b2.png">
-<meta property="og:image" content="http://deeplearning.stanford.edu/wiki/images/math/c/e/0/ce027336c1cb3c0cd461406c81369ebf.png">
-<meta property="og:image" content="http://deeplearning.stanford.edu/wiki/images/math/e/d/3/ed3ccb28d5145b361d3396fca429a751.png">
-<meta property="og:image" content="http://deeplearning.stanford.edu/wiki/images/math/2/0/0/200d05b77b27ed6a0aa466165f660b64.png">
-<meta property="og:image" content="http://deeplearning.stanford.edu/wiki/images/math/c/e/0/ce027336c1cb3c0cd461406c81369ebf.png">
-<meta property="og:image" content="http://deeplearning.stanford.edu/wiki/images/math/5/0/6/5068a95b00ca4021de31c92d1b9265eb.png">
-<meta property="og:image" content="http://deeplearning.stanford.edu/wiki/images/math/f/5/3/f538938bbd1f7000bcc2c9d990d53632.png">
-<meta property="og:image" content="http://deeplearning.stanford.edu/wiki/images/math/4/0/9/409483805c4d8c79f734a131d859b9f7.png">
-<meta property="og:image" content="http://deeplearning.stanford.edu/wiki/images/math/e/3/2/e32efab7bff7353e04775b030af0dae9.png">
-<meta property="og:image" content="http://deeplearning.stanford.edu/wiki/images/math/5/0/6/5068a95b00ca4021de31c92d1b9265eb.png">
-<meta property="og:image" content="http://deeplearning.stanford.edu/wiki/images/math/f/5/3/f538938bbd1f7000bcc2c9d990d53632.png">
-<meta property="og:image" content="http://deeplearning.stanford.edu/wiki/images/math/b/8/1/b81d6e553283fadddbe29fe55226fb38.png">
-<meta property="og:image" content="http://deeplearning.stanford.edu/wiki/images/math/4/1/8/418c4d9ed2c50151474385a534eb3537.png">
-<meta property="og:image" content="http://deeplearning.stanford.edu/wiki/images/math/f/1/d/f1dd3fd83eddc4b396b62c33c8a637ac.png">
-<meta property="og:image" content="http://deeplearning.stanford.edu/wiki/images/math/b/5/6/b56e13a98d2fe77d4bc5fd0c004befed.png">
-<meta property="og:image" content="http://deeplearning.stanford.edu/wiki/images/math/4/e/3/4e3deb50277418cc3eb445aa9aa7ac46.png">
-<meta property="og:updated_time" content="2018-11-21T23:08:37.829Z">
+<meta property="og:updated_time" content="2020-07-31T13:44:26.500Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Softmax Regression">
-<meta name="twitter:description" content="AbstractSoftmax Regression是Logistic Regression的推广 LR能做的是区分两类，而SR则能区分n类，虽然两者的本质都是线性的">
-<meta name="twitter:image" content="https://raw.githubusercontent.com/Shiyuang-scu/blog_img/master/Softmax-0.jpg">
+<meta name="twitter:title" content="学习笔记@PRML|1 Introduction">
+<meta name="twitter:description" content="Notes of Pattern Recognition and Machine Learning (PRML) 第一章为开篇，讨论了模式识别与机器学习的三个理论基础（从贝叶斯派的角度）：概率论、决策论和信息论。 概率论的目的是量化和利用不确定性，是模式识别的第一阶段：Inference stage。决策论的目的是在概率论的框架下，根据已知的结论和约束，进行决策，是模式识别的第二阶段：Decisi">
   
     <link rel="alternative" href="/atom.xml" title="ClowNaxcvd" type="application/atom+xml">
   
@@ -214,61 +163,140 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Softmax-Regression" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-学习笔记@PRML|1 Introduction" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      Softmax Regression
+      学习笔记@PRML|1 Introduction
     </h1>
   
 
 
         
-        <a href="/2018/09/08/Softmax-Regression/" class="archive-article-date">
-  	<time datetime="2018-09-08T10:03:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-08</time>
+        <a href="/2020/07/31/学习笔记@PRML|1 Introduction/" class="archive-article-date">
+  	<time datetime="2020-07-31T13:40:19.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-31</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><img src="https://raw.githubusercontent.com/Shiyuang-scu/blog_img/master/Softmax-0.jpg" alt="Softmax-0"></p>
-<h1 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract"></a>Abstract</h1><p><em>Softmax Regression是Logistic Regression的推广</em></p>
-<p><em>LR能做的是区分两类，而SR则能区分n类，虽然两者的本质都是线性的</em></p>
+        <p>Notes of <em>Pattern Recognition and Machine Learning (PRML)</em></p>
+<p>第一章为开篇，讨论了模式识别与机器学习的三个理论基础（从贝叶斯派的角度）：概率论、决策论和信息论。</p>
+<p>概率论的目的是量化和利用不确定性，是模式识别的第一阶段：Inference stage。决策论的目的是在概率论的框架下，根据已知的结论和约束，进行决策，是模式识别的第二阶段：Decision stage。信息论的目的是衡量对象包含的信息量。</p>
 <a id="more"></a>
-<h1 id="Logistic-Regression的回顾"><a href="#Logistic-Regression的回顾" class="headerlink" title="Logistic Regression的回顾"></a>Logistic Regression的回顾</h1><p>对于数据集{(x^1,y^1) , … , (x^m,y^m)},y只有两个类别，我们记为{0,1}，LR的假设函数(hypothesis function) 如下：</p>
-<p><img src="http://deeplearning.stanford.edu/wiki/images/math/b/b/3/bb3791d463b832a88731b94f1d8e5279.png" alt="Softmax-1"></p>
-<p>我们的目的是训练参数theta，使得可以拟合原数据集，则代价函数为：</p>
-<p><img src="http://deeplearning.stanford.edu/wiki/images/math/f/a/6/fa6565f1e7b91831e306ec404ccc1156.png" alt="Softmax-2"></p>
-<h1 id="假设函数"><a href="#假设函数" class="headerlink" title="假设函数"></a>假设函数</h1><p>对于给定的测试输入 <img src="http://deeplearning.stanford.edu/wiki/images/math/f/6/c/f6c0f8758a1eb9c99c0bbe309ff2c5a5.png" alt="\textstyle x">，我们想用假设函数针对每一个类别j 估算出概率值 <img src="http://deeplearning.stanford.edu/wiki/images/math/c/1/d/c1d5aaee0724f2183116cb8860f1b9e4.png" alt="\textstyle p(y=j | x)">。也就是说，我们想估计 <img src="http://deeplearning.stanford.edu/wiki/images/math/f/6/c/f6c0f8758a1eb9c99c0bbe309ff2c5a5.png" alt="\textstyle x"> 的每一种分类结果出现的概率。因此，我们的假设函数将要输出一个 <img src="http://deeplearning.stanford.edu/wiki/images/math/b/0/0/b0066e761791cae480158b649e5f5a69.png" alt="\textstyle k"> 维的向量（向量元素的和为1）来表示这 <img src="http://deeplearning.stanford.edu/wiki/images/math/b/0/0/b0066e761791cae480158b649e5f5a69.png" alt="\textstyle k"> 个估计的概率值。 具体地说，我们的假设函数 <img src="http://deeplearning.stanford.edu/wiki/images/math/8/8/7/887e72d0a7b7eb5083120e23a909a554.png" alt="\textstyle h_{\theta}(x)"> 形式如下：</p>
-<p><img src="http://deeplearning.stanford.edu/wiki/images/math/a/1/b/a1b0d7b40fe624cd8a24354792223a9d.png" alt="Softmax-3"></p>
-<p>其中 <img src="http://deeplearning.stanford.edu/wiki/images/math/f/d/9/fd93be6ab8e2b869691579202d7b4417.png" alt="\theta_1, \theta_2, \ldots, \theta_k \in \Re^{n+1}"> 是模型的参数。请注意 <img src="http://deeplearning.stanford.edu/wiki/images/math/a/a/b/aab84964dbe1a2f77c9c91327ea0d6d6.png" alt="\frac{1}{ \sum_{j=1}^{k}{e^{ \theta_j^T x^{(i)} }} } ">这一项对概率分布实际上进行归一化，使得所有概率之和为 1，这也是Softmax分类器的精髓。</p>
-<h1 id="代价函数"><a href="#代价函数" class="headerlink" title="代价函数"></a>代价函数</h1><p>回望Logistic Regression，我们的代价函数中，有(1-y^i)和(y^i)原因就在于，y只能是0或者1，所以在计算代价的时候，能够用这种形式来去除不属于y=0或者1的结果。但是在Softmax中，y不只是等于0、1了，所以我们这样定义：</p>
-<p>在下面的公式中，<img src="http://deeplearning.stanford.edu/wiki/images/math/b/2/7/b279688f53460dc80e6a81235beee14d.png" alt="\textstyle 1\{\cdot\}"> 是示性函数，其取值规则为：</p>
-<p><img src="http://deeplearning.stanford.edu/wiki/images/math/2/5/4/25481caeef48c5fa12aa22988d931716.png" alt="\textstyle 1\{"> 值为真的表达式}=1， <img src="http://deeplearning.stanford.edu/wiki/images/math/2/5/4/25481caeef48c5fa12aa22988d931716.png" alt="\textstyle 1\{"> 值为假的表达式 <img src="http://deeplearning.stanford.edu/wiki/images/math/1/1/2/11274c6dbf36bae0b02acd07555f4ce7.png" alt="\textstyle \}=0">。举例来说，表达式 <img src="http://deeplearning.stanford.edu/wiki/images/math/6/8/1/68118d4cdfdbe134b420cc4031f3c46e.png" alt="\textstyle 1\{2+2=4\}"> 的值为1 ，<img src="http://deeplearning.stanford.edu/wiki/images/math/4/5/f/45f90c8f2e9a8d2f00dff993e45c9dbd.png" alt="\textstyle 1\{1+1=5\}">的值为 0。我们的代价函数为：</p>
-<p><img src="http://deeplearning.stanford.edu/wiki/images/math/7/6/3/7634eb3b08dc003aa4591a95824d4fbd.png" alt="Softmax-4"></p>
-<p>值得注意的是，上述公式是logistic回归代价函数的推广。logistic回归代价函数可以改为：</p>
-<p><img src="http://deeplearning.stanford.edu/wiki/images/math/5/4/9/5491271f19161f8ea6a6b2a82c83fc3a.png" alt="Softmax-5"></p>
-<p>可以看到，Softmax代价函数与logistic 代价函数在形式上非常类似，只是在Softmax损失函数中对类标记的 <img src="http://deeplearning.stanford.edu/wiki/images/math/b/0/0/b0066e761791cae480158b649e5f5a69.png" alt="\textstyle k"> 个可能值进行了累加。注意在Softmax回归中将 <img src="http://deeplearning.stanford.edu/wiki/images/math/f/6/c/f6c0f8758a1eb9c99c0bbe309ff2c5a5.png" alt="\textstyle x"> 分类为类别 <img src="http://deeplearning.stanford.edu/wiki/images/math/2/3/5/235c5146ab110558897640c34dad7d97.png" alt="\textstyle j"> 的概率为：</p>
-<p><img src="http://deeplearning.stanford.edu/wiki/images/math/a/2/e/a2e69ec139cdd4828130c175d990d4e3.png" alt="Softmax-6"></p>
-<p>对于 <img src="http://deeplearning.stanford.edu/wiki/images/math/c/e/0/ce027336c1cb3c0cd461406c81369ebf.png" alt="\textstyle J(\theta)"> 的最小化问题，目前还没有闭式解法。因此，我们使用迭代的优化算法（例如梯度下降法，或 L-BFGS），步骤和在LR中的一样。</p>
-<h1 id="参数冗余"><a href="#参数冗余" class="headerlink" title="参数冗余"></a>参数冗余</h1><p>Softmax有一个很神奇的特性，它存在参数冗余。什么意思呢？举个例子：</p>
-<p>假设我们从参数向量 <img src="http://deeplearning.stanford.edu/wiki/images/math/3/7/e/37e2eaf89c7b1f26381f438a0367099a.png" alt="\textstyle \theta_j"> 中减去了向量 <img src="http://deeplearning.stanford.edu/wiki/images/math/2/0/0/200d05b77b27ed6a0aa466165f660b64.png" alt="\textstyle \psi">，这时，每一个 <img src="http://deeplearning.stanford.edu/wiki/images/math/3/7/e/37e2eaf89c7b1f26381f438a0367099a.png" alt="\textstyle \theta_j"> 都变成了 <img src="http://deeplearning.stanford.edu/wiki/images/math/9/b/8/9b8020b23b66a91888062b4a9d8902c5.png" alt="\textstyle \theta_j - \psi">(<img src="http://deeplearning.stanford.edu/wiki/images/math/8/3/a/83aaa94ba392e98b15d29ed67fdaae12.png" alt="\textstyle j=1, \ldots, k">)。此时假设函数变成了以下的式子：</p>
-<p><img src="http://deeplearning.stanford.edu/wiki/images/math/d/8/0/d8076908fb40b49db821dc410b03700f.png" alt="Softmax-7"></p>
-<p>换句话说，从 <img src="http://deeplearning.stanford.edu/wiki/images/math/3/7/e/37e2eaf89c7b1f26381f438a0367099a.png" alt="\textstyle \theta_j"> 中减去 <img src="http://deeplearning.stanford.edu/wiki/images/math/2/0/0/200d05b77b27ed6a0aa466165f660b64.png" alt="\textstyle \psi"> 完全不影响假设函数的预测结果！这表明前面的 softmax 回归模型中存在冗余的参数。更正式一点来说， Softmax 模型被过度参数化了。对于任意一个用于拟合数据的假设函数，可以求出多组参数值，这些参数得到的是完全相同的假设函数 <img src="http://deeplearning.stanford.edu/wiki/images/math/3/2/b/32b8c2324fe254830c693b4e9a62cad6.png" alt="\textstyle h_\theta">。具体来说，如果参数 <img src="http://deeplearning.stanford.edu/wiki/images/math/6/b/8/6b8d6eff611b23105ff5876c348e19b2.png" alt="\textstyle (\theta_1, \theta_2,\ldots, \theta_k)"> 是代价函数 <img src="http://deeplearning.stanford.edu/wiki/images/math/c/e/0/ce027336c1cb3c0cd461406c81369ebf.png" alt="\textstyle J(\theta)"> 的极小值点，那么 <img src="http://deeplearning.stanford.edu/wiki/images/math/e/d/3/ed3ccb28d5145b361d3396fca429a751.png" alt="\textstyle (\theta_1 - \psi, \theta_2 - \psi,\ldots, \theta_k - \psi)"> 同样也是它的极小值点，其中 <img src="http://deeplearning.stanford.edu/wiki/images/math/2/0/0/200d05b77b27ed6a0aa466165f660b64.png" alt="\textstyle \psi"> 可以为任意向量。因此使 <img src="http://deeplearning.stanford.edu/wiki/images/math/c/e/0/ce027336c1cb3c0cd461406c81369ebf.png" alt="\textstyle J(\theta)"> 最小化的解不是唯一的。</p>
-<p>那我们可以直接把 <img src="http://deeplearning.stanford.edu/wiki/images/math/5/0/6/5068a95b00ca4021de31c92d1b9265eb.png" alt="\textstyle \psi = \theta_1"> 嘛，这样一来，原本是 <img src="http://deeplearning.stanford.edu/wiki/images/math/f/5/3/f538938bbd1f7000bcc2c9d990d53632.png" alt="\textstyle \theta_1">的地方就变成了0，式子简化了不少。</p>
-<p>接下来我们就利用参数冗余这个特点，来推导<strong>SR其实就是LR的普遍形式，LR是SR的分类数n=2时的特殊情况</strong>这个结论。</p>
-<p>当 <img src="http://deeplearning.stanford.edu/wiki/images/math/4/0/9/409483805c4d8c79f734a131d859b9f7.png" alt="\textstyle k = 2"> 时，softmax 回归的假设函数为：</p>
-<p><img src="http://deeplearning.stanford.edu/wiki/images/math/e/3/2/e32efab7bff7353e04775b030af0dae9.png" alt="Softmax-8"></p>
-<p>利用softmax回归参数冗余的特点，我们令 <img src="http://deeplearning.stanford.edu/wiki/images/math/5/0/6/5068a95b00ca4021de31c92d1b9265eb.png" alt="\textstyle \psi = \theta_1">，并且从两个参数向量中都减去向量 <img src="http://deeplearning.stanford.edu/wiki/images/math/f/5/3/f538938bbd1f7000bcc2c9d990d53632.png" alt="\textstyle \theta_1">，得到:</p>
-<p><img src="http://deeplearning.stanford.edu/wiki/images/math/b/8/1/b81d6e553283fadddbe29fe55226fb38.png" alt="Softmax-9"></p>
-<p>因此，用 <img src="http://deeplearning.stanford.edu/wiki/images/math/4/1/8/418c4d9ed2c50151474385a534eb3537.png" alt="\textstyle \theta&#39;">来表示<img src="http://deeplearning.stanford.edu/wiki/images/math/f/1/d/f1dd3fd83eddc4b396b62c33c8a637ac.png" alt="\textstyle \theta_2-\theta_1">，我们就会发现 softmax 回归器预测其中一个类别的概率为 <img src="http://deeplearning.stanford.edu/wiki/images/math/b/5/6/b56e13a98d2fe77d4bc5fd0c004befed.png" alt="\textstyle \frac{1}{ 1  + e^{ (\theta&#39;)^T x^{(i)} } }">，另一个类别概率的为 <img src="http://deeplearning.stanford.edu/wiki/images/math/4/e/3/4e3deb50277418cc3eb445aa9aa7ac46.png" alt="\textstyle 1 - \frac{1}{ 1 + e^{ (\theta&#39;)^T x^{(i)} } }">，这与 logistic回归是一致的。</p>
-<h1 id="SR与LR的使用场合"><a href="#SR与LR的使用场合" class="headerlink" title="SR与LR的使用场合"></a>SR与LR的使用场合</h1><p>SR与LR的使用场合区别在于，分类的对象是否互斥。举个例子：以前世界上只有男性、女性和阉人，那么我们就可以用SR来做分类，因为三者是互斥的，不可能有人既是男人又是女人，或者既是男人又是阉人。</p>
-<p>但是，若是依照奥巴马政府在“跨厕法”中提出的心理性别标准，即你生下来是男的，即使现在心理上认为自己是女性，就可以进女厕，反之亦然。那么一个人既可以是男性的女性，也可以是女性的男性，可能这个人前一段时间觉得自己是女性，后来又觉得自己是男性了。现在的类别包括：男性、女性、女性的男性、男性的女性，这四者不再互斥，那么我们就只能用4个LR来作区分。</p>
-<h1 id="Reference："><a href="#Reference：" class="headerlink" title="Reference："></a>Reference：</h1><p><a href="http://deeplearning.stanford.edu/wiki/index.php/Softmax回归" target="_blank" rel="noopener">Softmax回归</a><br><a href="http://scientificrat.com/2018/06/21/理解softmax分类器/" target="_blank" rel="noopener">理解softmax分类器</a></p>
+<blockquote>
+<p>The field of pattern recognition is concerned with the <strong>automatic discovery</strong> of regularities in data through the use of <strong>computer algorithms</strong> and with the use of these regularities to <strong>take actions</strong> such as classifying the data into different categories.</p>
+<p>By Bishop in <em>Pattern Recognition and Machine Learning</em></p>
+</blockquote>
+<h1 id="1-2节-概率论"><a href="#1-2节-概率论" class="headerlink" title="1.2节 概率论"></a>1.2节 概率论</h1><h2 id="一、贝叶斯派与频率派观点的不同"><a href="#一、贝叶斯派与频率派观点的不同" class="headerlink" title="一、贝叶斯派与频率派观点的不同"></a>一、贝叶斯派与频率派观点的不同</h2><blockquote>
+<p><strong>频率学派</strong>，其特征是把需要推断的参数θ视作固定且未知的常数，而样本X是随机的，其着眼点在样本空间，有关的概率计算都是针对X的分布。</p>
+<p><strong>贝叶斯学派</strong>，他们把参数θ视作随机变量，而样本X是固定的，其着眼点在参数空间，重视参数θ的分布，固定的操作模式是通过参数的先验分布结合样本信息得到参数的后验分布。</p>
+<p>（作者：秦松雄，链接：<a href="https://www.zhihu.com/question/20587681/answer/23060072）" target="_blank" rel="noopener">https://www.zhihu.com/question/20587681/answer/23060072）</a></p>
+</blockquote>
+<blockquote>
+<p><strong>频率学派和贝叶斯学派最大的差别其实产生于对参数空间的认知上。</strong>所谓参数空间，就是你关心的那个参数可能的取值范围。频率学派（其实就是当年的Fisher）并不关心参数空间的所有细节，他们相信<strong>数据都是在这个空间里的”某个“参数值下产生的</strong>（虽然你不知道那个值是啥），所以他们的方法论一开始就是从“哪个值最有可能是真实值”这个角度出发的。于是就有了最大似然（maximum likelihood）以及置信区间（confidence interval）这样的东西，你从名字就可以看出来他们关心的就是我有多大把握去圈出那个<strong>唯一的真实参数</strong>。而贝叶斯学派恰恰相反，他们关心<strong>参数空间里的每一个值</strong>，因为他们觉得我们又没有上帝视角，怎么可能知道哪个值是真的呢？所以参数空间里的<strong>每个值都有可能是真实模型使用的值，区别只是概率不同而已</strong>。于是他们才会引入先验分布（prior distribution）和后验分布（posterior distribution）这样的概念来设法找出参数空间上的每个值的概率。</p>
+<p>（作者：Xiangyu Wang，链接：<a href="https://www.zhihu.com/question/20587681/answer/41436978）" target="_blank" rel="noopener">https://www.zhihu.com/question/20587681/answer/41436978）</a></p>
+</blockquote>
+<p>贝叶斯有“先验分布”的概念。而贝叶斯派的缺点也是从先验分布而出，先验分布的选择会影响结果，一般都是用高熵高斯分布或者均匀分布。</p>
+<p>两派的不同，导致了最大似然估计和最大后验估计，比较两者公式，最大似然估计假设参数θ已知，求x的后验分布，最大后验估计则相反。</p>
+<h2 id="二、参数估计的三种方法："><a href="#二、参数估计的三种方法：" class="headerlink" title="二、参数估计的三种方法："></a>二、参数估计的三种方法：</h2><ol>
+<li><p>最大似然估计MLE</p>
+</li>
+<li><p>最大后验估计MAP</p>
+</li>
+<li><p>全贝叶斯方法</p>
+</li>
+<li><ol>
+<li>p( t| x, X, t)=∫p(t| x, w)p(w| X, t)dw </li>
+<li>其实是用参数 w 的后验概率为权，对 probability 进行一次加权平均;因此这个过程需要 对 w 进行积分，即 marginalization。 </li>
+</ol>
+</li>
+</ol>
+<p>最大似然估计和最大后验估计都是点估计，最大后验估计相当于最大似然估计加上正则项。（参考博文：<a href="https://blog.csdn.net/u011508640/article/details/72815981）" target="_blank" rel="noopener">https://blog.csdn.net/u011508640/article/details/72815981）</a></p>
+<p>全贝叶斯方法实现起来有困难：Marginalization问题，即需要对全参数空间进行积分，但是算力不够，样本也不够。解决方法有两个：用monte carlo方法进行采样；用deterministic approximation （不知道是什么）</p>
+<h2 id="三、线性回归与最大似然估计、最大后验估计的比较"><a href="#三、线性回归与最大似然估计、最大后验估计的比较" class="headerlink" title="三、线性回归与最大似然估计、最大后验估计的比较"></a>三、线性回归与最大似然估计、最大后验估计的比较</h2><h3 id="（一）线性回归作为最大似然"><a href="#（一）线性回归作为最大似然" class="headerlink" title="（一）线性回归作为最大似然"></a>（一）线性回归作为最大似然</h3><p>现在的目的是为了得到条件概率p(y|x)，即已知x，得到y的概率。假设该条件概率符合正态分布，其中y_hat(x;w)为正态分布的均值，那么条件对数似然的表达式，形式与均方误差相同。（见《深度学习》p117）</p>
+<h3 id="（二）线性回归作为最大后验"><a href="#（二）线性回归作为最大后验" class="headerlink" title="（二）线性回归作为最大后验"></a>（二）线性回归作为最大后验</h3><p>最大后验log p(θ|x)=log p(x|θ) + log p(θ)，右边两项的第一项，就是最大似然估计里的条件似然。</p>
+<p>右边两项的第二项，即参数θ的先验。当先验是正态分布，其均值为0，方差为(1/λ)(I^2)时，其对数形式，就正比于l2正则化表达式：λ(w^T)w。</p>
+<p>所以，具有高斯先验权重的MAP 贝叶斯推断对应着权重衰减。 </p>
+<h1 id="1-3节-模型选择"><a href="#1-3节-模型选择" class="headerlink" title="1.3节 模型选择"></a>1.3节 模型选择</h1><p>选择合适复杂度的模型：</p>
+<ol>
+<li>验证集</li>
+<li>交叉验证法、留一法</li>
+</ol>
+<p>对模型表现的度量：</p>
+<ol>
+<li>赤池信息准则（Akaike information criterion ）</li>
+<li>赤池信息准则的变体：贝叶斯信息准则</li>
+</ol>
+<h1 id="1-4节-维度灾难"><a href="#1-4节-维度灾难" class="headerlink" title="1.4节 维度灾难"></a>1.4节 维度灾难</h1><p>维度灾难：随着维度变高，物体的体积将会越来越集中在物体表面附近的区域里。因此，不利于进行模式识别，</p>
+<p>但是这个问题可以被解决，因为有两个规律：</p>
+<ol>
+<li>高维度数据一般聚集在较低维度的空间里；</li>
+<li>真实数据一般比较光滑，x的轻微改变也只会导致y的轻微改变，所以可以用比如插值的方法，来进行预测。</li>
+</ol>
+<h1 id="1-5节-决策论"><a href="#1-5节-决策论" class="headerlink" title="1.5节 决策论"></a>1.5节 决策论</h1><h2 id="一、定义"><a href="#一、定义" class="headerlink" title="一、定义"></a>一、定义</h2><p>解决问题的两个阶段：</p>
+<ol>
+<li><p>Inference stage</p>
+</li>
+<li><ol>
+<li>概率论提供数学框架对不确定性进行量化和控制。即，得到联合概率分布或者后验概率分布</li>
+</ol>
+</li>
+<li><p>Decision stage</p>
+</li>
+<li><ol>
+<li>决策论在概率论提供的理论框架下，进行决策。即，根据联合概率分布或者后验概率分布，进行合适的决策（比如分类、回归等）。</li>
+</ol>
+</li>
+</ol>
+<h2 id="二、如何做决策（在分类问题下）"><a href="#二、如何做决策（在分类问题下）" class="headerlink" title="二、如何做决策（在分类问题下）"></a>二、如何做决策（在分类问题下）</h2><h3 id="（一）misclassification-loss"><a href="#（一）misclassification-loss" class="headerlink" title="（一）misclassification loss"></a>（一）misclassification loss</h3><p>计算错分类的概率，通过最小化misclassification loss，选择最优的decision boundary，类似于阈值的概念。</p>
+<h3 id="（二）expected-loss"><a href="#（二）expected-loss" class="headerlink" title="（二）expected loss"></a>（二）expected loss</h3><p>有两类misclassification：把positive分类成negative，把negative分类成positive。这两类错误的后果可能是不同的，例如“把癌症诊断为无癌症”的后果比“把无癌症诊断为癌症”的后果更严重，又如“把正常邮件诊断为垃圾邮件”的后 果比“把垃圾邮件诊断为正常邮件”的后果更严重。这时候，少犯前一错误比少犯后一错误更 有意义。为此需要 loss function 对不同的错误的代价做量化。 不同错误的代价或者权重，记录在Loss matrix中。</p>
+<h2 id="三、三种Inference、Decision的方法或观点（在分类问题下）"><a href="#三、三种Inference、Decision的方法或观点（在分类问题下）" class="headerlink" title="三、三种Inference、Decision的方法或观点（在分类问题下）"></a>三、三种Inference、Decision的方法或观点（在分类问题下）</h2><ol>
+<li>generative model：第一步，计算 类条件概率函数①（class-conditional densities，根据贝叶斯公式，相当于求得了联合概率分布），第二步，计算后验概率分布，第三步，选择策略。</li>
+<li>discriminant model：第一步，计算后验概率分布，第二步，选择策略。</li>
+<li>discriminant function：直接求输入和输出的映射。（比如说神经网络）</li>
+</ol>
+<p>①类条件概率函数p(X|w_i)是指在已知某类别的特征空间中，出现特征值 X 的概率密度，指第w_i类样品中其属性 X 是如何分布的。</p>
+<h2 id="四、三种方法的优缺点"><a href="#四、三种方法的优缺点" class="headerlink" title="四、三种方法的优缺点"></a>四、三种方法的优缺点</h2><ol>
+<li><p>generative model：求得联合概率分布，就可以求得x的分布，从而有利于离群点发现。但是如果只是针对分类问题，联合概率分布没必要，很浪费计算资源。</p>
+</li>
+<li><p>discriminant function：端对端，不用求后验概率分布。但是后验概率分布很重要，在以下情况中，后验概率分布很有用：</p>
+</li>
+<li><ol>
+<li>Compensating for class priors。在unbalanced data中，可以在其中取部分data组成balanced data，计算balanced data的后验概率分布，根据贝叶斯公式，只要将balanced data的后验概率除以balanced data的先验概率分布，再乘以unbalanced data的先验概率分布，就能得到unbalanced data的后验概率分布。</li>
+<li>Loss matrix改变之后，需要从0开始重新求discriminant function。但是如果知道了后验概率分布，只需要重新求expected loss，再最小化loss就可以了。</li>
+<li>Combining models。多个数据集，比如CT的图像数据集，和血糖血脂的数值累数据集，可以分别求这两个数据集的后验概率分布。假如两者条件独立，则直接把两个后验分布概率相乘，就能得到两个数据集放在一起后的后验分布概率。但是discriminant function完全无法实现。</li>
+</ol>
+</li>
+</ol>
+<p>以上讨论，再一次让我感受到了贝叶斯视角下的概率模型有多么优雅。</p>
+<h1 id="1-6节-信息论"><a href="#1-6节-信息论" class="headerlink" title="1.6节 信息论"></a>1.6节 信息论</h1><h2 id="一、信息熵的由来"><a href="#一、信息熵的由来" class="headerlink" title="一、信息熵的由来"></a>一、信息熵的由来</h2><ol>
+<li>信息熵数学公式的描述（intuitively speaking）：</li>
+</ol>
+<p>具体的例子：在看一段文字X后，能否预测到X之后的文字内容。越容易预测，则说明X包含的信息越少，越不容易预测，则说明X包含的信息越多。用概率的视角去看，这个例子实际上描述的是X的不确定性，可以用概率来描述：$P(X)$。所以，直观上说，信息量$h(X)$和$P(X)$相关。</p>
+<p>再考虑两个变量$X$、$Y$，如果$X$、$Y$不相关，那么$h(X, Y) = h(X) + h(Y)$，但是$P(X, Y) = P(X)P(Y)$。所以可以考虑，$h(X)$是不是和$log P(X)$成正比，因为$log P(X, Y) = log P(X) + log P(Y)$。</p>
+<p>所以就定义$h(X) = log P(X)$。</p>
+<ol start="2">
+<li><p>直观的理解：信息熵是衡量信息量的指标。</p>
+</li>
+<li><p>信息学上的理解：<code>Entropy is a lower bound on the number of bits needed to transmit the state of a random variable.</code></p>
+</li>
+<li><p>两类数据：</p>
+<ol>
+<li>离散型数据的信息熵：当变量的每个取值概率相同时，信息熵最大。</li>
+<li>连续型数据的信息熵：当变量遵循高斯分布时，信息熵最大。</li>
+</ol>
+</li>
+</ol>
+<h2 id="二、熵的相关概念"><a href="#二、熵的相关概念" class="headerlink" title="二、熵的相关概念"></a>二、熵的相关概念</h2><ol>
+<li>条件熵：在已知$X$的情况下，需要额外的信息去确定$Y$，这个额外的信息被称为条件熵。</li>
+<li>相对熵：设有一个未知的分布$ p(x)$，而 $q(x)$为我们所获得的一个对 $p(x)$的近似; 按照 $q(x)$ (而非真实分布 $p(x)$)对该随机变量的各个值进行编码，平均编码长度比用真实分布 $p(x)$进行编码要额外长多少?答案是相对熵(KL 散度)$KL(p||q)$。 </li>
+<li>互信息：如果两个随即变量 $X$,$Y$ 是独立的，那么有$ p(x, y)=P(x)P(y)$;当二者并不独立时，我们希望可以度量它们离独立还有多远，这个度量就是互信息。</li>
+</ol>
 
       
 
@@ -314,7 +342,7 @@
         
         <br>
         <strong>本文链接：</strong>
-        http://rationalist.me/2018/09/08/Softmax-Regression/
+        http://rationalist.me/2020/07/31/学习笔记@PRML|1 Introduction/
         <br>
         <strong>版权声明：</strong>
         本博客所有文章除特别声明外，均采用
@@ -389,7 +417,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://rationalist.me/2018/09/08/Softmax-Regression/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://rationalist.me/2020/07/31/学习笔记@PRML|1 Introduction/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -403,18 +431,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2018/09/09/我那无趣的灵魂/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          周记|我那无趣的灵魂
-        
-      </div>
-    </a>
   
-  
-    <a href="/2018/09/03/Rational/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">周记|Rational</div>
+    <a href="/2020/07/26/随笔-面试后的回顾与思考/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">随笔|面试后的回顾与思考</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -441,7 +460,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Abstract"><span class="toc-number">1.</span> <span class="toc-text">Abstract</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Logistic-Regression的回顾"><span class="toc-number">2.</span> <span class="toc-text">Logistic Regression的回顾</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#假设函数"><span class="toc-number">3.</span> <span class="toc-text">假设函数</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#代价函数"><span class="toc-number">4.</span> <span class="toc-text">代价函数</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#参数冗余"><span class="toc-number">5.</span> <span class="toc-text">参数冗余</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#SR与LR的使用场合"><span class="toc-number">6.</span> <span class="toc-text">SR与LR的使用场合</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Reference："><span class="toc-number">7.</span> <span class="toc-text">Reference：</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-2节-概率论"><span class="toc-number">1.</span> <span class="toc-text">1.2节 概率论</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#一、贝叶斯派与频率派观点的不同"><span class="toc-number">1.1.</span> <span class="toc-text">一、贝叶斯派与频率派观点的不同</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二、参数估计的三种方法："><span class="toc-number">1.2.</span> <span class="toc-text">二、参数估计的三种方法：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#三、线性回归与最大似然估计、最大后验估计的比较"><span class="toc-number">1.3.</span> <span class="toc-text">三、线性回归与最大似然估计、最大后验估计的比较</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#（一）线性回归作为最大似然"><span class="toc-number">1.3.1.</span> <span class="toc-text">（一）线性回归作为最大似然</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#（二）线性回归作为最大后验"><span class="toc-number">1.3.2.</span> <span class="toc-text">（二）线性回归作为最大后验</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#1-3节-模型选择"><span class="toc-number">2.</span> <span class="toc-text">1.3节 模型选择</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#1-4节-维度灾难"><span class="toc-number">3.</span> <span class="toc-text">1.4节 维度灾难</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#1-5节-决策论"><span class="toc-number">4.</span> <span class="toc-text">1.5节 决策论</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#一、定义"><span class="toc-number">4.1.</span> <span class="toc-text">一、定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二、如何做决策（在分类问题下）"><span class="toc-number">4.2.</span> <span class="toc-text">二、如何做决策（在分类问题下）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#（一）misclassification-loss"><span class="toc-number">4.2.1.</span> <span class="toc-text">（一）misclassification loss</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#（二）expected-loss"><span class="toc-number">4.2.2.</span> <span class="toc-text">（二）expected loss</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#三、三种Inference、Decision的方法或观点（在分类问题下）"><span class="toc-number">4.3.</span> <span class="toc-text">三、三种Inference、Decision的方法或观点（在分类问题下）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#四、三种方法的优缺点"><span class="toc-number">4.4.</span> <span class="toc-text">四、三种方法的优缺点</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#1-6节-信息论"><span class="toc-number">5.</span> <span class="toc-text">1.6节 信息论</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#一、信息熵的由来"><span class="toc-number">5.1.</span> <span class="toc-text">一、信息熵的由来</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二、熵的相关概念"><span class="toc-number">5.2.</span> <span class="toc-text">二、熵的相关概念</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>
