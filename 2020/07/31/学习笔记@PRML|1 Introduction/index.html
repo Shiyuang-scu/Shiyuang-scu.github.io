@@ -17,7 +17,7 @@
 <meta property="og:site_name" content="ClowNaxcvd">
 <meta property="og:description" content="Notes of Pattern Recognition and Machine Learning (PRML) 第一章为开篇，讨论了模式识别与机器学习的三个理论基础（从贝叶斯派的角度）：概率论、决策论和信息论。 概率论的目的是量化和利用不确定性，是模式识别的第一阶段：Inference stage。决策论的目的是在概率论的框架下，根据已知的结论和约束，进行决策，是模式识别的第二阶段：Decisi">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-07-31T13:44:26.500Z">
+<meta property="og:updated_time" content="2020-07-31T13:50:40.134Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="学习笔记@PRML|1 Introduction">
 <meta name="twitter:description" content="Notes of Pattern Recognition and Machine Learning (PRML) 第一章为开篇，讨论了模式识别与机器学习的三个理论基础（从贝叶斯派的角度）：概率论、决策论和信息论。 概率论的目的是量化和利用不确定性，是模式识别的第一阶段：Inference stage。决策论的目的是在概率论的框架下，根据已知的结论和约束，进行决策，是模式识别的第二阶段：Decisi">
@@ -204,12 +204,9 @@
 <p>贝叶斯有“先验分布”的概念。而贝叶斯派的缺点也是从先验分布而出，先验分布的选择会影响结果，一般都是用高熵高斯分布或者均匀分布。</p>
 <p>两派的不同，导致了最大似然估计和最大后验估计，比较两者公式，最大似然估计假设参数θ已知，求x的后验分布，最大后验估计则相反。</p>
 <h2 id="二、参数估计的三种方法："><a href="#二、参数估计的三种方法：" class="headerlink" title="二、参数估计的三种方法："></a>二、参数估计的三种方法：</h2><ol>
-<li><p>最大似然估计MLE</p>
-</li>
-<li><p>最大后验估计MAP</p>
-</li>
-<li><p>全贝叶斯方法</p>
-</li>
+<li>最大似然估计MLE</li>
+<li>最大后验估计MAP</li>
+<li>全贝叶斯方法</li>
 <li><ol>
 <li>p( t| x, X, t)=∫p(t| x, w)p(w| X, t)dw </li>
 <li>其实是用参数 w 的后验概率为权，对 probability 进行一次加权平均;因此这个过程需要 对 w 进行积分，即 marginalization。 </li>
@@ -241,16 +238,10 @@
 <h1 id="1-5节-决策论"><a href="#1-5节-决策论" class="headerlink" title="1.5节 决策论"></a>1.5节 决策论</h1><h2 id="一、定义"><a href="#一、定义" class="headerlink" title="一、定义"></a>一、定义</h2><p>解决问题的两个阶段：</p>
 <ol>
 <li><p>Inference stage</p>
-</li>
-<li><ol>
-<li>概率论提供数学框架对不确定性进行量化和控制。即，得到联合概率分布或者后验概率分布</li>
-</ol>
+<p>概率论提供数学框架对不确定性进行量化和控制。即，得到联合概率分布或者后验概率分布</p>
 </li>
 <li><p>Decision stage</p>
-</li>
-<li><ol>
-<li>决策论在概率论提供的理论框架下，进行决策。即，根据联合概率分布或者后验概率分布，进行合适的决策（比如分类、回归等）。</li>
-</ol>
+<p>决策论在概率论提供的理论框架下，进行决策。即，根据联合概率分布或者后验概率分布，进行合适的决策（比如分类、回归等）。</p>
 </li>
 </ol>
 <h2 id="二、如何做决策（在分类问题下）"><a href="#二、如何做决策（在分类问题下）" class="headerlink" title="二、如何做决策（在分类问题下）"></a>二、如何做决策（在分类问题下）</h2><h3 id="（一）misclassification-loss"><a href="#（一）misclassification-loss" class="headerlink" title="（一）misclassification loss"></a>（一）misclassification loss</h3><p>计算错分类的概率，通过最小化misclassification loss，选择最优的decision boundary，类似于阈值的概念。</p>
@@ -262,10 +253,8 @@
 </ol>
 <p>①类条件概率函数p(X|w_i)是指在已知某类别的特征空间中，出现特征值 X 的概率密度，指第w_i类样品中其属性 X 是如何分布的。</p>
 <h2 id="四、三种方法的优缺点"><a href="#四、三种方法的优缺点" class="headerlink" title="四、三种方法的优缺点"></a>四、三种方法的优缺点</h2><ol>
-<li><p>generative model：求得联合概率分布，就可以求得x的分布，从而有利于离群点发现。但是如果只是针对分类问题，联合概率分布没必要，很浪费计算资源。</p>
-</li>
-<li><p>discriminant function：端对端，不用求后验概率分布。但是后验概率分布很重要，在以下情况中，后验概率分布很有用：</p>
-</li>
+<li>generative model：求得联合概率分布，就可以求得x的分布，从而有利于离群点发现。但是如果只是针对分类问题，联合概率分布没必要，很浪费计算资源。</li>
+<li>discriminant function：端对端，不用求后验概率分布。但是后验概率分布很重要，在以下情况中，后验概率分布很有用：</li>
 <li><ol>
 <li>Compensating for class priors。在unbalanced data中，可以在其中取部分data组成balanced data，计算balanced data的后验概率分布，根据贝叶斯公式，只要将balanced data的后验概率除以balanced data的先验概率分布，再乘以unbalanced data的先验概率分布，就能得到unbalanced data的后验概率分布。</li>
 <li>Loss matrix改变之后，需要从0开始重新求discriminant function。但是如果知道了后验概率分布，只需要重新求expected loss，再最小化loss就可以了。</li>
@@ -275,18 +264,14 @@
 </ol>
 <p>以上讨论，再一次让我感受到了贝叶斯视角下的概率模型有多么优雅。</p>
 <h1 id="1-6节-信息论"><a href="#1-6节-信息论" class="headerlink" title="1.6节 信息论"></a>1.6节 信息论</h1><h2 id="一、信息熵的由来"><a href="#一、信息熵的由来" class="headerlink" title="一、信息熵的由来"></a>一、信息熵的由来</h2><ol>
-<li>信息熵数学公式的描述（intuitively speaking）：</li>
+<li>信息熵数学公式的描述（intuitively speaking）：<br>具体的例子：在看一段文字X后，能否预测到X之后的文字内容。越容易预测，则说明X包含的信息越少，越不容易预测，则说明X包含的信息越多。用概率的视角去看，这个例子实际上描述的是X的不确定性，可以用概率来描述：$P(X)$。所以，直观上说，信息量$h(X)$和$P(X)$相关。</li>
 </ol>
-<p>具体的例子：在看一段文字X后，能否预测到X之后的文字内容。越容易预测，则说明X包含的信息越少，越不容易预测，则说明X包含的信息越多。用概率的视角去看，这个例子实际上描述的是X的不确定性，可以用概率来描述：$P(X)$。所以，直观上说，信息量$h(X)$和$P(X)$相关。</p>
 <p>再考虑两个变量$X$、$Y$，如果$X$、$Y$不相关，那么$h(X, Y) = h(X) + h(Y)$，但是$P(X, Y) = P(X)P(Y)$。所以可以考虑，$h(X)$是不是和$log P(X)$成正比，因为$log P(X, Y) = log P(X) + log P(Y)$。</p>
 <p>所以就定义$h(X) = log P(X)$。</p>
 <ol start="2">
-<li><p>直观的理解：信息熵是衡量信息量的指标。</p>
-</li>
-<li><p>信息学上的理解：<code>Entropy is a lower bound on the number of bits needed to transmit the state of a random variable.</code></p>
-</li>
-<li><p>两类数据：</p>
-<ol>
+<li>直观的理解：信息熵是衡量信息量的指标。</li>
+<li>信息学上的理解：<code>Entropy is a lower bound on the number of bits needed to transmit the state of a random variable.</code></li>
+<li>两类数据：<ol>
 <li>离散型数据的信息熵：当变量的每个取值概率相同时，信息熵最大。</li>
 <li>连续型数据的信息熵：当变量遵循高斯分布时，信息熵最大。</li>
 </ol>
@@ -626,11 +611,11 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+                <a href="javascript:void(0)" class="js-tag color5">世界之内</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">世界之内</a>
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
               </li>
              
               <li class="article-tag-list-item">
