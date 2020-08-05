@@ -6,18 +6,18 @@
   
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <link rel="dns-prefetch" href="http://rationalist.me">
+  <link rel="dns-prefetch" href="http://yuuuuang.com">
   <title>学习笔记@PRML|1 Introduction | ClowNaxcvd</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="Notes of Pattern Recognition and Machine Learning (PRML) 第一章为开篇，讨论了模式识别与机器学习的三个理论基础（从贝叶斯派的角度）：概率论、决策论和信息论。 概率论的目的是量化和利用不确定性，是模式识别的第一阶段：Inference stage。决策论的目的是在概率论的框架下，根据已知的结论和约束，进行决策，是模式识别的第二阶段：Decisi">
 <meta name="keywords" content="世界之内">
 <meta property="og:type" content="article">
 <meta property="og:title" content="学习笔记@PRML|1 Introduction">
-<meta property="og:url" content="http://rationalist.me/2020/07/31/学习笔记@PRML|1 Introduction/index.html">
+<meta property="og:url" content="http://yuuuuang.com/2020/07/31/学习笔记@PRML|1 Introduction/index.html">
 <meta property="og:site_name" content="ClowNaxcvd">
 <meta property="og:description" content="Notes of Pattern Recognition and Machine Learning (PRML) 第一章为开篇，讨论了模式识别与机器学习的三个理论基础（从贝叶斯派的角度）：概率论、决策论和信息论。 概率论的目的是量化和利用不确定性，是模式识别的第一阶段：Inference stage。决策论的目的是在概率论的框架下，根据已知的结论和约束，进行决策，是模式识别的第二阶段：Decisi">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-07-31T13:50:40.134Z">
+<meta property="og:updated_time" content="2020-08-04T11:38:37.195Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="学习笔记@PRML|1 Introduction">
 <meta name="twitter:description" content="Notes of Pattern Recognition and Machine Learning (PRML) 第一章为开篇，讨论了模式识别与机器学习的三个理论基础（从贝叶斯派的角度）：概率论、决策论和信息论。 概率论的目的是量化和利用不确定性，是模式识别的第一阶段：Inference stage。决策论的目的是在概率论的框架下，根据已知的结论和约束，进行决策，是模式识别的第二阶段：Decisi">
@@ -206,18 +206,17 @@
 <h2 id="二、参数估计的三种方法："><a href="#二、参数估计的三种方法：" class="headerlink" title="二、参数估计的三种方法："></a>二、参数估计的三种方法：</h2><ol>
 <li>最大似然估计MLE</li>
 <li>最大后验估计MAP</li>
-<li>全贝叶斯方法</li>
-<li><ol>
-<li>p( t| x, X, t)=∫p(t| x, w)p(w| X, t)dw </li>
-<li>其实是用参数 w 的后验概率为权，对 probability 进行一次加权平均;因此这个过程需要 对 w 进行积分，即 marginalization。 </li>
+<li>全贝叶斯方法<ol>
+<li>$p( t| x, X, t)=∫p(t| x, w)p(w| X, t)dw $</li>
+<li>其实是用参数 $w$ 的后验概率为权，对 probability 进行一次加权平均;因此这个过程需要 对 $w$ 进行积分，即 marginalization。 </li>
 </ol>
 </li>
 </ol>
 <p>最大似然估计和最大后验估计都是点估计，最大后验估计相当于最大似然估计加上正则项。（参考博文：<a href="https://blog.csdn.net/u011508640/article/details/72815981）" target="_blank" rel="noopener">https://blog.csdn.net/u011508640/article/details/72815981）</a></p>
 <p>全贝叶斯方法实现起来有困难：Marginalization问题，即需要对全参数空间进行积分，但是算力不够，样本也不够。解决方法有两个：用monte carlo方法进行采样；用deterministic approximation （不知道是什么）</p>
-<h2 id="三、线性回归与最大似然估计、最大后验估计的比较"><a href="#三、线性回归与最大似然估计、最大后验估计的比较" class="headerlink" title="三、线性回归与最大似然估计、最大后验估计的比较"></a>三、线性回归与最大似然估计、最大后验估计的比较</h2><h3 id="（一）线性回归作为最大似然"><a href="#（一）线性回归作为最大似然" class="headerlink" title="（一）线性回归作为最大似然"></a>（一）线性回归作为最大似然</h3><p>现在的目的是为了得到条件概率p(y|x)，即已知x，得到y的概率。假设该条件概率符合正态分布，其中y_hat(x;w)为正态分布的均值，那么条件对数似然的表达式，形式与均方误差相同。（见《深度学习》p117）</p>
-<h3 id="（二）线性回归作为最大后验"><a href="#（二）线性回归作为最大后验" class="headerlink" title="（二）线性回归作为最大后验"></a>（二）线性回归作为最大后验</h3><p>最大后验log p(θ|x)=log p(x|θ) + log p(θ)，右边两项的第一项，就是最大似然估计里的条件似然。</p>
-<p>右边两项的第二项，即参数θ的先验。当先验是正态分布，其均值为0，方差为(1/λ)(I^2)时，其对数形式，就正比于l2正则化表达式：λ(w^T)w。</p>
+<h2 id="三、线性回归与最大似然估计、最大后验估计的比较"><a href="#三、线性回归与最大似然估计、最大后验估计的比较" class="headerlink" title="三、线性回归与最大似然估计、最大后验估计的比较"></a>三、线性回归与最大似然估计、最大后验估计的比较</h2><h3 id="（一）线性回归作为最大似然"><a href="#（一）线性回归作为最大似然" class="headerlink" title="（一）线性回归作为最大似然"></a>（一）线性回归作为最大似然</h3><p>现在的目的是为了得到条件概率$p(y|x)$，即已知$x$，得到$y$的概率。假设该条件概率符合正态分布，其中$y_hat(x;w)$为正态分布的均值，那么条件对数似然的表达式，形式与均方误差相同。（见《深度学习》p117）</p>
+<h3 id="（二）线性回归作为最大后验"><a href="#（二）线性回归作为最大后验" class="headerlink" title="（二）线性回归作为最大后验"></a>（二）线性回归作为最大后验</h3><p>最大后验$log p(θ|x)=log p(x|θ) + log p(θ)$，右边两项的第一项，就是最大似然估计里的条件似然。</p>
+<p>右边两项的第二项，即参数$θ$的先验。当先验是正态分布，其均值为0，方差为$(1/λ)(I^2)$时，其对数形式，就正比于l2正则化表达式：$λ(w^T)w$。</p>
 <p>所以，具有高斯先验权重的MAP 贝叶斯推断对应着权重衰减。 </p>
 <h1 id="1-3节-模型选择"><a href="#1-3节-模型选择" class="headerlink" title="1.3节 模型选择"></a>1.3节 模型选择</h1><p>选择合适复杂度的模型：</p>
 <ol>
@@ -237,12 +236,8 @@
 </ol>
 <h1 id="1-5节-决策论"><a href="#1-5节-决策论" class="headerlink" title="1.5节 决策论"></a>1.5节 决策论</h1><h2 id="一、定义"><a href="#一、定义" class="headerlink" title="一、定义"></a>一、定义</h2><p>解决问题的两个阶段：</p>
 <ol>
-<li><p>Inference stage</p>
-<p>概率论提供数学框架对不确定性进行量化和控制。即，得到联合概率分布或者后验概率分布</p>
-</li>
-<li><p>Decision stage</p>
-<p>决策论在概率论提供的理论框架下，进行决策。即，根据联合概率分布或者后验概率分布，进行合适的决策（比如分类、回归等）。</p>
-</li>
+<li>Inference stage：概率论提供数学框架对不确定性进行量化和控制。即，得到联合概率分布或者后验概率分布</li>
+<li>Decision stage：决策论在概率论提供的理论框架下，进行决策。即，根据联合概率分布或者后验概率分布，进行合适的决策（比如分类、回归等）。</li>
 </ol>
 <h2 id="二、如何做决策（在分类问题下）"><a href="#二、如何做决策（在分类问题下）" class="headerlink" title="二、如何做决策（在分类问题下）"></a>二、如何做决策（在分类问题下）</h2><h3 id="（一）misclassification-loss"><a href="#（一）misclassification-loss" class="headerlink" title="（一）misclassification loss"></a>（一）misclassification loss</h3><p>计算错分类的概率，通过最小化misclassification loss，选择最优的decision boundary，类似于阈值的概念。</p>
 <h3 id="（二）expected-loss"><a href="#（二）expected-loss" class="headerlink" title="（二）expected loss"></a>（二）expected loss</h3><p>有两类misclassification：把positive分类成negative，把negative分类成positive。这两类错误的后果可能是不同的，例如“把癌症诊断为无癌症”的后果比“把无癌症诊断为癌症”的后果更严重，又如“把正常邮件诊断为垃圾邮件”的后 果比“把垃圾邮件诊断为正常邮件”的后果更严重。这时候，少犯前一错误比少犯后一错误更 有意义。为此需要 loss function 对不同的错误的代价做量化。 不同错误的代价或者权重，记录在Loss matrix中。</p>
@@ -254,8 +249,7 @@
 <p>①类条件概率函数p(X|w_i)是指在已知某类别的特征空间中，出现特征值 X 的概率密度，指第w_i类样品中其属性 X 是如何分布的。</p>
 <h2 id="四、三种方法的优缺点"><a href="#四、三种方法的优缺点" class="headerlink" title="四、三种方法的优缺点"></a>四、三种方法的优缺点</h2><ol>
 <li>generative model：求得联合概率分布，就可以求得x的分布，从而有利于离群点发现。但是如果只是针对分类问题，联合概率分布没必要，很浪费计算资源。</li>
-<li>discriminant function：端对端，不用求后验概率分布。但是后验概率分布很重要，在以下情况中，后验概率分布很有用：</li>
-<li><ol>
+<li>discriminant function：端对端，不用求后验概率分布。但是后验概率分布很重要，在以下情况中，后验概率分布很有用：<ol>
 <li>Compensating for class priors。在unbalanced data中，可以在其中取部分data组成balanced data，计算balanced data的后验概率分布，根据贝叶斯公式，只要将balanced data的后验概率除以balanced data的先验概率分布，再乘以unbalanced data的先验概率分布，就能得到unbalanced data的后验概率分布。</li>
 <li>Loss matrix改变之后，需要从0开始重新求discriminant function。但是如果知道了后验概率分布，只需要重新求expected loss，再最小化loss就可以了。</li>
 <li>Combining models。多个数据集，比如CT的图像数据集，和血糖血脂的数值累数据集，可以分别求这两个数据集的后验概率分布。假如两者条件独立，则直接把两个后验分布概率相乘，就能得到两个数据集放在一起后的后验分布概率。但是discriminant function完全无法实现。</li>
@@ -327,7 +321,7 @@
         
         <br>
         <strong>本文链接：</strong>
-        http://rationalist.me/2020/07/31/学习笔记@PRML|1 Introduction/
+        http://yuuuuang.com/2020/07/31/学习笔记@PRML|1 Introduction/
         <br>
         <strong>版权声明：</strong>
         本博客所有文章除特别声明外，均采用
@@ -402,7 +396,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://rationalist.me/2020/07/31/学习笔记@PRML|1 Introduction/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yuuuuang.com/2020/07/31/学习笔记@PRML|1 Introduction/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -615,11 +609,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+                <a href="javascript:void(0)" class="js-tag color5">世界之外</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">世界之外</a>
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
               </li>
              
               <li class="article-tag-list-item">
