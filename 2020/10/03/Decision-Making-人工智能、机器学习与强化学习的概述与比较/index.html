@@ -17,7 +17,7 @@
 <meta property="og:site_name" content="ClowNaxcvd">
 <meta property="og:description" content="之前帆帆问我，强化学习和机器学习有什么区别，我自以为清楚，但是和她讨论到最后才发现自己对这两个概念很糊涂。当时也查过资料，但是中文资料含糊不清、不够系统，大多文章是复制粘贴，作者不求甚解。 最近在了解making decision under uncertainty的背景知识，看到一篇review，索引至作者的实验室主页，看到有一篇谈论AI、machine learning和reinforceme">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-10-03T08:26:09.502Z">
+<meta property="og:updated_time" content="2020-10-03T08:28:16.322Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Decision Making|人工智能、机器学习与强化学习的概述与比较">
 <meta name="twitter:description" content="之前帆帆问我，强化学习和机器学习有什么区别，我自以为清楚，但是和她讨论到最后才发现自己对这两个概念很糊涂。当时也查过资料，但是中文资料含糊不清、不够系统，大多文章是复制粘贴，作者不求甚解。 最近在了解making decision under uncertainty的背景知识，看到一篇review，索引至作者的实验室主页，看到有一篇谈论AI、machine learning和reinforceme">
@@ -250,7 +250,7 @@
 <li>Sequential decisions and information: $S^{0}, x^{0}, W^{1}, S^{1}, x^{1}, W^{2}, S^{2}, \ldots, W^{N}, S^{N}, x^{N}$ where $S^n$ is the state variable, which captures everything we need to determine $x^n$. Note that state variables may include beliefs about unobservable parameters.</li>
 <li>Infinite horizon problems, where $N→∞$, and where the information $W^n$ comes from a stationary distribution.</li>
 </ul>
-<p>stochastic optimization的核心问题是，寻找到一个决定$x^n$（写作$X^{\pi}\left(S^{n}\right)$）的策略选择算法$\pi$，从而最大化cumulative reward：<br>$$<br>\max _{\pi} \mathbb{E}{\sum_{n=0}^{N} C\left(S^{n}, X^{\pi}\left(S^{n}\right)\right) \mid S^{0}}<br>$$<br>或者final reward<br>$$<br>\max _{\pi} \mathbb{E} F\left(x^{\pi, N}, \hat{W}\right)<br>$$<br>其中$x^{\pi, N}$是指在策略搜索算法$\pi$下$N$次迭代后的策略结果集。</p>
+<p>stochastic optimization的核心问题是，寻找到一个决定$x^n$（写作$X^{\pi}\left(S^{n}\right)$）的策略选择算法$\pi$，从而最大化cumulative reward：<br>$$<br>\max _{\pi} \mathbb{E}\left(\sum_{n=0}^{N} C\left(S^{n}, X^{\pi}\left(S^{n}\right)\right) \mid S^{0}\right)<br>$$<br>或者final reward<br>$$<br>\max _{\pi} \mathbb{E} F\left(x^{\pi, N}, \hat{W}\right)<br>$$<br>其中$x^{\pi, N}$是指在策略搜索算法$\pi$下$N$次迭代后的策略结果集。</p>
 <p>有一点需要注意，接下来将详细分析。整个优化过程如下：</p>
 <ol>
 <li>通过策略选择算法$\pi$，选择策略$x^{\pi, N}$。</li>
@@ -623,11 +623,11 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+                <a href="javascript:void(0)" class="js-tag color5">世界之内</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">世界之内</a>
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
               </li>
              
               <li class="article-tag-list-item">
