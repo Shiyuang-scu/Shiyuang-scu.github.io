@@ -17,7 +17,7 @@
 <meta property="og:site_name" content="ClowNaxcvd">
 <meta property="og:description" content="之前帆帆问我，强化学习和机器学习有什么区别，我自以为清楚，但是和她讨论到最后才发现自己对这两个概念很糊涂。当时也查过资料，但是中文资料含糊不清、不够系统，大多文章是复制粘贴，作者不求甚解。 最近在了解making decision under uncertainty的背景知识，看到一篇review，索引至作者的实验室主页，看到有一篇谈论AI、machine learning和reinforceme">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-10-03T08:28:16.322Z">
+<meta property="og:updated_time" content="2020-10-04T01:41:30.514Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Decision Making|人工智能、机器学习与强化学习的概述与比较">
 <meta name="twitter:description" content="之前帆帆问我，强化学习和机器学习有什么区别，我自以为清楚，但是和她讨论到最后才发现自己对这两个概念很糊涂。当时也查过资料，但是中文资料含糊不清、不够系统，大多文章是复制粘贴，作者不求甚解。 最近在了解making decision under uncertainty的背景知识，看到一篇review，索引至作者的实验室主页，看到有一篇谈论AI、machine learning和reinforceme">
@@ -196,7 +196,7 @@
 <p><strong>1）Rule-based logic</strong></p>
 <p>利用逻辑推理，基于一系列前提条件，利用规则得到结论。类似于多次使用“if…else”语句进行判断、选择。</p>
 <p><strong>2）Making estimates using data from the environment</strong></p>
-<p>这个问题往往使用Machine Learning方法，而Machine Learning与统计学紧密相关，也被成为统计学习，或者更广泛地说，数据科学。Machine Learning分为两类：</p>
+<p>这个问题往往使用Machine Learning方法，而Machine Learning与统计学紧密相关，也被称为统计学习，或者更广泛地说，数据科学。Machine Learning分为两类：</p>
 <ul>
 <li>supervised learning</li>
 </ul>
@@ -236,10 +236,10 @@
 </li>
 </ul>
 <p>实际上，大部分决策既会改变环境，又会交换信息。因为在大部分情况下，改变环境之后，当前的信息肯定会变化，比如说蝴蝶效应，蝴蝶扇一扇翅膀（决策），就会引起龙卷风（改变环境），龙卷风本身也是一种信息，会影响之后的决策。</p>
-<p>为了更清晰地表述making decisions，下面将引入一些符号来表示决策过程中的重要概念。“state”，即状态，包含了所有决策所需要的信息，用$S_t$表示。$S_t$ 可以是物理信息$R_t$ 比如汽车的位置、速度，水库的水量得到；也可以是其他的信息$I_t$，比如今天的天气情况；或者是某些我们无法观察道德数量的置信 (beliefs) $B_t$。</p>
+<p>为了更清晰地表述making decisions，下面将引入一些符号来表示决策过程中的重要概念。“state”，即状态，包含了所有决策所需要的信息，用$S_t$表示。$S_t$ 可以是物理信息$R_t$ 比如汽车的位置、速度，水库的水量等等；也可以是其他的信息$I_t$，比如今天的天气情况；或者是某些我们无法观察到的数量的置信 (beliefs) $B_t$。</p>
 <p>什么叫置信 $B_t$？可以理解成先验，比如数据的均值、方差，比如参数的分布等。所以，纯粹的Decisions to acquire information，因为获得了环境信息，所以对环境的先验知识得到了丰富，因此改变的只有$B_t$，这是一个learning problem，只是为了学习$B_t$。关于学习$B_t$的问题，被称为“多臂老虎机” (multiarmed bandit) 问题。当然，大部分情况下，为了获取$B_t$而making decision之后，环境状态的$B_t$会随之变化，相关问题被称为 <em>active learning problem.</em></p>
 <p>还有几个概念。我们使用$C(S,x)$来表示cost function（或者称为contribution function ）。所谓的$C(S,x)$，是用来衡量在状态$S$下，决策$x$的好坏。making decision的目的就是选择最好的$x$，即使得$C(S,x)$最大的$x$。$C(S,x)$是用来衡量决策好坏的，这个评估直接影响决策的选择。我们使用$X^\pi(S)$来表示决策选择函数，$x_t=X^\pi(S_t)$。making decision的核心就是得到最优的决策选择函数$X^\pi(S)$。</p>
-<h2 id="（一）什么是reinforcement-learning？"><a href="#（一）什么是reinforcement-learning？" class="headerlink" title="（一）什么是reinforcement learning？"></a>（一）什么是reinforcement learning？</h2><p>强化学习（reinforcement learning）是making decision的一个方法之一，但是这几年热度很高。所有的强化学习方法，都基于“Markov decision processes”。强化学习的核心思想是Q-learning。以下是Q-learning的公式表示：<br>$$<br>\begin{array}{l}<br>\hat{q}^{n}\left(s^{n}, a^{n}\right)=r(s^n, a^n)+\max _{a^{\prime}} \bar{Q}^{n-1}\left(s^{n+1}, a^{\prime}\right) \<br>\bar{Q}^{n}\left(s^{n}, a^{n}\right)=(1-\alpha) \bar{Q}^{n-1}\left(s^{n}, a^{n}\right)+\alpha \hat{q}^{n}\left(s^{n}, a^{n}\right)<br>\end{array}<br>$$<br>$r(s^n, a^n)$是奖励函数，评估在状态$s^n$下进行动作$a^n$的好坏。$\alpha$是平滑系数，用来平衡$Q(s,a)$和$q(s,a)$对最终结果的影响程度。</p>
+<h2 id="（一）什么是reinforcement-learning？"><a href="#（一）什么是reinforcement-learning？" class="headerlink" title="（一）什么是reinforcement learning？"></a>（一）什么是reinforcement learning？</h2><p>强化学习（reinforcement learning）是making decision的一个方法之一，但是这几年热度很高。所有的强化学习方法，都基于“Markov decision processes”。强化学习的核心思想是Q-learning。以下是Q-learning的公式表示：<br>$$<br>\begin{array}{l}<br>\hat{q}^{n}\left(s^{n}, a^{n}\right)=r(s^n, a^n)+\max _{a^{\prime}} \bar{Q}^{n-1}\left(s^{n+1}, a^{\prime}\right) \\<br>\bar{Q}^{n}\left(s^{n}, a^{n}\right)=(1-\alpha) \bar{Q}^{n-1}\left(s^{n}, a^{n}\right)+\alpha \hat{q}^{n}\left(s^{n}, a^{n}\right)<br>\end{array}<br>$$<br>$r(s^n, a^n)$是奖励函数，评估在状态$s^n$下进行动作$a^n$的好坏。$\alpha$是平滑系数，用来平衡$Q(s,a)$和$q(s,a)$对最终结果的影响程度。</p>
 <p>Q-learning的思想，简单地说，就是在选定决策$a^n$的情况下，计算该决策对下一个状态$s^{n+1}$的影响，再把这种影响计入对该决策好坏的评定。强化学习方法通过计算$Q(s,a)$来评估决策的好坏，最好的决策能够最大化$Q(s,a)$。</p>
 <h2 id="（二）reinforcement-leanring与machine-leanring的交集"><a href="#（二）reinforcement-leanring与machine-leanring的交集" class="headerlink" title="（二）reinforcement leanring与machine leanring的交集"></a>（二）reinforcement leanring与machine leanring的交集</h2><p>换一个角度看machine learning，比如说，如果making decision的目的是为了模仿人的行为，那么人在每一个时间单位的状态$s$，其实就是$x$；在每一个状态下的行为$a$，其实就是$y$，machine learning模型的目的，就是学习如何将$x$映射成$y$，即在状态$s$下做出怎样的行为$a$。</p>
 <p>但是这仅仅是“<strong>模仿</strong>”，所谓的making decision，目的在于将决策的performance最大化，而衡量、最大化performance的过程不需要标签$y$，简单地说，模仿是无法实现决策最优的。</p>
@@ -427,6 +427,15 @@
 
   
 <nav id="article-nav">
+  
+    <a href="/2020/10/07/随笔-Normal-People-Normal-Love/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          随笔|Normal People, Normal Love
+        
+      </div>
+    </a>
   
   
     <a href="/2020/09/10/疫情后的总结/" id="article-nav-older" class="article-nav-link-wrap">
