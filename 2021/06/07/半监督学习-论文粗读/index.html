@@ -18,7 +18,7 @@
 <meta property="og:description" content="对几篇半监督学习经典论文的粗读。">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://pic2.zhimg.com/80/v2-4daada76c8a578712deabc4654862909_1440w.jpg">
-<meta property="og:updated_time" content="2021-06-07T07:38:29.517Z">
+<meta property="og:updated_time" content="2021-06-07T07:46:11.493Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="半监督学习|论文粗读">
 <meta name="twitter:description" content="对几篇半监督学习经典论文的粗读。">
@@ -189,7 +189,7 @@
         <p>对几篇半监督学习经典论文的粗读。</p>
 <a id="more"></a>
 <p>这一派的核心思想就是，利用无标签的数据，来对模型基于有标签数据的训练，进行约束。相当于一个对模型正则化的过程，来降低模型的过拟合问题。（之所以认为这样做是有用的，是基于低密度假设。就是decision boundary经过的区域是低密度的，数据分布在远离decision boundary的地方。因此随机扰动不会改变数据的label，也就是不会cross boundary。如下图）</p>
-<p><img src="https://pic2.zhimg.com/80/v2-4daada76c8a578712deabc4654862909_1440w.jpg" alt="img" style="zoom:50%;"></p>
+<p><img src="https://pic2.zhimg.com/80/v2-4daada76c8a578712deabc4654862909_1440w.jpg" alt="img" style="zoom:80%;" class="center"></p>
 <h1 id="1-Pseudo-label-1"><a href="#1-Pseudo-label-1" class="headerlink" title="1 Pseudo-label [1]"></a>1 Pseudo-label [1]</h1><p>直接把无标签数据当成有标签数据，无标签数据的标签看其输出（比如输出是0.6，那么标签就是1，输出是0.1，标签就是0）。直观上是说，是pseudo-label与概率的一致性，</p>
 <p><em>然而，这样简单粗暴地定义无标签数据的标签，肯定会给模型学习带来很大问题，因为很容易标错啊。所以以后的工作，其实本质上就是对这个问题的改进</em></p>
 <h1 id="2-Temporal-ensembling-2"><a href="#2-Temporal-ensembling-2" class="headerlink" title="2 Temporal ensembling [2]"></a>2 Temporal ensembling [2]</h1><p>1）pi-model[2]: （前要知识：每一次跑模型，都会随机变一个数据扰动）每次计算两次无标签数据的预测值，目的是让两个经过不同数据扰动后的无标签数据的结果变得一样。直观上是说，是同一样本不同扰动后结果的一致性。</p>
