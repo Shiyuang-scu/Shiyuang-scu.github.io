@@ -10,16 +10,16 @@
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="description" content="6 topics   Classical AI Planning and Acting  Decision Theory  Rational and Judgmental Decision Making  Decision Networks    Markov Decision Process  Reinforcement Learning  POMDP  Game Theory and Mult">
+  <meta name="description" content="6 topics  Classical AI Planning and Acting Decision Theory Rational and Judgmental Decision Making Decision Networks   Markov Decision Process Reinforcement Learning POMDP Game Theory and Multi-agent">
 <meta property="og:type" content="article">
 <meta property="og:title" content="【学习笔记】人工智能规划与决策">
 <meta property="og:url" content="http://www.yuuuuang.com/2022/04/26/%E3%80%90%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E3%80%91%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E8%A7%84%E5%88%92%E4%B8%8E%E5%86%B3%E7%AD%96/index.html">
 <meta property="og:site_name" content="Yuang&#39;s Blog">
-<meta property="og:description" content="6 topics   Classical AI Planning and Acting  Decision Theory  Rational and Judgmental Decision Making  Decision Networks    Markov Decision Process  Reinforcement Learning  POMDP  Game Theory and Mult">
+<meta property="og:description" content="6 topics  Classical AI Planning and Acting Decision Theory Rational and Judgmental Decision Making Decision Networks   Markov Decision Process Reinforcement Learning POMDP Game Theory and Multi-agent">
 <meta property="og:locale">
 <meta property="og:image" content="https://wikimedia.org/api/rest_v1/media/math/render/svg/678cb558a9d59c33ef4810c9618baf34a9577686">
 <meta property="article:published_time" content="2022-04-26T12:11:23.000Z">
-<meta property="article:modified_time" content="2022-07-21T09:19:39.369Z">
+<meta property="article:modified_time" content="2022-12-17T06:15:17.942Z">
 <meta property="article:author" content="Yuang">
 <meta property="article:tag" content="世界之内">
 <meta name="twitter:card" content="summary">
@@ -48,6 +48,9 @@
   
 
 
+  
+    <script src="/lib/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
   
 
 </head>
@@ -249,18 +252,18 @@
   <div class="article-entry" itemprop="articleBody">
     
     <p>6 topics</p>
-<ul>
-<li style="list-style: none"><input type="checkbox" checked></input> Classical AI Planning and Acting</li>
-<li style="list-style: none"><input type="checkbox" checked></input> Decision Theory<ul>
-<li style="list-style: none"><input type="checkbox" checked></input> Rational and Judgmental Decision Making</li>
-<li style="list-style: none"><input type="checkbox" checked></input> Decision Networks</li>
+<ol>
+<li>Classical AI Planning and Acting</li>
+<li>Decision Theory<ul>
+<li>Rational and Judgmental Decision Making</li>
+<li>Decision Networks</li>
 </ul>
 </li>
-<li style="list-style: none"><input type="checkbox" checked></input> Markov Decision Process</li>
-<li style="list-style: none"><input type="checkbox" checked></input> Reinforcement Learning</li>
-<li style="list-style: none"><input type="checkbox" checked></input> POMDP</li>
-<li style="list-style: none"><input type="checkbox" checked></input> Game Theory and Multi-agent Decision Making</li>
-</ul>
+<li>Markov Decision Process</li>
+<li>Reinforcement Learning</li>
+<li>POMDP</li>
+<li>Game Theory and Multi-agent Decision Making</li>
+</ol>
 <a id="more"></a>
 <h2 id="Classical-AI-Planning-and-Acting"><a href="#Classical-AI-Planning-and-Acting" class="headerlink" title="Classical AI Planning and Acting"></a>Classical AI Planning and Acting</h2><h2 id="Rational-and-Judgmental-Decision-Making"><a href="#Rational-and-Judgmental-Decision-Making" class="headerlink" title="Rational and Judgmental Decision Making"></a>Rational and Judgmental Decision Making</h2><p>Uncertainty</p>
 <ul>
@@ -311,14 +314,12 @@
 </li>
 <li><p>Two methods to find <em>optimal policy</em> (get the <em>utility function</em>):</p>
 <ul>
-<li><p>Value Iteration (VI)</p>
-<ol>
+<li>Value Iteration (VI)<ol>
 <li>calculate the utility of each state</li>
 <li>use the state utilities to select an optimal action in each state.</li>
 </ol>
 </li>
-<li><p>Policy Iteration (PI)</p>
-<ol>
+<li>Policy Iteration (PI)<ol>
 <li>policy evaluation</li>
 <li>Policy improvement</li>
 </ol>
@@ -349,12 +350,9 @@
 </ul>
 <p>$$<br>U_{i}(s)=R(s)+\gamma \sum_{s^{\prime}} P\left(s^{\prime} \mid s, \pi_{i}(s)\right) U_{i}\left(s^{\prime}\right)<br>$$</p>
 <ul>
-<li><p>Policy Improvement:</p>
-<ul>
-<li><p>if the current action $a$ is not the optimal action:<br>$$<br>\max <em>{a \in A(s)} \sum</em>{s^{\prime}} P\left(s^{\prime} \mid s, a\right) U\left[s^{\prime}\right]&gt;\sum_{s^{\prime}} P\left(s^{\prime} \mid s, \pi[s]\right) U\left[s^{\prime}\right]<br>$$</p>
-</li>
-<li><p>then update the <em>policy</em> and the <em>utility function</em></p>
-</li>
+<li>Policy Improvement:<ul>
+<li>if the current action $a$ is not the optimal action:<br>$$<br>\max <em>{a \in A(s)} \sum</em>{s^{\prime}} P\left(s^{\prime} \mid s, a\right) U\left[s^{\prime}\right]&gt;\sum_{s^{\prime}} P\left(s^{\prime} \mid s, \pi[s]\right) U\left[s^{\prime}\right]<br>$$</li>
+<li>then update the <em>policy</em> and the <em>utility function</em></li>
 </ul>
 </li>
 </ul>
@@ -393,18 +391,13 @@
 </li>
 </ul>
 <h4 id="Learning-Strategy"><a href="#Learning-Strategy" class="headerlink" title="Learning Strategy"></a>Learning Strategy</h4><ul>
-<li><p>Learn Utility Function $U$</p>
-<ul>
-<li><p>Direct Utility Estimation</p>
-</li>
-<li><p>Passive Adaptive Dynamic Programming</p>
-</li>
-<li><p>Passive Temporal-Difference Learning</p>
-</li>
+<li>Learn Utility Function $U$<ul>
+<li>Direct Utility Estimation</li>
+<li>Passive Adaptive Dynamic Programming</li>
+<li>Passive Temporal-Difference Learning</li>
 </ul>
 </li>
-<li><p>Learn action-utility function $Q$ (Q-function)</p>
-<ul>
+<li>Learn action-utility function $Q$ (Q-function)<ul>
 <li>Active Temporal-Difference Learning</li>
 </ul>
 </li>
@@ -414,13 +407,10 @@
 </li>
 </ul>
 <h4 id="Known-or-Unknown-Policy"><a href="#Known-or-Unknown-Policy" class="headerlink" title="Known or Unknown Policy"></a>Known or Unknown Policy</h4><ul>
-<li><p>Known Policy (Passive Learning)</p>
-<ul>
+<li>Known Policy (Passive Learning)<ul>
 <li>Direct Utility Estimation</li>
-<li><p>Passive Adaptive Dynamic Programming</p>
-</li>
-<li><p>Passive Temporal-Difference Learning</p>
-</li>
+<li>Passive Adaptive Dynamic Programming</li>
+<li>Passive Temporal-Difference Learning</li>
 </ul>
 </li>
 <li>Unknown Policy (Acitve Learning)<ul>
@@ -476,12 +466,9 @@
 <h4 id="Temporal-Difference-Learning-TD"><a href="#Temporal-Difference-Learning-TD" class="headerlink" title="Temporal-Difference Learning (TD)"></a>Temporal-Difference Learning (TD)</h4><ul>
 <li><p>Another way to utilize Bellman equation (i.e. relation to the successor states)</p>
 <ul>
-<li><p>use the <em>observed transitions</em> to adjust the utilities of the observed states so that they agree with the constraint equations.</p>
-<ul>
-<li><p>$$<br>U^{\pi}(s) \leftarrow U^{\pi}(s)+\alpha\left(R(s)+\gamma U^{\pi}\left(s^{\prime}\right)-U^{\pi}(s)\right)<br>$$</p>
-</li>
-<li><p>where $\alpha$ is the learning rate, it will converge if $\alpha$ decreases appropriately with the number of times the state has visited.</p>
-</li>
+<li>use the <em>observed transitions</em> to adjust the utilities of the observed states so that they agree with the constraint equations.<ul>
+<li>$$<br>U^{\pi}(s) \leftarrow U^{\pi}(s)+\alpha\left(R(s)+\gamma U^{\pi}\left(s^{\prime}\right)-U^{\pi}(s)\right)<br>$$</li>
+<li>where $\alpha$ is the learning rate, it will converge if $\alpha$ decreases appropriately with the number of times the state has visited.</li>
 </ul>
 </li>
 </ul>
@@ -606,20 +593,13 @@
 <li><p>Belief Update (<em>Filtering</em>):</p>
 <ul>
 <li>$$<br>b^{\prime}\left(s^{\prime}\right)=\alpha P\left(e \mid s^{\prime}\right) \sum_{s} P\left(s^{\prime} \mid s, a\right) b(s)<br>$$</li>
-</ul>
-</li>
-</ul>
-<ul>
 <li>First term: sensor model, probability of sensing evedence $e$ in state $s$</li>
-</ul>
-<ul>
 <li>Second term: sum over all the states that can take to s’ after performing $a$.</li>
-</ul>
-<ul>
 <li>Ofen written as $b’ = FORWARD(b,a,e)$.</li>
 </ul>
-<ul>
-<li>Optimal Policy: $\pi^*(b)$</li>
+</li>
+<li><p>Optimal Policy: $\pi^*(b)$</p>
+</li>
 </ul>
 <p>How to find the optimal policy?</p>
 <ul>
@@ -635,14 +615,10 @@
 <ul>
 <li><p>Transition Function: $P(b’ \mid b,a)$</p>
 <ul>
-<li><p>$$<br>\begin{aligned}<br>P\left(b^{\prime} \mid b, a\right) &amp;=\sum_{e} P\left(b^{\prime} \mid e, a, b\right) P(e \mid a, b) \<br>&amp;=\sum_{e} P\left(b^{\prime} \mid e, a, b\right) \sum_{s^{\prime}} P\left(e \mid s^{\prime}\right) \sum_{s} P\left(s^{\prime} \mid s, a\right) b(s)<br>\end{aligned}<br>$$</p>
-</li>
-<li><p>where $P(e \mid a, b)$ is the percept probability</p>
-<ul>
-<li><p>$$<br>\begin{aligned}<br>P(e \mid a, b) &amp;=\sum_{s^{\prime}} P\left(e \mid a, s^{\prime}, b\right) P\left(s^{\prime} \mid a, b\right) \<br>&amp;=\sum_{s^{\prime}} P\left(e \mid s^{\prime}\right) P\left(s^{\prime} \mid a, b\right) \<br>&amp;=\sum_{s^{\prime}} P\left(e \mid s^{\prime}\right) \sum_{s} P\left(s^{\prime} \mid s, a\right) b(s)<br>\end{aligned}<br>$$</p>
-</li>
-<li><p>where term $P(e \mid s’)$ is sensor model, term $P(s’ \mid s,a)$ is transition model.</p>
-</li>
+<li>$$<br>\begin{aligned}<br>P\left(b^{\prime} \mid b, a\right) &amp;=\sum_{e} P\left(b^{\prime} \mid e, a, b\right) P(e \mid a, b) \<br>&amp;=\sum_{e} P\left(b^{\prime} \mid e, a, b\right) \sum_{s^{\prime}} P\left(e \mid s^{\prime}\right) \sum_{s} P\left(s^{\prime} \mid s, a\right) b(s)<br>\end{aligned}<br>$$</li>
+<li>where $P(e \mid a, b)$ is the percept probability<ul>
+<li>$$<br>\begin{aligned}<br>P(e \mid a, b) &amp;=\sum_{s^{\prime}} P\left(e \mid a, s^{\prime}, b\right) P\left(s^{\prime} \mid a, b\right) \<br>&amp;=\sum_{s^{\prime}} P\left(e \mid s^{\prime}\right) P\left(s^{\prime} \mid a, b\right) \<br>&amp;=\sum_{s^{\prime}} P\left(e \mid s^{\prime}\right) \sum_{s} P\left(s^{\prime} \mid s, a\right) b(s)<br>\end{aligned}<br>$$</li>
+<li>where term $P(e \mid s’)$ is sensor model, term $P(s’ \mid s,a)$ is transition model.</li>
 </ul>
 </li>
 </ul>
@@ -668,20 +644,15 @@
 </ul>
 <p>Concepts:</p>
 <ul>
-<li><p>$p$: conditional plan, a policy at a belief $b$.</p>
-</li>
-<li><p>$\alpha_p(s)$: The utility of executing a <em>fixed</em> conditional plan $p$ starting in physical state $s$.</p>
-</li>
+<li>$p$: conditional plan, a policy at a belief $b$.</li>
+<li>$\alpha_p(s)$: The utility of executing a <em>fixed</em> conditional plan $p$ starting in physical state $s$.</li>
 <li>$\sum_sb(s)\alpha_p(s)$: The expected utility of executing $p$ in belief state $b$, which is linearly to belief state $b$.</li>
 </ul>
 <p>Value Iteration in belief state space:<br>$$<br>\alpha_{p}(s)=R(s)+\gamma \left(\sum_{s^{\prime}} P\left(s^{\prime} \mid s, a\right) \sum_{e} P\left(e \mid s^{\prime}\right) \alpha_{p . e}\left(s^{\prime}\right){ }^{\prime}\right).<br>$$<br>Problem</p>
 <ul>
-<li><p>Exact POMPDP solvers only work for very small problems</p>
-</li>
-<li><p>Finding optimal policy for general POMDP is PSPACE-hard</p>
-</li>
-<li><p>Approximate solvers can scale to moderate sized problems</p>
-</li>
+<li>Exact POMPDP solvers only work for very small problems</li>
+<li>Finding optimal policy for general POMDP is PSPACE-hard</li>
+<li>Approximate solvers can scale to moderate sized problems</li>
 </ul>
 <p><em>Online search</em> tends to scale better.</p>
 <h3 id="Dynamic-Decision-Network"><a href="#Dynamic-Decision-Network" class="headerlink" title="Dynamic Decision Network"></a>Dynamic Decision Network</h3><ul>
@@ -696,12 +667,9 @@
 <h2 id="Game-Theory"><a href="#Game-Theory" class="headerlink" title="Game Theory"></a>Game Theory</h2><h3 id="Single-Move-Game"><a href="#Single-Move-Game" class="headerlink" title="Single-Move Game"></a>Single-Move Game</h3><ul>
 <li><p>Conponents</p>
 <ul>
-<li><p>Agents</p>
-</li>
-<li><p>Actions</p>
-</li>
-<li><p>Payoff Function</p>
-<ul>
+<li>Agents</li>
+<li>Actions</li>
+<li>Payoff Function<ul>
 <li>can be represented as a matrix</li>
 </ul>
 </li>
@@ -709,12 +677,9 @@
 </li>
 <li><p>Game Strategies </p>
 <ul>
-<li><p>pure strategy: a deterministic policy</p>
-</li>
-<li><p>mixed strategy: a randomized policy that selects actions according to a probability distribution</p>
-</li>
-<li><p>game profile </p>
-<ul>
+<li>pure strategy: a deterministic policy</li>
+<li>mixed strategy: a randomized policy that selects actions according to a probability distribution</li>
+<li>game profile <ul>
 <li>game solutions</li>
 </ul>
 </li>
@@ -795,10 +760,8 @@
 </li>
 <li><p>Zero-Sum Games</p>
 <ul>
-<li><p>Games in which the sum of the payoffs is always zero (or a constant), in other word, the agents cannot get benefit at the same time.</p>
-</li>
-<li><p>Minimax Algorithm</p>
-<ul>
+<li>Games in which the sum of the payoffs is always zero (or a constant), in other word, the agents cannot get benefit at the same time.</li>
+<li>Minimax Algorithm<ul>
 <li>Minimax Game Tree</li>
 <li>mixed strategy (with probability)</li>
 <li>maximin equilibrium</li>
@@ -816,24 +779,17 @@
 </li>
 <li><p>Two strategies</p>
 <ul>
-<li><p>perpetual punishment</p>
-<ul>
-<li><p>suppose that after each round there is a 99% chance that the players will meet again. Then the expected number of rounds is still 100, but neither player knows for sure which round will be the last.</p>
-<ul>
-<li><p>If always choose “refuse”:</p>
-</li>
-<li><p>$$<br>\sum_{t=0}^{\infty} 0.99^{t} \cdot(-1)=-100<br>$$</p>
-</li>
-<li><p>If one round choose “testify”:</p>
-</li>
-<li><p>$$<br>0+\sum_{t=1}^{\infty} 0.99^{t} \cdot(-5)=-495<br>$$</p>
-</li>
+<li>perpetual punishment<ul>
+<li>suppose that after each round there is a 99% chance that the players will meet again. Then the expected number of rounds is still 100, but neither player knows for sure which round will be the last.<ul>
+<li>If always choose “refuse”:</li>
+<li>$$<br>\sum_{t=0}^{\infty} 0.99^{t} \cdot(-1)=-100<br>$$</li>
+<li>If one round choose “testify”:</li>
+<li>$$<br>0+\sum_{t=1}^{\infty} 0.99^{t} \cdot(-5)=-495<br>$$</li>
 </ul>
 </li>
 </ul>
 </li>
-<li><p>tit-for-tat</p>
-<ul>
+<li>tit-for-tat<ul>
 <li>calls for starting with “refuse “ and then echoing the other player’s previous move on all subsequent moves.</li>
 <li>So Alice would refuse as long as Bob refuses and would testify the move after Bob testified, but would go back to refusing if Bob did. Although very simple, this strategy has proven to be highly robust and effective against a wide variety of strategies.</li>
 </ul>
@@ -1194,11 +1150,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">叶隙集</a>
+                <a href="javascript:void(0)" class="js-tag color5">机器学习</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">机器学习</a>
+                <a href="javascript:void(0)" class="js-tag color4">叶隙集</a>
               </li>
              
               <li class="article-tag-list-item">
