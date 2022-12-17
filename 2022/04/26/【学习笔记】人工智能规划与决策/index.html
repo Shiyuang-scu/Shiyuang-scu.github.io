@@ -19,7 +19,7 @@
 <meta property="og:locale">
 <meta property="og:image" content="https://wikimedia.org/api/rest_v1/media/math/render/svg/678cb558a9d59c33ef4810c9618baf34a9577686">
 <meta property="article:published_time" content="2022-04-26T12:11:23.000Z">
-<meta property="article:modified_time" content="2022-12-17T06:15:17.942Z">
+<meta property="article:modified_time" content="2022-12-17T06:23:41.156Z">
 <meta property="article:author" content="Yuang">
 <meta property="article:tag" content="世界之内">
 <meta name="twitter:card" content="summary">
@@ -296,9 +296,9 @@
 <h2 id="Markov-Decision-Process"><a href="#Markov-Decision-Process" class="headerlink" title="Markov Decision Process"></a>Markov Decision Process</h2><ul>
 <li>MDP = Transition Function + Reward Function</li>
 <li>Expeted utility executing policy $\pi$ starting in state $s$: $U^{\pi}(s)=E\left[\sum_{t=0}^{\infty} \gamma^{t} R\left(s_{t}\right)\right]$</li>
-<li>Value function: $U^{\pi^{<em>}}(s)$. Expeted utility executing optimal policy $\pi^{</em>}$ starting in state $s$. </li>
-<li>Optimal policy starting in state $s$: $\pi_{s}^{<em>}=\underset{\pi}{\operatorname{argmax}} U^{\pi}(s)$. The optimal policy is </em>independent<em> of the starting state, so optimal policy can be simply denoted as $\pi^{</em>}$. (see AIMA-3rd P651)</li>
-<li>Utility function (Value function) of state $s$ : $U^{\pi^{*}}(s)$ can be written as $U(s)$.<ul>
+<li>Value function: $U^{\pi^{\<em>}}(s)$. Expeted utility executing optimal policy $\pi^{\</em>}$ starting in state $s$. </li>
+<li>Optimal policy starting in state $s$: $\pi_{s}^{\<em>}=\underset{\pi}{\operatorname{argmax}} U^{\pi}(s)$. The optimal policy is </em>independent<em> of the starting state, so optimal policy can be simply denoted as $\pi^{\</em>}$. (see AIMA-3rd P651)</li>
+<li>Utility function (Value function) of state $s$ : $U^{\pi^{\*}}(s)$ can be written as $U(s)$.<ul>
 <li>Utility function $U(s)$ vs. reward function $R(s)$ <ul>
 <li>$U(s)$ is <em>long-term</em> total reward from $s$ onward.</li>
 <li>$R(s)$ is <em>short-term</em> reward of being $s$.</li>
@@ -308,7 +308,7 @@
 </li>
 <li>After finding Utility function $U(s)$, we can easily get the optimal policy — choose the action that maximizes the expected utility of the subsequent state:</li>
 </ul>
-<p>$$<br>\pi^{*}(s)=\underset{a \in A(s)}{\operatorname{argmax}} \sum_{s^{\prime}} P\left(s^{\prime} \mid s, a\right) U\left(s^{\prime}\right)<br>$$</p>
+<p>$$<br>\pi^{\*}(s)=\underset{a \in A(s)}{\operatorname{argmax}} \sum_{s^{\prime}} P\left(s^{\prime} \mid s, a\right) U\left(s^{\prime}\right)<br>$$</p>
 <ul>
 <li><p>Utility Function: the <em>key</em> to find the optimal policy.</p>
 </li>
@@ -330,7 +330,7 @@
 <h3 id="Value-Iteration"><a href="#Value-Iteration" class="headerlink" title="Value Iteration"></a>Value Iteration</h3><ul>
 <li>Bellman Equation</li>
 </ul>
-<p>$$<br>U(s)=R(s)+\gamma \max <em>{a \in A(s)} \sum</em>{s^{\prime}} P\left(s^{\prime} \mid s, a\right) U\left(s^{\prime}\right) .<br>$$</p>
+<p>$$<br>U(s)=R(s)+\gamma \max_{a \in A(s)} \sum_{s^{\prime}} P\left(s^{\prime} \mid s, a\right) U\left(s^{\prime}\right) .<br>$$</p>
 <p>Utility of a state $U(s)$: </p>
 <ul>
 <li><em>immediate reward</em> for that state $R(s)$ </li>
@@ -351,7 +351,7 @@
 <p>$$<br>U_{i}(s)=R(s)+\gamma \sum_{s^{\prime}} P\left(s^{\prime} \mid s, \pi_{i}(s)\right) U_{i}\left(s^{\prime}\right)<br>$$</p>
 <ul>
 <li>Policy Improvement:<ul>
-<li>if the current action $a$ is not the optimal action:<br>$$<br>\max <em>{a \in A(s)} \sum</em>{s^{\prime}} P\left(s^{\prime} \mid s, a\right) U\left[s^{\prime}\right]&gt;\sum_{s^{\prime}} P\left(s^{\prime} \mid s, \pi[s]\right) U\left[s^{\prime}\right]<br>$$</li>
+<li>if the current action $a$ is not the optimal action:<br>$$<br>\max_{a \in A(s)} \sum_{s^{\prime}} P\left(s^{\prime} \mid s, a\right) U\left[s^{\prime}\right]&gt;\sum_{s^{\prime}} P\left(s^{\prime} \mid s, \pi[s]\right) U\left[s^{\prime}\right]<br>$$  </li>
 <li>then update the <em>policy</em> and the <em>utility function</em></li>
 </ul>
 </li>
@@ -687,7 +687,11 @@
 </li>
 </ul>
 <blockquote>
-<p>E.g. Prisoners’ Dilemma<br>$$<br>\begin{array}{|c|c|c|}<br>\hline &amp; \text { Alice: testify } &amp; \text { Alice: refuse } \<br>\hline \text { Bob: testify } &amp; B=-5 ; A=-5 &amp; B=0 ; A=-10 \<br>\hline \text { Bob: refuse } &amp; B=-10 ; A=0 &amp; B=-1 ; A=-1 \<br>\hline<br>\end{array}<br>$$<br>Alice finds that “testify” is a <strong><em>dominant strategy</em></strong> for the game, so she <strong><em>eliminates</em></strong> “refuse”, the same for Bob. They finally reach an <strong><em>equilibrium</em></strong>: both choose to “testify”.</p>
+<p>E.g. Prisoners’ Dilemma</p>
+</blockquote>
+<p>$$<br>\begin{array}{|c|c|c|}<br>\hline &amp; \text { Alice: testify } &amp; \text { Alice: refuse } \<br>\hline \text { Bob: testify } &amp; B=-5 ; A=-5 &amp; B=0 ; A=-10 \<br>\hline \text { Bob: refuse } &amp; B=-10 ; A=0 &amp; B=-1 ; A=-1 \<br>\hline<br>\end{array}<br>$$</p>
+<blockquote>
+<p>Alice finds that “testify” is a <strong><em>dominant strategy</em></strong> for the game, so she <strong><em>eliminates</em></strong> “refuse”, the same for Bob. They finally reach an <strong><em>equilibrium</em></strong>: both choose to “testify”.</p>
 </blockquote>
 <ul>
 <li>Domination<ul>
@@ -729,7 +733,11 @@
 </ul>
 <p>(B: testify, A: testify) is the Nash equilibrium while (B: refuse, A: refuse) is Pareto dominating.</p>
 <blockquote>
-<p>Another Example:<br>$$<br>\begin{array}{|c|c|c|}<br>\hline &amp; \text { Acme: bluray } &amp; \text { Acme: } d v d \<br>\hline \text { Best: bluray } &amp; B=+9 ; A=+9 &amp; B=-1 ; A=-4 \<br>\hline \text { Best: } d v d &amp; B=-1 ; A=-3 &amp; B=+5 ; A=+5 \<br>\hline<br>\end{array}<br>$$<br>We can find two Nash equilibria: (B: bluray, A: bluray) and (B: dvd, A: dvd). We can also find the Pareto Optimum: (B: bluray, A: bluray)). To choose the best strategy, the agent can either guess or <em>communicate</em></p>
+<p>Another Example: </p>
+</blockquote>
+<p>$$<br>\begin{array}{|c|c|c|}<br>\hline &amp; \text { Acme: bluray } &amp; \text { Acme: } d v d \<br>\hline \text { Best: bluray } &amp; B=+9 ; A=+9 &amp; B=-1 ; A=-4 \<br>\hline \text { Best: } d v d &amp; B=-1 ; A=-3 &amp; B=+5 ; A=+5 \<br>\hline<br>\end{array}<br>$$</p>
+<blockquote>
+<p>We can find two Nash equilibria: (B: bluray, A: bluray) and (B: dvd, A: dvd). We can also find the Pareto Optimum: (B: bluray, A: bluray)). To choose the best strategy, the agent can either guess or <em>communicate</em></p>
 </blockquote>
 <ul>
 <li>Coordination Games<ul>
@@ -738,24 +746,25 @@
 </li>
 </ul>
 <blockquote>
-<p>Another Example: two-finger Morra<br>$$<br>\begin{array}{|c|c|c|}<br>\hline &amp; \text { O: one } &amp; \text { O: two } \<br>\hline E: \text { one } &amp; E=+2, O=-2 &amp; E=-3, O=+3 \<br>\hline E: \text { two } &amp; E=-3, O=+3 &amp; E=+4, O=-4 \<br>\hline<br>\end{array}<br>$$<br>Both E and O cannot reach Nash equilibrium because they always want to swicth a strategy in a bad situation, i.e. O will ask for switch when in (E: one, O: one) or (E: two, O: two), the same for E. It’s a zero-sum game.</p>
+<p>Another Example: two-finger Morra</p>
+</blockquote>
+<p>$$<br>\begin{array}{|c|c|c|}<br>\hline &amp; \text { O: one } &amp; \text { O: two } \<br>\hline E: \text { one } &amp; E=+2, O=-2 &amp; E=-3, O=+3 \<br>\hline E: \text { two } &amp; E=-3, O=+3 &amp; E=+4, O=-4 \<br>\hline<br>\end{array}<br>$$</p>
+<blockquote>
+<p>Both E and O cannot reach Nash equilibrium because they always want to swicth a strategy in a bad situation, i.e. O will ask for switch when in (E: one, O: one) or (E: two, O: two), the same for E. It’s a zero-sum game.</p>
 <p>Thus, there is no <em>pure-strategy</em> Nash equilibria, which requires for <em>mixed strategy</em></p>
 </blockquote>
 <ul>
 <li><p>A simple algorithm to find pure-strategy Nash equilibrium:</p>
 <ol>
-<li><p>For each column, mark cell if it has the maximum payoff for the row player</p>
-<ul>
+<li>For each column, mark cell if it has the maximum payoff for the row player<ul>
 <li>May be more than one</li>
 </ul>
 </li>
-<li><p>For each row, mark cell if it has the maximum payoff for the column player</p>
-<ul>
+<li>For each row, mark cell if it has the maximum payoff for the column player<ul>
 <li>May be more than one</li>
 </ul>
 </li>
-<li><p>Cells with both row and column marks are pure Nash equilibrium</p>
-</li>
+<li>Cells with both row and column marks are pure Nash equilibrium</li>
 </ol>
 </li>
 <li><p>Zero-Sum Games</p>
@@ -790,7 +799,7 @@
 </ul>
 </li>
 <li>tit-for-tat<ul>
-<li>calls for starting with “refuse “ and then echoing the other player’s previous move on all subsequent moves.</li>
+<li>calls for starting with “refuse” and then echoing the other player’s previous move on all subsequent moves.</li>
 <li>So Alice would refuse as long as Bob refuses and would testify the move after Bob testified, but would go back to refusing if Bob did. Although very simple, this strategy has proven to be highly robust and effective against a wide variety of strategies.</li>
 </ul>
 </li>
