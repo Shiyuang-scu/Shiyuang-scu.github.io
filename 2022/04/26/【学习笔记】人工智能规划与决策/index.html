@@ -19,7 +19,7 @@
 <meta property="og:locale">
 <meta property="og:image" content="https://wikimedia.org/api/rest_v1/media/math/render/svg/678cb558a9d59c33ef4810c9618baf34a9577686">
 <meta property="article:published_time" content="2022-04-26T12:11:23.000Z">
-<meta property="article:modified_time" content="2022-12-17T06:23:41.156Z">
+<meta property="article:modified_time" content="2022-12-17T06:28:07.450Z">
 <meta property="article:author" content="Yuang">
 <meta property="article:tag" content="世界之内">
 <meta name="twitter:card" content="summary">
@@ -689,7 +689,35 @@
 <blockquote>
 <p>E.g. Prisoners’ Dilemma</p>
 </blockquote>
-<p>$$<br>\begin{array}{|c|c|c|}<br>\hline &amp; \text { Alice: testify } &amp; \text { Alice: refuse } \<br>\hline \text { Bob: testify } &amp; B=-5 ; A=-5 &amp; B=0 ; A=-10 \<br>\hline \text { Bob: refuse } &amp; B=-10 ; A=0 &amp; B=-1 ; A=-1 \<br>\hline<br>\end{array}<br>$$</p>
+<!-- $$
+\begin{array}{|c|c|c|}
+\hline & \text { Alice: testify } & \text { Alice: refuse } \\
+\hline \text { Bob: testify } & B=-5 ; A=-5 & B=0 ; A=-10 \\
+\hline \text { Bob: refuse } & B=-10 ; A=0 & B=-1 ; A=-1 \\
+\hline
+\end{array}
+$$ -->
+<table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center">Alice: testify</th>
+<th style="text-align:center">Alice: refuse</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">Bob: testify</td>
+<td style="text-align:center">B=-5;A=-5</td>
+<td style="text-align:center">B=0;A=-10</td>
+</tr>
+<tr>
+<td style="text-align:center">Bob: refuse</td>
+<td style="text-align:center">B=-10;A=0</td>
+<td style="text-align:center">B=-1;A=-1</td>
+</tr>
+</tbody>
+</table>
 <blockquote>
 <p>Alice finds that “testify” is a <strong><em>dominant strategy</em></strong> for the game, so she <strong><em>eliminates</em></strong> “refuse”, the same for Bob. They finally reach an <strong><em>equilibrium</em></strong>: both choose to “testify”.</p>
 </blockquote>
@@ -735,7 +763,35 @@
 <blockquote>
 <p>Another Example: </p>
 </blockquote>
-<p>$$<br>\begin{array}{|c|c|c|}<br>\hline &amp; \text { Acme: bluray } &amp; \text { Acme: } d v d \<br>\hline \text { Best: bluray } &amp; B=+9 ; A=+9 &amp; B=-1 ; A=-4 \<br>\hline \text { Best: } d v d &amp; B=-1 ; A=-3 &amp; B=+5 ; A=+5 \<br>\hline<br>\end{array}<br>$$</p>
+<!-- $$
+\begin{array}{|c|c|c|}
+\hline & \text { Acme: bluray } & \text { Acme: } d v d \\
+\hline \text { Best: bluray } & B=+9 ; A=+9 & B=-1 ; A=-4 \\
+\hline \text { Best: } d v d & B=-1 ; A=-3 & B=+5 ; A=+5 \\
+\hline
+\end{array}
+$$ -->
+<table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center">Acme: bluray</th>
+<th style="text-align:center">Acme: dvd</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">Best: bluray</td>
+<td style="text-align:center">B=+9;A=+9</td>
+<td style="text-align:center">B=-1;A=-4</td>
+</tr>
+<tr>
+<td style="text-align:center">Best: dvd</td>
+<td style="text-align:center">B=-1;A=-3</td>
+<td style="text-align:center">B=+5;A=+5</td>
+</tr>
+</tbody>
+</table>
 <blockquote>
 <p>We can find two Nash equilibria: (B: bluray, A: bluray) and (B: dvd, A: dvd). We can also find the Pareto Optimum: (B: bluray, A: bluray)). To choose the best strategy, the agent can either guess or <em>communicate</em></p>
 </blockquote>
@@ -748,7 +804,35 @@
 <blockquote>
 <p>Another Example: two-finger Morra</p>
 </blockquote>
-<p>$$<br>\begin{array}{|c|c|c|}<br>\hline &amp; \text { O: one } &amp; \text { O: two } \<br>\hline E: \text { one } &amp; E=+2, O=-2 &amp; E=-3, O=+3 \<br>\hline E: \text { two } &amp; E=-3, O=+3 &amp; E=+4, O=-4 \<br>\hline<br>\end{array}<br>$$</p>
+<!-- $$
+\begin{array}{|c|c|c|}
+\hline & \text { O: one } & \text { O: two } \\
+\hline E: \text { one } & E=+2, O=-2 & E=-3, O=+3 \\
+\hline E: \text { two } & E=-3, O=+3 & E=+4, O=-4 \\
+\hline
+\end{array}
+$$ -->
+<table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center">O: one</th>
+<th style="text-align:center">O: two</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">E: one</td>
+<td style="text-align:center">E=+2,O=-2</td>
+<td style="text-align:center">E=-3,O=+3</td>
+</tr>
+<tr>
+<td style="text-align:center">E: two</td>
+<td style="text-align:center">E=-3,O=+3</td>
+<td style="text-align:center">E=+4,O=-4</td>
+</tr>
+</tbody>
+</table>
 <blockquote>
 <p>Both E and O cannot reach Nash equilibrium because they always want to swicth a strategy in a bad situation, i.e. O will ask for switch when in (E: one, O: one) or (E: two, O: two), the same for E. It’s a zero-sum game.</p>
 <p>Thus, there is no <em>pure-strategy</em> Nash equilibria, which requires for <em>mixed strategy</em></p>
@@ -1159,11 +1243,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">机器学习</a>
+                <a href="javascript:void(0)" class="js-tag color4">叶隙集</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">叶隙集</a>
+                <a href="javascript:void(0)" class="js-tag color5">机器学习</a>
               </li>
              
               <li class="article-tag-list-item">
