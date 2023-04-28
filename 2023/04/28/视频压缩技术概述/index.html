@@ -32,7 +32,7 @@
 <meta property="og:image" content="https://raw.githubusercontent.com/Shiyuang-scu/notesimage/master/202304281604020.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/Shiyuang-scu/notesimage/master/202304281609035.png">
 <meta property="article:published_time" content="2023-04-28T08:23:18.000Z">
-<meta property="article:modified_time" content="2023-04-28T08:41:35.281Z">
+<meta property="article:modified_time" content="2023-04-28T08:43:42.775Z">
 <meta property="article:author" content="Yuang">
 <meta property="article:tag" content="世界之内">
 <meta name="twitter:card" content="summary">
@@ -329,7 +329,7 @@
 <h3 id="空间冗余"><a href="#空间冗余" class="headerlink" title="空间冗余"></a>空间冗余</h3><p>上一节讨论了如何利用帧与帧之间的时间相关性，来消除冗余。具体地说，我们通过motion estimation &amp; motion compensation，极大地减少了P 帧和B 帧的数据量。然而，我们仍然需要原原本本地存储I 帧。这一节将介绍如何利用像素与像素之间的空间相关性，来进一步压缩I 帧。</p>
 <p>我们可以发现，在视频的每<strong>一帧</strong>里，有很多区域是相似的，一般来说，一个像素通常与它相邻的像素们相似，这被称之为<strong>空间相关性</strong>。因此，只要知道相邻区域的颜色变化，就能估计出当前区域的颜色变化。</p>
 <p>以下图左图为例，我们有一张图片，我们想要预测红色区域的颜色，同时我们知道这个红色区域周围的颜色。我们假设红色区域的颜色在垂直方向上与其邻近区域是一样的（有很多更好的颜色预测方法，这里只是用了一个简单的例子），那么我们就能得到一个颜色估计，如下图右图所示。</p>
-<p><img src="https://raw.githubusercontent.com/Shiyuang-scu/notesimage/master/202304281604020.png"  width="400"></p>
+<p><img src="https://raw.githubusercontent.com/Shiyuang-scu/notesimage/master/202304281604020.png"  width="500"></p>
 <!-- ![](https://raw.githubusercontent.com/Shiyuang-scu/notesimage/master/202304281604020.png) -->
 <p>同样的，我们的预测肯定不是完美的，因此我们还会<strong>减去实际值</strong>，算出残差，如下图所示。我们只需要存储残差以及邻近区域的颜色，就能得到该区域的颜色。可以看出，通过这个方法，我们进一步极大地减少了需要存储的数据量。</p>
 <p><img src="https://raw.githubusercontent.com/Shiyuang-scu/notesimage/master/202304281609035.png" alt=""></p>
