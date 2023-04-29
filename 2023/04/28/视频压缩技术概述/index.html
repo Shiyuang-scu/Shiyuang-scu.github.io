@@ -36,7 +36,7 @@
 <meta property="og:image" content="https://raw.githubusercontent.com/Shiyuang-scu/notesimage/master/202304291055682.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/Shiyuang-scu/notesimage/master/202304291111952.png">
 <meta property="article:published_time" content="2023-04-28T08:23:18.000Z">
-<meta property="article:modified_time" content="2023-04-29T03:35:08.069Z">
+<meta property="article:modified_time" content="2023-04-29T03:50:39.383Z">
 <meta property="article:author" content="Yuang">
 <meta property="article:tag" content="世界之内">
 <meta name="twitter:card" content="summary">
@@ -248,7 +248,7 @@
       <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
       <i class="icon-statistics"></i>
       <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">5.3k字</span>
+      <span class="post-count">5.6k字</span>
     </span>
   </span>
 
@@ -257,7 +257,7 @@
     <span class="post-meta-item-icon">
       <i class="icon-book icon"></i>
       <span class="post-meta-item-text"> 阅读时长≈</span>
-      <span class="post-count">18分</span>
+      <span class="post-count">19分</span>
     </span>
   </span>
 </div>
@@ -419,7 +419,10 @@
 </table>
 <p>现在我们想压缩 <strong>eat</strong> 这个单词，假设我们为每个字符花费 8 bit，在没有做任何压缩时我们将花费 <strong>24 bit</strong>。但是在这种情况下，我们使用各自的代码来替换每个字符，我们就能节省空间。根据上表的结论， <strong>e</strong> 的二进制码是 <code>10</code>，第二个字符 <strong>a</strong> 的二进制码是 <code>0</code>，第三个字符 <strong>t</strong> 的二进制码是 <code>1110</code>，最终组成已压缩的比特流是 <code>1001110</code>，这只需 <strong>7 bit</strong>（比原来的空间少 3.4 倍）。</p>
 <p>一般使用<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Huffman_coding">Huffman编码</a>来找到每个符号对应的二进制码。</p>
-<h2 id="第六步：比特流格式-（bitstream-format）"><a href="#第六步：比特流格式-（bitstream-format）" class="headerlink" title="第六步：比特流格式 （bitstream format）"></a>第六步：比特流格式 （bitstream format）</h2>
+<h2 id="第六步：比特流格式-（bitstream-format）"><a href="#第六步：比特流格式-（bitstream-format）" class="headerlink" title="第六步：比特流格式 （bitstream format）"></a>第六步：比特流格式 （bitstream format）</h2><p>回顾一下，我们先是利用视频的时间相关性和图片的空间相关性，消除了冗余；然后，我们对残差块进行了DCT转换、量化、熵编码，用信号处理理论和编码理论，再一次狠狠地压缩了数据。到此，压缩就告一段落了。</p>
+<p>接下来的问题是，我们在得到了压缩后的数据，以及恢复这些数据的必要信息（比如预测信息，即运动向量、帧内预测方向）之后，我们该怎么把这些信息有序地打包起来。每一种压缩标准都有自己的bitstream format，但是都大差不差，遵循着一样的基本原则。 下面附上不同压缩标准的bitstream format：<a target="_blank" rel="noopener" href="https://storage.googleapis.com/downloads.webmproject.org/docs/vp9/vp9-bitstream-specification-v0.6-20160331-draft.pdf">VP9 比特流</a>，<a target="_blank" rel="noopener" href="http://handle.itu.int/11.1002/1000/11885-en?locatt=format:pdf">H.265（HEVC）</a>， <a target="_blank" rel="noopener" href="https://medium.com/@mbebenita/av1-bitstream-analyzer-d25f1c27072b#.d5a89oxz8">AV1 比特流</a>。</p>
+<p>这一步不太涉及到技术，只是对格式标准的介绍。因为懒，我就不详细介绍了。</p>
+
     
 
     
