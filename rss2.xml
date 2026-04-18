@@ -9,8 +9,30 @@
     <atom:link href="https://shiyuang-scu.github.io/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description></description>
-    <pubDate>Wed, 14 Jan 2026 21:29:21 GMT</pubDate>
+    <pubDate>Sat, 18 Apr 2026 15:59:48 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>2025年终总结</title>
+      <link>https://shiyuang-scu.github.io/2026/04/18/2025%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/</link>
+      <guid>https://shiyuang-scu.github.io/2026/04/18/2025%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/</guid>
+      <pubDate>Sat, 18 Apr 2026 09:47:46 GMT</pubDate>
+      
+      <description>&lt;p&gt;我住的学生宿舍，楼下有一棵很大的树，我不认识它叫什么名字。我刚来的时候是秋天，它每天掉一些叶子下来，不多不少，大概七八片的样子。有时候我出门的时候正好有一片落在我肩上，我就把它拿下来，看看上面的纹路，然后放在路边的台阶上。第二天那片叶子就不见了，不知道是被风吹走了，还是被扫走了，还是被另一个像我一样无聊的人捡走了。我每天都放一片，每天都消失。我觉得这件事有一种说不清楚的仪式感。&lt;/p&gt;
+&lt;p&gt;现在已经是春天，这颗树上抽出了嫩绿的新芽，可是，我已经等不到下一个秋天了。&lt;/p&gt;</description>
+      
+      
+      
+      
+      
+      <category domain="https://shiyuang-scu.github.io/tags/%E9%9A%8F%E7%AC%94/">随笔</category>
+      
+      <category domain="https://shiyuang-scu.github.io/tags/%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/">年终总结</category>
+      
+      
+      <comments>https://shiyuang-scu.github.io/2026/04/18/2025%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/#disqus_thread</comments>
+      
+    </item>
     
     <item>
       <title>【叶隙集】47 圣诞假期的旅行</title>
@@ -323,25 +345,6 @@
       
       
       <comments>https://shiyuang-scu.github.io/2024/05/22/%E3%80%90%E5%8F%B6%E9%9A%99%E9%9B%86%E3%80%9138-%E5%8F%82%E5%8A%A0%E5%AD%A6%E6%9C%AF%E4%BC%9A%E8%AE%AE/#disqus_thread</comments>
-      
-    </item>
-    
-    <item>
-      <title>Notes of 3D Gaussian Splatting</title>
-      <link>https://shiyuang-scu.github.io/2024/03/19/Notes-of-3D-Gaussian-Splatting/</link>
-      <guid>https://shiyuang-scu.github.io/2024/03/19/Notes-of-3D-Gaussian-Splatting/</guid>
-      <pubDate>Tue, 19 Mar 2024 04:12:53 GMT</pubDate>
-      
-      <description>&lt;p&gt;Notes of 3D Gaussian Splatting.&lt;/p&gt;</description>
-      
-      
-      
-      
-      
-      <category domain="https://shiyuang-scu.github.io/tags/%E4%B8%96%E7%95%8C%E4%B9%8B%E5%86%85/">世界之内</category>
-      
-      
-      <comments>https://shiyuang-scu.github.io/2024/03/19/Notes-of-3D-Gaussian-Splatting/#disqus_thread</comments>
       
     </item>
     

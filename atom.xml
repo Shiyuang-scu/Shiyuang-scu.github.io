@@ -6,7 +6,7 @@
   <link href="https://shiyuang-scu.github.io/atom.xml" rel="self"/>
   
   <link href="https://shiyuang-scu.github.io/"/>
-  <updated>2026-01-14T21:29:21.992Z</updated>
+  <updated>2026-04-18T15:59:48.850Z</updated>
   <id>https://shiyuang-scu.github.io/</id>
   
   <author>
@@ -15,6 +15,26 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>2025年终总结</title>
+    <link href="https://shiyuang-scu.github.io/2026/04/18/2025%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/"/>
+    <id>https://shiyuang-scu.github.io/2026/04/18/2025%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/</id>
+    <published>2026-04-18T09:47:46.000Z</published>
+    <updated>2026-04-18T15:59:48.850Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;我住的学生宿舍，楼下有一棵很大的树，我不认识它叫什么名字。我刚来的时候是秋天，它每天掉一些叶子下来，不多不少，大概七八片的样子。有时候我出门的时候正好有一片落在我肩上，我就把它拿下来，看看上面的纹路，然后放在路边的台阶上。第二天那片叶子就不见了，不知道是被风吹走了，还是被扫走了，还是被另一个像我一样无聊的人捡走了。我每天都放一片，每天都消失。我觉得这件事有一种说不清楚的仪式感。&lt;/p&gt;
+&lt;p&gt;现在已经是春天，这颗树上抽出了嫩绿的新芽，可是，我已经等不到下一个秋天了。&lt;/p&gt;</summary>
+    
+    
+    
+    
+    <category term="随笔" scheme="https://shiyuang-scu.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+    <category term="年终总结" scheme="https://shiyuang-scu.github.io/tags/%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/"/>
+    
+  </entry>
   
   <entry>
     <title>【叶隙集】47 圣诞假期的旅行</title>
@@ -299,23 +319,6 @@
     <category term="随笔" scheme="https://shiyuang-scu.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
     
     <category term="叶隙集" scheme="https://shiyuang-scu.github.io/tags/%E5%8F%B6%E9%9A%99%E9%9B%86/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Notes of 3D Gaussian Splatting</title>
-    <link href="https://shiyuang-scu.github.io/2024/03/19/Notes-of-3D-Gaussian-Splatting/"/>
-    <id>https://shiyuang-scu.github.io/2024/03/19/Notes-of-3D-Gaussian-Splatting/</id>
-    <published>2024-03-19T04:12:53.000Z</published>
-    <updated>2025-01-12T22:01:00.153Z</updated>
-    
-    
-    <summary type="html">&lt;p&gt;Notes of 3D Gaussian Splatting.&lt;/p&gt;</summary>
-    
-    
-    
-    
-    <category term="世界之内" scheme="https://shiyuang-scu.github.io/tags/%E4%B8%96%E7%95%8C%E4%B9%8B%E5%86%85/"/>
     
   </entry>
   
