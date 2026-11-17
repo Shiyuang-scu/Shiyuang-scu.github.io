@@ -5,61 +5,36 @@
 
 .body-wrap { max-width: 960px; margin-left: auto; margin-right: auto; }
 
-/* 与文章卡片同宽（文章区最大 960px，卡片左右各留 30px） */
+/* 顶部信息栏：单行，与文章卡片同宽（文章区最大 960px，卡片左右各留 30px） */
 #top-header {
-  background: #fff; text-align: center; padding-bottom: 18px; border: 1px solid #ddd; border-top: 0;
+  display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px 24px;
   width: calc(100% - 60px); max-width: 900px; box-sizing: border-box; margin: 0 auto;
+  padding: 28px 0 22px; border-bottom: 1px solid #cfcfcf;
 }
+#top-header .top-header-brand { display: flex; align-items: center; gap: 12px; min-width: 0; }
+#top-header .top-header-avatar { flex: none; width: 40px; height: 40px; border-radius: 50%; overflow: hidden; background: #88acdb; }
+#top-header .top-header-avatar img { width: 100%; height: 100%; object-fit: cover; display: block; }
+#top-header .top-header-author { font-size: 24px; font-weight: 700; color: #333; font-family: Roboto, "Helvetica Neue", Arial, sans-serif; letter-spacing: -.01em; }
+#top-header .top-header-subtitle { color: #888; font-size: 13px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+#top-header .top-header-nav { display: flex; align-items: center; flex-wrap: wrap; gap: 6px 26px; }
+#top-header .top-header-link { color: #444; font-size: 15px; transition: color .2s; }
+#top-header .top-header-link:hover { color: #000; }
+#top-header .top-header-social { display: flex; align-items: center; gap: 14px; padding-left: 22px; border-left: 1px solid #d5d5d5; }
+#top-header .top-header-social a { color: #888; font-size: 16px; line-height: 1; transition: color .2s; }
+#top-header .top-header-social a:hover { color: #333; }
 
 /* 页脚：版权信息靠左，访问统计在页面正中 */
 #footer .outer { position: absolute; left: 0; top: 0; }
 #footer .footer-stats { text-align: center; padding: 0 0 10px; }
-#top-header .top-header-band { height: 110px; }
-#top-header .top-header-inner { max-width: 960px; margin: 0 auto; padding: 0 16px; }
-#top-header .top-header-avatar {
-  display: inline-block; width: 110px; height: 110px; margin-top: -58px;
-  border: 5px solid #fff; border-radius: 50%; overflow: hidden; background: #88acdb;
-  transition: transform .3s ease;
-}
-#top-header .top-header-avatar:hover { transform: rotate(8deg); }
-#top-header .top-header-avatar img { width: 100%; height: 100%; object-fit: cover; display: block; }
-#top-header .top-header-author { margin: 10px 0 0; font-size: 30px; font-weight: 400; font-family: Roboto, serif; line-height: 1.3; }
-#top-header .top-header-author a { color: #696969; }
-#top-header .top-header-subtitle { margin: 6px 0 0; color: #999; font-size: 14px; line-height: 22px; }
-#top-header .top-header-menu { margin: 16px 0 12px; line-height: 30px; }
-#top-header .top-header-menu a { display: inline-block; margin: 0 10px; color: #696969; font-size: 15px; transition: color .2s; }
-#top-header .top-header-menu a:hover { color: #B0A0AA; }
-.top-header-social { display: flex; flex-wrap: wrap; justify-content: center; }
-.top-header-social a { margin: 0 8px !important; }
-.top-header-social a{border-radius:50%;display:-moz-inline-stack;display:inline-block;vertical-align:middle;*vertical-align:auto;zoom:1;*display:inline;margin:0 8px 15px;transition:.3s;text-align:center;color:#fff;opacity:.7;width:28px;height:28px;line-height:26px}
-.top-header-social a.weibo{background:#aaf;border:1px solid #aaf}
-.top-header-social a.segmentfault{background:#009a61;border:1px solid #009a61}
-.top-header-social a.rss{background:#ef7522;border:1px solid #ef7522}
-.top-header-social a.github{background:#afb6ca;border:1px solid #afb6ca}
-.top-header-social a.facebook{background:#3b5998;border:1px solid #3b5998}
-.top-header-social a.google{background:#c83d20;border:1px solid #c83d20}
-.top-header-social a.twitter{background:#55cff8;border:1px solid #55cff8}
-.top-header-social a.linkedin{background:#005a87;border:1px solid #005a87}
-.top-header-social a.acfun{background:#fd4c5d;border:1px solid #fd4c5d}
-.top-header-social a.bilibili{background:#e15280;border:1px solid #e15280}
-.top-header-social a.zhihu{background:#0078d8;border:1px solid #0078d8}
-.top-header-social a.douban{background:#06c611;border:1px solid #06c611}
-.top-header-social a.mail{background:#005a87;border:1px solid #005a87}
-.top-header-social a.jianshu{background:#ff5722;border:1px solid #ff5722}
-.top-header-social a.weixin{background:#4caf50;border:1px solid #4caf50}
-.top-header-social a.qq{background:#34baad;border:1px solid #34baad}
-.top-header-social a.csdn{background:#c71d23;border:1px solid #c71d23}
-.top-header-social a.gitee{background:#c71d23;border:1px solid #c71d23}
-.top-header-social a.psn{background:#086ef6;border:1px solid #086ef6}
-.top-header-social a,.top-header-social a[class*=""],.top-header-social a[class^=""]{background:#c71d23;border:1px solid #c71d23}
 
 @media screen and (max-width: 800px) {
-  #top-header { width: 100%; border-left: 0; border-right: 0; }
+  #top-header { width: calc(100% - 32px); padding: 18px 0 14px; }
+  #top-header .top-header-author { font-size: 20px; }
+  #top-header .top-header-avatar { width: 34px; height: 34px; }
+  #top-header .top-header-subtitle { display: none; }
+  #top-header .top-header-nav { gap: 6px 18px; }
+  #top-header .top-header-social { padding-left: 16px; gap: 12px; }
   #footer .outer { position: static; }
-  #top-header .top-header-band { height: 80px; }
-  #top-header .top-header-avatar { width: 88px; height: 88px; margin-top: -46px; }
-  #top-header .top-header-author { font-size: 24px; }
-  #top-header .top-header-menu a { margin: 0 7px; font-size: 14px; }
 }
 
 /* 所有文章页：标题搜索框 */
