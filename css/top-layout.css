@@ -5,7 +5,15 @@
 
 .body-wrap { max-width: 960px; margin-left: auto; margin-right: auto; }
 
-#top-header { background: #fff; text-align: center; padding-bottom: 18px; border-bottom: 1px solid #ddd; }
+/* 与文章卡片同宽（文章区最大 960px，卡片左右各留 30px） */
+#top-header {
+  background: #fff; text-align: center; padding-bottom: 18px; border: 1px solid #ddd; border-top: 0;
+  width: calc(100% - 60px); max-width: 900px; box-sizing: border-box; margin: 0 auto;
+}
+
+/* 页脚：版权信息靠左，访问统计在页面正中 */
+#footer .outer { position: absolute; left: 0; top: 0; }
+#footer .footer-stats { text-align: center; padding: 0 0 10px; }
 #top-header .top-header-band { height: 110px; }
 #top-header .top-header-inner { max-width: 960px; margin: 0 auto; padding: 0 16px; }
 #top-header .top-header-avatar {
@@ -46,6 +54,8 @@
 .top-header-social a,.top-header-social a[class*=""],.top-header-social a[class^=""]{background:#c71d23;border:1px solid #c71d23}
 
 @media screen and (max-width: 800px) {
+  #top-header { width: 100%; border-left: 0; border-right: 0; }
+  #footer .outer { position: static; }
   #top-header .top-header-band { height: 80px; }
   #top-header .top-header-avatar { width: 88px; height: 88px; margin-top: -46px; }
   #top-header .top-header-author { font-size: 24px; }
