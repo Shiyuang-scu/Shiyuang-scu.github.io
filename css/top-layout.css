@@ -5,23 +5,14 @@
 
 .body-wrap { max-width: 960px; margin-left: auto; margin-right: auto; }
 
-#top-header { background: #fff; text-align: center; padding-bottom: 18px; border-bottom: 1px solid #ddd; }
-#top-header .top-header-band { height: 110px; }
+#top-header { background: #fff; text-align: center; padding: 36px 0 18px; border-top: 4px solid #4d4d4d; border-bottom: 1px solid #ddd; }
 #top-header .top-header-inner { max-width: 960px; margin: 0 auto; padding: 0 16px; }
-#top-header .top-header-avatar {
-  display: inline-block; width: 110px; height: 110px; margin-top: -58px;
-  border: 5px solid #fff; border-radius: 50%; overflow: hidden; background: #88acdb;
-  transition: transform .3s ease;
-}
-#top-header .top-header-avatar:hover { transform: rotate(8deg); }
-#top-header .top-header-avatar img { width: 100%; height: 100%; object-fit: cover; display: block; }
-#top-header .top-header-author { margin: 10px 0 0; font-size: 30px; font-weight: 400; font-family: Roboto, serif; line-height: 1.3; }
+#top-header .top-header-author { margin: 0; font-size: 30px; font-weight: 400; font-family: Roboto, serif; line-height: 1.3; }
 #top-header .top-header-author a { color: #696969; }
 #top-header .top-header-subtitle { margin: 6px 0 0; color: #999; font-size: 14px; line-height: 22px; }
 #top-header .top-header-menu { margin: 16px 0 12px; line-height: 30px; }
 #top-header .top-header-menu a { display: inline-block; margin: 0 10px; color: #696969; font-size: 15px; transition: color .2s; }
 #top-header .top-header-menu a:hover { color: #B0A0AA; }
-#top-header .top-header-divider { color: #bbb; margin: 0 4px; }
 .top-header-social { display: flex; flex-wrap: wrap; justify-content: center; }
 .top-header-social a { margin: 0 8px !important; }
 .top-header-social a{border-radius:50%;display:-moz-inline-stack;display:inline-block;vertical-align:middle;*vertical-align:auto;zoom:1;*display:inline;margin:0 8px 15px;transition:.3s;text-align:center;color:#fff;opacity:.7;width:28px;height:28px;line-height:26px}
@@ -47,21 +38,27 @@
 .top-header-social a,.top-header-social a[class*=""],.top-header-social a[class^=""]{background:#c71d23;border:1px solid #c71d23}
 
 @media screen and (max-width: 800px) {
-  #top-header .top-header-band { height: 80px; }
-  #top-header .top-header-avatar { width: 88px; height: 88px; margin-top: -46px; }
+  #top-header { padding-top: 26px; }
   #top-header .top-header-author { font-size: 24px; }
   #top-header .top-header-menu a { margin: 0 7px; font-size: 14px; }
-  #top-header .top-header-divider { display: block; height: 0; overflow: hidden; }
-  .archive-search { padding: 16px 10px 0; }
 }
 
-/* 所有文章页：标题搜索框 */
-.archive-search { padding: 24px 30px 0; }
-.archive-search input {
+/* 所有文章页：标签筛选 + 标题搜索框 */
+.archive-filter { padding: 24px 30px 0; }
+.archive-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; }
+.archive-tag {
+  font: inherit; font-size: 14px; line-height: 1; padding: 7px 12px; cursor: pointer;
+  color: #666; background: #fff; border: 1px solid #ddd; border-radius: 999px; transition: all .15s;
+}
+.archive-tag span { color: #aaa; font-size: 12px; margin-left: 2px; }
+.archive-tag:hover { border-color: #a0a0a0; color: #333; }
+.archive-tag.is-active { background: #4d4d4d; border-color: #4d4d4d; color: #fff; }
+.archive-tag.is-active span { color: #ccc; }
+.archive-filter input {
   width: 100%; box-sizing: border-box; padding: 10px 14px; font-size: 15px;
   border: 1px solid #ddd; border-radius: 4px; outline: none; background: #fff; color: #555; font-family: inherit;
 }
-.archive-search input:focus { border-color: #a0a0a0; }
+.archive-filter input:focus { border-color: #a0a0a0; }
 .archive-search-empty { padding: 20px 30px; color: #999; display: none; }
 
 /* 友链页 */
@@ -72,3 +69,8 @@
 .friends-list a:hover { border-color: #b0a0aa; background: #faf8f9; }
 .friends-list img { width: 28px; height: 28px; border-radius: 50%; }
 .friends-list .friends-desc { display: block; color: #999; font-size: 12px; line-height: 1.5; }
+
+@media screen and (max-width: 800px) {
+  .archive-filter { padding: 16px 10px 0; }
+  .archive-tag { font-size: 13px; padding: 6px 10px; }
+}
