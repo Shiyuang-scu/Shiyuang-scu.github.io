@@ -6,7 +6,7 @@
   <link href="https://shiyuang-scu.github.io/atom.xml" rel="self"/>
   
   <link href="https://shiyuang-scu.github.io/"/>
-  <updated>2026-10-18T15:15:35.947Z</updated>
+  <updated>2026-11-17T05:59:42.364Z</updated>
   <id>https://shiyuang-scu.github.io/</id>
   
   <author>
@@ -15,6 +15,25 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>【叶隙集】50 减熵是西绪福斯的意义</title>
+    <link href="https://shiyuang-scu.github.io/2026/11/17/%E3%80%90%E5%8F%B6%E9%9A%99%E9%9B%86%E3%80%9150-%E6%84%8F%E4%B9%89%EF%BC%9F/"/>
+    <id>https://shiyuang-scu.github.io/2026/11/17/%E3%80%90%E5%8F%B6%E9%9A%99%E9%9B%86%E3%80%9150-%E6%84%8F%E4%B9%89%EF%BC%9F/</id>
+    <published>2026-11-17T05:58:02.000Z</published>
+    <updated>2026-11-17T05:59:42.364Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;前2个月一直非常忙————当然了，忙肯定是常态，这不是不写总结、不思考的借口————最近才算是闲了下来：我把我的博士论文写得差不多了，等着最后的实验数据（最近CVPR deadline，学校的服务器全部占满了，导致我跑实验都要排很长的队）；我也找到了一个看起来还不错的工作。更重要的是，可见的未来，不确定性被我缩得很小了，所以我对未知的恐惧也缩得很小，因此最近心态比较放松。&lt;/p&gt;</summary>
+    
+    
+    
+    
+    <category term="随笔" scheme="https://shiyuang-scu.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+    <category term="叶隙集" scheme="https://shiyuang-scu.github.io/tags/%E5%8F%B6%E9%9A%99%E9%9B%86/"/>
+    
+  </entry>
   
   <entry>
     <title>【叶隙集】49 去香港开会（其二）</title>
@@ -293,25 +312,6 @@
     
     
     <summary type="html">&lt;p&gt;11月3号到11月12号，我去了台湾旅游。&lt;/p&gt;</summary>
-    
-    
-    
-    
-    <category term="随笔" scheme="https://shiyuang-scu.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
-    
-    <category term="叶隙集" scheme="https://shiyuang-scu.github.io/tags/%E5%8F%B6%E9%9A%99%E9%9B%86/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>【叶隙集】39 搬家了</title>
-    <link href="https://shiyuang-scu.github.io/2024/09/05/%E3%80%90%E5%8F%B6%E9%9A%99%E9%9B%86%E3%80%9139-%E6%90%AC%E5%AE%B6%E4%BA%86/"/>
-    <id>https://shiyuang-scu.github.io/2024/09/05/%E3%80%90%E5%8F%B6%E9%9A%99%E9%9B%86%E3%80%9139-%E6%90%AC%E5%AE%B6%E4%BA%86/</id>
-    <published>2024-09-05T11:09:35.000Z</published>
-    <updated>2024-09-05T11:10:41.149Z</updated>
-    
-    
-    <summary type="html">&lt;p&gt;我在六月初回到了新加坡。这三个月时间主要做了两件事：科研和搬家。&lt;/p&gt;</summary>
     
     
     
