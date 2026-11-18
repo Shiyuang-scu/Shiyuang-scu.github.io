@@ -309,6 +309,8 @@
       <span class="post-count">12分</span>
     </span>
   </span>
+
+  
 </div>
 
 
@@ -582,6 +584,26 @@
   
 	
 	<script defer src="https://events.vercount.one/js"></script>
+	
+	
+	<script>
+	  (function () {
+	    var items = document.querySelectorAll('.js-post-pv');
+	    if (!items.length || !window.fetch) return;
+	    items.forEach(function (el) {
+	      var url = location.origin + el.getAttribute('data-path');
+	      fetch('https://events.vercount.one/api/v2/log?url=' + encodeURIComponent(url))
+	        .then(function (r) { return r.json(); })
+	        .then(function (res) {
+	          if (!res || res.status !== 'success' || !res.data) return;
+	          el.querySelector('.js-post-pv-value').textContent = Number(res.data.page_pv || 0);
+	          el.style.display = '';
+	        })
+	        .catch(function () {});
+	    });
+	  })();
+	</script>
+	
   
   
 	
